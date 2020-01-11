@@ -173,23 +173,6 @@ function removeIframeAll(){
 	}
 }
 
-//弹框
-function modelshow(title, content, type) {
-	layer.open({
-		type: type,
-		area: ['800px', '500px'],
-		fix: true, //是否跟随页面滚动
-		maxmin: true,
-		shadeClose: true, //点击阴影开关
-		shade: 0.4, //阴影透明度
-		move: 'false', //默认：.layui-layer-title
-		moveOut: false, //是否允许拖拽到窗口外
-		title: title,
-		content: content,
-		scrollbar: true
-	});
-}
-
 /*弹出层*/
 /*
 	参数解释：
@@ -200,41 +183,15 @@ function modelshow(title, content, type) {
 	h		弹出层高度（缺省调默认值）
 */
 function layer_show(title,url,w,h){
-	if (title == null || title == '') {
-		title=false;
-	};
-	if (url == null || url == '') {
-		url="404.html";
-	};
-	if (w == null || w == '') {
-		w=800;
-	};
-	if (h == null || h == '') {
-		h=($(window).height() - 50);
-	};
 	layer.open({
 		type: 2,
 		area: [w+'px', h +'px'],
 		fix: false, //不固定
-		maxmin: true,
+		maxmin: false,		
 		shade:0.4,
-		title: title,
-		content: url,
-		scrollbar: false
+		title: false ,	
+		content: url
 	});
-}
-function layer_showmax(title,url,w,h){	
-	var index=layer.open({
-		type: 2,		
-		fix: false, //不固定
-		area: [w+'px', h +'px'],
-		maxmin: true,
-		shade:0.4,
-		title: title,
-		content: url,
-		scrollbar: false
-	});
-	layer.full(index);
 }
 /*关闭弹出框口*/
 function layer_close(){

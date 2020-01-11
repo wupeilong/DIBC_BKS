@@ -17,26 +17,24 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd"
 	default-lazy-init="true">
 	<!--  自动扫描，	扫描以com.yichuan开头包中的所有有注解的类注入spring（IOC）,但是不扫描controller -->
-	 <context:component-scan base-package="cn.hqtmain">
+	 <context:component-scan base-package="cn.dibcbks">
 	   <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan> 
 	<!-- 异常统一处理类 HandlerExceptionResolver 注释 -->
-  	<bean id="handlerExceptionResolver" class="cn.hqtmain.exception.MyExceptionResolver" /> 
+  	<bean id="handlerExceptionResolver" class="cn.dibcbks.exception.MyExceptionResolver" /> 
 	<util:properties id="dbConf" location="classpath:config.properties" />
 
 	<!-- 配置数据库的连接池 -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" >
 		<property name="driverClassName" value="#{dbConf.driverClassName}" />
 		<property name="url" value="#{dbConf.url}" />
 		<property name="username" value="#{dbConf.username}" />
-		<property name="password" value="#{dbConf.password}" />
-	</bean>	
-		
+		<property name="password" value="#{dbConf.password}" />		
+   </bean>
 	<!-- SqlSessionFactoryBean的初始化 -->
 	<bean id="factoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="mapperLocations" value="classpath:mappers/*.xml" />
-		<property name="configLocation" value="classpath:mybatis.xml" />
+		<property name="mapperLocations" value="classpath:mappers/*.xml" />		
 	</bean>
 
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
@@ -54,16 +52,16 @@
 	</tx:advice>
 	
 	<aop:config>
-		<aop:pointcut expression="execution(* cn.hqtmain.service..*(..))" id="point"/>
+		<aop:pointcut expression="execution(* cn.dibcbks.service..*(..))" id="point"/>
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="point"/>
 	</aop:config> 
 	
 	
 	<!-- 持久层接口扫描 -->
 	<bean id="scannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="cn.hqtmain.mapper"/>
+		<property name="basePackage" value="cn.dibcbks.mapper"/>
 	</bean>	
-	<bean id="myShiroRealm" class="cn.hqtmain.filter.MyShiroRealm" >
+	<bean id="myShiroRealm" class="cn.dibcbks.filter.MyShiroRealm" >
 		 <!-- 凭证匹配器(密码加密) -->
 	     <property name="credentialsMatcher">
     		<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
@@ -98,24 +96,16 @@
 	</bean>
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />		
-		<property name="loginUrl" value="/login" />
+		<!-- <property name="loginUrl" value="/login" />
 		<property name="successUrl" value="/index" />
-		<property name="unauthorizedUrl" value="/error" />
+		<property name="unauthorizedUrl" value="/error" /> -->
 		<property name="filterChainDefinitions">
-			<value>			
-				/login=anon
-				/hqt_login=anon
-				/index=authc	
-				/logout= logout			
-				/static/**=anon
-				/**=user
-				/**=authc
-			</value>
+			<value>
+			
+			
+   			</value>
 		</property>
 	</bean>	
-   <bean id="messageService" class="cn.hqtmain.service.MessageServiceImpl"></bean>
- <tx:annotation-driven transaction-manager="transactionManager"/> 
-
 </beans>
 
 

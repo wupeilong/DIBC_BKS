@@ -19,8 +19,8 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">
-  <context:component-scan base-package="cn.hqtmain.controller"/> 
-    <mvc:default-servlet-handler />  
+  <context:component-scan base-package="cn.dibcbks.controller"/> 
+  <mvc:default-servlet-handler />  
   <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
   	<property name="prefix" value="/WEB-INF/main/"/>
   	<property name="suffix" value=".jsp"/>
@@ -29,18 +29,14 @@
 	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>	
 	<!--启用shiro注解权限检查(@RequestPermissions)-->
 	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"    depends-on="lifecycleBeanPostProcessor"/>
-	<!--   多媒体文件解析器  -->
+	<!--   多媒体文件解析器 
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <!-- 最大允许上传大小5MB -->
+        最大允许上传大小5MB
      <property name="maxUploadSize" value="5242880" />
      <property name="maxInMemorySize" value="4096" />
      <property name="defaultEncoding" value="UTF-8"></property>
-    </bean>    
-  <mvc:annotation-driven/>
-
-  
-  
-  
+    </bean> -->    
+  <mvc:annotation-driven/>  
 </beans>
 
 
