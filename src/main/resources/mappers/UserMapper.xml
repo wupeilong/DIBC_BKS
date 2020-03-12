@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+	<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+		"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="cn.dibcbks.mapper.UserMapper">
+	<resultMap id="BaseResultMap" type="cn.dibcbks.entity.User">
+	    <id column="id" property="id" />
+	    <result column="id_card" property="idCard" />
+	    <result column="username" property="username" />
+	    <result column="password" property="password" />
+	    <result column="phone" property="phone" />
+	    <result column="unit_id" property="unitId" />
+	    <result column="unit_name" property="unitName" />
+	    <result column="deparment" property="deparment" />
+	    <result column="duty" property="duty" />
+	    <result column="age" property="age" />
+	    <result column="health_certificate_code" property="healthCertificateCode" />
+		<result column="health_certificate" property="healthCertificate" />
+		<result column="head_url" property="headUrl" />
+		<result column="parent_id" property="parentId" />
+		<result column="sex" property="sex" />
+		<result column="type" property="type" />
+		<result column="uuid" property="uuid" />
+		<result column="create_time" property="createTime" />
+  		<association property="hygiene" javaType="cn.dibcbks.entity.User.hygiene">
+			<id column="hygiene_id" property="hygieneId"/>
+			<result column="user_id" property="userId" />
+			<result column="daily_time" property="dailyTime" />
+			<result column="celsius" property="celsius" />
+			<result column="health_code_photo" property="healthCodePhoto" />
+			<result column="fever" property="fever" />
+			<result column="diarrhea" property="diarrhea" />
+			<result column="wounds_fester" property="woundsFester" />
+			<result column="hygiene" property="hygiene" />
+			<result column="other" property="other" />
+			<result column="remark" property="remark" />
+			<result column="upload_time" property="uploadTime" />
+		</association>
+  	</resultMap>
+
+	<insert id="insert" parameterType="cn.dibcbks.entity.User" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO  user
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="idCard != null">
+	        id_card,
+	      </if>
+	      <if test="username != null">
+	        username,
+	      </if>
+	      <if test="password != null">
+	        password,
+	      </if>
+	      <if test="phone != null">
+	        phone,
+	      </if>
+	      <if test="unitId != null">
+	        unit_id,
+	      </if>
+	      <if test="deparment != null">
+	        deparment,
+	      </if>
+	      <if test="duty != null">
+	        duty,
+	      </if>
+	      <if test="age != null">
+	        age,
+	      </if>
+	      <if test="healthCertificateCode != null">
+	        health_certificate_code,
+	      </if>
+	      <if test="healthCertificate != null">
+	        health_certificate,
+	      </if>
+	      <if test="headUrl != null">
+	        head_url,
+	      </if>
+	      <if test="parentId != null">
+	        parent_id,
+	      </if>
+	      <if test="sex != null">
+	        sex,
+	      </if>
+	      <if test="type != null">
+	        type,
+	      </if>
+	      <if test="uuid != null">
+	        uuid,
+	      </if>
+	      <if test="createTime != null">
+	        create_time,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="idCard != null">
+	        #{idCard},
+	      </if>
+	      <if test="username != null">
+	        #{username},
+	      </if>
+	      <if test="password != null">
+	        #{password},
+	      </if>
+	      <if test="phone != null">
+	        #{phone},
+	      </if>
+	      <if test="unitId != null">
+	        #{unitId},
+	      </if>
+	      <if test="deparment != null">
+	        #{deparment},
+	      </if>
+	      <if test="duty != null">
+	        #{duty},
+	      </if>
+	      <if test="age != null">
+	        #{age},
+	      </if>
+	      <if test="healthCertificateCode != null">
+	        #{healthCertificateCode},
+	      </if>
+	      <if test="healthCertificate != null">
+	        #{healthCertificate},
+	      </if>
+	      <if test="headUrl != null">
+	        #{headUrl},
+	      </if>
+	      <if test="parentId != null">
+	        #{parentId},
+	      </if>
+	      <if test="sex != null">
+	        #{sex},
+	      </if>
+	      <if test="type != null">
+	        #{type},
+	      </if>
+	      <if test="uuid != null">
+	        #{uuid},
+	      </if>
+	      <if test="createTime != null">
+	        #{createTime},
+	      </if>
+	    </trim>
+	</insert>
+	
+	<!--查询用户 -->
+	<select id="select" resultMap="BaseResultMap"> 
+		SELECT
+			u.id,
+			u.id_card,
+			u.username,
+			u.`password`,
+			u.phone,
+			u.unit_id,
+			n.unit_name,
+			u.deparment,
+			u.duty,
+			u.age,
+			u.health_certificate_code,
+			u.health_certificate,
+			u.head_url,
+			u.parent_id,
+			u.sex,
+			u.type,
+			u.uuid,
+			u.create_time,
+			h.hygiene_id,
+			h.user_id,
+			h.daily_time,
+			h.celsius,
+			h.health_code_photo,
+			h.fever,
+			h.diarrhea,
+			h.wounds_fester,
+			h.hygiene,
+			h.other,
+			h.remark,
+			h.upload_time
+		FROM
+			user AS u
+		LEFT JOIN unit AS n ON n.unit_id = u.unit_id
+		LEFT JOIN hygiene AS h ON h.user_id = u.id
+		<if test="where != null">where ${where}</if>
+		<if test="orderBy != null">order by ${orderBy}</if>
+		<if test="offset != null">limit ${offset},${countPerPage}</if>
+	</select>
+	
+	<!-- 查询单个用户信息 -->
+	<!-- 如果参数类型parameterType是普通数据类型，那么SQL中的#{}参数名可以任意； 如果参数是对象，那么参#{}数名称必须和对象属性名一致 -->		
+	<select id="queryUser" resultMap="BaseResultMap" parameterType="java.lang.String">
+		SELECT
+			u.id,
+			u.id_card,
+			u.username,
+			u.`password`,
+			u.phone,
+			u.unit_id,
+			u.deparment,
+			u.duty,
+			u.age,
+			u.health_certificate_code,
+			u.health_certificate,
+			u.head_url,
+			u.parent_id,
+			u.sex,
+			u.type,
+			u.uuid,
+			u.create_time
+		FROM
+			user
+		WHERE
+			u.id_card = #{idCard}
+	</select>
+	 
+
+	<update id="updateById"  parameterType="cn.dibcbks.entity.User">
+		update user
+	    <set>
+	      <if test="idCard != null">
+	        id_card = #{idCard},,
+	      </if>
+	      <if test="username != null">
+	        username = #{username},,
+	      </if>
+	      <if test="password != null">
+	        password = #{password},,
+	      </if>
+	      <if test="phone != null">
+	        phone = #{phone},,
+	      </if>
+	      <if test="unitId != null">
+	        unit_id = #{unitId},,
+	      </if>
+	      <if test="deparment != null">
+	        deparment = #{deparment},,
+	      </if>
+	      <if test="duty != null">
+	        duty = #{duty},,
+	      </if>
+	      <if test="age != null">
+	        age = #{age},,
+	      </if>
+	      <if test="healthCertificateCode != null">
+	        health_certificate_code = #{healthCertificateCode},,
+	      </if>
+	      <if test="healthCertificate != null">
+	        health_certificate = #{healthCertificate},,
+	      </if>
+	      <if test="headUrl != null">
+	        head_url = #{headUrl},,
+	      </if>
+	      <if test="parentId != null">
+	        parent_id = #{parentId},,
+	      </if>
+	      <if test="sex != null">
+	        sex = #{sex},,
+	      </if>
+	      <if test="type != null">
+	        type = #{type},,
+	      </if>
+	      <if test="uuid != null">
+	        uuid = #{uuid},,
+	      </if>
+	      <if test="createTime != null">
+	        create_time = #{createTime},
+	      </if> 
+	    </set>
+	    where id = #{id}
+	</update>
+
+	
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		DELETE FROM user where id = #{id};
+	</delete>
+</mapper>
+	
+	
+	
+	
+	
+	
+	
+	
+	
