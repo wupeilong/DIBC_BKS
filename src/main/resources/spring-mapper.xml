@@ -103,8 +103,7 @@
 		<property name="unauthorizedUrl" value="/error" /> -->
 		<property name="filterChainDefinitions">
 			<value>
-			
-			
+			/*/** = anon
    			</value>
 		</property>
 	</bean>	
