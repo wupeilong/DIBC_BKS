@@ -3,6 +3,8 @@ package cn.dibcbks.entity;
 import java.io.Serializable;
 import java.util.Date;
 
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+
 /**
  * 清洗消毒信息表
  * @author Administrator

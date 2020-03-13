@@ -18,7 +18,7 @@ public class User implements Serializable {
 	private String username;//姓名
 	private String password;//密码
 	private String phone;//手机号
-	private String unitId;//单位ID
+	private Integer unitId;//单位ID
 	private String unitName;//单位名字
 	private String deparment;//部门
 	private String duty;//职务
@@ -26,19 +26,19 @@ public class User implements Serializable {
 	private String healthCertificateCode;//健康证编码
 	private String healthCertificate;//健康证图片
 	private String headUrl;//用户头像
-	private String parentId;//父级ID[默认：0]
+	private Integer parentId;//父级ID[默认：0]
 	private Integer sex;//性别：0-女 1-男 2-未知
 	private Integer type;//用户类型：1-监管 2-企业
-	private String uuid;//uuid
+	private String uuid;//唯一识别码
 	private Date createTime;//创建时间
 	private Hygiene hygiene;//当天体温信息表
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public User(Integer id, String idCard, String username, String password, String phone, String unitId,
+	public User(Integer id, String idCard, String username, String password, String phone, Integer unitId,
 			String unitName, String deparment, String duty, Integer age, String healthCertificateCode,
-			String healthCertificate, String headUrl, String parentId, Integer sex, Integer type, String uuid,
+			String healthCertificate, String headUrl, Integer parentId, Integer sex, Integer type, String uuid,
 			Hygiene hygiene, Date createTime) {
 		super();
 		this.id = id;
@@ -91,10 +91,10 @@ public class User implements Serializable {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getUnitId() {
+	public Integer getUnitId() {
 		return unitId;
 	}
-	public void setUnitId(String unitId) {
+	public void setUnitId(Integer unitId) {
 		this.unitId = unitId;
 	}
 	public String getUnitName() {
@@ -139,10 +139,10 @@ public class User implements Serializable {
 	public void setHeadUrl(String headUrl) {
 		this.headUrl = headUrl;
 	}
-	public String getParentId() {
+	public Integer getParentId() {
 		return parentId;
 	}
-	public void setParentId(String parentId) {
+	public void setParentId(Integer parentId) {
 		this.parentId = parentId;
 	}
 	public Integer getSex() {

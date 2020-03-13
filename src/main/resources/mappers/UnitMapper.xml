@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+	<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+		"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="cn.dibcbks.mapper.UnitMapper">
+	<resultMap id="BaseResultMap" type="cn.dibcbks.entity.Unit">
+	    <id column="unit_id" property="uniId" />
+	    <result column="unit_name" property="unitName" />
+	    <result column="legal_person" property="legalPerson" />
+	    <result column="business_license_code" property="businessLicenseCode" />
+	    <result column="business_license" property="businessLicense" />
+	    <result column="production_license" property="productionLicense" />
+	    <result column="unit_address" property="unitAddress" />
+	    <result column="expiration_date" property="expirationDate" />
+	    <result column="unit_type" property="unitType" />
+	    <result column="create_time" property="createTime" />
+  	</resultMap>
+
+	<insert id="insert" parameterType="cn.dibcbks.entity.Unit" useGeneratedKeys="true" keyProperty="uuId">
+		INSERT INTO  unit
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="uniId != null">
+	        unit_id,
+	      </if>
+	      <if test="unitName != null">
+	        unit_name,
+	      </if>
+	      <if test="legalPerson != null">
+	        legal_person,
+	      </if>
+	      <if test="businessLicenseCode != null">
+	        business_license_code,
+	      </if>
+	      <if test="businessLicense != null">
+	        business_license,
+	      </if>
+	      <if test="productionLicense != null">
+	        production_license,
+	      </if>
+	      <if test="unitAddress != null">
+	        unit_address,
+	      </if>
+	      <if test="expirationDate != null">
+	        expiration_date,
+	      </if>
+	      <if test="unitType != null">
+	        unit_type,
+	      </if>
+	      <if test="createTime != null">
+	        create_time,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	     <if test="uniId != null">
+	        #{uniId},
+	      </if>
+	      <if test="unitName != null">
+	        #{unitName},
+	      </if>
+	      <if test="legalPerson != null">
+	        #{legalPerson},
+	      </if>
+	      <if test="businessLicenseCode != null">
+	        #{businessLicenseCode},
+	      </if>
+	      <if test="businessLicense != null">
+	        #{businessLicense},
+	      </if>
+	      <if test="productionLicense != null">
+	        #{productionLicense},
+	      </if>
+	      <if test="unitAddress != null">
+	        #{unitAddress},
+	      </if>
+	      <if test="expirationDate != null">
+	        #{expirationDate},
+	      </if>
+	      <if test="unitType != null">
+	        #{unitType},
+	      </if>
+	      <if test="createTime != null">
+	        #{createTime},
+	      </if>
+	    </trim>
+	</insert>
+	
+
+	<select id="select" resultMap="BaseResultMap"> 
+		SELECT
+			n.unit_id,
+			n.unit_name,
+			n.legal_person,
+			n.business_license_code,
+			n.business_license,
+			n.production_license,
+			n.unit_address,
+			n.expiration_date,
+			n.create_time,
+			n.unit_type
+		FROM
+			unit AS n
+		<if test="where != null">where ${where}</if>
+		<if test="orderBy != null">order by ${orderBy}</if>
+		<if test="offset != null">limit ${offset},${countPerPage}</if>
+	</select>
+	
+
+	<select id="queryUnit" resultMap="BaseResultMap" parameterType="java.lang.String">
+		SELECT
+			n.unit_id,
+			n.unit_name,
+			n.legal_person,
+			n.business_license_code,
+			n.business_license,
+			n.production_license,
+			n.unit_address,
+			n.expiration_date,
+			n.create_time,
+			n.unit_type
+		FROM
+			unit AS n
+		WHERE
+			n.business_license_code = #{businessLicenseCode}
+	</select>
+	 
+
+	<update id="updateById"  parameterType="cn.dibcbks.entity.User">
+		update unit
+	    <set>
+		  <if test="unitName != null">
+	       	unit_name =  #{unitName},
+	      </if>
+	      <if test="legalPerson != null">
+	        legal_person = #{legalPerson},
+	      </if>
+	      <if test="businessLicenseCode != null">
+	        business_license_code = #{businessLicenseCode},
+	      </if>
+	      <if test="businessLicense != null">
+	        business_license = #{businessLicense},
+	      </if>
+	      <if test="productionLicense != null">
+	        production_license = #{productionLicense},
+	      </if>
+	      <if test="unitAddress != null">
+	        unit_address = #{unitAddress},
+	      </if>
+	      <if test="expirationDate != null">
+	        expiration_date = #{expirationDate},
+	      </if>
+	      <if test="unitType != null">
+	        unit_type = #{unitType},
+	      </if>
+	      <if test="createTime != null">
+	        create_time = #{createTime},
+	      </if>
+	    </set>
+	    where unit_id = #{unitId}
+	</update>
+
+	
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		DELETE FROM utni where unit_id = #{unitId};
+	</delete>
+</mapper>
+	
+	
+	
+	
+	
+	
+	
+	
+	

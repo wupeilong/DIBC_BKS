@@ -21,7 +21,7 @@
 		<result column="type" property="type" />
 		<result column="uuid" property="uuid" />
 		<result column="create_time" property="createTime" />
-  		<association property="hygiene" javaType="cn.dibcbks.entity.User.hygiene">
+  		<!-- <association property="hygiene" javaType="cn.dibcbks.entity.Hygiene">
 			<id column="hygiene_id" property="hygieneId"/>
 			<result column="user_id" property="userId" />
 			<result column="daily_time" property="dailyTime" />
@@ -34,7 +34,7 @@
 			<result column="other" property="other" />
 			<result column="remark" property="remark" />
 			<result column="upload_time" property="uploadTime" />
-		</association>
+		</association> -->
   	</resultMap>
 
 	<insert id="insert" parameterType="cn.dibcbks.entity.User" useGeneratedKeys="true" keyProperty="id">
@@ -162,22 +162,9 @@
 			u.type,
 			u.uuid,
 			u.create_time,
-			h.hygiene_id,
-			h.user_id,
-			h.daily_time,
-			h.celsius,
-			h.health_code_photo,
-			h.fever,
-			h.diarrhea,
-			h.wounds_fester,
-			h.hygiene,
-			h.other,
-			h.remark,
-			h.upload_time
 		FROM
 			user AS u
 		LEFT JOIN unit AS n ON n.unit_id = u.unit_id
-		LEFT JOIN hygiene AS h ON h.user_id = u.id
 		<if test="where != null">where ${where}</if>
 		<if test="orderBy != null">order by ${orderBy}</if>
 		<if test="offset != null">limit ${offset},${countPerPage}</if>
@@ -205,7 +192,7 @@
 			u.uuid,
 			u.create_time
 		FROM
-			user
+			user AS u
 		WHERE
 			u.id_card = #{idCard}
 	</select>
@@ -215,49 +202,49 @@
 		update user
 	    <set>
 	      <if test="idCard != null">
-	        id_card = #{idCard},,
+	        id_card = #{idCard},
 	      </if>
 	      <if test="username != null">
-	        username = #{username},,
+	        username = #{username},
 	      </if>
 	      <if test="password != null">
-	        password = #{password},,
+	        password = #{password},
 	      </if>
 	      <if test="phone != null">
-	        phone = #{phone},,
+	        phone = #{phone},
 	      </if>
 	      <if test="unitId != null">
-	        unit_id = #{unitId},,
+	        unit_id = #{unitId},
 	      </if>
 	      <if test="deparment != null">
-	        deparment = #{deparment},,
+	        deparment = #{deparment},
 	      </if>
 	      <if test="duty != null">
-	        duty = #{duty},,
+	        duty = #{duty},
 	      </if>
 	      <if test="age != null">
-	        age = #{age},,
+	        age = #{age},
 	      </if>
 	      <if test="healthCertificateCode != null">
-	        health_certificate_code = #{healthCertificateCode},,
+	        health_certificate_code = #{healthCertificateCode},
 	      </if>
 	      <if test="healthCertificate != null">
-	        health_certificate = #{healthCertificate},,
+	        health_certificate = #{healthCertificate},
 	      </if>
 	      <if test="headUrl != null">
-	        head_url = #{headUrl},,
+	        head_url = #{headUrl},
 	      </if>
 	      <if test="parentId != null">
-	        parent_id = #{parentId},,
+	        parent_id = #{parentId},
 	      </if>
 	      <if test="sex != null">
-	        sex = #{sex},,
+	        sex = #{sex},
 	      </if>
 	      <if test="type != null">
-	        type = #{type},,
+	        type = #{type},
 	      </if>
 	      <if test="uuid != null">
-	        uuid = #{uuid},,
+	        uuid = #{uuid},
 	      </if>
 	      <if test="createTime != null">
 	        create_time = #{createTime},

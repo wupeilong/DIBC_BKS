@@ -1,6 +1,7 @@
 package cn.dibcbks.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 单位信息表
@@ -17,25 +18,27 @@ public class Unit implements Serializable {
 	 private String legalPerson;//法人/校长
 	 private String businessLicenseCode;//营业执照编码
 	 private String businessLicense;//营业执照图片
-	 private String productionLicense_code;//生产许可证编码
-	 private String productionLicense;//生产许可证图片
+	 private String productionLicense;//许可证图片
 	 private String unitAddress;//单位地址
+	 private Date expirationDate;//到期时间
+	 private Integer unitType;//企业类型：1-监管局 -2学校 3-餐饮业 4-其他
 	 private String createTime;//创建时间
 	public Unit() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Unit(Integer uniId, String unitName, String legalPerson, String businessLicenseCode, String businessLicense,
-			String productionLicense_code, String productionLicense, String unitAddress, String createTime) {
+			String productionLicense, String unitAddress, Date expirationDate, Integer unitType, String createTime) {
 		super();
 		this.uniId = uniId;
 		this.unitName = unitName;
 		this.legalPerson = legalPerson;
 		this.businessLicenseCode = businessLicenseCode;
 		this.businessLicense = businessLicense;
-		this.productionLicense_code = productionLicense_code;
 		this.productionLicense = productionLicense;
 		this.unitAddress = unitAddress;
+		this.expirationDate = expirationDate;
+		this.unitType = unitType;
 		this.createTime = createTime;
 	}
 	public Integer getUniId() {
@@ -68,12 +71,6 @@ public class Unit implements Serializable {
 	public void setBusinessLicense(String businessLicense) {
 		this.businessLicense = businessLicense;
 	}
-	public String getProductionLicense_code() {
-		return productionLicense_code;
-	}
-	public void setProductionLicense_code(String productionLicense_code) {
-		this.productionLicense_code = productionLicense_code;
-	}
 	public String getProductionLicense() {
 		return productionLicense;
 	}
@@ -86,6 +83,18 @@ public class Unit implements Serializable {
 	public void setUnitAddress(String unitAddress) {
 		this.unitAddress = unitAddress;
 	}
+	public Date getExpirationDate() {
+		return expirationDate;
+	}
+	public void setExpirationDate(Date expirationDate) {
+		this.expirationDate = expirationDate;
+	}
+	public Integer getUnitType() {
+		return unitType;
+	}
+	public void setUnitType(Integer unitType) {
+		this.unitType = unitType;
+	}
 	public String getCreateTime() {
 		return createTime;
 	}
@@ -96,9 +105,8 @@ public class Unit implements Serializable {
 	public String toString() {
 		return "Unit [uniId=" + uniId + ", unitName=" + unitName + ", legalPerson=" + legalPerson
 				+ ", businessLicenseCode=" + businessLicenseCode + ", businessLicense=" + businessLicense
-				+ ", productionLicense_code=" + productionLicense_code + ", productionLicense=" + productionLicense
-				+ ", unitAddress=" + unitAddress + ", createTime=" + createTime + "]";
+				+ ", productionLicense=" + productionLicense + ", unitAddress=" + unitAddress + ", expirationDate="
+				+ expirationDate + ", unitType=" + unitType + ", createTime=" + createTime + "]";
 	}
-	 
-	 
+	
 }
