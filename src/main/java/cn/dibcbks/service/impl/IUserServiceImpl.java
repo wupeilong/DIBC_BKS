@@ -89,7 +89,7 @@ public class IUserServiceImpl implements IUserService {
 			user.setAge(age);
 			user.setParentId(0);//父级ID: 默认 0
 			user.setType(2);//用户类型：1-监管 2-企业
-			user.setUnitId(unit.getUniId());
+			user.setUnitId(unit.getUnitId());
 			userMapper.insert(user);
 			logger.info(Constants.SUCCESSU_HEAD_INFO + "用户注册成功");
 			return new ResponseResult<>(ResponseResult.SUCCESS,"企业账户信息注册成功!");		

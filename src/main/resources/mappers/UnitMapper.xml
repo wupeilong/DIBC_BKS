@@ -3,7 +3,7 @@
 		"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="cn.dibcbks.mapper.UnitMapper">
 	<resultMap id="BaseResultMap" type="cn.dibcbks.entity.Unit">
-	    <id column="unit_id" property="uniId" />
+	    <id column="unit_id" property="unitId" />
 	    <result column="unit_name" property="unitName" />
 	    <result column="legal_person" property="legalPerson" />
 	    <result column="business_license_code" property="businessLicenseCode" />
@@ -18,7 +18,7 @@
 	<insert id="insert" parameterType="cn.dibcbks.entity.Unit" useGeneratedKeys="true" keyProperty="unitId">
 		INSERT INTO  unit
 	    <trim prefix="(" suffix=")" suffixOverrides=",">
-	      <if test="uniId != null">
+	      <if test="unitId != null">
 	        unit_id,
 	      </if>
 	      <if test="unitName != null">
@@ -50,8 +50,8 @@
 	      </if>
 	    </trim>
 	    <trim prefix="values (" suffix=")" suffixOverrides=",">
-	     <if test="uniId != null">
-	        #{uniId},
+	     <if test="unitId != null">
+	        #{unitId},
 	      </if>
 	      <if test="unitName != null">
 	        #{unitName},
