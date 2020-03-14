@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/js/layui/css/layui.css">
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>	
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/ajaxfileupload.js"></script>	
 </head>
 	<body class="contain">
 		<div class="navigation bg-primary">
@@ -37,7 +38,7 @@
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>身份证号</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="idCard" value="5222" placeholder="请输入身份证号" aria-describedby="sizing-addon1">
+					  <input type="text" class="form-control box-shadow0 border-bottom" id="idCard" name="idCard" value="5222" placeholder="请输入身份证号" aria-describedby="sizing-addon1">
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>年&ensp;&ensp;&ensp;&ensp;龄</span>
@@ -56,6 +57,7 @@
 					  <p id="demoText"></p>
 					</div>
 				</div>
+				<input id="ficard" type="file" name="file" />
 			</form>
 			
 			<div class="margin-top2 margin-bot2">
@@ -63,24 +65,48 @@
 			</div>
 		</main>		
 		<script type="text/javascript">
-		$(function() {
-			var idDard=$("input[name=idCard]").value;
-			console.log(idDard);
+		$(function() {			
 			  $('#register').click(function() {
 			    var data = {};
 			    var t = $('form').serializeArray();
 			    $.each(t, function() {
 	                 data [this.name] = this.value;
 	            });
-	            alert(JSON.stringify(data ));
+	            alert(JSON.stringify(data));
+	            var formData = new FormData();				
+				formData.append('file',$("#ficard")[0].files[0]);
+				formData.append('idCard',JSON.stringify(data));
+				 $.ajax({
+					 url: '../file/upload',
+			          type: 'POST',
+			          cache: false,
+			          data: formData,				        
+			          processData: false,
+			          contentType: false,
+						"success" : function(obj) {
+							if (obj.state == 0) {
+								layer.msg(obj.message,{icon:2,time:1000});
+								return;				
+							}else{					
+								layer.msg(obj.message,{icon:1,time:1000},function(){layer_close();});
+							}				
+						}
+					}); 
 			  });
 			});
+			
+		
+			
+		
 		
 			layui.use('upload', function(){
 			  var $ = layui.jquery
 			  ,upload = layui.upload;
-			  
-	
+			  var idDard=$("#idCard").val();
+				console.log(idDard);
+				
+				
+				
 			  //普通图片上传
 			  var uploadInst = upload.render({
 			    elem: '#test1'
@@ -107,7 +133,7 @@
 			      });
 			    }
 			  });
-			  });
+			  }); 
 		</script>
 	<c:import url="public/footer.jsp"></c:import>
 	</body>

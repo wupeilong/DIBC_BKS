@@ -19,8 +19,9 @@ public class IUploadServiceImpl implements IUploadService {
 	@Override
 	public ResponseResult<String> uploadFile(MultipartFile file, String idCard) {
 		ResponseResult<String> rr = null;
+		System.out.println(file);
 		try {
-			System.out.println("idCard：" + idCard);
+			//System.out.println("idCard：" + idCard);
 			if(StringUtils.isEmpty(idCard)){
 				Subject subject = SecurityUtils.getSubject();
 				if (!subject.isAuthenticated()) {
