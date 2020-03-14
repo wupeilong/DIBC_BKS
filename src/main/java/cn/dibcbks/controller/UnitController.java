@@ -23,6 +23,23 @@ public class UnitController {
 	@Autowired
 	private IUnitService iUnitService;
 	
+	
+	/**
+	 * 进入企业信息列表页
+	 * @return
+	 */
+	@RequestMapping("/coopration_list")
+	public String CooprationList(){		
+		return "bks_wap/coopration_list";
+	}
+	/**
+	 * 进入企业信息详情页
+	 * @return
+	 */
+	@RequestMapping("/coopration_detal")
+	public String CooprationDetal(){		
+		return "bks_wap/coopration_detal";
+	}
 	/**
 	 * 进入企业信息修改页
 	 * @return

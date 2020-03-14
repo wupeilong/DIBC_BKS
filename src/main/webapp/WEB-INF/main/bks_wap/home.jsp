@@ -1,25 +1,26 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
-		<meta name="x5-fullscreen" content="true">
-		<title></title>
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.min.css"/>
-		<link rel="stylesheet" type="text/css" href="css/style.css"/>
-		<link rel="stylesheet" type="text/css" href="css/index.css"/>
-		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/layer/2.4/layer.js" type="text/javascript" charset="utf-8"></script>
-	</head>
-	<body class="bg-info contain">
+<head>
+	<meta charset=utf-8>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/style.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/index.css"/>
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/2.4/layer.js"></script>
+</head>
+<body class="bg-info contain">
 		<main class="">
 			<div class="">
-				<div class=""><img src="img/banner.jpg" class="img-responsive"></div>
+				<div class=""><img src="${pageContext.request.contextPath}/static/images/bks_wap/banner.jpg" class="img-responsive"></div>
 			</div>
 			<div class="bg-success">
 				<ul class="function_list list-unstyled clearfix">
-					<li class=""><a href="http://192.168.1.106:8848/wap_MCLZ/coopration_list.html"><div><i class="fa fa-info"></i><p class="padding-side05">企业信息</p></div></a></li>
+					<li class=""><a href="${pageContext.request.contextPath}/unit/coopration_list"><div><i class="fa fa-info"></i><p class="padding-side05">企业信息</p></div></a></li>
 					<li class=""><a href="http://192.168.1.106:8848/wap_MCLZ/workmens.html"><div><i class="fa fa-users"></i><p class="padding-side05">从业人员</p></div></a></li>
 					<li class=""><a href="http://192.168.1.106:8848/wap_MCLZ/buy_list.html"><div><i class="fa fa-opencart"></i><p class="padding-side05">采购报送</p></div></a></li>
 					<li class=""><a href="javascript:;" id="ai"><div><i class="fa fa-eye"></i><p class="padding-side05">加工制作检视</p></div></a></li>
@@ -31,16 +32,11 @@
 				</ul>
 			</div>
 		</main>
-		<div class="tabBar">
-			<ul class="list-unstyled clearfix margin0">
-				<li><a href="http://192.168.1.106:8848/wap_MCLZ/home.html"><div><i class="fa fa-home"></i><div>工作台</div></div></a></li>
-				<li><a href="http://192.168.1.106:8848/wap_MCLZ/user_pcenter.html"><div><i class="fa fa-user"></i><div>个人中心</div></div></a></li>
-			</ul>
-		</div>
+		<c:import url="public/footer.jsp"></c:import>
 		<script type="text/javascript">
 			$("#ai").click(function () {
 				alert("功能开发中……")
 			})
 		</script>
-	</body>
+</body>
 </html>

@@ -17,7 +17,14 @@ public class UserController {
 	@Autowired
 	private IUserService iUserService;
 	
-	
+	/**
+	 * 进入从业人员信息列表页
+	 * @return
+	 */
+	@RequestMapping("/workmens")
+	public String workmens(){		
+		return "bks_wap/workmens";
+	}
 	/**
 	 * 用户进入分配账户页(从业人员添加)
 	 * @return
