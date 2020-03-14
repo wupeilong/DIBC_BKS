@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -52,7 +53,7 @@
 					</div>
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">到期日期</span>
-					  <div class="form-control box-shadow0 border0">${unitDetail.expirationDate}</div>
+					  <div class="form-control box-shadow0 border0"><fmt:formatDate value="${unitDetail.expirationDate}" pattern="yyyy年MM月dd日" /></div>
 					</div>
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">营业地址</span>
@@ -62,14 +63,23 @@
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">企业类型</span>
 					  <c:choose>
 					  	<c:when test="${unitDetail.unitType == 1}">
-					  		<div class="form-control box-shadow0 border0"></div>
+					  		<div class="form-control box-shadow0 border0">监管局</div>
+					  	</c:when>
+					  	<c:when test="${unitDetail.unitType == 2}">
+					  		<div class="form-control box-shadow0 border0">学校</div>
+					  	</c:when>
+					  	<c:when test="${unitDetail.unitType == 3}">
+					  		<div class="form-control box-shadow0 border0">餐饮业</div>
+					  	</c:when>
+					  	<c:when test="${unitDetail.unitType == 4}">
+					  		<div class="form-control box-shadow0 border0">其他</div>
 					  	</c:when>
 					  </c:choose>
 					  
 					</div>
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">法人姓名</span>
-					  <div class="form-control box-shadow0 border0">${unitDetail.expirationDate}</div>
+					  <div class="form-control box-shadow0 border0">${unitDetail.legalPerson}</div>
 					</div>
 				  </fieldset>
 				 <!-- <div class="margin-top2">

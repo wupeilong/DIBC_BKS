@@ -36,5 +36,7 @@ public interface IUserService {
 
 	String queryUnitUserDetail(ModelMap modelMap,String id);
 
+	String workmens(ModelMap modelMap);
+
 	
 }
