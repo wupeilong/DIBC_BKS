@@ -40,6 +40,16 @@ public class LoginController {
 		return "register";
 	}
 	
+	/**
+	 * 查询用户名是否已注册
+	 * @param idCard
+	 * @return
+	 */
+	@RequestMapping("/IsExist.do")
+	private ResponseResult<Void> userIsExist(String username,String idCard){
+		
+		return iUserService.userIsExist(username,idCard);
+	}
 
 	/**
 	 * 实现注册功能
