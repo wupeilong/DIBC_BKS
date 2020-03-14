@@ -21,7 +21,7 @@
 			<div class="bg-success">
 				<ul class="function_list list-unstyled clearfix">
 					<li class=""><a href="${pageContext.request.contextPath}/unit/coopration_list"><div><i class="fa fa-info"></i><p class="padding-side05">企业信息</p></div></a></li>
-					<li class=""><a href="http://192.168.1.106:8848/wap_MCLZ/workmens.html"><div><i class="fa fa-users"></i><p class="padding-side05">从业人员</p></div></a></li>
+					<li class=""><a href="${pageContext.request.contextPath}/user/workmens"><div><i class="fa fa-users"></i><p class="padding-side05">从业人员</p></div></a></li>
 					<li class=""><a href="http://192.168.1.106:8848/wap_MCLZ/buy_list.html"><div><i class="fa fa-opencart"></i><p class="padding-side05">采购报送</p></div></a></li>
 					<li class=""><a href="javascript:;" id="ai"><div><i class="fa fa-eye"></i><p class="padding-side05">加工制作检视</p></div></a></li>
 					<li class=""><a href="http://192.168.1.106:8848/wap_MCLZ/delivery.html"><div><i class="fa fa-truck"></i><p class="padding-side05">配送报备</p></div></a></li>
