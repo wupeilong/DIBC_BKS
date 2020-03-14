@@ -1,6 +1,7 @@
 package cn.dibcbks.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.ui.ModelMap;
 
@@ -31,7 +32,7 @@ public interface IUserService {
 
 	ResponseResult<Void> userIsExist(String username, String idCard);
 
-	ResponseResult<User> queruUnitUser(String unitId, String unitName);
+	ResponseResult<List<User>> queruUnitUser(String unitId, String unitName);
 
 	
 }

@@ -23,7 +23,7 @@ public class DetectionCtroller {
 	 * @param unitId
 	 * @return
 	 */
-	@RequestMapping("/queryList.do")
+	@RequestMapping("/queryList")
 	@ResponseBody()
 	public ResponseResult<List<Detection>> queryDetectionList(ModelMap modelMap,Integer unitId){
 		
@@ -34,7 +34,7 @@ public class DetectionCtroller {
 	 * 进入多频检查信息页
 	 * @return
 	 */
-	@RequestMapping("/addPage.do")
+	@RequestMapping("/addPage")
 	public String addDetectionPage(ModelMap modelMap){
 		
 		return iDetectionService.addDetectionPage(modelMap);
@@ -46,7 +46,7 @@ public class DetectionCtroller {
 	 * @param detection
 	 * @return
 	 */
-	@RequestMapping("/add.do")
+	@RequestMapping("/add")
 	@ResponseBody
 	public ResponseResult<Void> addDetection(Detection detection){
 		
@@ -58,7 +58,7 @@ public class DetectionCtroller {
 	 * @param detection
 	 * @return
 	 */
-	@RequestMapping("/detail.do")
+	@RequestMapping("/detail")
 	public String queryDetectionDetail(ModelMap modelMap,Integer id){
 		
 		return iDetectionService.queryDetectionDetail(modelMap,id);

@@ -1,12 +1,12 @@
 package cn.dibcbks.controller;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import cn.dibcbks.entity.User;
 import cn.dibcbks.service.IUserService;
 import cn.dibcbks.util.ResponseResult;
@@ -22,7 +22,7 @@ public class UserController {
 	 * 用户进入分配账户页
 	 * @return
 	 */
-	@RequestMapping("/allocateAccountPage.do")
+	@RequestMapping("/allocateAccountPage")
 	private String allocateAccountPage(){
 		
 		return iUserService.allocateAccountPage();
@@ -37,7 +37,7 @@ public class UserController {
 	 * @param age 年龄
 	 * @return
 	 */
-	@RequestMapping("/allocateAccount.do")
+	@RequestMapping("/allocateAccount")
 	@ResponseBody
 	private ResponseResult<Void> allocateAccount(
 			@RequestParam(value="idCard",required = true) String idCard,
@@ -54,7 +54,7 @@ public class UserController {
 	 * @param user
 	 * @return
 	 */
-	@RequestMapping("/updateUser.do")
+	@RequestMapping("/updateUser")
 	@ResponseBody
 	private ResponseResult<Void> updateUser(User user){
 		
@@ -66,7 +66,7 @@ public class UserController {
 	 * 进入个人中心页面
 	 * @return
 	 */
-	@RequestMapping("/center.do")
+	@RequestMapping("/center")
 	private String userCenter(ModelMap modelMap){
 		
 		return iUserService.userCenter(modelMap);
@@ -79,9 +79,9 @@ public class UserController {
 	 * @param unitName
 	 * @return
 	 */
-	@RequestMapping("/unitUser.do")
+	@RequestMapping("/unitUserList")
 	@ResponseBody
-	private ResponseResult<User> queruUnitUser(String unitId,String unitName){
+	private ResponseResult<List<User>> queruUnitUser(String unitId,String unitName){
 		
 		return iUserService.queruUnitUser(unitId,unitName);
 	}

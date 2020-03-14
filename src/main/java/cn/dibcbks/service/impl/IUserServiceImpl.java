@@ -255,7 +255,8 @@ public class IUserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public ResponseResult<User> queruUnitUser(String unitId, String unitName) {
+	public ResponseResult<List<User>> queruUnitUser(String unitId, String unitName) {
+		ResponseResult<List<User>> rr = null;
 		try {
 			String where = "";
 			if(unitId == null && StringUtils.isEmpty(unitName)){
@@ -274,11 +275,13 @@ public class IUserServiceImpl implements IUserService {
 				}				
 			}
 			List<User> list = userMapper.select(where, null, null, null);
+			rr = new ResponseResult<>(ResponseResult.SUCCESS,"操作成功！",list);
 		} catch (Exception e) {
+			e.printStackTrace();
 			// TODO: handle exception
-		}
-		
-		return null;
+			rr = new ResponseResult<>(ResponseResult.ERROR,"操作失败！");
+		}		
+		return rr;
 	}
 
 }
