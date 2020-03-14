@@ -116,13 +116,22 @@ public class IUnitServiceImpl implements IUnitService {
 			}
 			boolean addAnd = false;
 			if(unitId != null){
-				
+				where += " n.unit_id = '" + unitId + "'";
+				addAnd =true;
 			}
+			if(StringUtils.isNotEmpty(unitName)){
+				if (addAnd) {
+					where += " AND n.unit_name = '" + unitName + "'";
+				}else {
+					where += " n.unit_name = '" + unitName + "'";
+				}				
+ 			}
 			unitList = unitMapper.select(where, null, null, null);
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
 		}
-		return null;
+		return unitList;
 	}
 
 }

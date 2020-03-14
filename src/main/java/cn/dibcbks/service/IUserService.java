@@ -28,5 +28,7 @@ public interface IUserService {
 
 	ResponseResult<Void> usernameIsExist(String username);
 
+	String allocateAccountPage();
+
 	
 }

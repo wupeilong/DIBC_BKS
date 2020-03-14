@@ -256,4 +256,10 @@ public class IUserServiceImpl implements IUserService {
 		return rr;
 	}
 
+	@Override
+	public String allocateAccountPage() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
