@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import cn.dibcbks.entity.Hygiene;
 import cn.dibcbks.mapper.HygieneMapper;
 import cn.dibcbks.service.IHygieneService;
+import cn.dibcbks.util.ResponseResult;
 
 @Service
 public class IHygieneServiceImpl implements IHygieneService {
@@ -53,7 +54,7 @@ public class IHygieneServiceImpl implements IHygieneService {
 	}
 
 	@Override
-	public String addHygiene(Hygiene hygiene) {
+	public ResponseResult<Void> addHygiene(Hygiene hygiene) {
 		// TODO Auto-generated method stub
 		return null;
 	}

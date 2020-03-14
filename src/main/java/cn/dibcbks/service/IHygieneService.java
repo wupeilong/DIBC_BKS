@@ -3,6 +3,7 @@ package cn.dibcbks.service;
 import org.springframework.ui.ModelMap;
 
 import cn.dibcbks.entity.Hygiene;
+import cn.dibcbks.util.ResponseResult;
 
 public interface IHygieneService {
 
@@ -12,6 +13,6 @@ public interface IHygieneService {
 
 	String addHygienePag(ModelMap modelMap);
 
-	String addHygiene(Hygiene hygiene);
+	ResponseResult<Void> addHygiene(Hygiene hygiene);
 
 }
