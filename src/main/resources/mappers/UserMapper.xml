@@ -2,7 +2,7 @@
 	<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
 		"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
 <mapper namespace="cn.dibcbks.mapper.UserMapper">
-	<resultMap id="BaseResultMap" type="cn.dibcbks.entity.User">
+	<!-- <resultMap id="BaseResultMap" type="cn.dibcbks.entity.User">
 	    <id column="id" property="id" />
 	    <result column="id_card" property="idCard" />
 	    <result column="username" property="username" />
@@ -21,7 +21,7 @@
 		<result column="type" property="type" />
 		<result column="uuid" property="uuid" />
 		<result column="create_time" property="createTime" />
-  	</resultMap>
+	</resultMap> -->
 
 	<insert id="insert" parameterType="cn.dibcbks.entity.User" useGeneratedKeys="true" keyProperty="id">
 		INSERT INTO  user
@@ -128,7 +128,7 @@
 	</insert>
 	
 	<!--查询用户 -->
-	<select id="select" resultMap="BaseResultMap"> 
+	<!-- <select id="select" resultMap="BaseResultMap"> 
 		SELECT
 			u.id,
 			u.id_card,
@@ -154,10 +154,10 @@
 		<if test="where != null">where ${where}</if>
 		<if test="orderBy != null">order by ${orderBy}</if>
 		<if test="offset != null">limit ${offset},${countPerPage}</if>
-	</select>
+	</select> -->
 	
 	<!-- 查询单个用户信息 -->
-	<select id="queryUser" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+	<!-- <select id="queryUser" resultMap="BaseResultMap" parameterType="java.lang.String">
 		SELECT
 			u.id,
 			u.id_card,
@@ -165,6 +165,7 @@
 			u.`password`,
 			u.phone,
 			u.unit_id,
+			n.unit_name,
 			u.deparment,
 			u.duty,
 			u.age,
@@ -178,9 +179,10 @@
 			u.create_time
 		FROM
 			user AS u
+		LEFT JOIN unit AS n ON n.unit_id = u.unit_id
 		WHERE
-			u.id_card = #{idCard}
-	</select>
+			u.id_card = #{idCard} 
+	</select>-->
 	 
 
 	<update id="updateById"  parameterType="cn.dibcbks.entity.User">

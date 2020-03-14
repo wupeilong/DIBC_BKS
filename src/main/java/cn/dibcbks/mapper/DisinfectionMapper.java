@@ -6,16 +6,16 @@ import cn.dibcbks.entity.Disinfection;
 
 public interface DisinfectionMapper {
 	
-	Integer insert(Disinfection user);
+	Integer insert(Disinfection disinfection);
 	
 	List<Disinfection> select(@Param("where") String where,
 					  @Param("orderBy") String orderBy, 
 					  @Param("offset") String offset,
 					  @Param("offset") String countPerPage);
 	
-	Disinfection queryUser(@Param("idCard")String idCard);
+	Disinfection queryDisinfection(@Param("id")Integer id);
 	
-	Disinfection updateById(Disinfection user);
+	Disinfection updateById(Disinfection disinfection);
 	
 	Integer deleteById(Integer id);
 }

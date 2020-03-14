@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?> 
 	<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
 		"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
-<mapper namespace="cn.dibcbks.mapper.UserMapper">
-	<resultMap id="BaseResultMap" type="cn.dibcbks.entity.User">
+<mapper namespace="cn.dibcbks.mapper.DisinfectionMapper">
+	<resultMap id="BaseResultMap" type="cn.dibcbks.entity.Disinfection">
 	    <id column="id" property="id" />
 	    <result column="daily_time" property="dailyTime" />
 	    <result column="unit_id" property="unitId" />
@@ -18,8 +18,8 @@
 	    <result column="create_time" property="createTime" />
   	</resultMap>
 
-	<insert id="insert" parameterType="cn.dibcbks.entity.User" useGeneratedKeys="true" keyProperty="id">
-		INSERT INTO  user
+	<insert id="insert" parameterType="cn.dibcbks.entity.Disinfection" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO  disinfection
 	    <trim prefix="(" suffix=")" suffixOverrides=",">
 	      <if test="dailyTime != null">
 	        daily_time,
@@ -122,7 +122,7 @@
 	</select>
 	
 	<!-- 查询单个用户信息 -->
-	<select id="queryUser" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+	<select id="queryDisinfection" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 		SELECT
 			d.id,
 			d.daily_time,
