@@ -21,20 +21,6 @@
 		<result column="type" property="type" />
 		<result column="uuid" property="uuid" />
 		<result column="create_time" property="createTime" />
-  		<!-- <association property="hygiene" javaType="cn.dibcbks.entity.Hygiene">
-			<id column="hygiene_id" property="hygieneId"/>
-			<result column="user_id" property="userId" />
-			<result column="daily_time" property="dailyTime" />
-			<result column="celsius" property="celsius" />
-			<result column="health_code_photo" property="healthCodePhoto" />
-			<result column="fever" property="fever" />
-			<result column="diarrhea" property="diarrhea" />
-			<result column="wounds_fester" property="woundsFester" />
-			<result column="hygiene" property="hygiene" />
-			<result column="other" property="other" />
-			<result column="remark" property="remark" />
-			<result column="upload_time" property="uploadTime" />
-		</association> -->
   	</resultMap>
 
 	<insert id="insert" parameterType="cn.dibcbks.entity.User" useGeneratedKeys="true" keyProperty="id">

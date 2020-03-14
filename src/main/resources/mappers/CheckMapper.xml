@@ -8,7 +8,7 @@
 	    <result column="unit_id" property="unitId" />
 	    <result column="unit_name" property="unitName" />
 	    <result column="unit_address" property="unitAddress" />
-	    <result column=unit_type property="unitType" />
+	    <result column="unit_type" property="unitType" />
 	    <result column="unit_principal" property="unitPrincipal" />
 	    <result column="unit_phone" property="unitPhone" />
 	    <result column="result" property="result" />

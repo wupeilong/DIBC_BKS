@@ -258,8 +258,15 @@ public class IUserServiceImpl implements IUserService {
 
 	@Override
 	public String allocateAccountPage() {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			logger.info(Constants.SUCCESSU_HEAD_INFO + "用户进入加工制作检视页面成功！");
+			//TODO 加工制作检视页面
+			return "";
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(Constants.ERROR_HEAD_INFO + "用户进入加工制作检视页面失败，原因：" + e.getMessage());
+		}
+		return "error/404";
 	}
 
 }
