@@ -21,5 +21,7 @@ public interface IUnitService {
 
 	String CooprationList(ModelMap modelMap);
 
+	String CooprationDetal(ModelMap modelMap, Integer unitId);
+
 
 }

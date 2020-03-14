@@ -23,7 +23,7 @@
 					<div class="">
 						<!-- <a href="" class="btn bg-primary padding-side"><i class="fa fa-search"></i></a> -->
 						
-						<select id="search" οnchange="getUnitList(this.value)">
+						<select id="unit_list"">
 							<c:forEach items="${unitList}" var="item">
 								<option value="${item.unitId}">${item.unitName}</option>
 							</c:forEach>							
@@ -45,8 +45,9 @@
 						<tr><th>序号</th><th>企业名称</th><th>企业法人</th><th>操作</th></tr>
 					</thead>
 					<tbody>
-						<tr><td>1</td><td>老干妈</td><td>data</td><td><a href="${pageContext.request.contextPath}/unit/coopration_detal">详情</a></td></tr>
-						<tr><td>2</td><td>老干妈</td><td>data</td><td><a href="">详情</a></td></tr>
+						<c:forEach items="${unitList}" var="item">
+							<tr><td>${item.unitId}</td><td>${item.unitName}</td><td>${item.legalPerson}</td><td><a href="${pageContext.request.contextPath}/unit/coopration_detal?unitId=${item.unitId}">详情</a></td></tr>
+						</c:forEach>						
 					</tbody>
 				</table>
 			</div>
@@ -54,17 +55,13 @@
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
 	<script type="text/javascript">
-	$("search").change(function(){
-	    alert("文本已被修改");
-	});
 	
 	$(function(){
-		$("#search").on("change",function(){
-			console.log("111")
+		$("#unit_list").on("change",function(){
+			console.log("111");
 		})
-	});
-		
-		var unitList = '${unitList}';
+	}); 
+		/* var unitList = '${unitList}';
 		console.log(unitList);
 		function getUnitList(e){
 			console.log(e);
@@ -76,6 +73,6 @@
 				success:function(obj){
 				}
 			});
-		}
+		} */
 	</script>
 </html>

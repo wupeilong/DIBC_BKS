@@ -26,17 +26,17 @@
 				    <legend>企业信息:</legend>
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">企业名称</span>
-					  <div class="form-control box-shadow0 border0">老干妈</div>
+					  <div class="form-control box-shadow0 border0">${unitDetail.unitName}</div>
 					</div>
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">统一社会信用代码</span>
-					  <div class="form-control box-shadow0 border0">老干妈</div>
+					  <div class="form-control box-shadow0 border0">${unitDetail.businessLicenseCode}</div>
 					</div>
 					<div class="fsa border-bottom">
 						<div class="margin-bot2">
 							  <div class="fc">
 								<div class="layui-upload-list fc">
-								  <img class="layui-upload-img" src="">
+								  <img class="layui-upload-img" src="${pageContext.request.contextPath}${unitDetail.businessLicense}">
 								</div>
 							  </div>
 							  <div class="text-center text-muted">营业执照</div>
@@ -44,7 +44,7 @@
 						<div class="margin-bot2">
 							  <div class="fc">
 								<div class="layui-upload-list fc">
-								  <img class="layui-upload-img" src="">
+								  <img class="layui-upload-img" src="${pageContext.request.contextPath}${unitDetail.productionLicense}">
 								</div>
 							  </div>
 							  <div class="text-center text-muted">食品许可证</div>
@@ -52,19 +52,24 @@
 					</div>
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">到期日期</span>
-					  <div class="form-control box-shadow0 border0">老干妈</div>
+					  <div class="form-control box-shadow0 border0">${unitDetail.expirationDate}</div>
 					</div>
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">营业地址</span>
-					  <div class="form-control box-shadow0 border0">老干妈</div>
+					  <div class="form-control box-shadow0 border0">${unitDetail.unitAddress}</div>
 					</div>
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">企业类型</span>
-					  <div class="form-control box-shadow0 border0">老干妈</div>
+					  <c:choose>
+					  	<c:when test="${unitDetail.unitType == 1}">
+					  		<div class="form-control box-shadow0 border0"></div>
+					  	</c:when>
+					  </c:choose>
+					  
 					</div>
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">法人姓名</span>
-					  <div class="form-control box-shadow0 border0">老干妈</div>
+					  <div class="form-control box-shadow0 border0">${unitDetail.expirationDate}</div>
 					</div>
 				  </fieldset>
 				 <!-- <div class="margin-top2">

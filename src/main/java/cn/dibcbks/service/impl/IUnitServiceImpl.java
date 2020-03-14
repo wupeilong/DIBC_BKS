@@ -149,7 +149,7 @@ public class IUnitServiceImpl implements IUnitService {
 				//TODO 企业信息列表页
 				return "bks_wap/coopration_list";
 			}else{//企业用户
-				List<Unit> unitList = unitMapper.select(" n.unit_id = '" + user.getUnitId() + "'", null, null, null);
+				List<Unit> unitList = unitMapper.select(" n.unit_id = '" + user.getUnitId() + "'", " n.create_time DESC", null, null);
 				modelMap.addAttribute("unitDetail", unitList.get(0));
 				logger.info(Constants.SUCCESSU_HEAD_INFO + "用户进入企业信息详情页面成功！");
 				//TODO 企业详情信息页
@@ -160,6 +160,18 @@ public class IUnitServiceImpl implements IUnitService {
 			logger.error(Constants.ERROR_HEAD_INFO + "用户进入企业信息页面失败，原因：" + e.getMessage());
 		}
 		return "error/404";
+	}
+
+
+	@Override
+	public String CooprationDetal(ModelMap modelMap, Integer unitId) {
+		Unit unitDetail = null;
+		List<Unit> list = unitMapper.select(" unit_id = '" + unitId + "'", null, null, null);
+		if (!list.isEmpty()) {
+			unitDetail = list.get(0);
+		}
+		modelMap.addAttribute("unitDetail", unitDetail);
+		return "bks_wap/coopration_detal";
 	}
 
 }

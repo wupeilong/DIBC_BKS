@@ -29,7 +29,8 @@ public class UnitController {
 	 * @return
 	 */
 	@RequestMapping("/coopration_list")
-	public String CooprationList(ModelMap modelMap){		
+	public String CooprationList(ModelMap modelMap){
+		
 		return iUnitService.CooprationList(modelMap);
 //		return "bks_wap/coopration_list";
 	}
@@ -38,8 +39,10 @@ public class UnitController {
 	 * @return
 	 */
 	@RequestMapping("/coopration_detal")
-	public String CooprationDetal(){		
-		return "bks_wap/coopration_detal";
+	public String CooprationDetal(ModelMap modelMap,Integer unitId){	
+		
+		return iUnitService.CooprationDetal(modelMap,unitId);
+//		return "bks_wap/coopration_detal";
 	}
 	/**
 	 * 进入企业信息修改页
