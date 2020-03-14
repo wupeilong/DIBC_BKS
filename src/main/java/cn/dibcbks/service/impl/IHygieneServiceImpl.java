@@ -1,11 +1,9 @@
 package cn.dibcbks.service.impl;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
-
 import cn.dibcbks.entity.Hygiene;
 import cn.dibcbks.mapper.HygieneMapper;
 import cn.dibcbks.service.IHygieneService;
@@ -55,8 +53,15 @@ public class IHygieneServiceImpl implements IHygieneService {
 
 	@Override
 	public ResponseResult<Void> addHygiene(Hygiene hygiene) {
-		// TODO Auto-generated method stub
-		return null;
+		ResponseResult<Void> rr = null;
+		try {
+			hygieneMapper.insert(hygiene);
+			rr = new ResponseResult<>(ResponseResult.SUCCESS,"操作成功！");
+		} catch (Exception e) {
+			e.printStackTrace();
+			rr = new ResponseResult<>(ResponseResult.ERROR,"操作失败！");
+		}
+		return rr;
 	}
 
 }
