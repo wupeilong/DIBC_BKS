@@ -21,6 +21,23 @@ public class LoginController {
 	@Autowired
 	private IUserService iUserService;
 	
+	
+	/**
+	 * 进入登录页
+	 * @return
+	 */
+	@RequestMapping("/login")
+	public String login(){		
+		return "bks_wap/login";
+	}
+	/**
+	 * 进入首页
+	 * @return
+	 */
+	@RequestMapping("/home")
+	public String Home(){		
+		return "bks_wap/home";
+	}
 	/**
 	 * 进入首页
 	 * @return

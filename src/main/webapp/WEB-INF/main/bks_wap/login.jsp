@@ -1,21 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
-		<title></title>
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="css/style.css"/>
-		<link rel="stylesheet" type="text/css" href="css/index.css"/>
-		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
-		<script src="js/layer/2.4/layer.js" type="text/javascript" charset="utf-8"></script>
-	</head>
-	<body class="bg-info container">
+<head>
+	<meta charset=utf-8>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/style.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/index.css"/>
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/2.4/layer.js"></script>
+</head>
+<body class="bg-info container">
 		<div class="container">
 			<div class="text-center margin-top">
-				<div class="logo"><img src="img/logo.png" class="img-responsive"></div>
+				<div class="logo"><img src="${pageContext.request.contextPath}/static/images/bks_wap/logo.png" class="img-responsive"></div>
 				<h3 class="fonwei">云岩区市场监督管理局</h3>
-				<a href="http://192.168.1.106:8848/wap_MCLZ/home.html">进入主页</a>
+				<a href="${pageContext.request.contextPath}/home">进入主页</a>
 			</div>
 			<div class="margin-top3">
 				<form class="login_form">
@@ -69,5 +71,5 @@
 				})
 			})
 		</script>
-	</body>
+</body>
 </html>
