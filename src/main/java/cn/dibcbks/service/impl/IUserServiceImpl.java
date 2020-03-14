@@ -256,7 +256,28 @@ public class IUserServiceImpl implements IUserService {
 
 	@Override
 	public ResponseResult<Void> queruUnitUser(String unitId, String unitName) {
-		// TODO Auto-generated method stub
+		try {
+			String where = "";
+			if(unitId == null && StringUtils.isEmpty(unitName)){
+				where = null;
+			}
+			boolean addAnd = false;
+			if(unitId != null){
+				where += " n.unit_id = '" + unitId + "'";
+				addAnd =true;
+			}
+			if(StringUtils.isNotEmpty(unitName)){
+				if (addAnd) {
+					where += " AND n.unit_name = '" + unitName + "'";
+				}else {
+					where += " n.unit_name = '" + unitName + "'";
+				}				
+			}
+			userMapper.select(where, null, null, null);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
 		return null;
 	}
 
