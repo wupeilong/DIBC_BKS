@@ -1,17 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
-		<title>从业人员添加</title>
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.min.css"/>
-		<link rel="stylesheet" type="text/css" href="css/style.css"/>
-		<link rel="stylesheet" type="text/css" href="css/index.css"/>
-		<link rel="stylesheet" href="layui/css/layui.css">
-		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
-		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
-	</head>
+<head>
+	<meta charset=utf-8>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	<title>从业人员信息添加</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/style.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/index.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/js/layui/css/layui.css">
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>	
+</head>
 	<body class="contain">
 		<div class="navigation bg-primary">
 			<div class="fb padding-side">
@@ -55,13 +57,7 @@
 			<div class="margin-top2 margin-bot2">
 				<button type="button" class="btn btn-primary form-control">保存</button>
 			</div>
-		</main>
-		<div class="tabBar">
-			<ul class="list-unstyled clearfix margin0">
-				<li><a href="http://192.168.1.106:8848/wap_MCLZ/home.html"><div><i class="fa fa-home"></i><div>工作台</div></div></a></li>
-				<li><a href=""><div><i class="fa fa-user"></i><div>个人中心</div></div></a></li>
-			</ul>
-		</div>
+		</main>		
 		<script type="text/javascript">
 			layui.use('upload', function(){
 			  var $ = layui.jquery
@@ -95,5 +91,7 @@
 			  });
 			  });
 		</script>
+	<c:import url="public/footer.jsp"></c:import>
 	</body>
+
 </html>

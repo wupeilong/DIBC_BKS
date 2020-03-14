@@ -26,6 +26,46 @@ public class UserController {
 		return "bks_wap/workmens";
 	}
 	/**
+	 * 进入从业人员信息添加页
+	 * @return
+	 */
+	@RequestMapping("/workmens_add")
+	public String workmensAdd(){		
+		return "bks_wap/workmens_add";
+	}
+	/**
+	 * 进入从业人员信息详情页
+	 * @return
+	 */
+	@RequestMapping("/workmens_detal")
+	public String workmensDetal(){		
+		return "bks_wap/workmens_detal";
+	}
+	/**
+	 * 进入从业人员信息健康列表页
+	 * @return
+	 */
+	@RequestMapping("/workmens_health")
+	public String workmensHealth(){		
+		return "bks_wap/workmens_health";
+	}
+	/**
+	 * 进入从业人员信息健康信息添加页
+	 * @return
+	 */
+	@RequestMapping("/workmens_health_add")
+	public String workmensHealthAdd(){		
+		return "bks_wap/workmens_health_add";
+	}
+	/**
+	 * 进入从业人员信息健康信息添加页
+	 * @return
+	 */
+	@RequestMapping("/workmens_health_detal")
+	public String workmensHealthDetal(){		
+		return "bks_wap/workmens_health_detal";
+	}
+	/**
 	 * 用户进入分配账户页(从业人员添加)
 	 * @return
 	 */
