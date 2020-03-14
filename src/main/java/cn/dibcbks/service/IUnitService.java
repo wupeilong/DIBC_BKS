@@ -17,7 +17,7 @@ public interface IUnitService {
 
 	String updateUnitPage(ModelMap modelMap);
 
-	List<Unit> queryUnitList(Integer unitId, String unitName);
+	ResponseResult<List<Unit>> queryUnitList(Integer unitId, String unitName);
 
 
 }
