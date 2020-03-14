@@ -25,23 +25,27 @@
 				<div class="workmens_info_top margin-bot">
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>所属企业</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="account" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+					  <input type="text" class="form-control box-shadow0 border-bottom" name="unitName" placeholder="请输入企业名称" aria-describedby="sizing-addon1" value="${user.unitName}">
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>职&ensp;&ensp;&ensp;&ensp;务</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="account" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+					  <input type="text" class="form-control box-shadow0 border-bottom" name="duty" placeholder="请输入职务" aria-describedby="sizing-addon1">
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>姓&ensp;&ensp;&ensp;&ensp;名</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="account" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+					  <input type="text" class="form-control box-shadow0 border-bottom" name="username" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+					</div>
+					<div class="input-group form-group fs">
+					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>身份证号</span>
+					  <input type="text" class="form-control box-shadow0 border-bottom" name="idCard" value="5222" placeholder="请输入身份证号" aria-describedby="sizing-addon1">
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>年&ensp;&ensp;&ensp;&ensp;龄</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="account" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+					  <input type="text" class="form-control box-shadow0 border-bottom" name="age" placeholder="请输入年龄" aria-describedby="sizing-addon1">
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>健康证编号</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="account" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+					  <input type="text" class="form-control box-shadow0 border-bottom" name="healthCertificateCode" placeholder="请输入健康证编号" aria-describedby="sizing-addon1">
 					</div>
 				</div>
 				
@@ -55,18 +59,32 @@
 			</form>
 			
 			<div class="margin-top2 margin-bot2">
-				<button type="button" class="btn btn-primary form-control">保存</button>
+				<button type="button" class="btn btn-primary form-control" id="register">保存</button>
 			</div>
 		</main>		
 		<script type="text/javascript">
+		$(function() {
+			var idDard=$("input[name=idCard]").value;
+			console.log(idDard);
+			  $('#register').click(function() {
+			    var data = {};
+			    var t = $('form').serializeArray();
+			    $.each(t, function() {
+	                 data [this.name] = this.value;
+	            });
+	            alert(JSON.stringify(data ));
+			  });
+			});
+		
 			layui.use('upload', function(){
 			  var $ = layui.jquery
 			  ,upload = layui.upload;
 			  
+	
 			  //普通图片上传
 			  var uploadInst = upload.render({
 			    elem: '#test1'
-			    ,url: 'https://httpbin.org/post' //改成您自己的上传接口
+			    ,url: '${pageContext.request.contextPath}/file/upload' //改成您自己的上传接口
 			    ,before: function(obj){
 			      //预读本地文件示例，不支持ie8
 			      obj.preview(function(index, file, result){

@@ -47,7 +47,8 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/workmens_add")
-	public String workmensAdd(){		
+	public String workmensAdd(ModelMap modelMap){	
+		
 		return "bks_wap/workmens_add";
 	}
 	
