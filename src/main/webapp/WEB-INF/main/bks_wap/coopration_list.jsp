@@ -22,33 +22,11 @@
 				<div class="">
 					<div class="">
 						<!-- <a href="" class="btn bg-primary padding-side"><i class="fa fa-search"></i></a> -->
-						<select>
-							<option value="BlackBerry">BlackBerry</option>
-							<option value="device">device</option>
-							<option value="with">with</option>
-							<option value="entertainment">entertainment</option>
-							<option value="and">and</option>
-							<option value="social">social</option>
-							<option value="networking">networking</option>
-							<option value="apps">apps</option>
-							<option value="or">or</option>
-							<option value="apps">apps</option>
-							<option value="that">that</option>
-							<option value="will">will</option>
-							<option value="boost">boost</option>
-							<option value="your">your</option>
-							<option value="productivity">productivity</option>
-							<option value="Download">Download</option>
-							<option value="or">or</option>
-							<option value="buy">buy</option>
-							<option value="apps">apps</option>
-							<option value="from">from</option>
-							<option value="Afbb">Afbb</option>
-							<option value="Akademie">Akademie</option>
-							<option value="Berlin">Berlin</option>
-							<option value="reviews">reviews</option>
-							<option value="by">by</option>
-							<option value="real">real</option>
+						
+						<select id="search" οnchange="getUnitList(this.value)">
+							<c:forEach items="${unitList}" var="item">
+								<option value="${item.unitId}">${item.unitName}</option>
+							</c:forEach>							
 						</select>
 						<script>
 							$(function(){
@@ -75,5 +53,29 @@
 		</main>
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
-
+	<script type="text/javascript">
+	$("search").change(function(){
+	    alert("文本已被修改");
+	});
+	
+	$(function(){
+		$("#search").on("change",function(){
+			console.log("111")
+		})
+	});
+		
+		var unitList = '${unitList}';
+		console.log(unitList);
+		function getUnitList(e){
+			console.log(e);
+			$.ajax({
+				url: "${pageContext.request.contextPath}/unit/list",
+				data: "",
+				type: "POST",
+				dataType: "json",
+				success:function(obj){
+				}
+			});
+		}
+	</script>
 </html>

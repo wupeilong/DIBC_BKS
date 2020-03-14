@@ -13,7 +13,7 @@ public class Unit implements Serializable {
 	  * 序列化版本ID
 	  */
 	 private static final long serialVersionUID = 1L;
-	 private Integer uniId;//单位ID
+	 private Integer unitId;//单位ID
 	 private String unitName;//单位/企业/学校名称
 	 private String legalPerson;//法人/校长
 	 private String businessLicenseCode;//营业执照编码
@@ -27,10 +27,10 @@ public class Unit implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Unit(Integer uniId, String unitName, String legalPerson, String businessLicenseCode, String businessLicense,
+	public Unit(Integer unitId, String unitName, String legalPerson, String businessLicenseCode, String businessLicense,
 			String productionLicense, String unitAddress, Date expirationDate, Integer unitType, String createTime) {
 		super();
-		this.uniId = uniId;
+		this.unitId = unitId;
 		this.unitName = unitName;
 		this.legalPerson = legalPerson;
 		this.businessLicenseCode = businessLicenseCode;
@@ -41,11 +41,11 @@ public class Unit implements Serializable {
 		this.unitType = unitType;
 		this.createTime = createTime;
 	}
-	public Integer getUniId() {
-		return uniId;
+	public Integer getUnitId() {
+		return unitId;
 	}
-	public void setUniId(Integer uniId) {
-		this.uniId = uniId;
+	public void setUnitId(Integer unitId) {
+		this.unitId = unitId;
 	}
 	public String getUnitName() {
 		return unitName;
@@ -103,7 +103,7 @@ public class Unit implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Unit [uniId=" + uniId + ", unitName=" + unitName + ", legalPerson=" + legalPerson
+		return "Unit [unitId=" + unitId + ", unitName=" + unitName + ", legalPerson=" + legalPerson
 				+ ", businessLicenseCode=" + businessLicenseCode + ", businessLicense=" + businessLicense
 				+ ", productionLicense=" + productionLicense + ", unitAddress=" + unitAddress + ", expirationDate="
 				+ expirationDate + ", unitType=" + unitType + ", createTime=" + createTime + "]";
