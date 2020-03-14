@@ -22,17 +22,12 @@
 				<div class="">
 					<div class="">
 						<!-- <a href="" class="btn bg-primary padding-side"><i class="fa fa-search"></i></a> -->
-						
 						<select id="unit_list"">
-							<c:forEach items="${unitList}" var="item">
+							<option value="">请输入搜索内容</option>
+							<c:forEach items="${unitList}" var="item">								
 								<option value="${item.unitId}">${item.unitName}</option>
 							</c:forEach>							
 						</select>
-						<script>
-							$(function(){
-								$('select').searchableSelect();
-							});
-						</script>
 					</div>
 				</div>
 				<!-- <a href="http://192.168.1.106:8848/wap_MCLZ/check_add.html" class="btn bg-primary"><i class="fa fa-plus"></i></a> -->
@@ -44,7 +39,7 @@
 					<thead>
 						<tr><th>序号</th><th>企业名称</th><th>企业法人</th><th>操作</th></tr>
 					</thead>
-					<tbody>
+					<tbody id="result_list">
 						<c:forEach items="${unitList}" var="item">
 							<tr><td>${item.unitId}</td><td>${item.unitName}</td><td>${item.legalPerson}</td><td><a href="${pageContext.request.contextPath}/unit/coopration_detal?unitId=${item.unitId}">详情</a></td></tr>
 						</c:forEach>						
@@ -55,24 +50,37 @@
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
 	<script type="text/javascript">
-	
-	$(function(){
-		$("#unit_list").on("change",function(){
-			console.log("111");
-		})
-	}); 
-		/* var unitList = '${unitList}';
-		console.log(unitList);
-		function getUnitList(e){
-			console.log(e);
+	$('select').searchableSelect({
+		"afterSelectItem":function(){
+			var url = "${pageContext.request.contextPath}/unit/list";
+			var data = "unitId=" + $("#unit_list").val();
 			$.ajax({
-				url: "${pageContext.request.contextPath}/unit/list",
-				data: "",
-				type: "POST",
-				dataType: "json",
-				success:function(obj){
+				"url" : url,
+				"data" : data,
+				"type" : "POST",
+				"dataType" : "json",
+				"success" : function(obj) {
+					if (obj.state == 0) {
+						layer.msg(obj.message,{icon:2,time:1000});
+						return;
+					}else{
+						var result = "";
+						for(var i=0;i<obj.data.length;i++){
+							result += "<tr>";
+							result += "<td>" + obj.data[i].unitId + "</td>";
+							result += "<td>" + obj.data[i].unitName + "</td>";
+							result += "<td>" + obj.data[i].legalPerson + "</td>";
+							result += "<td><a href='${pageContext.request.contextPath}/unit/coopration_detal?unitId=" + obj.data[i].unitId + "'>详情</a></td>";
+							result += "</tr>";
+						}
+						$("#result_list").html(result);
+						console.log(obj.data);									
+					}				
 				}
-			});
-		} */
+			}); 
+		}
+	});
+	
+	
 	</script>
 </html>

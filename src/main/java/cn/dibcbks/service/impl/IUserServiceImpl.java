@@ -1,5 +1,6 @@
 package cn.dibcbks.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -296,11 +297,29 @@ public class IUserServiceImpl implements IUserService {
 			List<User> list = userMapper.select(" u.id = '" + id + "'", null, null, null);
 			modelMap.addAttribute("", list.isEmpty() ? null : list.get(0));
 			//TODO 用户信息详情页
-			return "";
+			return "bks_wap/workmens_detal";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "error/404";
+	}
+
+	@Override
+	public String workmens(ModelMap modelMap) {
+		Session session = SecurityUtils.getSubject().getSession();
+		User user = (User)session.getAttribute("user");
+		List<User> userList = new ArrayList<>();
+		if(user.getType().equals(1)){//市场监管局账户
+			List<Unit> unitList = unitMapper.select(" n.unit_type BETWEEN 2 AND 4 ", " n.create_time DESC", null, null);
+			modelMap.addAttribute("unitList", unitList);
+			userList = userMapper.select(null, " u.create_time DESC", null, null);
+		}else {//企业用户
+			userList = userMapper.select(" u.unit_id = '" + user.getUnitId() + "'", " u.create_time DESC", null, null);
+		}
+		modelMap.addAttribute("userList", userList);
+		logger.info(Constants.SUCCESSU_HEAD_INFO + "用户进入从业人员信息页面成功！");
+		//TODO 从业人员信息页面
+		return "bks_wap/workmens";
 	}
 
 }

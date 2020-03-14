@@ -38,8 +38,9 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/workmens")
-	public String workmens(){		
-		return "bks_wap/workmens";
+	public String workmens(ModelMap modelMap){	
+		return iUserService.workmens(modelMap);
+//		return "bks_wap/workmens";
 	}
 	/**
 	 * 进入从业人员信息添加页
@@ -49,14 +50,18 @@ public class UserController {
 	public String workmensAdd(){		
 		return "bks_wap/workmens_add";
 	}
+	
 	/**
 	 * 进入从业人员信息详情页
 	 * @return
 	 */
 	@RequestMapping("/workmens_detal")
-	public String workmensDetal(){		
-		return "bks_wap/workmens_detal";
+	public String workmensDetal(ModelMap modelMap,String id){
+		
+		return iUserService.queryUnitUserDetail(modelMap,id);
 	}
+
+	
 	/**
 	 * 进入从业人员信息健康列表页
 	 * @return
@@ -149,15 +154,5 @@ public class UserController {
 		return iUserService.queryUnitUser(unitId,unitName);
 	}
 	
-	/**
-	 * 查询企业从业人员信息详情
-	 * @param unitId
-	 * @param unitName
-	 * @return
-	 */
-	@RequestMapping("/unitUserDetail")
-	private String queryUnitUserDetail(ModelMap modelMap,String id){
-		
-		return iUserService.queryUnitUserDetail(modelMap,id);
-	}
+	
 }

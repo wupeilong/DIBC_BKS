@@ -22,39 +22,12 @@
 				<a href="javascript:history.go(-1)" class="text-white"><i class="fa fa-angle-left"></i></a>
 				<div class="">
 					<!-- <a href="" class="btn bg-primary padding-side"><i class="fa fa-search"></i></a> -->
-					<select>
-						<option value="BlackBerry">BlackBerry</option>
-						<option value="device">device</option>
-						<option value="with">with</option>
-						<option value="entertainment">entertainment</option>
-						<option value="and">and</option>
-						<option value="social">social</option>
-						<option value="networking">networking</option>
-						<option value="apps">apps</option>
-						<option value="or">or</option>
-						<option value="apps">apps</option>
-						<option value="that">that</option>
-						<option value="will">will</option>
-						<option value="boost">boost</option>
-						<option value="your">your</option>
-						<option value="productivity">productivity</option>
-						<option value="Download">Download</option>
-						<option value="or">or</option>
-						<option value="buy">buy</option>
-						<option value="apps">apps</option>
-						<option value="from">from</option>
-						<option value="Afbb">Afbb</option>
-						<option value="Akademie">Akademie</option>
-						<option value="Berlin">Berlin</option>
-						<option value="reviews">reviews</option>
-						<option value="by">by</option>
-						<option value="real">real</option>
-					</select>
-					<script>
-						$(function(){
-							$('select').searchableSelect();
-						});
-					</script>
+					<select id="unit_list"">
+							<option value="">请输入搜索内容</option>
+							<c:forEach items="${unitList}" var="item">								
+								<option value="${item.unitId}">${item.unitName}</option>
+							</c:forEach>							
+						</select>					
 				</div>
 				<a href="${pageContext.request.contextPath}/user/workmens_add" class="btn bg-primary"><i class="fa fa-plus"></i></a>
 			</div>
@@ -65,14 +38,50 @@
 					<thead>
 						<tr><th>序号</th><th>员工姓名</th><th>职务</th><th>年龄</th><th>操作</th></tr>
 					</thead>
-					<tbody>
-						<tr><td>1</td><td>老干妈</td><td>data</td><td>data</td><td><a href="${pageContext.request.contextPath}/user/workmens_detal">详情</a></td></tr>
-						<tr><td>2</td><td>老干爹</td><td>data</td><td>data</td><td><a href="">详情</a></td></tr>
+					<tbody id="result_list">
+						
+						<c:forEach items="${userList}" var="item">
+							<tr><td>${item.id }</td><td>${item.username }</td><td>${item.duty }</td><td>${item.age }</td><td><a href="${pageContext.request.contextPath}/user//workmens_detal?id=${item.id }">详情</a></td></tr>
+						</c:forEach>
+						
 					</tbody>
 				</table>
 			</div>
 		</main>
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
-
+	<script type="text/javascript">
+	$('select').searchableSelect({
+		"afterSelectItem":function(){
+			var url = "${pageContext.request.contextPath}/user/unitUserList";
+			var data = "unitId=" + $("#unit_list").val();
+			$.ajax({
+				"url" : url,
+				"data" : data,
+				"type" : "POST",
+				"dataType" : "json",
+				"success" : function(obj) {
+					if (obj.state == 0) {
+						layer.msg(obj.message,{icon:2,time:1000});
+						return;
+					}else{
+						var result = "";
+						for(var i=0;i<obj.data.length;i++){				
+							result += "<tr>";
+							result += "<td>" + obj.data[i].id + "</td>";
+							result += "<td>" + obj.data[i].username + "</td>";
+							result += "<td>" + obj.data[i].age + "</td>";
+							result += "<td><a href='${pageContext.request.contextPath}/user//workmens_detal?id=" + obj.data[i].id + "'>详情</a></td>";
+							result += "</tr>";
+						}
+						$("#result_list").html(result);
+						console.log(obj.data);							
+					}				
+				}
+			}); 
+		}
+	});
+	
+	
+	</script>
 </html>
