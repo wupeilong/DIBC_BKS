@@ -22,7 +22,7 @@ public class UploadController {
 	 * @param idCard 身份证号
 	 * @return
 	 */
-	@PostMapping("/upload.do")
+	@PostMapping("/upload")
 	@ResponseBody
 	public ResponseResult<String> uploadFiesle(
 			@RequestParam("file") MultipartFile file,

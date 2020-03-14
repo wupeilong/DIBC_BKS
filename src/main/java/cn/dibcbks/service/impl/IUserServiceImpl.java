@@ -140,8 +140,13 @@ public class IUserServiceImpl implements IUserService {
 		try {
 			User queryUser = queryUser(idCard);
 			if (queryUser != null ) {
-				logger.error(Constants.ERROR_HEAD_INFO + "用户资料修改失败，原因：身份证已存在！");
+				logger.error(Constants.ERROR_HEAD_INFO + "用户添加从业人员失败，原因：身份证已存在！");
 				return new ResponseResult<>(ResponseResult.ERROR, "身份证已存在！");
+			}
+			List<User> list = userMapper.select(" u.username = '" + username + "'", null, null,null);
+			if (!list.isEmpty()) {
+				logger.error(Constants.ERROR_HEAD_INFO + "用户添加从业人员失败，原因：姓名已存在！");
+				return new ResponseResult<>(ResponseResult.ERROR,"用户姓名重复！");
 			}
 			Subject subject = SecurityUtils.getSubject();
 			if(subject.isAuthenticated()){
@@ -255,9 +260,46 @@ public class IUserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public ResponseResult<Void> queruUnitUser(String unitId, String unitName) {
-		// TODO Auto-generated method stub
-		return null;
+	public ResponseResult<List<User>> queryUnitUser(String unitId, String unitName) {
+		ResponseResult<List<User>> rr = null;
+		try {
+			String where = "";
+			if(unitId == null && StringUtils.isEmpty(unitName)){
+				where = null;
+			}
+			boolean addAnd = false;
+			if(unitId != null){
+				where += " n.unit_id = '" + unitId + "'";
+				addAnd =true;
+			}
+			if(StringUtils.isNotEmpty(unitName)){
+				if (addAnd) {
+					where += " AND n.unit_name = '" + unitName + "'";
+				}else {
+					where += " n.unit_name = '" + unitName + "'";
+				}				
+			}
+			List<User> list = userMapper.select(where, null, null, null);
+			rr = new ResponseResult<>(ResponseResult.SUCCESS,"操作成功！",list);
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: handle exception
+			rr = new ResponseResult<>(ResponseResult.ERROR,"操作失败！");
+		}		
+		return rr;
+	}
+
+	@Override
+	public String queryUnitUserDetail(ModelMap modelMap,String id) {
+		try {
+			List<User> list = userMapper.select(" u.id = '" + id + "'", null, null, null);
+			modelMap.addAttribute("", list.isEmpty() ? null : list.get(0));
+			//TODO 用户信息详情页
+			return "";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "error/404";
 	}
 
 }

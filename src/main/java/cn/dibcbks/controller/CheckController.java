@@ -29,7 +29,7 @@ public class CheckController {
 	 * @param unitType
 	 * @return
 	 */
-	@RequestMapping("/queryList.do")
+	@RequestMapping("/queryList")
 	@ResponseBody
 	public ResponseResult<List<Check>> queryCheckListInfo(String unitId,Integer unitType){
 		
@@ -41,7 +41,7 @@ public class CheckController {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping("/list.do")
+	@RequestMapping("/list")
 	public String checkhListInfo(ModelMap modelMap){
 		
 		return iCheckService.getCheckList(modelMap);
@@ -53,7 +53,7 @@ public class CheckController {
 	 * @param id
 	 * @return
 	 */
-	@RequestMapping("/detail.do")
+	@RequestMapping("/detail")
 	public String checkDetailInfo(ModelMap modelMap,Integer id){
 		
 		return iCheckService.checkDetailInfo(modelMap,id);
@@ -65,7 +65,7 @@ public class CheckController {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping("/business.do")
+	@RequestMapping("/business")
 	public String businessPage(ModelMap modelMap){
 		
 		return iCheckService.businessPage(modelMap);
@@ -76,7 +76,7 @@ public class CheckController {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping("/supervise.do")
+	@RequestMapping("/supervise")
 	public String supervisePage(ModelMap modelMap){
 		
 		return iCheckService.supervisePage(modelMap);
@@ -87,7 +87,7 @@ public class CheckController {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping("/supervision.do")
+	@RequestMapping("/supervision")
 	public String supervisionPage(ModelMap modelMap){
 		
 		return iCheckService.supervisionPage(modelMap);
@@ -110,7 +110,7 @@ public class CheckController {
 	 * @param checkPhoto 检查图片
 	 * @return
 	 */
-	@RequestMapping("/add.do")
+	@RequestMapping("/add")
 	@ResponseBody
 	public ResponseResult<Void> addCheckInfo(Integer unitId,String unitName,String unitType,String unitAddress,
 			String unitPrincipal,String unitPhone,List<Integer> resultList,String other,String inspectors,

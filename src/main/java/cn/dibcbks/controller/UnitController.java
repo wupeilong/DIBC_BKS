@@ -44,7 +44,7 @@ public class UnitController {
 	 * 进入企业信息修改页
 	 * @return
 	 */
-	@RequestMapping("/updateUnitPage.do")
+	@RequestMapping("/updateUnitPage")
 	public String updateUnitPage(ModelMap modelMap){
 		//TODO 企业修改页
 		return iUnitService.updateUnitPage(modelMap);
@@ -55,7 +55,7 @@ public class UnitController {
 	 * @param unit
 	 * @return
 	 */
-	@RequestMapping("/updateUnit.do")
+	@RequestMapping("/updateUnit")
 	@ResponseBody
 	public ResponseResult<Void> updateUnit(Unit unit){
 		
@@ -66,7 +66,7 @@ public class UnitController {
 	 * 查询企业信息列表
 	 * @return
 	 */
-	@RequestMapping("/list.do")
+	@RequestMapping("/list")
 	@ResponseBody
 	public ResponseResult<List<Unit>> queryUnitList(Integer unitId,String unitName){
 		
@@ -79,7 +79,7 @@ public class UnitController {
 	 * @param unitId
 	 * @return
 	 */
-	@RequestMapping("/detail.do")
+	@RequestMapping("/detail")
 	@ResponseBody
 	public ResponseResult<Unit> unitDetail(Integer unitId){
 		

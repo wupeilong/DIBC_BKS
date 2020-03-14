@@ -42,7 +42,7 @@ public class LoginController {
 	 * 进入首页
 	 * @return
 	 */
-	@RequestMapping("/index.do")
+	@RequestMapping("/index")
 	public String loginIndex(){
 		//TODO 更换登录页 
 		return "index";
@@ -52,7 +52,7 @@ public class LoginController {
 	 * 进入注册页
 	 * @return
 	 */
-	@RequestMapping("/register.do")
+	@RequestMapping("/register")
 	public String register(){
 		return "register";
 	}
@@ -62,7 +62,7 @@ public class LoginController {
 	 * @param idCard
 	 * @return
 	 */
-	@RequestMapping("/IsExist.do")
+	@RequestMapping("/IsExist")
 	private ResponseResult<Void> userIsExist(String username,String idCard){
 		
 		return iUserService.userIsExist(username,idCard);
@@ -85,7 +85,7 @@ public class LoginController {
 	 * @param unitType 单位类型
 	 * @return
 	 */
-	@RequestMapping("/registeradd.do")
+	@RequestMapping("/registeradd")
 	@ResponseBody
 	public ResponseResult<Void> registeradd(
 			@RequestParam(value="idCard",required = true) String idCard,
@@ -111,7 +111,7 @@ public class LoginController {
 	 * @param password
 	 * @return
 	 */
-	@RequestMapping("/login.do")
+	@RequestMapping("/login")
 	@ResponseBody
 	public ResponseResult<Void> login(@RequestParam(value="idCard",required = true) String idCard,
 									  @RequestParam(value="password",required = true) String password){

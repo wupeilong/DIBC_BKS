@@ -23,7 +23,7 @@ public class WorkbenchController {
 	 * 进入工作台页面
 	 * @return
 	 */
-	@RequestMapping("/workbench.do")
+	@RequestMapping("/workbench")
 	private String workbench(ModelMap modelMap){
 		
 		return iWorkbenchService.workbench(modelMap);
@@ -33,7 +33,7 @@ public class WorkbenchController {
 	 * 进入企业信息页面
 	 * @return
 	 */
-	@RequestMapping("/unitInfo.do")
+	@RequestMapping("/unitInfo")
 	private String unitInfo(ModelMap modelMap){
 		
 		return iWorkbenchService.unitInfo(modelMap);
@@ -43,7 +43,7 @@ public class WorkbenchController {
 	 * 进入从业人员信息页面
 	 * @return
 	 */
-	@RequestMapping("/practitioners.do")
+	@RequestMapping("/practitioners")
 	private String practitioners(ModelMap modelMap){
 		
 		return iWorkbenchService.practitioners(modelMap);
@@ -53,7 +53,7 @@ public class WorkbenchController {
 	 * 进入采购报送页面
 	 * @return
 	 */
-	@RequestMapping("/procurement.do")
+	@RequestMapping("/procurement")
 	private String procurement(ModelMap modelMap){
 		
 		return iWorkbenchService.procurement(modelMap);
@@ -63,7 +63,7 @@ public class WorkbenchController {
 	 * 进入加工制作检视页面
 	 * @return
 	 */
-	@RequestMapping("/manufacturingInspection.do")
+	@RequestMapping("/manufacturingInspection")
 	private String manufacturingInspection(ModelMap modelMap){
 		
 		return iWorkbenchService.manufacturingInspection(modelMap);
@@ -73,7 +73,7 @@ public class WorkbenchController {
 	 * 进入配送报备页面
 	 * @return
 	 */
-	@RequestMapping("/distribution.do")
+	@RequestMapping("/distribution")
 	private String distribution(ModelMap modelMap){
 		
 		return iWorkbenchService.distribution(modelMap);
@@ -83,7 +83,7 @@ public class WorkbenchController {
 	 * 进入清洗消毒页面
 	 * @return
 	 */
-	@RequestMapping("/disinfection.do")
+	@RequestMapping("/disinfection")
 	private String disinfection(ModelMap modelMap){
 		
 		return iWorkbenchService.disinfection(modelMap);
@@ -93,7 +93,7 @@ public class WorkbenchController {
 	 * 进入监管采集页面
 	 * @return
 	 */
-	@RequestMapping("/check.do")
+	@RequestMapping("/check")
 	private String check (ModelMap modelMap){
 		
 		return iWorkbenchService.check(modelMap);
@@ -103,7 +103,7 @@ public class WorkbenchController {
 	 * 进入检测报送页面
 	 * @return
 	 */
-	@RequestMapping("/detection.do")
+	@RequestMapping("/detection")
 	private String detectionReport(ModelMap modelMap){
 		
 		return iWorkbenchService.detectionReport(modelMap);
@@ -113,7 +113,7 @@ public class WorkbenchController {
 	 * 进入视频监控页面
 	 * @return
 	 */
-	@RequestMapping("/videoSurveillance.do")
+	@RequestMapping("/videoSurveillance")
 	private String videoSurveillance (ModelMap modelMap){
 		
 		return iWorkbenchService.videoSurveillance(modelMap);
