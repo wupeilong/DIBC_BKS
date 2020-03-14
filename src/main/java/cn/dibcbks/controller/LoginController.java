@@ -5,10 +5,9 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
-
 import cn.dibcbks.service.IUserService;
 import cn.dibcbks.util.ResponseResult;
 
@@ -61,9 +60,37 @@ public class LoginController {
 	 */
 	@RequestMapping("/registeradd.do")
 	@ResponseBody
-	public ResponseResult<Void> registeradd(String idCard, String username, String password, String duty, Integer age, 
-			String unitName, String legalPerson, String businessLicenseCode, String businessLicense, String productionLicense, String unitAddress,@JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8") Date expirationDate, Integer unitType){
+	public ResponseResult<Void> registeradd(
+			@RequestParam(value="idCard",required = true) String idCard,
+			@RequestParam(value="username",required = true) String username,
+			@RequestParam(value="password",required = true) String password,
+			@RequestParam(value="duty",required = true) String duty,
+			@RequestParam(value="age",required = true) Integer age, 
+			@RequestParam(value="unitName",required = true) String unitName,
+			@RequestParam(value="legalPerson",required = true) String legalPerson,
+			@RequestParam(value="businessLicenseCode",required = true) String businessLicenseCode,
+			@RequestParam(value="businessLicense",required = true) String businessLicense,
+			@RequestParam(value="productionLicense",required = true) String productionLicense,
+			@RequestParam(value="unitAddress",required = true) String unitAddress,
+			@RequestParam(value="expirationDate",required = true) @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8") Date expirationDate,
+			@RequestParam(value="unitType",required = true) Integer unitType){
 		
 		return iUserService.registeradd(idCard,username,password,duty,age,unitName,legalPerson,businessLicenseCode,businessLicense,productionLicense,unitAddress,expirationDate,unitType);
 	}
+	
+	/**
+	 * 实现用户登录
+	 * @param idCard
+	 * @param password
+	 * @return
+	 */
+	@RequestMapping("/login.do")
+	@ResponseBody
+	public ResponseResult<Void> login(@RequestParam(value="idCard",required = true) String idCard,
+									  @RequestParam(value="password",required = true) String password){
+		
+		return iUserService.login(idCard,password);
+	}
+	
+
 }

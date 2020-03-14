@@ -12,6 +12,11 @@ public interface Constants{
 	public static final String RESULT_MESSAGE_SUCCESS = "操作成功";
 	
 	/**
+	 * 初始密码
+	 */
+	public static final String INITIAL_PASSWORD = "888888";
+	
+	/**
 	 * 加密方式
 	 */
 	public static final String HMACSHA256 = "HMAC-SHA256";

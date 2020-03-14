@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+	<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+		"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="cn.dibcbks.mapper.CheckMapper">
+	<resultMap id="BaseResultMap" type="cn.dibcbks.entity.Check">
+	    <id column="id" property="id" />
+	    <result column="user_id" property="userId" />
+	    <result column="unit_id" property="unitId" />
+	    <result column="unit_name" property="unitName" />
+	    <result column="unit_address" property="unitAddress" />
+	    <result column=unit_type property="unitType" />
+	    <result column="unit_principal" property="unitPrincipal" />
+	    <result column="unit_phone" property="unitPhone" />
+	    <result column="result" property="result" />
+	    <result column="other" property="other" />
+	    <result column="inspectors" property="inspectors" />
+		<result column="daily_time" property="dailyTime" />
+		<result column="check_type" property="checkType" />
+		<result column="check_photo" property="checkPhoto" />
+		<result column="create_time" property="createTime" />
+  	</resultMap>
+
+	<insert id="insert" parameterType="cn.dibcbks.entity.Check" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO  `check`
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="id != null">
+	        id,
+	      </if>
+	      <if test="userId != null">
+	        user_id,
+	      </if>
+	      <if test="unitId != null">
+	        unit_id,
+	      </if>
+	      <if test="unitName != null">
+	        unit_name,
+	      </if>
+	      <if test="unitAddress != null">
+	        unit_address,
+	      </if>
+	      <if test="unitType != null">
+	        unit_type,
+	      </if>
+	      <if test="unitPrincipal != null">
+	        unit_principal,
+	      </if>
+	      <if test="unitPhone != null">
+	        unit_phone,
+	      </if>
+	      <if test="result != null">
+	        result,
+	      </if>
+	      <if test="other != null">
+	        other,
+	      </if>
+	      <if test="inspectors != null">
+	        inspectors,
+	      </if>
+	      <if test="dailyTime != null">
+	        daily_time,
+	      </if>
+	      <if test="checkType != null">
+	        check_type,
+	      </if>
+	      <if test="checkPhoto != null">
+	        check_photo,
+	      </if>
+	      <if test="createTime != null">
+	        create_time,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="id != null">
+	        #{id},
+	      </if>
+	      <if test="userId != null">
+	        #{userId},
+	      </if>
+	      <if test="unitId != null">
+	        #{unitId},
+	      </if>
+	      <if test="unitName != null">
+	        #{unitName},
+	      </if>
+	      <if test="unitAddress != null">
+	        #{unitAddress},
+	      </if>
+	      <if test="unitType != null">
+	        #{unitType},
+	      </if>
+	      <if test="unitPrincipal != null">
+	        #{unitPrincipal},
+	      </if>
+	      <if test="unitPhone != null">
+	        #{unitPhone},
+	      </if>
+	      <if test="result != null">
+	        #{result},
+	      </if>
+	      <if test="other != null">
+	        #{other},
+	      </if>
+	      <if test="inspectors != null">
+	        #{inspectors},
+	      </if>
+	      <if test="dailyTime != null">
+	        #{dailyTime},
+	      </if>
+	      <if test="checkType != null">
+	        #{checkType},
+	      </if>
+	      <if test="checkPhoto != null">
+	        #{checkPhoto},
+	      </if>
+	      <if test="createTime != null">
+	        #{createTime},
+	      </if>
+	    </trim>
+	</insert>
+	
+	<!--查询用户 -->
+	<select id="select" resultMap="BaseResultMap"> 
+		SELECT
+			c.id,
+			c.user_id,
+			c.unit_id,
+			c.unit_name,
+			c.unit_address,
+			c.unit_type,
+			c.unit_principal,
+			c.unit_phone,
+			c.result,
+			c.other,
+			c.inspectors,
+			c.daily_time,
+			c.check_type,
+			c.check_photo,
+			c.create_time
+		FROM
+			`check` AS c
+		<if test="where != null">where ${where}</if>
+		<if test="orderBy != null">order by ${orderBy}</if>
+		<if test="offset != null">limit ${offset},${countPerPage}</if>
+	</select>
+	
+	<!-- 查询单个用户信息 -->
+	<select id="queryUser" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		SELECT
+			c.id,
+			c.user_id,
+			c.unit_id,
+			c.unit_name,
+			c.unit_address,
+			c.unit_type,
+			c.unit_principal,
+			c.unit_phone,
+			c.result,
+			c.other,
+			c.inspectors,
+			c.daily_time,
+			c.check_type,
+			c.check_photo,
+			c.create_time
+		FROM
+			`check` AS c
+			c.id = #{id}
+	</select>
+	 
+
+	<update id="updateById"  parameterType="cn.dibcbks.entity.Check">
+		update `check`
+	    <set>
+	      <if test="id != null">
+	        id = #{id},
+	      </if>
+	      <if test="userId != null">
+	        user_id = #{userId},
+	      </if>
+	      <if test="unitId != null">
+	        unit_id = #{unitId},
+	      </if>
+	      <if test="unitName != null">
+	        unit_name = #{unitName},
+	      </if>
+	      <if test="unitAddress != null">
+	        unit_address = #{unitAddress},
+	      </if>
+	      <if test="unitType != null">
+	        unit_type = #{unitType},
+	      </if>
+	      <if test="unitPrincipal != null">
+	        unit_principal = #{unitPrincipal},
+	      </if>
+	      <if test="unitPhone != null">
+	        unit_phone = #{unitPhone},
+	      </if>
+	      <if test="result != null">
+	        result = #{result},
+	      </if>
+	      <if test="other != null">
+	        other = #{other},
+	      </if>
+	      <if test="inspectors != null">
+	        inspectors = #{inspectors},
+	      </if>
+	      <if test="dailyTime != null">
+	        daily_time = #{dailyTime},
+	      </if>
+	      <if test="checkType != null">
+	        check_type = #{checkType},
+	      </if>
+	      <if test="checkPhoto != null">
+	        check_photo = #{checkPhoto},
+	      </if>
+	      <if test="createTime != null">
+	        create_time = #{createTime},
+	      </if> 
+	    </set>
+	    where id = #{id}
+	</update>
+
+	
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		DELETE FROM `check` where id = #{id};
+	</delete>
+</mapper>
+	
+	
+	
+	
+	
+	
+	
+	
+	

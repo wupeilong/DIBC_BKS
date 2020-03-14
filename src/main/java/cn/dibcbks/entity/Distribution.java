@@ -16,10 +16,11 @@ public class Distribution implements Serializable {
 	private Integer id;//主键ID
 	private String dailyTime;//当前日期
 	private Integer type;//送餐类型：1-早餐 2-午餐 3-晚餐'
-	private Integer mealsUnitId;//送餐单位ID
-	private Integer mealsUserId;//送餐人
-	private Integer acceptanceUnitId;//学校ID
-	private Integer acceptanceUserId;//验收人ID
+	private Integer cateringType;//配餐类型：1-学校自主开餐 2-餐饮业配餐
+	private Integer mealsUnitName;//送餐单位
+	private Integer mealsUserName;//送餐人
+	private Integer acceptanceUnitName;//学校ID
+	private Integer acceptanceUserName;//验收人ID
 	private String packingPhoto;//送餐装箱图
 	private String sealPhoto;//装完箱贴封条图
 	private String carPhoto;//送餐车图
@@ -34,18 +35,19 @@ public class Distribution implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Distribution(Integer id, String dailyTime, Integer type, Integer mealsUnitId, Integer mealsUserId,
-			Integer acceptanceUnitId, Integer acceptanceUserId, String packingPhoto, String sealPhoto, String carPhoto,
-			String openedPhoto, Date startTime, Date endTime, Date acceptanceTime, Integer status, String address,
-			Date createTime) {
+	public Distribution(Integer id, String dailyTime, Integer type, Integer cateringType, Integer mealsUnitName,
+			Integer mealsUserName, Integer acceptanceUnitName, Integer acceptanceUserName, String packingPhoto,
+			String sealPhoto, String carPhoto, String openedPhoto, Date startTime, Date endTime, Date acceptanceTime,
+			Integer status, String address, Date createTime) {
 		super();
 		this.id = id;
 		this.dailyTime = dailyTime;
 		this.type = type;
-		this.mealsUnitId = mealsUnitId;
-		this.mealsUserId = mealsUserId;
-		this.acceptanceUnitId = acceptanceUnitId;
-		this.acceptanceUserId = acceptanceUserId;
+		this.cateringType = cateringType;
+		this.mealsUnitName = mealsUnitName;
+		this.mealsUserName = mealsUserName;
+		this.acceptanceUnitName = acceptanceUnitName;
+		this.acceptanceUserName = acceptanceUserName;
 		this.packingPhoto = packingPhoto;
 		this.sealPhoto = sealPhoto;
 		this.carPhoto = carPhoto;
@@ -75,29 +77,35 @@ public class Distribution implements Serializable {
 	public void setType(Integer type) {
 		this.type = type;
 	}
-	public Integer getMealsUnitId() {
-		return mealsUnitId;
+	public Integer getCateringType() {
+		return cateringType;
 	}
-	public void setMealsUnitId(Integer mealsUnitId) {
-		this.mealsUnitId = mealsUnitId;
+	public void setCateringType(Integer cateringType) {
+		this.cateringType = cateringType;
 	}
-	public Integer getMealsUserId() {
-		return mealsUserId;
+	public Integer getMealsUnitName() {
+		return mealsUnitName;
 	}
-	public void setMealsUserId(Integer mealsUserId) {
-		this.mealsUserId = mealsUserId;
+	public void setMealsUnitName(Integer mealsUnitName) {
+		this.mealsUnitName = mealsUnitName;
 	}
-	public Integer getAcceptanceUnitId() {
-		return acceptanceUnitId;
+	public Integer getMealsUserName() {
+		return mealsUserName;
 	}
-	public void setAcceptanceUnitId(Integer acceptanceUnitId) {
-		this.acceptanceUnitId = acceptanceUnitId;
+	public void setMealsUserName(Integer mealsUserName) {
+		this.mealsUserName = mealsUserName;
 	}
-	public Integer getAcceptanceUserId() {
-		return acceptanceUserId;
+	public Integer getAcceptanceUnitName() {
+		return acceptanceUnitName;
 	}
-	public void setAcceptanceUserId(Integer acceptanceUserId) {
-		this.acceptanceUserId = acceptanceUserId;
+	public void setAcceptanceUnitName(Integer acceptanceUnitName) {
+		this.acceptanceUnitName = acceptanceUnitName;
+	}
+	public Integer getAcceptanceUserName() {
+		return acceptanceUserName;
+	}
+	public void setAcceptanceUserName(Integer acceptanceUserName) {
+		this.acceptanceUserName = acceptanceUserName;
 	}
 	public String getPackingPhoto() {
 		return packingPhoto;
@@ -161,12 +169,14 @@ public class Distribution implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Distribution [id=" + id + ", dailyTime=" + dailyTime + ", type=" + type + ", mealsUnitId=" + mealsUnitId
-				+ ", mealsUserId=" + mealsUserId + ", acceptanceUnitId=" + acceptanceUnitId + ", acceptanceUserId="
-				+ acceptanceUserId + ", packingPhoto=" + packingPhoto + ", sealPhoto=" + sealPhoto + ", carPhoto="
-				+ carPhoto + ", openedPhoto=" + openedPhoto + ", startTime=" + startTime + ", endTime=" + endTime
+		return "Distribution [id=" + id + ", dailyTime=" + dailyTime + ", type=" + type + ", cateringType="
+				+ cateringType + ", mealsUnitName=" + mealsUnitName + ", mealsUserName=" + mealsUserName
+				+ ", acceptanceUnitName=" + acceptanceUnitName + ", acceptanceUserName=" + acceptanceUserName
+				+ ", packingPhoto=" + packingPhoto + ", sealPhoto=" + sealPhoto + ", carPhoto=" + carPhoto
+				+ ", openedPhoto=" + openedPhoto + ", startTime=" + startTime + ", endTime=" + endTime
 				+ ", acceptanceTime=" + acceptanceTime + ", status=" + status + ", address=" + address + ", createTime="
 				+ createTime + "]";
 	}
+	
 	
 }

@@ -28,4 +28,12 @@ public class CommonUtil {
 		return new SimpleHash(hashAlgorithmName,password,uuid,hashIterations).toString().toUpperCase();
 	}
 	
+	/**
+	 * 获取项目路径
+	 * @return
+	 */ 
+	public static String getPath(){
+		
+		return new CommonUtil().getClass().getResource("/").getPath().replaceAll("/WEB-INF/classes/", "");
+	}
 }

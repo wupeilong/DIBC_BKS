@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+	<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+		"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="cn.dibcbks.mapper.ProcurementMapper">
+	<resultMap id="BaseResultMap" type="cn.dibcbks.entity.Procurement">
+	    <id column="id" property="id" />
+	    <result column="unit_id" property="unitId" />
+	    <result column="user_id" property="userId" />
+	    <result column="supplier" property="supplier" />
+	    <result column="supplier_business_license" property="supplierBusinessLicense" />
+	    <result column="supplier_production_license" property="supplierProductionLicense" />
+	    <result column="supplier_qualification" property="supplierQualification" />
+	    <result column="supplier_person" property="supplierPerson" />
+	    <result column="supplier_phone" property="supplierPhone" />
+	    <result column="acceptance_user_id" property="acceptanceUserId" />
+	    <result column="invoice" property="invoice" />
+	    <result column="purchasing_time" property="purchasingTime" />
+	    <result column="acceptance_time" property="acceptanceTime" />
+	    <result column="status" property="status" />
+  	</resultMap>
+  	
+  	<resultMap id="DetailResultMap" type="cn.dibcbks.entity.Procurement">
+	    <id column="id" property="id" />
+	    <result column="unit_id" property="unitId" />
+	    <result column="user_id" property="userId" />
+	    <result column="supplier" property="supplier" />
+	    <result column="supplier_business_license" property="supplierBusinessLicense" />
+	    <result column="supplier_production_license" property="supplierProductionLicense" />
+	    <result column="supplier_qualification" property="supplierQualification" />
+	    <result column="supplier_person" property="supplierPerson" />
+	    <result column="supplier_phone" property="supplierPhone" />
+	    <result column="acceptance_user_id" property="acceptanceUserId" />
+	    <result column="invoice" property="invoice" />
+	    <result column="purchasing_time" property="purchasingTime" />
+	    <result column="acceptance_time" property="acceptanceTime" />
+	    <result column="status" property="status" />
+	    <collection property="detailList" ofType="cn.dibcbks.entity.ProcurementDetail">
+			<id property="procurement_detail_id" column="procurementDetailId"/>
+			<result property="procurement_id" column="procurementId"/>
+			<result property="product_name" column="productName"/>
+			<result property="count" column="count"/>
+			<result property="production_date" column="productionDate"/>
+			<result property="qualified" column="qualified"/>
+		</collection>
+  	</resultMap>
+
+	<insert id="insertProcurement" parameterType="cn.dibcbks.entity.Procurement" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO  procurement
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="id != null">
+	        id,
+	      </if>
+	      <if test="unitId != null">
+	        unit_id,
+	      </if>
+	      <if test="userId != null">
+	        user_id,
+	      </if>
+	      <if test="supplier != null">
+	        supplier,
+	      </if>
+	      <if test="supplierbusinesslicense != null">
+	        supplier_business_license,
+	      </if>
+	      <if test="supplierProductionLicense != null">
+	        supplier_production_license,
+	      </if>
+	      <if test="supplierQualification != null">
+	        supplier_qualification,
+	      </if>
+	      <if test="supplierPerson != null">
+	        supplier_person,
+	      </if>
+	      <if test="supplierPhone != null">
+	        supplier_phone,
+	      </if>
+	      <if test="acceptanceUserId != null">
+	        acceptance_user_id,
+	      </if>
+	      <if test="invoice != null">
+	        invoice,
+	      </if>
+	      <if test="purchasingTime != null">
+	        purchasing_time,
+	      </if>
+	      <if test="acceptanceTime != null">
+	        acceptance_time,
+	      </if>
+	      <if test="status != null">
+	        status,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">	      
+	      <if test="id != null">
+	        #{id},
+	      </if>
+	      <if test="unitId != null">
+	        #{unitId},
+	      </if>
+	      <if test="userId != null">
+	        #{userId},
+	      </if>
+	      <if test="supplier != null">
+	        #{supplier},
+	      </if>
+	      <if test="supplierbusinesslicense != null">
+	        #{supplierbusinesslicense},
+	      </if>
+	      <if test="supplierProductionLicense != null">
+	        #{supplierProductionLicense},
+	      </if>
+	      <if test="supplierQualification != null">
+	        #{supplierQualification},
+	      </if>
+	      <if test="supplierPerson != null">
+	        #{supplierPerson},
+	      </if>
+	      <if test="supplierPhone != null">
+	        #{supplierPhone},
+	      </if>
+	      <if test="acceptanceUserId != null">
+	        #{acceptanceUserId},
+	      </if>
+	      <if test="invoice != null">
+	        #{invoice},
+	      </if>
+	      <if test="purchasingTime != null">
+	        #{purchasingTime},
+	      </if>
+	      <if test="acceptanceTime != null">
+	        #{acceptanceTime},
+	      </if>
+	      <if test="status != null">
+	        #{status},
+	      </if>
+	    </trim>
+	</insert>
+	
+	<insert id="insertProcurementDetail" parameterType="cn.dibcbks.entity.ProcurementDetail"  useGeneratedKeys="true" keyProperty="procurementDetailId">
+		INSERT INTO  procurement_detail
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="procurementDetailId != null">
+	        	procurement_detail_id,
+	      </if>
+	      <if test="procurementId != null">
+	        procurement_id,
+	      </if>
+	      <if test="productName != null">
+	        product_name,
+	      </if>
+	      <if test="count != null">
+	        count,
+	      </if>
+	      <if test="productionDate != null">
+	        production_date,
+	      </if>
+	      <if test="qualified != null">
+	        qualified,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	     <if test="procurementDetailId != null">
+	        #{procurementDetailId},
+	     </if>
+	     <if test="procurementId != null">
+	        #{procurementId},
+	      </if>
+	      <if test="productName != null">
+	        #{productName},
+	      </if>
+	      <if test="count != null">
+	        #{count},
+	      </if>
+	      <if test="productionDate != null">
+	        #{productionDate},
+	      </if>
+	      <if test="qualified != null">
+	        #{qualified},
+	      </if>
+	    </trim>
+	</insert>
+	
+
+	<select id="select" resultMap="BaseResultMap"> 
+		SELECT
+			p.id,
+			p.unit_id,
+			p.user_id,
+			p.supplier,
+			p.supplier_business_license,
+			p.supplier_production_license,
+			p.supplier_qualification,
+			p.supplier_person,
+			p.supplier_phone,
+			p.acceptance_user_id,
+			p.invoice,
+			p.purchasing_time,
+			p.acceptance_time,
+			p.`status`
+		FROM
+			procurement AS p
+		<if test="where != null">where ${where}</if>
+		<if test="orderBy != null">order by ${orderBy}</if>
+		<if test="offset != null">limit ${offset},${countPerPage}</if>
+	</select>
+	
+
+	<select id="queryProcurement" resultMap="DetailResultMap" parameterType="java.lang.Integer">
+		SELECT
+			p.id,
+			p.unit_id,
+			p.user_id,
+			p.supplier,
+			p.supplier_business_license,
+			p.supplier_production_license,
+			p.supplier_qualification,
+			p.supplier_person,
+			p.supplier_phone,
+			p.acceptance_user_id,
+			p.invoice,
+			p.purchasing_time,
+			p.acceptance_time,
+			p.`status`,
+			pd.procurement_detail_id,
+			pd.procurement_id,
+			pd.product_name,
+			pd.count,
+			pd.production_date,
+			pd.qualified
+		FROM
+			procurement AS p
+		LEFT JOIN procurement_detail AS pd ON pd.procurement_id = p.id
+		WHERE p.id = #{id}
+	</select>
+	 
+
+	<update id="updateProcurementById"  parameterType="cn.dibcbks.entity.Procurement">
+		update procurement
+	    <set>
+	      <if test="id != null">
+	        id =  #{id},
+	      </if>
+	      <if test="unitId != null">
+	        unit_id =  #{unitId},
+	      </if>
+	      <if test="userId != null">
+	        user_id =  #{userId},
+	      </if>
+	      <if test="supplier != null">
+	        supplier =  #{supplier},
+	      </if>
+	      <if test="supplierbusinesslicense != null">
+	        supplier_business_license =  #{supplierbusinesslicense},
+	      </if>
+	      <if test="supplierProductionLicense != null">
+	        supplier_production_license =  #{supplierProductionLicense},
+	      </if>
+	      <if test="supplierQualification != null">
+	        supplier_qualification =  #{supplierQualification},
+	      </if>
+	      <if test="supplierPerson != null">
+	        supplier_person =  #{supplierPerson},
+	      </if>
+	      <if test="supplierPhone != null">
+	        supplier_phone =  #{supplierPhone},
+	      </if>
+	      <if test="acceptanceUserId != null">
+	        acceptance_user_id =  #{acceptanceUserId},
+	      </if>
+	      <if test="invoice != null">
+	        invoice =  #{invoice},
+	      </if>
+	      <if test="purchasingTime != null">
+	        purchasing_time =  #{purchasingTime},
+	      </if>
+	      <if test="acceptanceTime != null">
+	        acceptance_time =  #{acceptanceTime},
+	      </if>
+	      <if test="status != null">
+	        status =  #{status},
+	      </if>
+	    </set>
+	    where id = #{id}
+	</update>
+
+	<update id="updateProcurementDetailById"  parameterType="cn.dibcbks.entity.ProcurementDetail">
+		update procurement_detail
+	    <set>
+	      <if test="procurementDetailId != null">
+	        procurement_detail_id = #{procurementDetailId},
+	      </if>
+	      <if test="procurementId != null">
+	        procurement_id = #{procurementId},
+	      </if>
+	      <if test="productName != null">
+	        product_name = #{productName},
+	      </if>
+	      <if test="count != null">
+	        count = #{count},
+	      </if>
+	      <if test="productionDate != null">
+	        production_date = #{productionDate},
+	      </if>
+	      <if test="qualified != null">
+	        qualified = #{qualified},
+	      </if>
+	    </set>
+	    where procurement_detail_id = #{procurementDetailId}
+	</update>
+	
+	
+	
+	<delete id="deleteProcurementById" parameterType="java.lang.Integer">
+		DELETE FROM procurement where id = #{id};
+	</delete>
+	
+	
+	<delete id="deleteProcurementDetailById" parameterType="java.lang.Integer">
+		DELETE FROM procurement_detail where procurement_detail_id = #{procurementDetailId};
+	</delete>
+</mapper>
+	
+	
+	
+	
+	
+	
+	
+	
+	

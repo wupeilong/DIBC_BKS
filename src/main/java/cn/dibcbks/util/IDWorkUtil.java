@@ -7,8 +7,8 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONException;
+import com.alibaba.fastjson.JSONArray;
+
 
 /**
  * Twitter的分布式自增ID算法生成工具类
@@ -230,11 +230,15 @@ public class IDWorkUtil {
         /*
         题目: 将颜色数组 红色,绿色,蓝色 转成 JSON 字符串
         */
-       Integer[] colors = {1,2,3};
-       System.err.println(Arrays.toString(colors));
-       JSONArray fromObject = JSONArray.fromObject(colors);
+//       Integer[] colors = {1,2,3};
+       List<Integer>  colors = new ArrayList<>();
+       colors.add(1);
+       colors.add(3);
+       colors.add(5);
+       System.err.println(colors);
+       String fromObject = JSONArray.toJSONString(colors);
        System.err.println(fromObject.toString());
-       JSONArray jsonArray = JSONArray.fromObject(fromObject);
+       JSONArray jsonArray = JSONArray.parseArray(fromObject.toString());
        System.err.println(jsonArray);
     }
 

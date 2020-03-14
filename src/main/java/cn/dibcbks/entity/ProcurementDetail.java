@@ -8,7 +8,8 @@ public class ProcurementDetail implements Serializable {
 	 * 序列化版本ID
 	 */
 	private static final long serialVersionUID = 1L;
-	private String procurementId;//采购信息ID
+	private Integer procurementDetailId;//采购详情ID
+	private Integer procurementId;//采购信息ID
 	private String productName;//商品名字
 	private String count;//数量
 	private Date productionDate;//生产日期
@@ -17,19 +18,26 @@ public class ProcurementDetail implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ProcurementDetail(String procurementId, String productName, String count, Date productionDate,
-			Integer qualified) {
+	public ProcurementDetail(Integer procurementDetailId, Integer procurementId, String productName, String count,
+			Date productionDate, Integer qualified) {
 		super();
+		this.procurementDetailId = procurementDetailId;
 		this.procurementId = procurementId;
 		this.productName = productName;
 		this.count = count;
 		this.productionDate = productionDate;
 		this.qualified = qualified;
 	}
-	public String getProcurementId() {
+	public Integer getProcurementDetailId() {
+		return procurementDetailId;
+	}
+	public void setProcurementDetailId(Integer procurementDetailId) {
+		this.procurementDetailId = procurementDetailId;
+	}
+	public Integer getProcurementId() {
 		return procurementId;
 	}
-	public void setProcurementId(String procurementId) {
+	public void setProcurementId(Integer procurementId) {
 		this.procurementId = procurementId;
 	}
 	public String getProductName() {
@@ -58,9 +66,10 @@ public class ProcurementDetail implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "ProcurementDetail [procurementId=" + procurementId + ", productName=" + productName + ", count=" + count
-				+ ", productionDate=" + productionDate + ", qualified=" + qualified + "]";
+		return "ProcurementDetail [procurementDetailId=" + procurementDetailId + ", procurementId=" + procurementId
+				+ ", productName=" + productName + ", count=" + count + ", productionDate=" + productionDate
+				+ ", qualified=" + qualified + "]";
 	}
-	
+
 	
 }

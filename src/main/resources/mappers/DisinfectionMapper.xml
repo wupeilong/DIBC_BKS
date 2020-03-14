@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+	<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+		"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="cn.dibcbks.mapper.UserMapper">
+	<resultMap id="BaseResultMap" type="cn.dibcbks.entity.User">
+	    <id column="id" property="id" />
+	    <result column="daily_time" property="dailyTime" />
+	    <result column="unit_id" property="unitId" />
+	    <result column="user_id" property="userId" />
+	    <result column="username" property="username" />
+	    <result column="tools" property="tools" />
+	    <result column="cleaning_facilities" property="cleaningFacilities" />
+	    <result column="method" property="method" />
+	    <result column="start_time" property="startTime" />
+	    <result column="end_time" property="endTime" />
+	    <result column="result" property="result" />
+	    <result column="disinfection_photo" property="disinfectionPhoto" />
+	    <result column="create_time" property="createTime" />
+  	</resultMap>
+
+	<insert id="insert" parameterType="cn.dibcbks.entity.User" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO  user
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="dailyTime != null">
+	        daily_time,
+	      </if>
+	      <if test="unitId != null">
+	        unit_id,
+	      </if>
+	      <if test="userId != null">
+	        user_id,
+	      </if>
+	      <if test="username != null">
+	        username,
+	      </if>
+	      <if test="tools != null">
+	        tools,
+	      </if>
+	      <if test="cleaningFacilities != null">
+	        cleaning_facilities,
+	      </if>
+	      <if test="method != null">
+	        method,
+	      </if>
+	      <if test="startTime != null">
+	        start_time,
+	      </if>
+	      <if test="endTime != null">
+	        end_time,
+	      </if>
+	      <if test="result != null">
+	        result,
+	      </if>
+	      <if test="disinfectionPhoto != null">
+	        disinfection_photo,
+	      </if>
+	      <if test="createTime != null">
+	        create_time,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="dailyTime != null">
+	        #{dailyTime},
+	      </if>
+	      <if test="unitId != null">
+	        #{unitId},
+	      </if>
+	      <if test="userId != null">
+	        #{userId},
+	      </if>
+	      <if test="username != null">
+	        #{username},
+	      </if>
+	      <if test="tools != null">
+	        #{tools},
+	      </if>
+	      <if test="cleaningFacilities != null">
+	        #{cleaningFacilities},
+	      </if>
+	      <if test="method != null">
+	        #{method},
+	      </if>
+	      <if test="startTime != null">
+	        #{startTime},
+	      </if>
+	      <if test="endTime != null">
+	        #{endTime},
+	      </if>
+	      <if test="result != null">
+	        #{result},
+	      </if>
+	      <if test="disinfectionPhoto != null">
+	        #{disinfectionPhoto},
+	      </if>
+	      <if test="createTime != null">
+	        #{createTime},
+	      </if>
+	    </trim>
+	</insert>
+	
+	<!--查询用户 -->
+	<select id="select" resultMap="BaseResultMap"> 
+		SELECT
+			d.id,
+			d.daily_time,
+			d.unit_id,
+			d.user_id,
+			d.username,
+			d.tools,
+			d.cleaning_facilities,
+			d.method,
+			d.start_time,
+			d.end_time,
+			d.result,
+			d.disinfection_photo,
+			d.create_time
+		FROM
+			disinfection AS d
+		<if test="where != null">where ${where}</if>
+		<if test="orderBy != null">order by ${orderBy}</if>
+		<if test="offset != null">limit ${offset},${countPerPage}</if>
+	</select>
+	
+	<!-- 查询单个用户信息 -->
+	<select id="queryUser" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		SELECT
+			d.id,
+			d.daily_time,
+			d.unit_id,
+			d.user_id,
+			d.username,
+			d.tools,
+			d.cleaning_facilities,
+			d.method,
+			d.start_time,
+			d.end_time,
+			d.result,
+			d.disinfection_photo,
+			d.create_time
+		FROM
+			disinfection AS d
+		WHERE
+			d.id = #{id}
+	</select>
+	 
+
+	<update id="updateById"  parameterType="cn.dibcbks.entity.Disinfection">
+		update disinfection
+	    <set>
+	      <if test="id != null">
+	        id = #{id},
+	      </if>
+	      <if test="dailyTime != null">
+	        daily_time = #{dailyTime},
+	      </if>
+	      <if test="unitId != null">
+	        unit_id = #{unitId},
+	      </if>
+	      <if test="userId != null">
+	        user_id = #{userId},
+	      </if>
+	      <if test="username != null">
+	        username = #{username},
+	      </if>
+	      <if test="tools != null">
+	        tools = #{tools},
+	      </if>
+	      <if test="cleaningFacilities != null">
+	        cleaning_facilities = #{cleaningFacilities},
+	      </if>
+	      <if test="method != null">
+	        method = #{method},
+	      </if>
+	      <if test="startTime != null">
+	        start_time = #{startTime},
+	      </if>
+	      <if test="endTime != null">
+	        end_time = #{endTime},
+	      </if>
+	      <if test="result != null">
+	        result = #{result},
+	      </if>
+	      <if test="disinfectionPhoto != null">
+	        disinfection_photo = #{disinfectionPhoto},
+	      </if>
+	      <if test="createTime != null">
+	        create_time = #{createTime},
+	      </if>
+	    </set>
+	    where id = #{id}
+	</update>
+
+	
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		DELETE FROM disinfection where id = #{id};
+	</delete>
+</mapper>
+	
+	
+	
+	
+	
+	
+	
+	
+	

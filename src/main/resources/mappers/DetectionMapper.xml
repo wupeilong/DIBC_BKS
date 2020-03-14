@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+	<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+		"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="cn.dibcbks.mapper.DetectionMapper">
+	<resultMap id="BaseResultMap" type="cn.dibcbks.entity.Detection">
+	    <id column="id" property="id" />
+	    <result column="user_id" property="userId" />
+	    <result column="sampl_name" property="samplName" />
+	    <result column="specifications" property="specifications" />
+	    <result column="bath" property="bath" />
+	    <result column="item" property="item" />
+	    <result column="result" property="result" />
+	    <result column="remark" property="remark" />
+	    <result column="detection_photo" property="detectionPhoto" />
+	    <result column="create_time" property="createTime" />
+  	</resultMap>
+
+	<insert id="insert" parameterType="cn.dibcbks.entity.Detection" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO  detection
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="id != null">
+	        id,
+	      </if>
+	      <if test="userId != null">
+	        user_id,
+	      </if>
+	      <if test="samplName != null">
+	        sampl_name,
+	      </if>
+	      <if test="specifications != null">
+	        specifications,
+	      </if>
+	      <if test="bath != null">
+	        bath,
+	      </if>
+	      <if test="item != null">
+	        item,
+	      </if>
+	      <if test="result != null">
+	        result,
+	      </if>
+	      <if test="remark != null">
+	        remark,
+	      </if>
+	      <if test="detectionPhoto != null">
+	        detection_photo,
+	      </if>
+	      <if test="createTime != null">
+	        create_time,
+	      </if>	      
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="id != null">
+	        #{id},
+	      </if>
+	      <if test="userId != null">
+	        #{userId},
+	      </if>
+	      <if test="samplName != null">
+	        #{samplName},
+	      </if>
+	      <if test="specifications != null">
+	        #{specifications},
+	      </if>
+	      <if test="bath != null">
+	        #{bath},
+	      </if>
+	      <if test="item != null">
+	        #{item},
+	      </if>
+	      <if test="result != null">
+	        #{result},
+	      </if>
+	      <if test="remark != null">
+	        #{remark},
+	      </if>
+	      <if test="detectionPhoto != null">
+	        #{detectionPhoto},
+	      </if>
+	      <if test="createTime != null">
+	        #{createTime},
+	      </if>	      
+	    </trim>
+	</insert>
+	
+	<!--查询用户 -->
+	<select id="select" resultMap="BaseResultMap"> 
+		SELECT
+			d.id,
+			d.user_id,
+			d.sampl_name,
+			d.specifications,
+			d.bath,
+			d.item,
+			d.result,
+			d.remark,
+			d.detection_photo,
+			d.create_time
+		FROM
+			detection AS d
+		<if test="where != null">where ${where}</if>
+		<if test="orderBy != null">order by ${orderBy}</if>
+		<if test="offset != null">limit ${offset},${countPerPage}</if>
+	</select>
+	
+	<!-- 查询单个用户信息 -->
+	<select id="queryUser" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		SELECT
+			d.id,
+			d.user_id,
+			d.sampl_name,
+			d.specifications,
+			d.bath,
+			d.item,
+			d.result,
+			d.remark,
+			d.detection_photo,
+			d.create_time
+		FROM
+			detection AS d
+		WHERE
+			d.id = #{id}
+	</select>
+	 
+
+	<update id="updateById"  parameterType="cn.dibcbks.entity.User">
+		update detection
+	    <set>
+	      <if test="id != null">
+	        id = #{id},
+	      </if>
+	      <if test="userId != null">
+	        user_id = #{userId},
+	      </if>
+	      <if test="samplName != null">
+	        sampl_name = #{samplName},
+	      </if>
+	      <if test="specifications != null">
+	        specifications = #{specifications},
+	      </if>
+	      <if test="bath != null">
+	        bath = #{bath},
+	      </if>
+	      <if test="item != null">
+	        item = #{item},
+	      </if>
+	      <if test="result != null">
+	        result = #{result},
+	      </if>
+	      <if test="remark != null">
+	        remark = #{remark},
+	      </if>
+	      <if test="detectionPhoto != null">
+	        detection_photo = #{detectionPhoto},
+	      </if>
+	      <if test="createTime != null">
+	        create_time = #{createTime},
+	      </if>
+	    </set>
+	    where id = #{id}
+	</update>
+
+	
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		DELETE FROM detection where id = #{id};
+	</delete>
+</mapper>
+	
+	
+	
+	
+	
+	
+	
+	
+	

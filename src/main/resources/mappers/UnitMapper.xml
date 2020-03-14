@@ -15,7 +15,7 @@
 	    <result column="create_time" property="createTime" />
   	</resultMap>
 
-	<insert id="insert" parameterType="cn.dibcbks.entity.Unit" useGeneratedKeys="true" keyProperty="uuId">
+	<insert id="insert" parameterType="cn.dibcbks.entity.Unit" useGeneratedKeys="true" keyProperty="unitId">
 		INSERT INTO  unit
 	    <trim prefix="(" suffix=")" suffixOverrides=",">
 	      <if test="uniId != null">

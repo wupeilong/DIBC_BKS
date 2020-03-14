@@ -1,7 +1,9 @@
 package cn.dibcbks.entity;
 
+
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 检查信息表
@@ -22,6 +24,7 @@ public class Check implements Serializable {
 	private String unitPrincipal;//单位负责人
 	private String unitPhone;//联系电话
 	private String result;//检查结果
+	private List<Integer> resultList;//检查结果集
 	private String other;//其他需要说明的情况
 	private String inspectors;//检查人员
 	private String dailyTime;//检查日期
@@ -33,8 +36,8 @@ public class Check implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	public Check(Integer id, Integer userId, Integer unitId, String unitName, String unitAddress, String unitType,
-			String unitPrincipal, String unitPhone, String result, String other, String inspectors, String dailyTime,
-			Integer checkType, String checkPhoto, Date createTime) {
+			String unitPrincipal, String unitPhone, String result, List<Integer> resultList, String other,
+			String inspectors, String dailyTime, Integer checkType, String checkPhoto, Date createTime) {
 		super();
 		this.id = id;
 		this.userId = userId;
@@ -45,6 +48,7 @@ public class Check implements Serializable {
 		this.unitPrincipal = unitPrincipal;
 		this.unitPhone = unitPhone;
 		this.result = result;
+		this.resultList = resultList;
 		this.other = other;
 		this.inspectors = inspectors;
 		this.dailyTime = dailyTime;
@@ -106,6 +110,12 @@ public class Check implements Serializable {
 	public void setResult(String result) {
 		this.result = result;
 	}
+	public List<Integer> getResultList() {
+		return resultList;
+	}
+	public void setResultList(List<Integer> resultList) {
+		this.resultList = resultList;
+	}
 	public String getOther() {
 		return other;
 	}
@@ -146,9 +156,10 @@ public class Check implements Serializable {
 	public String toString() {
 		return "Check [id=" + id + ", userId=" + userId + ", unitId=" + unitId + ", unitName=" + unitName
 				+ ", unitAddress=" + unitAddress + ", unitType=" + unitType + ", unitPrincipal=" + unitPrincipal
-				+ ", unitPhone=" + unitPhone + ", result=" + result + ", other=" + other + ", inspectors=" + inspectors
-				+ ", dailyTime=" + dailyTime + ", checkType=" + checkType + ", checkPhoto=" + checkPhoto
-				+ ", createTime=" + createTime + "]";
+				+ ", unitPhone=" + unitPhone + ", result=" + result + ", resultList=" + resultList + ", other=" + other
+				+ ", inspectors=" + inspectors + ", dailyTime=" + dailyTime + ", checkType=" + checkType
+				+ ", checkPhoto=" + checkPhoto + ", createTime=" + createTime + "]";
 	}
+	
 	
 }
