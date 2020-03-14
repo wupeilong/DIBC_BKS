@@ -162,7 +162,7 @@
 	</select>
 	
 	<!-- 查询单个用户信息 -->
-	<select id="queryUser" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+	<select id="queryDistribution" resultMap="BaseResultMap" parameterType="java.lang.Integer">
 		SELECT
 			d.id,
 			d.daily_time,

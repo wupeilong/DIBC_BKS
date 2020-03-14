@@ -14,7 +14,7 @@ public interface DistributionMapper {
 					  @Param("offset") String offset,
 					  @Param("offset") String countPerPage);
 	
-	Distribution queryUser(@Param("id")String id);
+	Distribution queryDistribution(@Param("id")String id);
 	
 	Distribution updateById(Distribution distribution);
 	

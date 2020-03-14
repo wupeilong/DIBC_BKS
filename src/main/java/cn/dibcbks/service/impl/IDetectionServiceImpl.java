@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 import cn.dibcbks.entity.Detection;
 import cn.dibcbks.entity.Unit;
@@ -14,6 +15,7 @@ import cn.dibcbks.service.IDetectionService;
 import cn.dibcbks.util.Constants;
 import cn.dibcbks.util.ResponseResult;
 
+@Service
 public class IDetectionServiceImpl implements IDetectionService{
 	private static final Logger logger = LogManager.getLogger(IDetectionServiceImpl.class.getName());
 	@Autowired
