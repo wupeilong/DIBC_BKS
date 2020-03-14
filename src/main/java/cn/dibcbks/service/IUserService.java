@@ -32,7 +32,7 @@ public interface IUserService {
 
 	ResponseResult<Void> userIsExist(String username, String idCard);
 
-	ResponseResult<List<User>> queryUnitUser(String unitId, String unitName);
+	ResponseResult<List<User>> queryUnitUser(Integer unitId, String unitName);
 
 	String queryUnitUserDetail(ModelMap modelMap,String id);
 

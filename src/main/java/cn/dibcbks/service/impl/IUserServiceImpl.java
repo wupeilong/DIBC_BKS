@@ -262,7 +262,7 @@ public class IUserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public ResponseResult<List<User>> queryUnitUser(String unitId, String unitName) {
+	public ResponseResult<List<User>> queryUnitUser(Integer unitId, String unitName) {
 		ResponseResult<List<User>> rr = null;
 		try {
 			String where = "";
@@ -281,6 +281,7 @@ public class IUserServiceImpl implements IUserService {
 					where += " n.unit_name = '" + unitName + "'";
 				}				
 			}
+			System.out.println( "where: "+where);
 			List<User> list = userMapper.select(where, null, null, null);
 			rr = new ResponseResult<>(ResponseResult.SUCCESS,"操作成功！",list);
 		} catch (Exception e) {

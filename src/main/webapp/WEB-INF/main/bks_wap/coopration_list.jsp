@@ -23,7 +23,7 @@
 					<div class="">
 						<!-- <a href="" class="btn bg-primary padding-side"><i class="fa fa-search"></i></a> -->
 						<select id="unit_list"">
-							<option value="">请输入搜索内容</option>
+							<option value="">查询所有企业信息</option>
 							<c:forEach items="${unitList}" var="item">								
 								<option value="${item.unitId}">${item.unitName}</option>
 							</c:forEach>							

@@ -23,7 +23,7 @@
 				<div class="">
 					<!-- <a href="" class="btn bg-primary padding-side"><i class="fa fa-search"></i></a> -->
 					<select id="unit_list"">
-							<option value="">请输入搜索内容</option>
+							<option value="">查询所有从业人员信息</option>
 							<c:forEach items="${unitList}" var="item">								
 								<option value="${item.unitId}">${item.unitName}</option>
 							</c:forEach>							
@@ -41,7 +41,7 @@
 					<tbody id="result_list">
 						
 						<c:forEach items="${userList}" var="item">
-							<tr><td>${item.id }</td><td>${item.username }</td><td>${item.duty }</td><td>${item.age }</td><td><a href="${pageContext.request.contextPath}/user//workmens_detal?id=${item.id }">详情</a></td></tr>
+							<tr><td>${item.id }</td><td>${item.username }</td><td>${item.duty }</td><td>${item.age }</td><td><a href="${pageContext.request.contextPath}/user/workmens_detal?id=${item.id }">详情</a></td></tr>
 						</c:forEach>
 						
 					</tbody>
@@ -71,11 +71,11 @@
 							result += "<td>" + obj.data[i].id + "</td>";
 							result += "<td>" + obj.data[i].username + "</td>";
 							result += "<td>" + obj.data[i].age + "</td>";
-							result += "<td><a href='${pageContext.request.contextPath}/user//workmens_detal?id=" + obj.data[i].id + "'>详情</a></td>";
+							result += "<td><a href='${pageContext.request.contextPath}/user/workmens_detal?id=" + obj.data[i].id + "'>详情</a></td>";
 							result += "</tr>";
 						}
 						$("#result_list").html(result);
-						console.log(obj.data);							
+						console.log(obj.data);
 					}				
 				}
 			}); 

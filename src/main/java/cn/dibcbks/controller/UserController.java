@@ -149,7 +149,7 @@ public class UserController {
 	 */
 	@RequestMapping("/unitUserList")
 	@ResponseBody
-	private ResponseResult<List<User>> queryUnitUser(String unitId,String unitName){
+	private ResponseResult<List<User>> queryUnitUser(Integer unitId,String unitName){
 		
 		return iUserService.queryUnitUser(unitId,unitName);
 	}
