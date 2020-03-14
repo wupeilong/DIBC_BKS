@@ -1,13 +1,11 @@
 package cn.dibcbks.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import cn.dibcbks.entity.Check;
 import cn.dibcbks.service.ICheckService;
 import cn.dibcbks.util.ResponseResult;
@@ -18,10 +16,44 @@ import cn.dibcbks.util.ResponseResult;
  *
  */
 @Controller
-@RequestMapping("/check")
-public class CheckController {
+@RequestMapping("/inspect")
+public class InspectController {
+	
 	@Autowired
 	private ICheckService iCheckService;
+	
+	/**
+	 * 进入监管采集选择页
+	 * @return
+	 */
+	@RequestMapping("/inspect_choise")
+	public String InspectChoise(){		
+		return "bks_wap/inspect_choise";
+	}
+	/**
+	 * 进入监管采集记录列表页
+	 * @return
+	 */
+	@RequestMapping("/inspect_list")
+	public String InspectList(){		
+		return "bks_wap/inspect_list";
+	}
+	/**
+	 * 进入监管采集记录表添加页
+	 * @return
+	 */
+	@RequestMapping("/inspect_add")
+	public String InspectAdd(){		
+		return "bks_wap/inspect_add";
+	}
+	/**
+	 * 进入监管采集检查表查询页
+	 * @return
+	 */
+	@RequestMapping("/inspect_detal")
+	public String InspectDetal(){		
+		return "bks_wap/inspect_detal";
+	}
 	
 	/**
 	 * 查询检查信息列表
@@ -118,6 +150,4 @@ public class CheckController {
 		
 		return iCheckService.addCheckInfo(unitId,unitName,unitType,unitAddress,unitPrincipal,unitPhone,resultList,other,inspectors,dailyTime,checkType,checkPhoto);
 	}
-
-
 }

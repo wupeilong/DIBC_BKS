@@ -1,18 +1,20 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
-		<title>配送信息</title>
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
-		<link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.min.css"/>
-		<link rel="stylesheet" type="text/css" href="selector/jquery.searchableSelect.css"/>
-		<link rel="stylesheet" type="text/css" href="css/style.css"/>
-		<link rel="stylesheet" type="text/css" href="css/index.css"/>
-		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
-		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
-		<script src="selector/jquery.searchableSelect.js" type="text/javascript" charset="utf-8"></script>
-	</head>
+<head>
+	<meta charset=utf-8>
+	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+	<title>配送信息</title>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/js/selector/jquery.searchableSelect.css">
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/style.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/index.css"/>
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>	
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/selector/jquery.searchableSelect.js"></script>	
+</head>
 	<body class="contain">
 		<div class="navigation bg-primary">
 			<div class="fb padding-side">
@@ -55,7 +57,7 @@
 						</script>
 					</div>
 				</div>
-				<a href="http://192.168.1.106:8848/wap_MCLZ/delivery_add.html" class="btn bg-primary"><i class="fa fa-plus"></i></a>
+				<a href="${pageContext.request.contextPath}/dry/delivery_add" class="btn bg-primary"><i class="fa fa-plus"></i></a>
 			</div>
 		</div>
 		<main class="main margin-top2 padding-side05">
@@ -65,17 +67,13 @@
 						<tr><th>序号</th><th>配送单号</th><th>供应商</th><th>验收单位</th><th>操作</th></tr>
 					</thead>
 					<tbody>
-						<tr><td>1</td><td>001011</td><td>data</td><td>data</td><td><a href="http://192.168.1.106:8848/wap_MCLZ/delivery_detal.html">详情</a></td></tr>
+						<tr><td>1</td><td>001011</td><td>data</td><td>data</td><td><a href="${pageContext.request.contextPath}/dry/delivery_detal">详情</a></td></tr>
 						<tr><td>2</td><td>001012</td><td>data</td><td>data</td><td><a href="">详情</a></td></tr>
 					</tbody>
 				</table>
 			</div>
-		</main>
-		<div class="tabBar">
-			<ul class="list-unstyled clearfix margin0">
-				<li><a href="http://192.168.1.106:8848/wap_MCLZ/home.html"><div><i class="fa fa-home"></i><div>工作台</div></div></a></li>
-				<li><a href=""><div><i class="fa fa-user"></i><div>个人中心</div></div></a></li>
-			</ul>
-		</div>
+		</main>	
+	<c:import url="public/footer.jsp"></c:import>
 	</body>
+
 </html>

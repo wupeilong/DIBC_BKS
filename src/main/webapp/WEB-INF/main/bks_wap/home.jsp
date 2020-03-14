@@ -22,12 +22,12 @@
 				<ul class="function_list list-unstyled clearfix">
 					<li class=""><a href="${pageContext.request.contextPath}/unit/coopration_list"><div><i class="fa fa-info"></i><p class="padding-side05">企业信息</p></div></a></li>
 					<li class=""><a href="${pageContext.request.contextPath}/user/workmens"><div><i class="fa fa-users"></i><p class="padding-side05">从业人员</p></div></a></li>
-					<li class=""><a href="http://192.168.1.106:8848/wap_MCLZ/buy_list.html"><div><i class="fa fa-opencart"></i><p class="padding-side05">采购报送</p></div></a></li>
+					<li class=""><a href="${pageContext.request.contextPath}/procurement/buy_list"><div><i class="fa fa-opencart"></i><p class="padding-side05">采购报送</p></div></a></li>
 					<li class=""><a href="javascript:;" id="ai"><div><i class="fa fa-eye"></i><p class="padding-side05">加工制作检视</p></div></a></li>
-					<li class=""><a href="http://192.168.1.106:8848/wap_MCLZ/delivery.html"><div><i class="fa fa-truck"></i><p class="padding-side05">配送报备</p></div></a></li>
-					<li class=""><a href="http://192.168.1.106:8848/wap_MCLZ/clean_list.html"><div><i class="fa fa-shower"></i><p class="padding-side05">清洗/消毒记录</p></div></a></li>
-					<li class=""><a href="http://192.168.1.106:8848/wap_MCLZ/inspect_choise.html"><div><i class="fa fa-edit"></i><p class="padding-side05">监管采集</p></div></a></li>
-					<li class=""><a href="http://192.168.1.106:8848/wap_MCLZ/check_list.html"><div><i class="fa fa-paper-plane-o"></i><p class="padding-side05">检测报送</p></div></a></li>
+					<li class=""><a href="${pageContext.request.contextPath}/dry/delivery"><div><i class="fa fa-truck"></i><p class="padding-side05">配送报备</p></div></a></li>
+					<li class=""><a href="${pageContext.request.contextPath}/clean/clean_list"><div><i class="fa fa-shower"></i><p class="padding-side05">清洗/消毒记录</p></div></a></li>
+					<li class=""><a href="${pageContext.request.contextPath}/inspect/inspect_choise"><div><i class="fa fa-edit"></i><p class="padding-side05">监管采集</p></div></a></li>
+					<li class=""><a href="${pageContext.request.contextPath}/detection/detection_list"><div><i class="fa fa-paper-plane-o"></i><p class="padding-side05">多频检测</p></div></a></li>
 					<li class=""><a href="javascript:alert('功能开发中……');"><div><i class="fa fa-crosshairs"></i><p class="padding-side05">视频监控</p></div></a></li>
 				</ul>
 			</div>

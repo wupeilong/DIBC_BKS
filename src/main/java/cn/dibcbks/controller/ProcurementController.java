@@ -23,6 +23,31 @@ public class ProcurementController {
 	@Autowired
 	private IProcurementService iProcurementService;
 	
+	
+	/**
+	 * 进入采购列表页
+	 * @return
+	 */
+	@RequestMapping("/buy_list")
+	public String buyList(){		
+		return "bks_wap/buy_list";
+	}
+	/**
+	 * 进入采购信息明细页
+	 * @return
+	 */
+	@RequestMapping("/buy_detal")
+	public String buyDetal(){		
+		return "bks_wap/buy_detal";
+	}
+	/**
+	 * 进入采购信息添加页
+	 * @return
+	 */
+	@RequestMapping("/buy_add")
+	public String buyAdd(){		
+		return "bks_wap/buy_add";
+	}
 	/**
 	 * 进入采购报送页面
 	 * @return
