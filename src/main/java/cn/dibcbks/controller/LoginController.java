@@ -37,15 +37,6 @@ public class LoginController {
 	public String Home(){		
 		return "bks_wap/home";
 	}
-	/**
-	 * 进入首页
-	 * @return
-	 */
-	@RequestMapping("/index")
-	public String loginIndex(){
-		//TODO 更换登录页 
-		return "index";
-	}
 	
 	/**
 	 * 进入注册页
@@ -53,7 +44,7 @@ public class LoginController {
 	 */
 	@RequestMapping("/register")
 	public String register(){
-		return "register";
+		return "bks_wap/register";
 	}
 	
 	/**

@@ -14,7 +14,7 @@
 	<div class="tabBar">
 		<ul class="list-unstyled clearfix margin0">
 			<li><a href="${pageContext.request.contextPath}/home"><div><i class="fa fa-home"></i><div>工作台</div></div></a></li>
-			<li><a href="http://192.168.1.106:8848/wap_MCLZ/user_ccenter.html"><div><i class="fa fa-user"></i><div>个人中心</div></div></a></li>
+			<li><a href="${pageContext.request.contextPath}/user/user_pcenter"><div><i class="fa fa-user"></i><div>个人中心</div></div></a></li>
 		</ul>
 	</div>		
 </body>

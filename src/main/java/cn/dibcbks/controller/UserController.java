@@ -18,6 +18,22 @@ public class UserController {
 	private IUserService iUserService;
 	
 	/**
+	 * 进入企业信息页
+	 * @return
+	 */
+	@RequestMapping("/user_ccenter")
+	public String userCcenter(){
+		return "bks_wap/user_ccenter";
+	}
+	/**
+	 * 进入个人信息页
+	 * @return
+	 */
+	@RequestMapping("/user_pcenter")
+	public String userPcenter(){
+		return "bks_wap/user_pcenter";
+	}
+	/**
 	 * 进入从业人员信息列表页
 	 * @return
 	 */

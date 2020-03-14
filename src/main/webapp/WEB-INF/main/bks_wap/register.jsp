@@ -46,7 +46,7 @@
 						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入年龄" aria-describedby="sizing-addon1">
 						</div>
 						<div class="margin-bot2 text-right">
-							<a href="http://192.168.1.106:8848/wap_MCLZ/login.html" class="">已有账号？去登陆</a>
+							<a href="${pageContext.request.contextPath}/login" class="">已有账号？去登陆</a>
 						</div>
 					</fieldset>
 				</form>

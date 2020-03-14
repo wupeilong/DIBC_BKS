@@ -159,7 +159,8 @@ public class IUnitServiceImpl implements IUnitService {
 			e.printStackTrace();
 			logger.error(Constants.ERROR_HEAD_INFO + "用户进入企业信息页面失败，原因：" + e.getMessage());
 		}
-		return "error/404";
+		return "bks_wap/coopration_list";
+		//return "error/404";
 	}
 
 }
