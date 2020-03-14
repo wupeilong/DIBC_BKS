@@ -53,10 +53,10 @@ public class WorkbenchController {
 	 * 进入采购报送页面
 	 * @return
 	 */
-	@RequestMapping("/purchaseReport.do")
-	private String purchaseReport(ModelMap modelMap){
+	@RequestMapping("/procurement.do")
+	private String procurement(ModelMap modelMap){
 		
-		return iWorkbenchService.purchaseReport(modelMap);
+		return iWorkbenchService.procurement(modelMap);
 	}
 	
 	/**
@@ -73,40 +73,40 @@ public class WorkbenchController {
 	 * 进入配送报备页面
 	 * @return
 	 */
-	@RequestMapping("/deliveryDistribution.do")
-	private String deliveryDistribution(ModelMap modelMap){
+	@RequestMapping("/distribution.do")
+	private String distribution(ModelMap modelMap){
 		
-		return iWorkbenchService.deliveryDistribution(modelMap);
+		return iWorkbenchService.distribution(modelMap);
 	}
 	
 	/**
 	 * 进入清洗消毒页面
 	 * @return
 	 */
-	@RequestMapping("/cleaningDisinfection.do")
-	private String cleaningDisinfection(ModelMap modelMap){
+	@RequestMapping("/disinfection.do")
+	private String disinfection(ModelMap modelMap){
 		
-		return iWorkbenchService.cleaningDisinfection(modelMap);
+		return iWorkbenchService.disinfection(modelMap);
 	}
 	
 	/**
 	 * 进入监管采集页面
 	 * @return
 	 */
-	@RequestMapping("/regulatory.do")
-	private String regulatory (ModelMap modelMap){
+	@RequestMapping("/check.do")
+	private String check (ModelMap modelMap){
 		
-		return iWorkbenchService.regulatory(modelMap);
+		return iWorkbenchService.check(modelMap);
 	}
 	
 	/**
-	 * 进入检查报送页面
+	 * 进入检测报送页面
 	 * @return
 	 */
-	@RequestMapping("/inspectionReport.do")
-	private String inspectionReport (ModelMap modelMap){
+	@RequestMapping("/detection.do")
+	private String detectionReport(ModelMap modelMap){
 		
-		return iWorkbenchService.inspectionReport(modelMap);
+		return iWorkbenchService.detectionReport(modelMap);
 	}
 	
 	/**

@@ -24,12 +24,25 @@ public class CheckController {
 	private ICheckService iCheckService;
 	
 	/**
-	 * 检查信息列表
+	 * 查询检查信息列表
+	 * @param unitId
+	 * @param unitType
+	 * @return
+	 */
+	@RequestMapping("/queryList.do")
+	@ResponseBody
+	public ResponseResult<List<Check>> queryCheckListInfo(String unitId,Integer unitType){
+		
+		return iCheckService.queryCheckListInfo(unitId,unitType);
+	}
+	
+	/**
+	 * 进入检查信息列表页
 	 * @param modelMap
 	 * @return
 	 */
 	@RequestMapping("/list.do")
-	public String ceckhListInfo(ModelMap modelMap){
+	public String checkhListInfo(ModelMap modelMap){
 		
 		return iCheckService.getCheckList(modelMap);
 	}
@@ -41,11 +54,10 @@ public class CheckController {
 	 * @return
 	 */
 	@RequestMapping("/detail.do")
-	@ResponseBody
-	public ResponseResult<Void> checkDetailInfo(Integer id){
+	public String checkDetailInfo(ModelMap modelMap,Integer id){
 		
-		return iCheckService.checkDetailInfo(id);
-	}	
+		return iCheckService.checkDetailInfo(modelMap,id);
+	}
 	
 	
 	/**
@@ -53,7 +65,7 @@ public class CheckController {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping("/businessPage.do")
+	@RequestMapping("/business.do")
 	public String businessPage(ModelMap modelMap){
 		
 		return iCheckService.businessPage(modelMap);
@@ -106,5 +118,6 @@ public class CheckController {
 		
 		return iCheckService.addCheckInfo(unitId,unitName,unitType,unitAddress,unitPrincipal,unitPhone,resultList,other,inspectors,dailyTime,checkType,checkPhoto);
 	}
+
 
 }

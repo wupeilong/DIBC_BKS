@@ -15,6 +15,8 @@ public class Detection implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;//主键ID
 	private Integer userId;//用户ID
+	private Integer unitId;//被检查单位ID
+	private String unitName;//被检查单位
 	private String samplName;//样品名称
 	private String specifications;//包装分类/规格
 	private String bath;//抽检批次
@@ -27,11 +29,14 @@ public class Detection implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Detection(Integer id, Integer userId, String samplName, String specifications, String bath, String item,
-			String result, String remark, String detectionPhoto, Date createTime) {
+	public Detection(Integer id, Integer userId, Integer unitId, String unitName, String samplName,
+			String specifications, String bath, String item, String result, String remark, String detectionPhoto,
+			Date createTime) {
 		super();
 		this.id = id;
 		this.userId = userId;
+		this.unitId = unitId;
+		this.unitName = unitName;
 		this.samplName = samplName;
 		this.specifications = specifications;
 		this.bath = bath;
@@ -52,6 +57,18 @@ public class Detection implements Serializable {
 	}
 	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+	public Integer getUnitId() {
+		return unitId;
+	}
+	public void setUnitId(Integer unitId) {
+		this.unitId = unitId;
+	}
+	public String getUnitName() {
+		return unitName;
+	}
+	public void setUnitName(String unitName) {
+		this.unitName = unitName;
 	}
 	public String getSamplName() {
 		return samplName;
@@ -103,10 +120,10 @@ public class Detection implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Detection [id=" + id + ", userId=" + userId + ", samplName=" + samplName + ", specifications="
-				+ specifications + ", bath=" + bath + ", item=" + item + ", result=" + result + ", remark=" + remark
-				+ ", detectionPhoto=" + detectionPhoto + ", createTime=" + createTime + "]";
+		return "Detection [id=" + id + ", userId=" + userId + ", unitId=" + unitId + ", unitName=" + unitName
+				+ ", samplName=" + samplName + ", specifications=" + specifications + ", bath=" + bath + ", item="
+				+ item + ", result=" + result + ", remark=" + remark + ", detectionPhoto=" + detectionPhoto
+				+ ", createTime=" + createTime + "]";
 	}
-	
 	
 }

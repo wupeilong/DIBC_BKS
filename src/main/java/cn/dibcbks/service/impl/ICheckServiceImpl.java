@@ -5,6 +5,8 @@ package cn.dibcbks.service.impl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
@@ -13,7 +15,11 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
+
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
+
 import cn.dibcbks.entity.Check;
 import cn.dibcbks.entity.Unit;
 import cn.dibcbks.entity.User;
@@ -30,6 +36,38 @@ public class ICheckServiceImpl implements ICheckService {
 	private CheckMapper checkMapper;
 	@Autowired
 	private UnitMapper unitMapper;
+	
+
+	@Override
+	public ResponseResult<List<Check>> queryCheckListInfo(String unitId, Integer unitType) {
+		ResponseResult<List<Check>> rr = null;
+		try {
+			String where = "";
+			if(StringUtils.isEmpty(unitId) && unitType == null){
+				where = null;
+			}
+			boolean addAnd = false;
+			if(StringUtils.isNotEmpty(unitId)){
+				where += " c.unit_id = '" + unitId + "'";
+				addAnd = true;
+			}
+			if (unitType != null) {
+				if(addAnd){
+					where += " AND c.unit_type = '" + unitType + "'";
+				}else{
+					where += " c.unit_type = '" + unitType + "'";
+				}
+			}
+			List<Check> list = checkMapper.select(where, " c.create_time DESC", null, null);
+			rr = new ResponseResult<>(ResponseResult.SUCCESS,"操作成功！",list);
+			logger.info(Constants.SUCCESSU_HEAD_INFO + "用户查询检查信息列表成功！");
+		} catch (Exception e) {
+			e.printStackTrace();
+			rr = new ResponseResult<>(ResponseResult.ERROR,"操作失败！");
+			logger.error(Constants.ERROR_HEAD_INFO + "用户查询检查信息列表失败，原因：" + e.getMessage());
+		}
+		return rr;
+	}
 	
 	@Override
 	public String getCheckList(ModelMap modelMap) {
@@ -55,6 +93,28 @@ public class ICheckServiceImpl implements ICheckService {
 	}
 
 
+	@Override
+	public String checkDetailInfo(ModelMap modelMap,Integer id) {
+		try {
+			Check checkDetail = checkMapper.queryCheck(id);
+			JSONArray jsonArray = JSONArray.parseArray(checkDetail.getResult());
+			List<Integer> resultList = new ArrayList<>();
+	        for (int i = 0; i < jsonArray.size(); i++) {
+	        	resultList.add(jsonArray.getInteger(i));
+	        }
+	        checkDetail.setResultList(resultList);
+			modelMap.addAttribute("checkDetail", checkDetail);
+			logger.info(Constants.SUCCESSU_HEAD_INFO + "用户查看检查信息详情成功！");
+			//TODO 检查信息详情页面
+			return "";
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(Constants.ERROR_HEAD_INFO + "用户查看检查信息详情失败，原因：" + e.getMessage());
+		}
+		return "error/404";
+	}
+	
+	
 	@Override
 	public String businessPage(ModelMap modelMap) {
 		try {
@@ -139,10 +199,7 @@ public class ICheckServiceImpl implements ICheckService {
 	}
 
 
-	@Override
-	public ResponseResult<Void> checkDetailInfo(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
+
 
 }

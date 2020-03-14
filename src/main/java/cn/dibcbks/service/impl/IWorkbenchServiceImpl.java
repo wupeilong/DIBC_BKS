@@ -64,13 +64,13 @@ public class IWorkbenchServiceImpl implements IWorkbenchService {
 				List<Unit> unitList = unitMapper.select(" n.unit_type BETWEEN 2 AND 4 ", " n.create_time DESC", null, null);
 				modelMap.addAttribute("unitList", unitList);
 				logger.info(Constants.SUCCESSU_HEAD_INFO + "用户进入企业信息列表页面成功！");
-				//TODO 企业信息列表页面
+				//TODO 企业信息列表页
 				return "";
 			}else{//企业用户
 				List<Unit> unitList = unitMapper.select(" n.unit_id = '" + user.getUnitId() + "'", null, null, null);
 				modelMap.addAttribute("unitDetail", unitList.get(0));
 				logger.info(Constants.SUCCESSU_HEAD_INFO + "用户进入企业信息详情页面成功！");
-				//TODO 企业信息页面
+				//TODO 企业详情信息页
 				return "";
 			}
 		} catch (Exception e) {
@@ -103,7 +103,7 @@ public class IWorkbenchServiceImpl implements IWorkbenchService {
 	}
 	
 	@Override
-	public String purchaseReport(ModelMap modelMap) {
+	public String procurement(ModelMap modelMap) {
 		try {
 			Session session = SecurityUtils.getSubject().getSession();
 			User user = (User)session.getAttribute("user");
@@ -138,7 +138,7 @@ public class IWorkbenchServiceImpl implements IWorkbenchService {
 	}
 	
 	@Override
-	public String deliveryDistribution(ModelMap modelMap) {
+	public String distribution(ModelMap modelMap) {
 		try {
 			Session session = SecurityUtils.getSubject().getSession();
 			User user = (User)session.getAttribute("user");
@@ -161,7 +161,7 @@ public class IWorkbenchServiceImpl implements IWorkbenchService {
 	}
 	
 	@Override
-	public String cleaningDisinfection(ModelMap modelMap) {
+	public String disinfection(ModelMap modelMap) {
 		try {
 			Session session = SecurityUtils.getSubject().getSession();
 			User user = (User)session.getAttribute("user");
@@ -183,7 +183,7 @@ public class IWorkbenchServiceImpl implements IWorkbenchService {
 	}
 	
 	@Override
-	public String regulatory(ModelMap modelMap) {
+	public String check(ModelMap modelMap) {
 		try {
 			logger.info(Constants.SUCCESSU_HEAD_INFO + "用户进入监管采集页面成功！");
 			//TODO 监管采集页面
@@ -196,7 +196,7 @@ public class IWorkbenchServiceImpl implements IWorkbenchService {
 	}
 	
 	@Override
-	public String inspectionReport(ModelMap modelMap) {
+	public String detectionReport(ModelMap modelMap) {
 		try {
 			List<Detection> detectionList = detectionMapper.select(null, " d.create_time DESC", null, null);
 			modelMap.addAttribute("detectionList", detectionList);

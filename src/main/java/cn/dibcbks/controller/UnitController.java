@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -27,11 +28,16 @@ public class UnitController {
 	 * @return
 	 */
 	@RequestMapping("/updateUnitPage.do")
-	public String updateUnitPage(){
+	public String updateUnitPage(ModelMap modelMap){
 		//TODO 企业修改页
-		return "";
+		return iUnitService.updateUnitPage(modelMap);
 	}
 	
+	/**
+	 * 修改企业信息
+	 * @param unit
+	 * @return
+	 */
 	@RequestMapping("/updateUnit.do")
 	@ResponseBody
 	public ResponseResult<Void> updateUnit(Unit unit){
@@ -45,9 +51,9 @@ public class UnitController {
 	 */
 	@RequestMapping("/list.do")
 	@ResponseBody
-	public ResponseResult<List<Unit>> getAllUnit(){
+	public List<Unit> queryUnitList(Integer unitId,String unitName){
 		
-		return iUnitService.getAllUnit();
+		return iUnitService.queryUnitList(unitId,unitName);
 	}
 	
 
@@ -63,5 +69,5 @@ public class UnitController {
 		return iUnitService.unitDetail(unitId);
 	}
 	
-//	@RequestMapping("/userList.do")
+	
 }

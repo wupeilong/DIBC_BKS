@@ -12,7 +12,7 @@ public interface DetectionMapper {
 					  @Param("offset") String offset,
 					  @Param("offset") String countPerPage);
 	
-	Detection queryUser(@Param("id")String id);
+	Detection queryDetection(@Param("id")Integer id);
 	
 	Detection updateById(Detection detection);
 	

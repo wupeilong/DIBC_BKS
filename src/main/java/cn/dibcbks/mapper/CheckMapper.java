@@ -13,7 +13,7 @@ public interface CheckMapper {
 					  @Param("offset") String offset,
 					  @Param("offset") String countPerPage);
 	
-	Check queryUser(@Param("id")String id);
+	Check queryCheck(@Param("id")Integer id);
 	
 	Check updateById(Check check);
 	

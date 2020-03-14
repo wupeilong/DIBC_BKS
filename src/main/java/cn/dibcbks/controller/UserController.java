@@ -44,8 +44,8 @@ public class UserController {
 	 */
 	@RequestMapping("/allocateAccountPage.do")
 	private String allocateAccountPage(){
-		//TODO 账户分配页
-		return "allocateAccountPage";
+		
+		return iUserService.allocateAccountPage();
 	}
 	
 	/**

@@ -2,6 +2,8 @@ package cn.dibcbks.service;
 
 import java.util.List;
 
+import org.springframework.ui.ModelMap;
+
 import cn.dibcbks.entity.Unit;
 import cn.dibcbks.util.ResponseResult;
 
@@ -12,5 +14,10 @@ public interface IUnitService {
 	ResponseResult<List<Unit>> getAllUnit();
 
 	ResponseResult<Unit> unitDetail(Integer unitId);
+
+	String updateUnitPage(ModelMap modelMap);
+
+	List<Unit> queryUnitList(Integer unitId, String unitName);
+
 
 }

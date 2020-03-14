@@ -2,10 +2,14 @@ package cn.dibcbks.service;
 
 import java.util.List;
 import org.springframework.ui.ModelMap;
+
+import cn.dibcbks.entity.Check;
 import cn.dibcbks.util.ResponseResult;
 
 public interface ICheckService {
 
+	ResponseResult<List<Check>> queryCheckListInfo(String unitId, Integer unitType);
+	
 	String getCheckList(ModelMap modelMap);
 
 	String businessPage(ModelMap modelMap);
@@ -18,6 +22,7 @@ public interface ICheckService {
 			String unitPrincipal,String unitPhone,List<Integer> resultList,String other,String inspectors,
 			String dailyTime,Integer checkType,String checkPhoto);
 
-	ResponseResult<Void> checkDetailInfo(Integer id);
+	String checkDetailInfo(ModelMap modelMap,Integer id);
+
 
 }

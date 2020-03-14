@@ -7,7 +7,9 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 
 
 /**
@@ -240,6 +242,11 @@ public class IDWorkUtil {
        System.err.println(fromObject.toString());
        JSONArray jsonArray = JSONArray.parseArray(fromObject.toString());
        System.err.println(jsonArray);
+       List<Integer> resultList = new ArrayList<>();
+       for (int i = 0; i < jsonArray.size(); i++) {
+       	resultList.add(jsonArray.getInteger(i));
+       }
+       System.out.println("result: "+resultList);
     }
 
 }

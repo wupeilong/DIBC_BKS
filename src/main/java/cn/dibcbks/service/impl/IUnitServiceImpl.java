@@ -1,13 +1,17 @@
 package cn.dibcbks.service.impl;
 
 
+import java.util.ArrayList;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.ModelMap;
+import cn.dibcbks.entity.Procurement;
 import cn.dibcbks.entity.Unit;
 import cn.dibcbks.entity.User;
 import cn.dibcbks.mapper.UnitMapper;
@@ -81,6 +85,44 @@ public class IUnitServiceImpl implements IUnitService {
 			rr = new ResponseResult<>(ResponseResult.ERROR, "企业详情查询失败！");
 		}
 		return rr;
+	}
+
+
+	@Override
+	public String updateUnitPage(ModelMap modelMap) {
+		try {
+			Session session = SecurityUtils.getSubject().getSession();
+			User user = (User)session.getAttribute("user");
+			List<Unit> detailUnit = unitMapper.select(" n.unit_id = '" + user.getUnitId() + "'", null, null, null);
+			modelMap.addAttribute("detailUnit", detailUnit);
+			logger.info(Constants.SUCCESSU_HEAD_INFO + "用户进入企业编辑页面成功！");
+			//TODO 企业编辑页面
+			return "";
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(Constants.ERROR_HEAD_INFO + "用户进入企业编辑页面失败，原因：" + e.getMessage());
+		}
+		return "error/404";
+	}
+
+
+	@Override
+	public List<Unit> queryUnitList(Integer unitId, String unitName) {
+		List<Unit> unitList = new ArrayList<>();
+		try {
+			String where = "";
+			if(unitId == null && StringUtils.isEmpty(unitName)){
+				where = null;
+			}
+			boolean addAnd = false;
+			if(unitId != null){
+				
+			}
+			unitList = unitMapper.select(where, null, null, null);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		return null;
 	}
 
 }

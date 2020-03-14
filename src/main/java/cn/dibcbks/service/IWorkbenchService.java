@@ -10,17 +10,17 @@ public interface IWorkbenchService {
 
 	String practitioners(ModelMap modelMap);
 
-	String purchaseReport(ModelMap modelMap);
+	String procurement(ModelMap modelMap);
 
 	String manufacturingInspection(ModelMap modelMap);
 
-	String deliveryDistribution(ModelMap modelMap);
+	String distribution(ModelMap modelMap);
 
-	String cleaningDisinfection(ModelMap modelMap);
+	String disinfection(ModelMap modelMap);
 
-	String regulatory(ModelMap modelMap);
+	String check(ModelMap modelMap);
 
-	String inspectionReport(ModelMap modelMap);
+	String detectionReport(ModelMap modelMap);
 
 	String videoSurveillance(ModelMap modelMap);
 
