@@ -107,8 +107,8 @@ public class IUnitServiceImpl implements IUnitService {
 
 
 	@Override
-	public List<Unit> queryUnitList(Integer unitId, String unitName) {
-		List<Unit> unitList = new ArrayList<>();
+	public ResponseResult<List<Unit>> queryUnitList(Integer unitId, String unitName) {
+		ResponseResult<List<Unit>> rr = null;
 		try {
 			String where = "";
 			if(unitId == null && StringUtils.isEmpty(unitName)){
@@ -126,12 +126,14 @@ public class IUnitServiceImpl implements IUnitService {
 					where += " n.unit_name = '" + unitName + "'";
 				}				
  			}
-			unitList = unitMapper.select(where, null, null, null);
+			List<Unit> unitList = unitMapper.select(where, null, null, null);
+			rr = new ResponseResult<>(ResponseResult.SUCCESS,"操作成功",unitList);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
+			rr = new ResponseResult<>(ResponseResult.ERROR,"操作失败");
 		}
-		return unitList;
+		return rr;
 	}
 
 }

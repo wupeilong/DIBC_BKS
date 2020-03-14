@@ -51,7 +51,7 @@ public class UnitController {
 	 */
 	@RequestMapping("/list.do")
 	@ResponseBody
-	public List<Unit> queryUnitList(Integer unitId,String unitName){
+	public ResponseResult<List<Unit>> queryUnitList(Integer unitId,String unitName){
 		
 		return iUnitService.queryUnitList(unitId,unitName);
 	}
