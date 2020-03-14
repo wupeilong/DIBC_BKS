@@ -18,7 +18,6 @@ public class UserController {
 	private IUserService iUserService;
 	
 	
-	
 	/**
 	 * 用户进入分配账户页
 	 * @return
@@ -71,5 +70,19 @@ public class UserController {
 	private String userCenter(ModelMap modelMap){
 		
 		return iUserService.userCenter(modelMap);
+	}
+	
+	
+	/**
+	 * 查看企业从业人员信息
+	 * @param unitId
+	 * @param unitName
+	 * @return
+	 */
+	@RequestMapping("/unitUser.do")
+	@ResponseBody
+	private ResponseResult<Void> queruUnitUser(String unitId,String unitName){
+		
+		return iUserService.queruUnitUser(unitId,unitName);
 	}
 }

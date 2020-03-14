@@ -254,4 +254,10 @@ public class IUserServiceImpl implements IUserService {
 		}
 	}
 
+	@Override
+	public ResponseResult<Void> queruUnitUser(String unitId, String unitName) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
