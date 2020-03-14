@@ -19,7 +19,7 @@ public class UserController {
 	
 	
 	/**
-	 * 用户进入分配账户页
+	 * 用户进入分配账户页(从业人员添加)
 	 * @return
 	 */
 	@RequestMapping("/allocateAccountPage")
@@ -74,15 +74,27 @@ public class UserController {
 	
 	
 	/**
-	 * 查看企业从业人员信息
+	 * 查询企业从业人员信息
 	 * @param unitId
 	 * @param unitName
 	 * @return
 	 */
 	@RequestMapping("/unitUserList")
 	@ResponseBody
-	private ResponseResult<List<User>> queruUnitUser(String unitId,String unitName){
+	private ResponseResult<List<User>> queryUnitUser(String unitId,String unitName){
 		
-		return iUserService.queruUnitUser(unitId,unitName);
+		return iUserService.queryUnitUser(unitId,unitName);
+	}
+	
+	/**
+	 * 查询企业从业人员信息详情
+	 * @param unitId
+	 * @param unitName
+	 * @return
+	 */
+	@RequestMapping("/unitUserDetail")
+	private String queryUnitUserDetail(ModelMap modelMap,String id){
+		
+		return iUserService.queryUnitUserDetail(modelMap,id);
 	}
 }

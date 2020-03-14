@@ -15,6 +15,7 @@ public class Hygiene implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer hygieneId;//主键ID
 	private Integer userId;//用户ID
+	private String username;//用户名字
 	private String dailyTime;//当前日期
 	private Double celsius;//摄氏度
 	private String healthCodePhoto;//健康码图片

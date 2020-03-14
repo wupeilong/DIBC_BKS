@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+	<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" 
+		"http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="cn.dibcbks.mapper.HygieneMapper">
+	 <resultMap id="BaseResultMap" type="cn.dibcbks.entity.Hygiene">
+	    <id column="hygiene_id" property="hygieneId" />
+	    <result column="user_id" property="userId" />
+	    <result column="username" property="username" />
+	    <result column="daily_time" property="dailyTime" />
+	    <result column="celsius" property="celsius" />
+	    <result column="health_code_photo" property="healthCodePhoto" />
+	    <result column="fever" property="fever" />
+	    <result column="diarrhea" property="diarrhea" />
+	    <result column="wounds_fester" property="woundsFester" />
+	    <result column="hygiene" property="hygiene" />
+	    <result column="other" property="other" />
+	    <result column="remark" property="remark" />
+	    <result column="upload_time" property="uploadTime" />
+	</resultMap>
+
+	<insert id="insert" parameterType="cn.dibcbks.entity.Hygiene" useGeneratedKeys="true" keyProperty="hygieneId">
+		INSERT INTO  hygiene
+	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	      <if test="hygieneId != null">
+	        hygiene_id,
+	      </if>
+	      <if test="userId != null">
+	        user_id,
+	      </if>
+	      <if test="dailyTime != null">
+	        daily_time,
+	      </if>
+	      <if test="celsius != null">
+	        celsius,
+	      </if>
+	      <if test="healthCodePhoto != null">
+	        health_code_photo,
+	      </if>
+	      <if test="fever != null">
+	        fever,
+	      </if>
+	      <if test="diarrhea != null">
+	        diarrhea,
+	      </if>
+	      <if test="woundsFester != null">
+	        wounds_fester,
+	      </if>
+	      <if test="hygiene != null">
+	        hygiene,
+	      </if>
+	      <if test="other != null">
+	        other,
+	      </if>
+	      <if test="remark != null">
+	        remark,
+	      </if>
+	      <if test="uploadTime != null">
+	        upload_time,
+	      </if>
+	    </trim>
+	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	      <if test="hygieneId != null">
+	        #{hygieneId},
+	      </if>
+	      <if test="userId != null">
+	        #{userId},
+	      </if>
+	      <if test="dailyTime != null">
+	        #{dailyTime},
+	      </if>
+	      <if test="celsius != null">
+	        #{celsius},
+	      </if>
+	      <if test="healthCodePhoto != null">
+	        #{healthCodePhoto},
+	      </if>
+	      <if test="fever != null">
+	        #{fever},
+	      </if>
+	      <if test="diarrhea != null">
+	        #{diarrhea},
+	      </if>
+	      <if test="woundsFester != null">
+	        #{woundsFester},
+	      </if>
+	      <if test="hygiene != null">
+	        #{hygiene},
+	      </if>
+	      <if test="other != null">
+	        #{other},
+	      </if>
+	      <if test="remark != null">
+	        #{remark},
+	      </if>
+	      <if test="uploadTime != null">
+	        #{uploadTime},
+	      </if>
+	    </trim>
+	</insert>
+	
+	<!--查询用户 -->
+	<select id="select" resultMap="BaseResultMap"> 
+		SELECT
+			h.hygiene_id,
+			h.user_id,
+			u.username,
+			h.daily_time,
+			h.celsius,
+			h.health_code_photo,
+			h.fever,
+			h.diarrhea,
+			h.wounds_fester,
+			h.hygiene,
+			h.other,
+			h.remark,
+			h.upload_time
+		FROM
+			hygiene AS h
+		LEFT JOIN `user` AS u ON u.id = h.user_id
+		<if test="where != null">where ${where}</if>
+		<if test="orderBy != null">order by ${orderBy}</if>
+		<if test="offset != null">limit ${offset},${countPerPage}</if>
+	</select>
+	
+	<!-- 查询单个用户信息 -->
+	<select id="queryHygiene" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+		SELECT
+			h.hygiene_id,
+			h.user_id,
+			u.username,
+			h.daily_time,
+			h.celsius,
+			h.health_code_photo,
+			h.fever,
+			h.diarrhea,
+			h.wounds_fester,
+			h.hygiene,
+			h.other,
+			h.remark,
+			h.upload_time
+		FROM
+			hygiene AS h
+		LEFT JOIN `user` AS u ON u.id = h.user_id
+		WHERE
+			u.id_card = #{idCard} 
+	</select>
+	 
+
+	<update id="updateById"  parameterType="cn.dibcbks.entity.Hygiene">
+		update hygiene
+	    <set>
+	      <if test="hygieneId != null">
+	        hygiene_id = #{hygieneId},
+	      </if>
+	      <if test="userId != null">
+	        user_id = #{userId},
+	      </if>
+	      <if test="dailyTime != null">
+	        daily_time = #{dailyTime},
+	      </if>
+	      <if test="celsius != null">
+	        celsius = #{celsius},
+	      </if>
+	      <if test="healthCodePhoto != null">
+	        health_code_photo = #{healthCodePhoto},
+	      </if>
+	      <if test="fever != null">
+	        fever = #{fever},
+	      </if>
+	      <if test="diarrhea != null">
+	        diarrhea = #{idCard},
+	      </if>
+	      <if test="woundsFester != null">
+	        wounds_fester = #{woundsFester},
+	      </if>
+	      <if test="hygiene != null">
+	        hygiene = #{hygiene},
+	      </if>
+	      <if test="other != null">
+	        other = #{other},
+	      </if>
+	      <if test="remark != null">
+	        remark = #{remark},
+	      </if>
+	      <if test="uploadTime != null">
+	        upload_time = #{uploadTime},
+	      </if>
+	    </set>
+	    where hygiene_id = #{hygieneId}
+	</update>
+
+	
+	<delete id="deleteById" parameterType="java.lang.Integer">
+		DELETE FROM hygiene where hygiene_id = #{hygieneId};
+	</delete>
+</mapper>
+	
+	
+	
+	
+	
+	
+	
+	
+	
