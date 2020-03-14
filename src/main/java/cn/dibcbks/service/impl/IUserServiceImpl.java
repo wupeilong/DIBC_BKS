@@ -105,6 +105,7 @@ public class IUserServiceImpl implements IUserService {
 	public ResponseResult<Void> login(String idCard, String password) {
 		ResponseResult<Void> rr = null;
 		try {
+			System.out.println("用户：" + idCard + " " + password);
 			Subject subject = SecurityUtils.getSubject();
 			User user = userMapper.queryUser(idCard);
 			if (user == null) {

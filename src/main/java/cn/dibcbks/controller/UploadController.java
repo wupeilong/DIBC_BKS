@@ -27,7 +27,7 @@ public class UploadController {
 	public ResponseResult<String> uploadFiesle(
 			@RequestParam("file") MultipartFile file,
 			@RequestParam("idCard") String idCard){
-		System.out.println("idCard：" + idCard);
+		
 		return IUploadService.uploadFile(file,idCard);
 	}
 	

@@ -136,4 +136,30 @@ public class IUnitServiceImpl implements IUnitService {
 		return rr;
 	}
 
+
+	@Override
+	public String CooprationList(ModelMap modelMap) {
+		try {			
+			Session session = SecurityUtils.getSubject().getSession();
+			User user = (User)session.getAttribute("user");
+			if(user.getType().equals(1)){//市场监管局账户
+				List<Unit> unitList = unitMapper.select(" n.unit_type BETWEEN 2 AND 4 ", " n.create_time DESC", null, null);
+				modelMap.addAttribute("unitList", unitList);
+				logger.info(Constants.SUCCESSU_HEAD_INFO + "用户进入企业信息列表页面成功！");
+				//TODO 企业信息列表页
+				return "bks_wap/coopration_list";
+			}else{//企业用户
+				List<Unit> unitList = unitMapper.select(" n.unit_id = '" + user.getUnitId() + "'", null, null, null);
+				modelMap.addAttribute("unitDetail", unitList.get(0));
+				logger.info(Constants.SUCCESSU_HEAD_INFO + "用户进入企业信息详情页面成功！");
+				//TODO 企业详情信息页
+				return "bks_wap/coopration_list";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(Constants.ERROR_HEAD_INFO + "用户进入企业信息页面失败，原因：" + e.getMessage());
+		}
+		return "error/404";
+	}
+
 }
