@@ -1,0 +1,127 @@
+html,body{
+	height: 100%;
+}
+header{
+	padding: 1em 0;
+}
+footer{
+	padding: 1em 0;
+}
+.fc{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.fs{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+}
+.fb{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.sa{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.fsa{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+.margin-top05{
+	margin-top: .5em;
+}
+.margin-top{
+	margin-top: 1em;
+}
+.margin-top2{
+	margin-top: 2em;
+}
+.margin-top3{
+	margin-top: 3em;
+}
+.margin-top4{
+	margin-top: 4em;
+}
+.margin-bot{
+	margin-bottom: 1em;
+}
+.margin-bot2{
+	margin-bottom: 2em;
+}
+.padding0{
+	padding: 0;
+}
+.padding-side{
+	padding: 0 1em;
+}
+.padding-side05{
+	padding: 0 .5em;
+}
+.fonwei{
+	font-weight: bold;
+}
+.margin0{
+	margin: 0;
+}
+a:hover{
+	text-decoration: none;
+}
+.circle{
+	display: inline-block;
+	border-radius: 50%;
+}
+.circle.circle-danger{
+	background-color: #a94442;
+	color: #fff;
+}
+.optionList li {
+	margin-bottom: 1em;
+}
+.optionList li input{
+	width: 940px;
+}
+.optionList li:hover input{
+	background-color: #F9F9F9;
+}
+.optionList li i {
+	visibility: hidden;
+}
+.optionList li:hover i{
+	cursor: pointer;
+	visibility: visible;
+}
+.exam_info >li{
+	border-left: 1px solid #ccc;
+	padding: 4px 6px;
+	text-align: center;
+}
+.exam_info >li:last-of-type{
+	border-right: 1px solid #ccc;
+}
+.clear-bg{
+	background-color: rgba(0,0,0,0);
+}
+.border0{
+	border: 0;
+}
+.width100{
+	width: 100%;
+}
+.height100{
+	height: 100%;
+}
+.text-white{
+	color: #fff;
+}
+.table > tbody > tr > td.vertical-mid{
+	vertical-align: middle;
+	text-align: center;
+}
+.cooperation_detal .input-group > span{
+	width: 180px;
+}
