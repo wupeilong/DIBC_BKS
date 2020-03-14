@@ -5,7 +5,7 @@
 <head>
 	<meta charset=utf-8>
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
-	<title>企业信息列表</title>
+	<title>从业人员信息列表</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/js/selector/jquery.searchableSelect.css"/>
@@ -56,7 +56,7 @@
 						});
 					</script>
 				</div>
-				<a href="http://192.168.1.106:8848/wap_MCLZ/workmens_add.html" class="btn bg-primary"><i class="fa fa-plus"></i></a>
+				<a href="${pageContext.request.contextPath}/user/workmens_add" class="btn bg-primary"><i class="fa fa-plus"></i></a>
 			</div>
 		</div>
 		<main class="main margin-top2 padding-side05">
@@ -66,7 +66,7 @@
 						<tr><th>序号</th><th>员工姓名</th><th>职务</th><th>年龄</th><th>操作</th></tr>
 					</thead>
 					<tbody>
-						<tr><td>1</td><td>老干妈</td><td>data</td><td>data</td><td><a href="http://192.168.1.106:8848/wap_MCLZ/workmens_detal.html">详情</a></td></tr>
+						<tr><td>1</td><td>老干妈</td><td>data</td><td>data</td><td><a href="${pageContext.request.contextPath}/user/workmens_detal">详情</a></td></tr>
 						<tr><td>2</td><td>老干爹</td><td>data</td><td>data</td><td><a href="">详情</a></td></tr>
 					</tbody>
 				</table>
