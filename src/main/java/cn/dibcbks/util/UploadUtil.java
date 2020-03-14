@@ -28,10 +28,10 @@ public class UploadUtil {
 			oldFile.mkdirs();	       			
 	    }
 		//文件储存路径
-		String url = path + "/static/images/" + packageName 
+		String url = "/static/images/" + packageName 
 				   + "/" + new StringBuilder(new SimpleDateFormat("yyyyMMddHHmmss").format(new Date())) 
 				   + "." + FilenameUtils.getExtension(file.getOriginalFilename());
-		file.transferTo(new File(url));
+		file.transferTo(new File(path + url));
 		return url;
 	}
 	

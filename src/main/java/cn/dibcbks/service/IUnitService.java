@@ -19,5 +19,7 @@ public interface IUnitService {
 
 	ResponseResult<List<Unit>> queryUnitList(Integer unitId, String unitName);
 
+	String CooprationList(ModelMap modelMap);
+
 
 }

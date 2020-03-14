@@ -29,8 +29,9 @@ public class UnitController {
 	 * @return
 	 */
 	@RequestMapping("/coopration_list")
-	public String CooprationList(){		
-		return "bks_wap/coopration_list";
+	public String CooprationList(ModelMap modelMap){		
+		return iUnitService.CooprationList(modelMap);
+//		return "bks_wap/coopration_list";
 	}
 	/**
 	 * 进入企业信息详情页
