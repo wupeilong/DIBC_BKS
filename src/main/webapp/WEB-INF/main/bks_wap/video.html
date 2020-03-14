@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/layer/2.4/layer.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body class="contain">
+		<main class="main margin-top2">
+			<div class="panel panel-primary">
+			  <!-- Default panel contents -->
+			  <div class="panel-heading">Panel heading</div>
+			  <div class="panel-body">
+			    <p>...</p>
+			  </div>
+			
+			  <!-- List group -->
+			  <ul class="list-group">
+			    <li class="list-group-item">Cras justo odio</li>
+			    <li class="list-group-item">Dapibus ac facilisis in</li>
+			    <li class="list-group-item">Morbi leo risus</li>
+			    <li class="list-group-item">Porta ac consectetur ac</li>
+			    <li class="list-group-item">Vestibulum at eros</li>
+			  </ul>
+			</div>
+			
+			<div class="tab_list">
+				<ul class="tab_heading list-unstyled clearfix">
+					<li class="cur">Vestibulum</li>
+					<li>Dapibus</li>
+					<li>heading</li>
+				</ul>
+				<div class="tab_body">
+					<div class="cur">
+						Vestibulum11 at eros
+					</div>
+					<div class="">
+						Dapibus222 ac facilisis in
+					</div>
+					<div class="">
+						Cras333 justo odio
+					</div>
+				</div>
+			</div>
+			
+			<script type="text/javascript">
+				$(document).ready(function() {
+					$(".tab_heading li").click(function() {
+						$(this).parent().find("li").removeClass("cur");
+						$(this).addClass("cur");
+						var index=$(this).index();
+						console.log(index)
+						$(this).parents(".tab_list").find(".tab_body>div").removeClass("cur");
+						$(this).parents(".tab_list").find(".tab_body>div").eq(index).addClass("cur");
+					})
+				})
+			</script>
+			
+			<object type='application/x-vlc-plugin' pluginspage="http://www.videolan.org/" id='vlc' events='false' width="720" height="410">
+			    <param name='mrl' value='rtsp://admin:zl123456@@119.1.123.234:554/h264/ch1/main/av_stream' />
+			    <param name='volume' value='50' />
+			    <param name='autoplay' value='true' />
+			    <param name='loop' value='false' />
+			    <param name='fullscreen' value='false' />
+			    <param name='controls' value='false' />
+			</object>
+		</main>
+		<div class="tabBar">
+			<ul class="list-unstyled clearfix margin0">
+				<li><a href="http://192.168.1.106:8848/wap_MCLZ/home.html"><div><i class="fa fa-home"></i><div>工作台</div></div></a></li>
+				<li><a href=""><div><i class="fa fa-user"></i><div>个人中心</div></div></a></li>
+			</ul>
+		</div>
+		
+	</body>
+</html>

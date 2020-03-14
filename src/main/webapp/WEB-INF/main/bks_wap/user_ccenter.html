@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+		<title>企业中心</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="font-awesome-4.7.0/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<link rel="stylesheet" href="layui/css/layui.css">
+		<script src="js/jquery-1.11.0.js" type="text/javascript" charset="utf-8"></script>
+		<script src="layui/layui.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body class="contain">
+		<div class="navigation bg-primary">
+			<div class="fb padding-side">
+				<a href="javascript:history.go(-1)" class="text-white"><i class="fa fa-angle-left"></i></a>
+			</div>
+		</div>
+		<main class="main margin-top2 padding-side">
+			<form action="" method="post" class="cooperation_detal">
+				<fieldset>
+				    <legend>企业信息:</legend>
+					<div class="input-group form-group fs border-bottom">
+					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">企业名称</span>
+					  <div class="form-control box-shadow0 border0">老干妈</div>
+					</div>
+					<div class="input-group form-group fs border-bottom">
+					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">统一社会信用代码</span>
+					  <div class="form-control box-shadow0 border0">老干妈</div>
+					</div>
+					<div class="fsa border-bottom">
+						<div class="margin-bot2">
+							  <div class="fc">
+								<div class="layui-upload-list fc">
+								  <img class="layui-upload-img" src="">
+								</div>
+							  </div>
+							  <div class="text-center text-muted">营业执照</div>
+						</div>
+						<div class="margin-bot2">
+							  <div class="fc">
+								<div class="layui-upload-list fc">
+								  <img class="layui-upload-img" src="">
+								</div>
+							  </div>
+							  <div class="text-center text-muted">食品许可证</div>
+						</div>
+					</div>
+					<div class="input-group form-group fs border-bottom">
+					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">到期日期</span>
+					  <div class="form-control box-shadow0 border0">老干妈</div>
+					</div>
+					<div class="input-group form-group fs border-bottom">
+					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">营业地址</span>
+					  <div class="form-control box-shadow0 border0">老干妈</div>
+					</div>
+					<div class="input-group form-group fs border-bottom">
+					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">企业类型</span>
+					  <div class="form-control box-shadow0 border0">老干妈</div>
+					</div>
+					<div class="input-group form-group fs border-bottom">
+					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">法人姓名</span>
+					  <div class="form-control box-shadow0 border0">老干妈</div>
+					</div>
+				  </fieldset>
+				 <!-- <div class="margin-top2">
+				  	<div>
+			　　　　　　<input type="file" accept="image/*">
+			　　　　　　<input type="file" accept="video/*" capture="camcorder">
+			　　　　</div>
+				  </div> -->
+				  
+			</form>
+			<!-- <div class="margin-top2 margin-bot2">
+				<button type="button" class="btn btn-primary form-control">保存</button>
+			</div> -->
+		</main>
+		<div class="tabBar">
+			<ul class="list-unstyled clearfix margin0">
+				<li><a href="http://192.168.1.106:8848/wap_MCLZ/home.html"><div><i class="fa fa-home"></i><div>工作台</div></div></a></li>
+				<li><a href=""><div><i class="fa fa-user"></i><div>个人中心</div></div></a></li>
+			</ul>
+		</div>
+		<script type="text/javascript">
+			layui.use('upload', function(){
+			  var $ = layui.jquery
+			  ,upload = layui.upload;
+			  
+			  //普通图片上传
+			  var uploadInst = upload.render({
+			    elem: '#test1'
+			    ,url: 'https://httpbin.org/post' //改成您自己的上传接口
+			    ,before: function(obj){
+			      //预读本地文件示例，不支持ie8
+			      obj.preview(function(index, file, result){
+			        $('#demo1').attr('src', result); //图片链接（base64）
+			      });
+			    }
+			    ,done: function(res){
+			      //如果上传失败
+			      if(res.code > 0){
+			        return layer.msg('上传失败');
+			      }
+			      //上传成功
+			    }
+			    ,error: function(){
+			      //演示失败状态，并实现重传
+			      var demoText = $('#demoText');
+			      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+			      demoText.find('.demo-reload').on('click', function(){
+			        uploadInst.upload();
+			      });
+			    }
+			  });
+			  });
+		</script>
+	</body>
+</html>
