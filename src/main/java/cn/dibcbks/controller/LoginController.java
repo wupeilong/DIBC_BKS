@@ -1,7 +1,6 @@
 package cn.dibcbks.controller;
 
 import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +26,7 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping("/login")
-	public String login(){		
+	public String loginPage(){		
 		return "bks_wap/login";
 	}
 	/**
@@ -111,7 +110,7 @@ public class LoginController {
 	 * @param password
 	 * @return
 	 */
-	@RequestMapping("/login")
+	@RequestMapping("/userLogin")
 	@ResponseBody
 	public ResponseResult<Void> login(@RequestParam(value="idCard",required = true) String idCard,
 									  @RequestParam(value="password",required = true) String password){
