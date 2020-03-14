@@ -35,7 +35,7 @@
 						  <div class="form-control box-shadow0 border0 clear-bg">记住密码</div>
 						</div>
 						<div class="margin-bot2 text-right">
-							<a href="http://192.168.1.106:8848/wap_MCLZ/register.html" class="">已有账号？去登陆</a>
+							<a href="${pageContext.request.contextPath}/register" class="">没有账号？去注册</a>
 						</div>
 					</fieldset>
 				</form>
