@@ -2,6 +2,7 @@ package cn.dibcbks.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,27 +17,7 @@ public class UserController {
 	@Autowired
 	private IUserService iUserService;
 	
-	/**
-	 * 查询身份证号是否已注册
-	 * @param idCard
-	 * @return
-	 */
-	@RequestMapping("/idCardIsExist.do")
-	private ResponseResult<Void> idCardIsExist(@RequestParam(value = "idCard",required = true) String idCard){
-		
-		return iUserService.idCardIsExist(idCard);
-	}
 	
-	/**
-	 * 查询用户名是否已注册
-	 * @param idCard
-	 * @return
-	 */
-	@RequestMapping("/usernameIsExist.do")
-	private ResponseResult<Void> usernameIsExist(@RequestParam(value = "username",required = true) String username){
-		
-		return iUserService.usernameIsExist(username);
-	}
 	
 	/**
 	 * 用户进入分配账户页
@@ -87,8 +68,8 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/center.do")
-	private String userCenter(){
+	private String userCenter(ModelMap modelMap){
 		
-		return iUserService.userCenter();
+		return iUserService.userCenter(modelMap);
 	}
 }

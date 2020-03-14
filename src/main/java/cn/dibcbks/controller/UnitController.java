@@ -46,7 +46,7 @@ public class UnitController {
 	}
 	
 	/**
-	 * 查询所有企业信息
+	 * 查询企业信息列表
 	 * @return
 	 */
 	@RequestMapping("/list.do")

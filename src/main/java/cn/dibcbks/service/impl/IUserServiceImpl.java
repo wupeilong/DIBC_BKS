@@ -13,6 +13,8 @@ import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.ui.ModelMap;
+
 import cn.dibcbks.entity.Unit;
 import cn.dibcbks.entity.User;
 import cn.dibcbks.mapper.UnitMapper;
@@ -98,24 +100,6 @@ public class IUserServiceImpl implements IUserService {
 		}
 	}
 
-	@Override
-	public ResponseResult<Void> idCardIsExist(String idCard) {
-		ResponseResult<Void> rr = null;
-		try {
-			User user = queryUser(idCard);
-			if(user != null){
-				rr = new ResponseResult<>(ResponseResult.SUCCESS,"1");
-			}else {
-				rr = new ResponseResult<>(ResponseResult.SUCCESS,"0");
-			}
-			logger.info(Constants.SUCCESSU_HEAD_INFO + "用户是否存在查询成功");
-		} catch (Exception e) {
-			e.printStackTrace();
-			logger.error(Constants.ERROR_HEAD_INFO + "用户是否存在查询失败");
-			rr = new ResponseResult<>(ResponseResult.ERROR,"ERROR");
-		}
-		return rr;
-	}
 
 	@Override
 	public ResponseResult<Void> login(String idCard, String password) {
@@ -226,7 +210,7 @@ public class IUserServiceImpl implements IUserService {
 	
 
 	@Override
-	public String userCenter() {
+	public String userCenter(ModelMap modelMap) {
 		try {
 			logger.info(Constants.SUCCESSU_HEAD_INFO + "用户进入个人中心页面成功！");
 			//TODO 个人中心页面
@@ -237,36 +221,37 @@ public class IUserServiceImpl implements IUserService {
 		return "error/404";
 	}
 
-	@Override
-	public ResponseResult<Void> usernameIsExist(String username) {
-		ResponseResult<Void> rr = null;
-		try {
-			List<User> userList = userMapper.select(" u.username = '" + username + "'", null, null, null);
-			if(!userList.isEmpty()){
-				rr = new ResponseResult<>(ResponseResult.SUCCESS,"1");
-			}else {
-				rr = new ResponseResult<>(ResponseResult.SUCCESS,"0");
-			}
-			logger.info(Constants.SUCCESSU_HEAD_INFO + "用户是否存在查询成功");
-		} catch (Exception e) {
-			e.printStackTrace();
-			logger.error(Constants.ERROR_HEAD_INFO + "用户是否存在查询失败");
-			rr = new ResponseResult<>(ResponseResult.ERROR,"ERROR");
-		}
-		return rr;
-	}
 
 	@Override
 	public String allocateAccountPage() {
 		try {
-			logger.info(Constants.SUCCESSU_HEAD_INFO + "用户进入加工制作检视页面成功！");
-			//TODO 加工制作检视页面
+			logger.info(Constants.SUCCESSU_HEAD_INFO + "用户进入用户进入分配账户页成功！");
+			//TODO 用户进入分配账户页
 			return "";
 		} catch (Exception e) {
 			e.printStackTrace();
-			logger.error(Constants.ERROR_HEAD_INFO + "用户进入加工制作检视页面失败，原因：" + e.getMessage());
+			logger.error(Constants.ERROR_HEAD_INFO + "用户进入用户进入分配账户页失败，原因：" + e.getMessage());
 		}
 		return "error/404";
+	}
+
+	@Override
+	public ResponseResult<Void> userIsExist(String username, String idCard) {
+		try {
+			User user = queryUser(idCard);
+			if(user != null){
+				return new ResponseResult<>(ResponseResult.ERROR,"身份证号重复！");
+			}
+			List<User> list = userMapper.select(" u.username = '" + username + "'", null, null,null);
+			if (!list.isEmpty()) {
+				return new ResponseResult<>(ResponseResult.ERROR,"用户姓名重复！");
+			}
+			return new ResponseResult<>(ResponseResult.SUCCESS,"操作成功！");
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(Constants.ERROR_HEAD_INFO + "用户是否存在查询失败");
+			return new ResponseResult<>(ResponseResult.ERROR,"操作失败！");
+		}
 	}
 
 }
