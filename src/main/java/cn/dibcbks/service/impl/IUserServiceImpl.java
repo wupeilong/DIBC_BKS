@@ -255,7 +255,7 @@ public class IUserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public ResponseResult<Void> queruUnitUser(String unitId, String unitName) {
+	public ResponseResult<User> queruUnitUser(String unitId, String unitName) {
 		try {
 			String where = "";
 			if(unitId == null && StringUtils.isEmpty(unitName)){
@@ -273,7 +273,7 @@ public class IUserServiceImpl implements IUserService {
 					where += " n.unit_name = '" + unitName + "'";
 				}				
 			}
-			userMapper.select(where, null, null, null);
+			List<User> list = userMapper.select(where, null, null, null);
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

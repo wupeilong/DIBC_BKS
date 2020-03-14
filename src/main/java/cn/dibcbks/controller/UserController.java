@@ -81,7 +81,7 @@ public class UserController {
 	 */
 	@RequestMapping("/unitUser.do")
 	@ResponseBody
-	private ResponseResult<Void> queruUnitUser(String unitId,String unitName){
+	private ResponseResult<User> queruUnitUser(String unitId,String unitName){
 		
 		return iUserService.queruUnitUser(unitId,unitName);
 	}

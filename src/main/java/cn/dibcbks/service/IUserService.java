@@ -31,7 +31,7 @@ public interface IUserService {
 
 	ResponseResult<Void> userIsExist(String username, String idCard);
 
-	ResponseResult<Void> queruUnitUser(String unitId, String unitName);
+	ResponseResult<User> queruUnitUser(String unitId, String unitName);
 
 	
 }
