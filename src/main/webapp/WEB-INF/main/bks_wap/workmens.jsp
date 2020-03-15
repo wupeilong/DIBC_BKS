@@ -74,6 +74,7 @@
 							result += "<tr>";
 							result += "<td>" + obj.data[i].id + "</td>";
 							result += "<td>" + obj.data[i].username + "</td>";
+							result += "<td>" + obj.data[i].duty + "</td>";
 							result += "<td>" + obj.data[i].age + "</td>";
 							result += "<td><a href='${pageContext.request.contextPath}/user/workmens_detal?id=" + obj.data[i].id + "'>详情</a></td>";
 							result += "</tr>";
