@@ -19,44 +19,7 @@
 				<a href="javascript:history.go(-1)" class="text-white"><i class="fa fa-angle-left"></i></a>
 			</div>
 		</div>
-		<main class="main margin-top2 padding-side05">
-			<div class="fb">
-				<!-- <a href="" class="btn bg-primary padding-side"><i class="fa fa-search"></i></a> -->
-				<%-- <select>
-					<option value="BlackBerry">BlackBerry</option>
-					<option value="device">device</option>
-					<option value="with">with</option>
-					<option value="entertainment">entertainment</option>
-					<option value="and">and</option>
-					<option value="social">social</option>
-					<option value="networking">networking</option>
-					<option value="apps">apps</option>
-					<option value="or">or</option>
-					<option value="apps">apps</option>
-					<option value="that">that</option>
-					<option value="will">will</option>
-					<option value="boost">boost</option>
-					<option value="your">your</option>
-					<option value="productivity">productivity</option>
-					<option value="Download">Download</option>
-					<option value="or">or</option>
-					<option value="buy">buy</option>
-					<option value="apps">apps</option>
-					<option value="from">from</option>
-					<option value="Afbb">Afbb</option>
-					<option value="Akademie">Akademie</option>
-					<option value="Berlin">Berlin</option>
-					<option value="reviews">reviews</option>
-					<option value="by">by</option>
-					<option value="real">real</option>
-				</select>
-				<script>
-					$(function(){
-						$('select').searchableSelect();
-					});
-				</script> 
-				<a href="${pageContext.request.contextPath}/user/workmens_health_add" class="btn bg-primary padding-side"><i class="fa fa-plus"></i></a> --%>
-			</div>
+		<main class="main margin-top2 padding-side05">			
 			<div class="">
 				<table class="table table-striped table-hover" cellspacing="" cellpadding="">
 					<caption>从业人员健康信息</caption>
