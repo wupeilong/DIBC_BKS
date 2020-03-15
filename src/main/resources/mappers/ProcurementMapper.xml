@@ -7,14 +7,14 @@
 	    <result column="unit_id" property="unitId" />
 	    <result column="unit_name" property="unitName" />
 	    <result column="user_id" property="userId" />
-	    <result column="user_name" property="userName" />
+	    <result column="username" property="username" />
 	    <result column="supplier" property="supplier" />
 	    <result column="supplier_business_license" property="supplierBusinessLicense" />
 	    <result column="supplier_production_license" property="supplierProductionLicense" />
 	    <result column="supplier_qualification" property="supplierQualification" />
 	    <result column="supplier_person" property="supplierPerson" />
 	    <result column="supplier_phone" property="supplierPhone" />
-	    <result column="acceptance_user_id" property="acceptanceUserId" />
+	    <result column="acceptance_username" property="acceptanceUsername" />
 	    <result column="invoice" property="invoice" />
 	    <result column="purchasing_time" property="purchasingTime" />
 	    <result column="acceptance_time" property="acceptanceTime" />
@@ -26,25 +26,31 @@
 	    <result column="unit_id" property="unitId" />
 	    <result column="unit_name" property="unitName" />
 	    <result column="user_id" property="userId" />
-	    <result column="user_name" property="userName" />
+	    <result column="username" property="username" />
 	    <result column="supplier" property="supplier" />
 	    <result column="supplier_business_license" property="supplierBusinessLicense" />
 	    <result column="supplier_production_license" property="supplierProductionLicense" />
 	    <result column="supplier_qualification" property="supplierQualification" />
 	    <result column="supplier_person" property="supplierPerson" />
 	    <result column="supplier_phone" property="supplierPhone" />
-	    <result column="acceptance_user_id" property="acceptanceUserId" />
+	    <result column="acceptance_username" property="acceptanceUsername" />
 	    <result column="invoice" property="invoice" />
 	    <result column="purchasing_time" property="purchasingTime" />
 	    <result column="acceptance_time" property="acceptanceTime" />
 	    <result column="status" property="status" />
 	    <collection property="detailList" ofType="cn.dibcbks.entity.ProcurementDetail">
-			<id property="procurement_detail_id" column="procurementDetailId"/>
-			<result property="procurement_id" column="procurementId"/>
-			<result property="product_name" column="productName"/>
+			<id column="procurement_detail_id" property="procurementDetailId"/>
+			<result column="procurement_id" property="procurementId"/>
+			<result column="product_name" property="productName"/>
+			<result column="count" property="count"/>
+			<result column="production_date" property="productionDate"/>
+			<result column="qualified" property="qualified"/>
+			<!-- <id property="procurementDetailId" column="procurementDetailId"/>
+			<result property="procurementId" column="procurementId"/>
+			<result property="productName" column="productName"/>
 			<result property="count" column="count"/>
-			<result property="production_date" column="productionDate"/>
-			<result property="qualified" column="qualified"/>
+			<result property="productionDate" column="productionDate"/>
+			<result property="qualified" column="qualified"/> -->
 		</collection>
   	</resultMap>
 
@@ -63,7 +69,7 @@
 	      <if test="supplier != null">
 	        supplier,
 	      </if>
-	      <if test="supplierbusinesslicense != null">
+	      <if test="supplierBusinessLicense != null">
 	        supplier_business_license,
 	      </if>
 	      <if test="supplierProductionLicense != null">
@@ -107,8 +113,8 @@
 	      <if test="supplier != null">
 	        #{supplier},
 	      </if>
-	      <if test="supplierbusinesslicense != null">
-	        #{supplierbusinesslicense},
+	      <if test="supplierBusinessLicense != null">
+	        #{supplierBusinessLicense},
 	      </if>
 	      <if test="supplierProductionLicense != null">
 	        #{supplierProductionLicense},
@@ -189,20 +195,20 @@
 		SELECT
 			p.id,
 			p.unit_id,
+			n.unit_name,
 			p.user_id,
+			u.username,
 			p.supplier,
 			p.supplier_business_license,
 			p.supplier_production_license,
 			p.supplier_qualification,
 			p.supplier_person,
 			p.supplier_phone,
-			p.acceptance_user_id,
+			p.acceptance_username,
 			p.invoice,
 			p.purchasing_time,
 			p.acceptance_time,
-			p.`status`,
-			u.username,
-			n.unit_name
+			p.`status`
 		FROM
 			procurement AS p
 		LEFT JOIN unit AS n ON n.unit_id = p.unit_id
@@ -217,6 +223,7 @@
 		SELECT
 			p.id,
 			p.unit_id,
+			n.unit_name,
 			p.user_id,
 			p.supplier,
 			p.supplier_business_license,
@@ -224,7 +231,7 @@
 			p.supplier_qualification,
 			p.supplier_person,
 			p.supplier_phone,
-			p.acceptance_user_id,
+			p.acceptance_username,
 			p.invoice,
 			p.purchasing_time,
 			p.acceptance_time,
@@ -234,10 +241,13 @@
 			pd.product_name,
 			pd.count,
 			pd.production_date,
-			pd.qualified
+			pd.qualified,
+			u.username
 		FROM
 			procurement AS p
 		LEFT JOIN procurement_detail AS pd ON pd.procurement_id = p.id
+		LEFT JOIN unit AS n ON n.unit_id = p.unit_id
+		LEFT JOIN `user` AS u ON u.id = p.user_id
 		WHERE p.id = #{id}
 	</select>
 	 
@@ -245,9 +255,9 @@
 	<update id="updateProcurementById"  parameterType="cn.dibcbks.entity.Procurement">
 		update procurement
 	    <set>
-	      <if test="id != null">
+	     <!--  <if test="id != null">
 	        id =  #{id},
-	      </if>
+	      </if> -->
 	      <if test="unitId != null">
 	        unit_id =  #{unitId},
 	      </if>
@@ -257,8 +267,8 @@
 	      <if test="supplier != null">
 	        supplier =  #{supplier},
 	      </if>
-	      <if test="supplierbusinesslicense != null">
-	        supplier_business_license =  #{supplierbusinesslicense},
+	      <if test="supplierBusinessLicense != null">
+	        supplier_business_license =  #{supplierBusinessLicense},
 	      </if>
 	      <if test="supplierProductionLicense != null">
 	        supplier_production_license =  #{supplierProductionLicense},
@@ -314,6 +324,8 @@
 	      </if>
 	    </set>
 	    where procurement_detail_id = #{procurementDetailId}
+	    <!-- UPDATE procurement_detail SET  qualified = #{qualified} 
+	    WHERE procurement_detail_id = #{procurementDetailId}; -->
 	</update>
 	
 	

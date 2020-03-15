@@ -24,28 +24,63 @@
 			<form action="" method="post">
 				<fieldset>
 					<div class="input-group form-group fs">
-					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>供应商营业执照</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="account" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+						  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid"></i>供&ensp;应&ensp;商&ensp;&ensp;&ensp;</span>
+						  <c:if test="${user.type == 2}">
+							<select id="unit_list">
+								<option value="">查询所有企业信息</option>
+								<c:forEach items="${unitList}" var="item">								
+									<option value="${item.unitId}">${item.unitName}</option>
+								</c:forEach>
+							</select>
+						  </c:if>	
+						  <!-- <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>供&ensp;应&ensp;商</span>
+						  <input type="text" class="form-control box-shadow0 border-bottom" name="account"  aria-describedby="sizing-addon1"> -->					
 					</div>
-					<div class="input-group form-group fs">
-					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>食品经营许可证</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="account" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+					<div class="fsa margin-bot2">	
+				  	<div class="">
+							<div class="fc">
+								<div class="layui-upload-list">
+								  <img class="layui-upload-img" src="">
+								</div>
+							</div>
+							<div class="text-center">供应商营业执照</div>
+						</div>
+						<div class="">
+							<div class="fc">
+								<div class="layui-upload-list">
+								  <img class="layui-upload-img" src="">
+								</div>
+							</div>
+							<div class="text-center">食品经营许可证</div>
+						</div>
+						<div class="">
+							<div class="fc">
+								<div class="layui-upload-list">
+								  <img class="layui-upload-img" src="">
+								</div>
+							</div>
+							<div class="text-center">经营资质</div>
+						</div>
+					</div>					
+					<div class="input-group form-group fs border-bottom">
+					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">联&ensp;系&ensp;人</span>
+					  <input type="text" class="form-control box-shadow0 border-bottom" id="supplierPerson"  aria-describedby="sizing-addon1"> 
 					</div>
-					<div class="input-group form-group fs">
-					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>经营资质</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="account" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+					<div class="input-group form-group fs border-bottom">
+					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">联系电话</span>
+					  <input type="text" class="form-control box-shadow0 border-bottom" id="supplierPhone"  aria-describedby="sizing-addon1"> 
 					</div>
-					<div class="input-group form-group fs">
-					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>商品名称</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="account" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+					<%-- <div class="input-group form-group fs border-bottom">
+					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">订&ensp;单&ensp;号</span>
+					  <div class="form-control box-shadow0 border0">${procurementDetail.id }</div>
+					</div> --%>
+					<div class="input-group form-group fs border-bottom">
+					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">采购公司</span>
+					  <div class="form-control box-shadow0 border0">${user.unitName }</div>
 					</div>
-					<div class="input-group form-group fs">
-					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>计量规格</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="account" placeholder="请输入姓名" aria-describedby="sizing-addon1">
-					</div>
-					<div class="input-group form-group fs">
-					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>联&ensp;系&ensp;人</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="account" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+					<div class="input-group form-group fs border-bottom">
+					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">采&ensp;购&ensp;人</span>
+					  <div class="form-control box-shadow0 border0">${user.username }</div>
 					</div>
 				  </fieldset>
 			</form>

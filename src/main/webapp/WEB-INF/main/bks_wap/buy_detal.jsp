@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,30 +23,62 @@
 		<main class="main margin-top2 padding-side05">
 			<div class="">
 				<div class="input-group form-group fs border-bottom">
-				  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">供应商营业执照</span>
-				  <div class="form-control box-shadow0 border0">老干妈</div>
+				  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">供&ensp;应&ensp;商</span>
+				  <div class="form-control box-shadow0 border0">${procurementDetail.supplier }</div>
 				</div>
-				<div class="input-group form-group fs border-bottom">
-				  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">食品经营许可证</span>
-				  <div class="form-control box-shadow0 border0">老干妈</div>
-				</div>
-				<div class="input-group form-group fs border-bottom">
-				  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">经营资质</span>
-				  <div class="form-control box-shadow0 border0">老干妈</div>
-				</div>
-				<div class="input-group form-group fs border-bottom">
-				  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">商品名称</span>
-				  <div class="form-control box-shadow0 border0">老干妈</div>
-				</div>
-				<div class="input-group form-group fs border-bottom">
-				  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">计量规格</span>
-				  <div class="form-control box-shadow0 border0">老干妈</div>
-				</div>
+				<!-- <div class="input-group form-group fs border-bottom"> -->
+				  <!-- <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">供应商营业执照</span> -->
+				  <!-- <div class="form-control box-shadow0 border0"> -->
+				  <div class="fsa margin-bot2">	
+				  	<div class="">
+							<div class="fc">
+								<div class="layui-upload-list">
+								  <img class="layui-upload-img" src="${pageContext.request.contextPath}${procurementDetail.supplierBusinessLicense }">
+								</div>
+							</div>
+							<div class="text-center">供应商营业执照</div>
+						</div>
+						<div class="">
+							<div class="fc">
+								<div class="layui-upload-list">
+								  <img class="layui-upload-img" src="${pageContext.request.contextPath}${procurementDetail.supplierProductionLicense }">
+								</div>
+							</div>
+							<div class="text-center">食品经营许可证</div>
+						</div>
+						<div class="">
+							<div class="fc">
+								<div class="layui-upload-list">
+								  <img class="layui-upload-img" src="${pageContext.request.contextPath}${procurementDetail.supplierQualification }">
+								</div>
+							</div>
+							<div class="text-center">经营资质</div>
+						</div>
+					</div>
 				<div class="input-group form-group fs border-bottom">
 				  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">联&ensp;系&ensp;人</span>
-				  <div class="form-control box-shadow0 border0">老干妈</div>
+				  <div class="form-control box-shadow0 border0">${procurementDetail.supplierPerson }</div>
 				</div>
-				
+				<div class="input-group form-group fs border-bottom">
+				  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">联系电话</span>
+				  <div class="form-control box-shadow0 border0">${procurementDetail.supplierPhone }</div>
+				</div>
+				<div class="input-group form-group fs border-bottom">
+				  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">订&ensp;单&ensp;号</span>
+				  <div class="form-control box-shadow0 border0">${procurementDetail.id }</div>
+				</div>
+				<div class="input-group form-group fs border-bottom">
+				  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">采购公司</span>
+				  <div class="form-control box-shadow0 border0">${procurementDetail.unitName }</div>
+				</div>
+				<div class="input-group form-group fs border-bottom">
+				  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">采&ensp;购&ensp;人</span>
+				  <div class="form-control box-shadow0 border0">${procurementDetail.username }</div>
+				</div>
+				<div class="input-group form-group fs border-bottom">
+				  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">验&ensp;收&ensp;人</span>
+				  <div class="form-control box-shadow0 border0">${procurementDetail.acceptanceUsername }</div>
+				</div>
 				<div class="">
 					<table class="table table-striped table-bordered table-hover" cellspacing="" cellpadding="">
 						<caption>供货明细：</caption>
@@ -53,16 +86,28 @@
 							<tr><th>序号</th><th>商品名</th><th>数量</th><th>生产日期</th><th>验收结果</th></tr>
 						</thead>
 						<tbody>
-							<tr>
-								<td>1</td><td>白菜</td><td>一大车</td><td>03-12</td>
-								<td>
-									<select name="">
-										<option value="">请选择</option>
-										<option value="">合格</option>
-										<option value="">不合格</option>
-									</select>
-								</td>
-							</tr>
+							<c:forEach items="${procurementDetail.detailList}" var="item">
+								<tr>	
+									<td>${item.procurementDetailId}</td>
+									<td>${item.productName }</td>
+									<td>${item.count}</td>
+									<td><fmt:formatDate value="${item.productionDate}" pattern="yyyy年MM月dd日" /></td>
+									<td>
+										<c:if test="${item.qualified == 0}">
+											不合格
+										</c:if>
+										<c:if test="${item.qualified == 1}">
+											合格
+										</c:if>
+										<c:if test="${item.qualified == null }">
+											<select name="ys" id="${item.procurementDetailId}">
+												<option value="0">不合格</option>										
+												<option value="1">合格</option>												
+											</select>
+										</c:if>										
+									</td>
+								</tr>	
+							</c:forEach>							
 						</tbody>
 					</table>
 				</div>
@@ -70,7 +115,7 @@
 				<div class="">
 					  <div class="fc">
 						<div class="layui-upload-list fc">
-						  <img class="layui-upload-img" src="">
+						  <img class="layui-upload-img" src="${pageContext.request.contextPath}${procurementDetail.invoice }">
 						</div>
 					  </div>
 					  <div class="text-center">采购凭证（发票/收据）</div>
@@ -78,11 +123,64 @@
 				
 			 </div>
 			 
-			<div class="margin-top2 margin-bot2">
-				<a href="javascript:;" class="btn btn-primary form-control">确定验收</a>
+			<div class="margin-top2 margin-bot2">				
+					<c:if test="${procurementDetail.status == 0}">
+						<c:if test="${user.type  == 1 }">
+							<a href="javascript:;" class="btn btn-primary form-control">未验收</a>
+						</c:if>
+						<c:if test="${user.type  == 2 }">
+							<a href="javascript:;" class="btn btn-primary form-control" id="acceptance">确认验收</a>
+						</c:if>
+					</c:if>
+					<c:if test="${procurementDetail.status == 1}">
+						<a href="javascript:;" class="btn btn-primary form-control">已验收</a>
+					</c:if>			
 			</div>
 		</main>		
 		<script type="text/javascript">
+		//点击验收
+		$("#acceptance").click(function () { 
+			layer.confirm('是否确认验收？', {
+				  btn: ['是', '否'] //可以无限个按钮
+				}, function(index, layero){
+					acceptance();
+				  	//按钮【按钮一】的回调
+					//layer.close(index);
+				}, function(index){
+				  	//按钮【按钮二】的回调
+					//layer.alert("按钮二");
+				});
+		})
+		
+		function acceptance(){
+			var query = new Array(); 
+			var ys = document.querySelectorAll("select[name='ys']");
+			for(var i = 0; i < ys.length; i++){ 			
+			   query[i]=new Array(); 
+			   query[i][0]=ys[i].id;       
+			   query[i][1]=ys[i].value; 
+			}
+			var data ="result=" + JSON.stringify(query) + "&id=" + '${procurementDetail.id}';
+			var url = "${pageContext.request.contextPath}/procurement/acceptance";
+			$.ajax({
+				"url" : url,
+				"data" : data,
+				"type" : "POST",
+				"dataType" : "json",
+				"success" : function(obj) {
+					if (obj.state == 0) {
+						layer.msg(obj.message,{icon:2,time:1000});						
+					}else{
+						layer.msg(obj.message,{icon:1,time:1000});							
+					}		
+					//延时刷新页面
+					setTimeout(function (){							 
+						window.location.reload();
+					}, 3000);	
+				}
+			}); 
+		}
+		
 			layui.use('upload', function(){
 			  var $ = layui.jquery
 			  ,upload = layui.upload;

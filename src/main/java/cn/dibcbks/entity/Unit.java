@@ -20,7 +20,7 @@ public class Unit implements Serializable {
 	 private String businessLicense;//营业执照图片
 	 private String productionLicense;//许可证图片
 	 private String unitAddress;//单位地址
-	 private Date expirationDate;//到期时间
+	 private String expirationDate;//到期时间
 	 private Integer unitType;//企业类型：1-监管局 -2学校 3-餐饮业 4-其他
 	 private String createTime;//创建时间
 	public Unit() {
@@ -28,7 +28,7 @@ public class Unit implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	public Unit(Integer unitId, String unitName, String legalPerson, String businessLicenseCode, String businessLicense,
-			String productionLicense, String unitAddress, Date expirationDate, Integer unitType, String createTime) {
+			String productionLicense, String unitAddress, String expirationDate, Integer unitType, String createTime) {
 		super();
 		this.unitId = unitId;
 		this.unitName = unitName;
@@ -83,10 +83,10 @@ public class Unit implements Serializable {
 	public void setUnitAddress(String unitAddress) {
 		this.unitAddress = unitAddress;
 	}
-	public Date getExpirationDate() {
+	public String getExpirationDate() {
 		return expirationDate;
 	}
-	public void setExpirationDate(Date expirationDate) {
+	public void setExpirationDate(String expirationDate) {
 		this.expirationDate = expirationDate;
 	}
 	public Integer getUnitType() {
@@ -108,5 +108,6 @@ public class Unit implements Serializable {
 				+ ", productionLicense=" + productionLicense + ", unitAddress=" + unitAddress + ", expirationDate="
 				+ expirationDate + ", unitType=" + unitType + ", createTime=" + createTime + "]";
 	}
+	
 	
 }

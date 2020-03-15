@@ -26,6 +26,7 @@ public class Procurement implements Serializable {
 	private String supplierPerson;//供货人
 	private String supplierPhone;//联系电话
 	private Integer acceptanceUserId;//验收人ID
+	private String acceptanceUsername;//验收人
 	private String invoice;//发票
 	private Date purchasingTime;//进货时间
 	private Date acceptanceTime;//验收时间
@@ -37,8 +38,9 @@ public class Procurement implements Serializable {
 	}
 	public Procurement(Integer id, Integer unitId, String unitName, Integer userId, String username, String supplier,
 			String supplierBusinessLicense, String supplierProductionLicense, String supplierQualification,
-			String supplierPerson, String supplierPhone, Integer acceptanceUserId, String invoice, Date purchasingTime,
-			Date acceptanceTime, Integer status, List<ProcurementDetail> detailList) {
+			String supplierPerson, String supplierPhone, Integer acceptanceUserId, String acceptanceUsername,
+			String invoice, Date purchasingTime, Date acceptanceTime, Integer status,
+			List<ProcurementDetail> detailList) {
 		super();
 		this.id = id;
 		this.unitId = unitId;
@@ -52,6 +54,7 @@ public class Procurement implements Serializable {
 		this.supplierPerson = supplierPerson;
 		this.supplierPhone = supplierPhone;
 		this.acceptanceUserId = acceptanceUserId;
+		this.acceptanceUsername = acceptanceUsername;
 		this.invoice = invoice;
 		this.purchasingTime = purchasingTime;
 		this.acceptanceTime = acceptanceTime;
@@ -130,6 +133,12 @@ public class Procurement implements Serializable {
 	public void setAcceptanceUserId(Integer acceptanceUserId) {
 		this.acceptanceUserId = acceptanceUserId;
 	}
+	public String getAcceptanceUsername() {
+		return acceptanceUsername;
+	}
+	public void setAcceptanceUsername(String acceptanceUsername) {
+		this.acceptanceUsername = acceptanceUsername;
+	}
 	public String getInvoice() {
 		return invoice;
 	}
@@ -166,9 +175,10 @@ public class Procurement implements Serializable {
 				+ ", username=" + username + ", supplier=" + supplier + ", supplierBusinessLicense="
 				+ supplierBusinessLicense + ", supplierProductionLicense=" + supplierProductionLicense
 				+ ", supplierQualification=" + supplierQualification + ", supplierPerson=" + supplierPerson
-				+ ", supplierPhone=" + supplierPhone + ", acceptanceUserId=" + acceptanceUserId + ", invoice=" + invoice
-				+ ", purchasingTime=" + purchasingTime + ", acceptanceTime=" + acceptanceTime + ", status=" + status
-				+ ", detailList=" + detailList + "]";
+				+ ", supplierPhone=" + supplierPhone + ", acceptanceUserId=" + acceptanceUserId
+				+ ", acceptanceUsername=" + acceptanceUsername + ", invoice=" + invoice + ", purchasingTime="
+				+ purchasingTime + ", acceptanceTime=" + acceptanceTime + ", status=" + status + ", detailList="
+				+ detailList + "]";
 	}
 	
 	
