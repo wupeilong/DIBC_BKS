@@ -38,12 +38,12 @@
 								<div class="fs margin-top05 padding-side">
 									<div class="form_title">类型：</div>
 									<div class="">
-										<label for="" class="padding-side05"><input type="checkbox" name="" id="" value="" />大学</label>
-										<label for="" class="padding-side05"><input type="checkbox" name="" id="" value="" />高职高专</label>
-										<label for="" class="padding-side05"><input type="checkbox" name="" id="" value="" />中学</label>
-										<label for="" class="padding-side05"><input type="checkbox" name="" id="" value="" />小学</label>
-										<label for="" class="padding-side05"><input type="checkbox" name="" id="" value="" />幼儿园</label>
-										<label for="" class="padding-side05"><input type="checkbox" name="" id="" value="" />餐饮企业</label>
+										<label for="" class="padding-side05"><input type="radio" name="objectType" id="" value="" />大学</label>
+										<label for="" class="padding-side05"><input type="radio" name="objectType" id="" value="" />高职高专</label>
+										<label for="" class="padding-side05"><input type="radio" name="objectType" id="" value="" />中学</label>
+										<label for="" class="padding-side05"><input type="radio" name="objectType" id="" value="" />小学</label>
+										<label for="" class="padding-side05"><input type="radio" name="objectType" id="" value="" />幼儿园</label>
+										<label for="" class="padding-side05"><input type="radio" name="objectType" id="" value="" />餐饮企业</label>
 									</div>
 								</div>
 								<div class="fb margin-top05">
