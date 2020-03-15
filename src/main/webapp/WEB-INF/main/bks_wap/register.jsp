@@ -31,42 +31,42 @@
 						<h5 class="fonwei margin-bot2">填写注册资料：</h5>
 						<div class="input-group form-group">
 						  <span class="input-group-addon">身份证号</span>
-						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入企业名称" aria-describedby="sizing-addon1">
-						</div>
-						<div class="input-group form-group">
-						  <span class="input-group-addon">密码</span>
-						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入企业名称" aria-describedby="sizing-addon1">
-						</div>
-						<div class="input-group form-group">
-						  <span class="input-group-addon">确认密码</span>
-						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入企业名称" aria-describedby="sizing-addon1">
-						</div>
+						  <input type="text" class="form-control box-shadow0" id="idCard" name="idCard" placeholder="请输入身份证号" aria-describedby="sizing-addon1">
+						</div>						
 						<div class="input-group form-group">
 						  <span class="input-group-addon">真实姓名</span>
-						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入企业名称" aria-describedby="sizing-addon1">
+						  <input type="text" class="form-control box-shadow0" id="username" name="username" placeholder="请输入真实姓名" aria-describedby="sizing-addon1">
 						</div>
 						<div class="input-group form-group">
 						  <span class="input-group-addon">职务</span>
-						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入企业名称" aria-describedby="sizing-addon1">
+						  <input type="text" class="form-control box-shadow0" id="duty" name="duty" placeholder="请输入职务" aria-describedby="sizing-addon1">
 						</div>
 						<div class="input-group form-group">
 						  <span class="input-group-addon">年龄</span>
-						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入企业名称" aria-describedby="sizing-addon1">
+						  <input type="text" class="form-control box-shadow0" id="age" name="age" placeholder="请输入年龄" aria-describedby="sizing-addon1">
+						</div>
+						<div class="input-group form-group">
+						  <span class="input-group-addon">密码</span>
+						  <input type="text" class="form-control box-shadow0" id="password" name="password" placeholder="请输入密码" aria-describedby="sizing-addon1">
+						</div>
+						<div class="input-group form-group">
+						  <span class="input-group-addon">确认密码</span>
+						  <input type="text" class="form-control box-shadow0" id="newpassword" name="newpassword" placeholder="请确认密码" aria-describedby="sizing-addon1">
 						</div>
 						<div class="margin-bot2 text-right">
 							<a href="http://192.168.1.106:8848/wap_MCLZ/login.html" class="">已有账号？去登陆</a>
 						</div>
-						<div class="text-center margin-top margin-bot2"><a href="javascript:;" class="next_step btn btn-primary form-control" value="登陆">下一步</a></div>
+						<div class="text-center margin-top margin-bot2"><a href="javascript:;" class="next_step btn btn-primary form-control" >下一步</a></div>
 					</div>
 					
 					<div class="login_form1 inputbox margin-top3 margin-bot2">
 						<h5 class="fonwei margin-bot2">完善个人信息：</h5>
 						<div class="input-group form-group">
 						  <span class="input-group-addon">企业名称</span>
-						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入企业名称" aria-describedby="sizing-addon1">
+						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入企业名称 " aria-describedby="sizing-addon1">
 						</div>
 						<div class="input-group form-group">
-						  <span class="input-group-addon">统一社会信用代码</span>
+						  <span class="input-group-addon" >统一社会信用代码</span>
 						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入统一社会信用代码" aria-describedby="sizing-addon1">
 						</div>
 						<div class="fsa border-bottom">
@@ -114,38 +114,31 @@
 		</div>
 		<script>
 			$(".next_step").click(function() {
+				 if ($("#duty").val() == "") {
+						layer.msg("请输入职务",{icon:2,time:1000});
+						$("#duty").focus();		
+					}else if($("#username").val() == ""){
+						layer.msg("请输入姓名",{icon:2,time:1000});
+						$("#username").focus();		
+					}else if($("#idCard").val() == ""){				
+						layer.msg("请输入18位身份证号码",{icon:2,time:1000});
+						$("#idCard").focus();		
+					}else if($("#age").val() == ""){
+						layer.msg("请填写年龄",{icon:2,time:1000});
+						$("#age").focus();		
+					}else if($("#healthCertificateCode").val() == ""){
+						layer.msg("请输入健康证编号",{icon:2,time:1000});
+						$("#healthCertificateCode").focus();		
+					}else if($("#preview").attr('src') == ""){
+						layer.msg("请输入上传健康证",{icon:2,time:1000});
+						$("#preview").focus();		
+					}else{
+						
+					}
 				$(this).parents("form").find(".register_progress .prog2").addClass("cur");
 				$(this).parents("form").find(".inputbox").removeClass("cur");
 				$(this).parents("form").find(".login_form1").addClass("cur");
-			})
-		
-			$("#login").click(function() {
-				// var username = $("#username").val();
-				// var password = $("#password").val();
-				$.ajax({
-					url:"",
-					type:"post",
-					data:$('form').serialize(),
-					// data:{'username':username,'password':password},
-					dataType:"json",
-					success:function(data) {
-						console.log(data)
-						if (data.code==1) {
-							layer.msg(data.msg,{
-								icon:1,
-								function(){}
-							})
-							location.href=data.url;
-						} else{
-							layer.msg(data.msg,{
-								icon:2,
-								function(){}
-							})
-						}
-						// location.href="{:url('home/common/login')}"
-					}
-				})
-			})
+			})			
 		</script>
 	</body>
 </html>
