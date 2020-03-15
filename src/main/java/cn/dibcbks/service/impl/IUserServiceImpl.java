@@ -370,4 +370,10 @@ public class IUserServiceImpl implements IUserService {
 		}
 		return rr;
 	}
+
+	@Override
+	public List<Unit> queryUnitUserDetail(Integer unitid) {
+		String where="unit_id="+unitid;
+		return unitMapper.select(where, null, null, null);
+	}
 }

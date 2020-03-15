@@ -1,13 +1,24 @@
 package cn.dibcbks.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.alibaba.fastjson.JSONArray;
+
 import cn.dibcbks.entity.Check;
+import cn.dibcbks.entity.Unit;
+import cn.dibcbks.entity.User;
 import cn.dibcbks.service.ICheckService;
+import cn.dibcbks.service.IUserService;
 import cn.dibcbks.util.ResponseResult;
 
 /**
@@ -21,7 +32,8 @@ public class InspectController {
 	
 	@Autowired
 	private ICheckService iCheckService;
-	
+	@Autowired
+	private IUserService iUserService;
 	/**
 	 * 进入监管采集选择页
 	 * @return
@@ -35,15 +47,18 @@ public class InspectController {
 	 * @return
 	 */
 	@RequestMapping("/inspect_list")
-	public String InspectList(){		
-		return "bks_wap/inspect_list";
+	public String InspectList(ModelMap modelMap){		
+		return iCheckService.getCheckList(modelMap);// "bks_wap/inspect_list";
 	}
 	/**
 	 * 进入监管采集记录表添加页
 	 * @return
 	 */
 	@RequestMapping("/inspect_add")
-	public String InspectAdd(){		
+	public String InspectAdd(ModelMap map){	
+		Integer unitid = ((User)SecurityUtils.getSubject().getSession().getAttribute("user")).getUnitId();
+		List<Unit> queryUnitUserDetail = iUserService.queryUnitUserDetail(unitid);		
+		map.addAttribute("unitlist", queryUnitUserDetail);
 		return "bks_wap/inspect_add";
 	}
 	/**
@@ -142,12 +157,13 @@ public class InspectController {
 	 * @param checkPhoto 检查图片
 	 * @return
 	 */
-	@RequestMapping("/add")
+	@RequestMapping("/inspect_regadd")
 	@ResponseBody
-	public ResponseResult<Void> addCheckInfo(Integer unitId,String unitName,String unitType,String unitAddress,
-			String unitPrincipal,String unitPhone,List<Integer> resultList,String other,String inspectors,
-			String dailyTime,Integer checkType,String checkPhoto){
-		
-		return iCheckService.addCheckInfo(unitId,unitName,unitType,unitAddress,unitPrincipal,unitPhone,resultList,other,inspectors,dailyTime,checkType,checkPhoto);
+	public ResponseResult<Void> addCheckInfo(@RequestParam(value="queryrights") String queryrights,Integer unitId,String unitType,String other,String unitPhone){
+		List<Unit> queryUnit = iUserService.queryUnitUserDetail(unitId);
+		String username = ((User)SecurityUtils.getSubject().getSession().getAttribute("user")).getUsername();
+		String resultList=JSONArray.toJSONString(queryrights);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");        
+		return  iCheckService.addCheckInfo(unitId,queryUnit.get(0).getUnitName(),unitType,queryUnit.get(0).getUnitAddress(),queryUnit.get(0).getLegalPerson(),unitPhone,resultList,other,username,sdf.format(new Date()),1,null);
 	}
 }
