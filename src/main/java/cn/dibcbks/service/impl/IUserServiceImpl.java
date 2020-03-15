@@ -3,7 +3,6 @@ package cn.dibcbks.service.impl;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -15,7 +14,6 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
-
 import cn.dibcbks.entity.Hygiene;
 import cn.dibcbks.entity.Unit;
 import cn.dibcbks.entity.User;
@@ -25,6 +23,7 @@ import cn.dibcbks.mapper.UserMapper;
 import cn.dibcbks.service.IUserService;
 import cn.dibcbks.util.CommonUtil;
 import cn.dibcbks.util.Constants;
+import cn.dibcbks.util.GetCommonUser;
 import cn.dibcbks.util.ResponseResult;
 import net.sf.json.JSONObject;
 
@@ -126,12 +125,10 @@ public class IUserServiceImpl implements IUserService {
 				rr = new ResponseResult<Void>(ResponseResult.SUCCESS, "登录成功");
 				logger.info(Constants.SUCCESSU_HEAD_INFO + "账号登录成功，账号：" + idCard);
 			}
-		}catch(IncorrectCredentialsException e){
-			e.printStackTrace();
+		}catch(IncorrectCredentialsException e){			
 			rr = new ResponseResult<>(ResponseResult.ERROR,"密码错误！请重新输入...");
 			logger.error(Constants.ERROR_HEAD_INFO + "用户注册失败 原因：" + e.getMessage());
-		} catch (Exception e) {
-			e.printStackTrace();
+		} catch (Exception e) {			
 			rr = new ResponseResult<Void>(ResponseResult.ERROR, "数据存在异常，请联系工作人员处理！");
 			logger.error(Constants.ERROR_HEAD_INFO + "账户登录失败，原因： " + e.getMessage());
 		}
@@ -140,16 +137,19 @@ public class IUserServiceImpl implements IUserService {
 
 	@Override
 	public ResponseResult<Void> allocateAccount(String idCard, String username, String password, String duty,
-			Integer age) {
+			Integer age,String healthCertificateCode,String stratpath) {
 		ResponseResult<Void> rr = null;
+		GetCommonUser get=new GetCommonUser();
 		try {
 			User queryUser = queryUser(idCard);
 			if (queryUser != null ) {
 				logger.error(Constants.ERROR_HEAD_INFO + "用户添加从业人员失败，原因：身份证已存在！");
+				get.deluoladimg(stratpath);
 				return new ResponseResult<>(ResponseResult.ERROR, "身份证已存在！");
 			}
 			List<User> list = userMapper.select(" u.username = '" + username + "'", null, null,null);
 			if (!list.isEmpty()) {
+				get.deluoladimg(stratpath);
 				logger.error(Constants.ERROR_HEAD_INFO + "用户添加从业人员失败，原因：姓名已存在！");
 				return new ResponseResult<>(ResponseResult.ERROR,"用户姓名重复！");
 			}
@@ -158,6 +158,7 @@ public class IUserServiceImpl implements IUserService {
 				Session session = subject.getSession();
 				User currentUser = (User)session.getAttribute("user");
 				if(!currentUser.getParentId().equals(0)){
+					get.deluoladimg(stratpath);
 					rr = new ResponseResult<Void>(ResponseResult.ERROR, "该账户不是管理员，不能分配账户！");
 					logger.error(Constants.ERROR_HEAD_INFO + "分配账号失败， 原因：该账户不是管理员账户");
 				}else {
@@ -174,16 +175,19 @@ public class IUserServiceImpl implements IUserService {
 					user.setParentId(currentUser.getId());//父级ID
 					user.setType(currentUser.getType());//用户类型
 					user.setUnitId(currentUser.getUnitId());
+					user.setHealthCertificateCode(healthCertificateCode);
+					user.setHealthCertificate(stratpath);
 					userMapper.insert(user);
 					rr = new ResponseResult<>(ResponseResult.SUCCESS,"企业账户分配成功!");
 					logger.info(Constants.SUCCESSU_HEAD_INFO + "企业账户分配成功");
 				}				
 			}else{
+				get.deluoladimg(stratpath);
 				rr = new ResponseResult<Void>(ResponseResult.ERROR, "请操作后在请此操作！");
 				logger.error(Constants.ERROR_HEAD_INFO + "分配账号失败， 原因：未登录账户");
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			get.deluoladimg(stratpath);
 			rr = new ResponseResult<Void>(ResponseResult.ERROR, "操作失败！");
 			logger.error(Constants.ERROR_HEAD_INFO + "分配账号失败，原因：" + e.getMessage());
 		}		
@@ -320,7 +324,7 @@ public class IUserServiceImpl implements IUserService {
 		}else {//企业用户
 			userList = userMapper.select(" u.unit_id = '" + user.getUnitId() + "'", " u.create_time DESC", null, null);
 		}
-		modelMap.addAttribute("userList", userList);
+		modelMap.addAttribute("userList", userList);		
 		logger.info(Constants.SUCCESSU_HEAD_INFO + "用户进入从业人员信息页面成功！");
 		//TODO 从业人员信息页面
 		return "bks_wap/workmens";

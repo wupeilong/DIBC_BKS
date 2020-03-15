@@ -141,7 +141,7 @@ button.btn{
 .layui-upload-list{
 	width: 8em;
 	height: 8em;
-	/* background-color: sandybrown; */
+	border: 1px solid #ddd;
 	position: relative;
 }
 .layui-upload-list label{
@@ -223,7 +223,7 @@ legend{
 	height: 100%;
 	width: 100%;
 	position: absolute;
-	top: 7px;
+	top: 8px;
 	left: 0;
 }
 .prog{

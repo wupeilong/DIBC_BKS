@@ -125,3 +125,6 @@ a:hover{
 .cooperation_detal .input-group > span{
 	width: 180px;
 }
+img[src=""],img:not([src]){
+  opacity:0;
+}
