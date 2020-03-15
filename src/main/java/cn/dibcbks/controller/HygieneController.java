@@ -40,17 +40,7 @@ public class HygieneController {
 		return iHygieneService.queryhygieneDetail(modelMap,hygieneId);
 	}
 	
-	/**
-	 * 进入健康信息新增页
-	 * @param modelMap
-	 * @param hygieneId
-	 * @return
-	 */
-	@RequestMapping("/addPag")
-	public String addHygienePag(ModelMap modelMap){
-		
-		return iHygieneService.addHygienePag(modelMap);
-	}
+	
 	
 	/**
 	 * 新增健康信息
@@ -64,4 +54,5 @@ public class HygieneController {
 		
 		return iHygieneService.addHygiene(hygiene);
 	}
+	
 }

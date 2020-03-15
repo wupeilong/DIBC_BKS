@@ -50,11 +50,7 @@
 							  </div>
 							  <div class="text-center text-muted">食品许可证</div>
 						</div>
-					</div>
-					<div class="input-group form-group fs border-bottom">
-					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">到期日期</span>
-					  <div class="form-control box-shadow0 border0"><fmt:formatDate value="${unitDetail.expirationDate}" pattern="yyyy年MM月dd日" /></div>
-					</div>
+					</div>					
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">营业地址</span>
 					  <div class="form-control box-shadow0 border0">${unitDetail.unitAddress}</div>

@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.ui.ModelMap;
 
+import cn.dibcbks.entity.Hygiene;
 import cn.dibcbks.entity.User;
 import cn.dibcbks.util.ResponseResult;
 
@@ -37,12 +38,14 @@ public interface IUserService {
 	ResponseResult<List<User>> queryUnitUser(Integer unitId, String unitName);
 
 	String queryUnitUserDetail(ModelMap modelMap,String id);
+	String queryUserPcenter(ModelMap modelMap,String id);
 
 	String workmens(ModelMap modelMap);
 
 	String workmensHealth(ModelMap modelMap,Integer userId);
 
 	String workmensHealthDetal(ModelMap modelMap, Integer hygieneId);
+	ResponseResult<Void> addHygiene(Hygiene hygiene);
 
 	
 }

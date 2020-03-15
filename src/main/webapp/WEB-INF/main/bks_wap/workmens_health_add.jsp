@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/js/layui/css/layui.css">
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>	
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/2.4/layer.js"></script>	
 </head>
 	<body class="contain">
 		<div class="navigation bg-primary">
@@ -21,43 +22,45 @@
 			</div>
 		</div>
 		<main class="main margin-top padding-side05">
-			<form action="" method="" class="clearfix">
+			<form action="" method="" class="clearfix" id="hygiene_form">
 				<div class="margin-bot2">
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>姓名</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="account" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+					  <div class="form-control box-shadow0 border0">${user.username}</div>
+					  <input type="hidden" id="userId" name="userId" value="${user.id}">
+					  <input type="hidden" id="username" name="username" value="${user.username}">
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>测温日期</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="account" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+					  <input type="text" class="form-control box-shadow0 border-bottom" id="dailyTime" name="dailyTime" peplaceholder="请输入姓名" aria-describedby="sizing-addon1">
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>体测温度</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="account" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+					  <input type="text" class="form-control box-shadow0 border-bottom" id="celsius" name="celsius"  aria-describedby="sizing-addon1">
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>发热</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="account" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+					  <input type="text" class="form-control box-shadow0 border-bottom" id="fever" name="fever" value="无" aria-describedby="sizing-addon1">
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>腹泻</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="account" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+					  <input type="text" class="form-control box-shadow0 border-bottom" id="diarrhea" name="diarrhea" value="无" aria-describedby="sizing-addon1">
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>伤口化脓</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="account" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+					  <input type="text" class="form-control box-shadow0 border-bottom" id="woundsFester" name="woundsFester" value="无" aria-describedby="sizing-addon1">
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>个人卫生</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="account" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+					  <input type="text" class="form-control box-shadow0 border-bottom" id="hygiene" name="hygiene" value="无" aria-describedby="sizing-addon1">
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>备注</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="account" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+					  <input type="text" class="form-control box-shadow0 border-bottom" id="remark" name="remark" value="无" aria-describedby="sizing-addon1">
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>上传时间</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="account" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+					  <input type="text" class="form-control box-shadow0 border-bottom" id="uploadTime" name="uploadTime" placeholder="请输入姓名" aria-describedby="sizing-addon1">
 					</div>
 					<div class="margin-top">
 				<div class="fc">
@@ -86,16 +89,70 @@
 						 $("#"+img_id).css("display", "block");
 						 };
 					}
-				</script>
+				 	function datetime() {
+						 var now = new Date();
+						 document.getElementById("dailyTime").value = now.getFullYear() + "-"
+						 + (now.getMonth() + 1) + "-" + now.getDate();
+						 document.getElementById("uploadTime").value = " " + now.getHours() + ":"
+						 + now.getMinutes() + ":" + now.getSeconds();
+					}
+					window.setInterval("datetime()", 1000);  
+			</script>
 			</div>
 				</div>
 			</form>
 			
 			<div class="margin-top2 margin-bot2">
-				<button type="button" class="btn btn-primary form-control">提交</button>
+				<button type="button" class="btn btn-primary form-control" onclick="save()">提交</button>
 			</div>
 		</main>		
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
-
+<script type="text/javascript">
+function save(){	
+		if($("#celsius").val() == ""){
+			layer.msg("请输入你的体温",{icon:2,time:1000});
+			$("#celsius").focus();		
+		}else if ($("#fever").val() == "") {
+			layer.msg("信息不能为空",{icon:2,time:1000});
+			$("#fever").focus();		
+		}else if($("#diarrhea").val() == ""){
+			layer.msg("信息不能为空",{icon:2,time:1000});
+			$("#diarrhea").focus();		
+		}else if($("#woundsFester").val() == ""){
+			layer.msg("信息不能为空",{icon:2,time:1000});
+			$("#woundsFester").focus();		
+		}else  if($("#hygiene").val() == ""){
+			layer.msg("信息不能为空",{icon:2,time:1000});
+			$("#hygiene").focus();		
+		}else if($("#remark").val() == ""){
+			layer.msg("信息不能为空",{icon:2,time:1000});
+			$("#remark").focus();		
+		}else if($("#preview").attr('src') == ""){
+			layer.msg("请上传你的健康吗",{icon:2,time:1000});							
+		}else{
+			var formData = new FormData();	
+			var data=$("#hygiene_form").serialize()
+			formData.append('healthCodePhoto',$("#fileinput")[0].files[0]);			
+			formData.append('hygiene',JSON.stringify(data));								
+			 $.ajax({
+				 url: 'workmens_health_regadd',
+		          type: 'POST',
+		          cache: false,
+		          data: formData,				        
+		          processData: false,
+		          contentType: false,
+					"success" : function(obj) {
+						if (obj.state == 0) {
+							layer.msg(obj.message,{icon:2,time:1000});
+							return;				
+						}else{					
+							layer.msg(obj.message,{icon:1,time:1000},function(){layer_close();});
+						}
+						
+					}
+				}); 
+		}	
+}
+</script>
 </html>
