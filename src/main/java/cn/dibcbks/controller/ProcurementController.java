@@ -36,8 +36,10 @@ public class ProcurementController {
 	 * @return
 	 */
 	@RequestMapping("/buy_detal")
-	public String buyDetal(){		
-		return "bks_wap/buy_detal";
+	public String buyDetal(ModelMap modelMap,Integer id){
+		
+		return iProcurementService.buyDetal(modelMap,id);
+//		return "bks_wap/buy_detal";
 	}
 	/**
 	 * 进入采购信息添加页

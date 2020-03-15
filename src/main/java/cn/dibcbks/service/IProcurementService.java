@@ -15,4 +15,6 @@ public interface IProcurementService {
 
 	String buyList(ModelMap modelMap);
 
+	String buyDetal(ModelMap modelMap, Integer id);
+
 }

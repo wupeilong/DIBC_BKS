@@ -14,6 +14,7 @@
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>	
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/ajaxfileupload.js"></script>	
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/2.4/layer.js"></script>
 </head>
 	<body class="contain">
 		<div class="navigation bg-primary">
@@ -25,17 +26,19 @@
 			<form action="" method="" class="clearfix">
 				<div class="workmens_info_top margin-bot">
 					<div class="input-group form-group fs">
+
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>所属企业</span>
 					  <div class="form-control box-shadow0 border0">${user.unitName}</div>
-					  <%-- <input type="text" class="form-control box-shadow0 border-bottom" name="unitName" placeholder="请输入企业名称" aria-describedby="sizing-addon1" value="${user.unitName}"> --%>
+					  <%-- <input type="text" class="form-control box-shadow0 border-bottom" name="unitName" placeholder="请输入企业名称" aria-describedby="sizing-addon1" value="${user.unitName}">  --%>
+
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>职&ensp;&ensp;&ensp;&ensp;务</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="duty" placeholder="请输入职务" aria-describedby="sizing-addon1">
+					  <input type="text" class="form-control box-shadow0 border-bottom" id="duty" name="duty" placeholder="请输入职务" aria-describedby="sizing-addon1">
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>姓&ensp;&ensp;&ensp;&ensp;名</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="username" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+					  <input type="text" class="form-control box-shadow0 border-bottom" id="username" name="username" placeholder="请输入姓名" aria-describedby="sizing-addon1">
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>身份证号</span>
@@ -43,11 +46,11 @@
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>年&ensp;&ensp;&ensp;&ensp;龄</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="age" placeholder="请输入年龄" aria-describedby="sizing-addon1">
+					  <input type="text" class="form-control box-shadow0 border-bottom" id="age" name="age" placeholder="请输入年龄" aria-describedby="sizing-addon1">
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>健康证编号</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="healthCertificateCode" placeholder="请输入健康证编号" aria-describedby="sizing-addon1">
+					  <input type="text" class="form-control box-shadow0 border-bottom" id="healthCertificateCode" name="healthCertificateCode" placeholder="请输入健康证编号" aria-describedby="sizing-addon1">
 					</div>
 				</div>
 				
@@ -88,19 +91,35 @@
 			</div>
 		</main>		
 		<script type="text/javascript">
-		$(function() {			
-			  $('#register').click(function() {
-			    var data = {};
-			    var t = $('form').serializeArray();
-			    $.each(t, function() {
-	                 data [this.name] = this.value;
-	            });
-	            alert(JSON.stringify(data));
-	            var formData = new FormData();				
-				formData.append('file',$("#ficard")[0].files[0]);
-				formData.append('idCard',JSON.stringify(data));
+		 $('#register').click(function() {
+			 if ($("#duty").val() == "") {
+				layer.msg("请输入职务",{icon:2,time:1000});
+				$("#duty").focus();		
+			}else if($("#username").val() == ""){
+				layer.msg("请输入姓名",{icon:2,time:1000});
+				$("#username").focus();		
+			}else if($("#idCard").val() == ""){				
+				layer.msg("请输入18位身份证号码",{icon:2,time:1000});
+				$("#idCard").focus();		
+			}else if($("#age").val() == ""){
+				layer.msg("请填写年龄",{icon:2,time:1000});
+				$("#age").focus();		
+			}else if($("#healthCertificateCode").val() == ""){
+				layer.msg("请输入健康证编号",{icon:2,time:1000});
+				$("#healthCertificateCode").focus();		
+			}else if($("#preview").attr('src') == ""){
+				layer.msg("请输入上传健康证",{icon:2,time:1000});
+				$("#preview").focus();		
+			}else{ 				
+			 	var formData = new FormData();				
+				formData.append('unimg',$("#fileinput")[0].files[0]);
+				formData.append('duty',$("#duty").val());
+				formData.append('username',$("#username").val());
+				formData.append('idCard',$("#idCard").val());
+				formData.append('age',$("#age").val());
+				formData.append('healthCertificateCode',$("#healthCertificateCode").val());				
 				 $.ajax({
-					 url: '../file/upload',
+					 url: '../user/workmens_reg',
 			          type: 'POST',
 			          cache: false,
 			          data: formData,				        
@@ -115,48 +134,8 @@
 							}				
 						}
 					}); 
-			  });
-			});
-			
-		
-			
-		
-		
-			layui.use('upload', function(){
-			  var $ = layui.jquery
-			  ,upload = layui.upload;
-			  var idDard=$("#idCard").val();
-				console.log(idDard);
-				
-				
-				
-			  //普通图片上传
-			  var uploadInst = upload.render({
-			    elem: '#test1'
-			    ,url: '${pageContext.request.contextPath}/file/upload' //改成您自己的上传接口
-			    ,before: function(obj){
-			      //预读本地文件示例，不支持ie8
-			      obj.preview(function(index, file, result){
-			        $('#demo1').attr('src', result); //图片链接（base64）
-			      });
-			    }
-			    ,done: function(res){
-			      //如果上传失败
-			      if(res.code > 0){
-			        return layer.msg('上传失败');
-			      }
-			      //上传成功
-			    }
-			    ,error: function(){
-			      //演示失败状态，并实现重传
-			      var demoText = $('#demoText');
-			      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-			      demoText.find('.demo-reload').on('click', function(){
-			        uploadInst.upload();
-			      });
-			    }
-			  });
-			  }); 
+				}
+	     	});		
 		</script>
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
