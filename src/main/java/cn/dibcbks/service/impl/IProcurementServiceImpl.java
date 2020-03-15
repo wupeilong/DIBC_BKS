@@ -3,6 +3,7 @@ package cn.dibcbks.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.shiro.SecurityUtils;
@@ -52,8 +53,18 @@ public class IProcurementServiceImpl implements IProcurementService {
 
 	@Override
 	public ResponseResult<List<Procurement>> queryProcurementList(Integer unitId) {
-		// TODO Auto-generated method stub
-		return null;
+		ResponseResult<List<Procurement>> rr = null;
+		try {
+			String where = null;
+			if (unitId != null) {
+				where = "n.unit_id = '" + unitId + "'";
+			}
+			List<Procurement> list = procurementMapper.select(where, " p.purchasing_time DESC", null, null);
+			rr = new ResponseResult<>(ResponseResult.SUCCESS,"操作成功！",list);
+		} catch (Exception e) {
+			rr = new ResponseResult<>(ResponseResult.SUCCESS,"操作失败！");
+		}		
+		return rr;
 	}
 
 	@Override
@@ -62,14 +73,23 @@ public class IProcurementServiceImpl implements IProcurementService {
 		User user = (User)session.getAttribute("user");
 		List<Procurement> procurementList = new ArrayList<>();
 		if(user.getType().equals(1)){//市场监管局账户
+			List<Unit> unitList = unitMapper.select(" n.unit_type BETWEEN 2 AND 4 ", " n.create_time DESC", null, null);
+			modelMap.addAttribute("unitList", unitList);
 			procurementList = procurementMapper.select(null, " p.purchasing_time DESC", null, null);
 		}else{
 			procurementList = procurementMapper.select(" p.unit_id = '" + user.getUnitId() + "'", " p.purchasing_time DESC", null, null);
 		}
-		modelMap.addAttribute("procurementList", procurementList);
+		modelMap.addAttribute("procurementList", procurementList);		
 		logger.info(Constants.SUCCESSU_HEAD_INFO + "用户进入采购报送页面成功！");
 		//TODO 采购报送页面
 		return "bks_wap/buy_list";
 	}
 	
+
+
+	@Override
+	public String buyDetal(ModelMap modelMap, Integer id) {
+		// TODO Auto-generated method stub
+		return "bks_wap/buy_detal";
+	}
 }

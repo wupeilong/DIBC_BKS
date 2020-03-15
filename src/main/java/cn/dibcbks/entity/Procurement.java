@@ -16,7 +16,9 @@ public class Procurement implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer id;//主键ID
 	private Integer unitId;//采购单位ID
+	private String unitName;//采购
 	private Integer userId;//采购员ID
+	private String username;//采购员
 	private String supplier;//供应商
 	private String supplierBusinessLicense;//供应商营业执照
 	private String supplierProductionLicense;//食品经营许可证
@@ -27,20 +29,22 @@ public class Procurement implements Serializable {
 	private String invoice;//发票
 	private Date purchasingTime;//进货时间
 	private Date acceptanceTime;//验收时间
-	private Integer status;//状态：0-未验收 1-合格 2-不合格
+	private Integer status;//状态：0-未验收 1-已验收 
 	private List<ProcurementDetail> detailList;
 	public Procurement() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Procurement(Integer id, Integer unitId, Integer userId, String supplier, String supplierBusinessLicense,
-			String supplierProductionLicense, String supplierQualification, String supplierPerson, String supplierPhone,
-			Integer acceptanceUserId, String invoice, Date purchasingTime, Date acceptanceTime, Integer status,
-			List<ProcurementDetail> detailList) {
+	public Procurement(Integer id, Integer unitId, String unitName, Integer userId, String username, String supplier,
+			String supplierBusinessLicense, String supplierProductionLicense, String supplierQualification,
+			String supplierPerson, String supplierPhone, Integer acceptanceUserId, String invoice, Date purchasingTime,
+			Date acceptanceTime, Integer status, List<ProcurementDetail> detailList) {
 		super();
 		this.id = id;
 		this.unitId = unitId;
+		this.unitName = unitName;
 		this.userId = userId;
+		this.username = username;
 		this.supplier = supplier;
 		this.supplierBusinessLicense = supplierBusinessLicense;
 		this.supplierProductionLicense = supplierProductionLicense;
@@ -66,11 +70,23 @@ public class Procurement implements Serializable {
 	public void setUnitId(Integer unitId) {
 		this.unitId = unitId;
 	}
+	public String getUnitName() {
+		return unitName;
+	}
+	public void setUnitName(String unitName) {
+		this.unitName = unitName;
+	}
 	public Integer getUserId() {
 		return userId;
 	}
 	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getSupplier() {
 		return supplier;
@@ -146,12 +162,14 @@ public class Procurement implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Procurement [id=" + id + ", unitId=" + unitId + ", userId=" + userId + ", supplier=" + supplier
-				+ ", supplierBusinessLicense=" + supplierBusinessLicense + ", supplierProductionLicense="
-				+ supplierProductionLicense + ", supplierQualification=" + supplierQualification + ", supplierPerson="
-				+ supplierPerson + ", supplierPhone=" + supplierPhone + ", acceptanceUserId=" + acceptanceUserId
-				+ ", invoice=" + invoice + ", purchasingTime=" + purchasingTime + ", acceptanceTime=" + acceptanceTime
-				+ ", status=" + status + ", detailList=" + detailList + "]";
+		return "Procurement [id=" + id + ", unitId=" + unitId + ", unitName=" + unitName + ", userId=" + userId
+				+ ", username=" + username + ", supplier=" + supplier + ", supplierBusinessLicense="
+				+ supplierBusinessLicense + ", supplierProductionLicense=" + supplierProductionLicense
+				+ ", supplierQualification=" + supplierQualification + ", supplierPerson=" + supplierPerson
+				+ ", supplierPhone=" + supplierPhone + ", acceptanceUserId=" + acceptanceUserId + ", invoice=" + invoice
+				+ ", purchasingTime=" + purchasingTime + ", acceptanceTime=" + acceptanceTime + ", status=" + status
+				+ ", detailList=" + detailList + "]";
 	}
+	
 	
 }
