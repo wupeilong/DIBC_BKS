@@ -44,28 +44,62 @@
 					  <div class="form-control box-shadow0 border0">老干妈</div>
 					</div>
 					
-					<div class="fsa">
-						<span>送餐装箱图</span>
-						<div class="fc">
-							<div class="layui-upload-list">
-							  <img class="layui-upload-img" src="">
+					<div class="fsa margin-bot2">
+						<div class="">
+							<div class="fc">
+								<div class="layui-upload-list">
+								  <img class="layui-upload-img" src="">
+								</div>
 							</div>
+							<div class="text-center">送餐装箱图</div>
+						</div>
+						<div class="">
+							<div class="fc">
+								<div class="layui-upload-list">
+								  <img class="layui-upload-img" src="">
+								</div>
+							</div>
+							<div class="text-center">装箱封条图</div>
 						</div>
 					</div>
-					<div class="fsa">
-						<span>装箱封条图</span>
-						<div class="fc">
-							<div class="layui-upload-list">
-							  <img class="layui-upload-img" src="">
+					<div class="fsa margin-bot2">
+						<div class="">
+							<div class="fc">
+								<div class="layui-upload-list">
+								  <img class="layui-upload-img" src="">
+								</div>
 							</div>
+							<div class="text-center">送餐车图</div>
 						</div>
-					</div>
-					<div class="fsa">
-						<span>拆封取餐照</span>
-						<div class="fc">
-							<div class="layui-upload-list">
-							  <img class="layui-upload-img" src="">
+						<div class="">
+							<div class="fc">
+								<div class="upload_imgs margin_tb10">
+									<div class="fc tip_text">
+										<div class="text-info">
+											<div class="fc"> <i class="fa fa-plus padding-side05"></i> </div>
+											<div class="text-center">拆封取餐照</div>
+										</div>
+									</div>
+									<input type="file" name="" id="fileinput" value="" accept="image/*"/>
+									<img src="" id="preview">
+								</div>
 							</div>
+							<script type="text/javascript">
+								$("#fileinput").on("change",function() {
+									changepic("fileinput","preview");
+								})
+								
+								function changepic(fid,img_id) {
+									 var reads = new FileReader();
+									 f = document.getElementById(fid).files[0];
+									 reads.readAsDataURL(f);
+									 reads.onload = function(e) {
+									 document.getElementById(img_id).src = this.result;
+									 $("#"+img_id).css("display", "block");
+									 };
+								}
+							</script>
+							<div class="text-center">拆封取餐照</div>
 						</div>
 					</div>
 					<div class="input-group form-group fs border-bottom">
