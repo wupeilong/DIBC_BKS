@@ -40,5 +40,7 @@ public interface IUserService {
 
 	String workmensHealth(ModelMap modelMap,Integer userId);
 
+	String workmensHealthDetal(ModelMap modelMap, Integer hygieneId);
+
 	
 }

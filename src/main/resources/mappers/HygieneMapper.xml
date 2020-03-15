@@ -142,7 +142,7 @@
 			hygiene AS h
 		LEFT JOIN `user` AS u ON u.id = h.user_id
 		WHERE
-			u.id_card = #{idCard} 
+			h.hygiene_id = #{hygieneId} 
 	</select>
 	 
 

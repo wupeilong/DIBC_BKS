@@ -80,13 +80,15 @@ public class UserController {
 	public String workmensHealthAdd(){		
 		return "bks_wap/workmens_health_add";
 	}
+	
 	/**
 	 * 进入从业人员信息健康信息添加页
 	 * @return
 	 */
 	@RequestMapping("/workmens_health_detal")
-	public String workmensHealthDetal(){		
-		return "bks_wap/workmens_health_detal";
+	public String workmensHealthDetal(ModelMap modelMap,Integer hygieneId){
+		return iUserService.workmensHealthDetal(modelMap,hygieneId);
+		//return "bks_wap/workmens_health_detal";
 	}
 	/**
 	 * 用户进入分配账户页(从业人员添加)

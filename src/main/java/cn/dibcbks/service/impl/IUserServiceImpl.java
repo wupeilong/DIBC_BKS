@@ -333,4 +333,12 @@ public class IUserServiceImpl implements IUserService {
 		return "bks_wap/workmens_health";
 	}
 
+	@Override
+	public String workmensHealthDetal(ModelMap modelMap, Integer hygieneId) {
+		Hygiene hygieneDetail = hygieneMapper.queryHygiene(hygieneId);
+		System.out.println("体温信息详情：" + hygieneDetail);
+		modelMap.addAttribute("hygieneDetail", hygieneDetail);
+		return "bks_wap/workmens_health_detal";
+	}
+
 }
