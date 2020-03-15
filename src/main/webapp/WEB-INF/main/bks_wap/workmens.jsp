@@ -22,14 +22,18 @@
 				<a href="javascript:history.go(-1)" class="text-white"><i class="fa fa-angle-left"></i></a>
 				<div class="">
 					<!-- <a href="" class="btn bg-primary padding-side"><i class="fa fa-search"></i></a> -->
-					<select id="unit_list"">
+					<c:if test="${user.type == 1 }">
+						<select id="unit_list"">
 							<option value="">查询所有从业人员信息</option>
 							<c:forEach items="${unitList}" var="item">								
 								<option value="${item.unitId}">${item.unitName}</option>
 							</c:forEach>							
-						</select>					
+						</select>		
+					</c:if>								
 				</div>
-				<a href="${pageContext.request.contextPath}/user/workmens_add" class="btn bg-primary"><i class="fa fa-plus"></i></a>
+				<c:if test="${user.parentId == 0 }">
+					<a href="${pageContext.request.contextPath}/user/workmens_add" class="btn bg-primary"><i class="fa fa-plus"></i></a>
+				</c:if>
 			</div>
 		</div>
 		<main class="main margin-top2 padding-side05">

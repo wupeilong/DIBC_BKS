@@ -53,7 +53,7 @@ public class ProcurementController {
 	 * @return
 	 */
 	@RequestMapping("/reportPage")
-	private String procurementReportPage(ModelMap modelMap){
+	public String procurementReportPage(ModelMap modelMap){
 		
 		return iProcurementService.procurementReportPage(modelMap);
 	}
@@ -64,7 +64,7 @@ public class ProcurementController {
 	 */
 	@RequestMapping("/list")
 	@ResponseBody
-	private ResponseResult<List<Procurement>> queryProcurementList(Integer unitId){
+	public ResponseResult<List<Procurement>> queryProcurementList(Integer unitId){
 		
 		return iProcurementService.queryProcurementList(unitId);
 	}

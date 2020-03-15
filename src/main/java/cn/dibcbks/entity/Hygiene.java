@@ -30,12 +30,13 @@ public class Hygiene implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Hygiene(Integer hygieneId, Integer userId, String dailyTime, Double celsius, String healthCodePhoto,
-			String fever, String diarrhea, String woundsFester, String hygiene, String other, String remark,
-			Date uploadTime) {
+	public Hygiene(Integer hygieneId, Integer userId, String username, String dailyTime, Double celsius,
+			String healthCodePhoto, String fever, String diarrhea, String woundsFester, String hygiene, String other,
+			String remark, Date uploadTime) {
 		super();
 		this.hygieneId = hygieneId;
 		this.userId = userId;
+		this.username = username;
 		this.dailyTime = dailyTime;
 		this.celsius = celsius;
 		this.healthCodePhoto = healthCodePhoto;
@@ -58,6 +59,12 @@ public class Hygiene implements Serializable {
 	}
 	public void setUserId(Integer userId) {
 		this.userId = userId;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	public String getDailyTime() {
 		return dailyTime;
@@ -121,10 +128,10 @@ public class Hygiene implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Hygiene [hygieneId=" + hygieneId + ", userId=" + userId + ", dailyTime=" + dailyTime + ", celsius="
-				+ celsius + ", healthCodePhoto=" + healthCodePhoto + ", fever=" + fever + ", diarrhea=" + diarrhea
-				+ ", woundsFester=" + woundsFester + ", hygiene=" + hygiene + ", other=" + other + ", remark=" + remark
-				+ ", uploadTime=" + uploadTime + "]";
+		return "Hygiene [hygieneId=" + hygieneId + ", userId=" + userId + ", username=" + username + ", dailyTime="
+				+ dailyTime + ", celsius=" + celsius + ", healthCodePhoto=" + healthCodePhoto + ", fever=" + fever
+				+ ", diarrhea=" + diarrhea + ", woundsFester=" + woundsFester + ", hygiene=" + hygiene + ", other="
+				+ other + ", remark=" + remark + ", uploadTime=" + uploadTime + "]";
 	}
 	
 	

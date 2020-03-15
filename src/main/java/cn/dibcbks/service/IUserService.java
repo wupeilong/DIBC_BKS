@@ -38,5 +38,7 @@ public interface IUserService {
 
 	String workmens(ModelMap modelMap);
 
+	String workmensHealth(ModelMap modelMap,Integer userId);
+
 	
 }

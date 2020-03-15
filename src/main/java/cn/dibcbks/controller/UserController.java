@@ -68,8 +68,9 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/workmens_health")
-	public String workmensHealth(){		
-		return "bks_wap/workmens_health";
+	public String workmensHealth(ModelMap modelMap,Integer userId){
+		return iUserService.workmensHealth(modelMap,userId);
+		//return "bks_wap/workmens_health";
 	}
 	/**
 	 * 进入从业人员信息健康信息添加页
@@ -92,7 +93,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/allocateAccountPage")
-	private String allocateAccountPage(){
+	public String allocateAccountPage(){
 		
 		return iUserService.allocateAccountPage();
 	}
@@ -108,7 +109,7 @@ public class UserController {
 	 */
 	@RequestMapping("/allocateAccount")
 	@ResponseBody
-	private ResponseResult<Void> allocateAccount(
+	public ResponseResult<Void> allocateAccount(
 			@RequestParam(value="idCard",required = true) String idCard,
 			@RequestParam(value="username",required = true) String username, 
 			@RequestParam(value="password",required = false) String password, 
@@ -125,7 +126,7 @@ public class UserController {
 	 */
 	@RequestMapping("/updateUser")
 	@ResponseBody
-	private ResponseResult<Void> updateUser(User user){
+	public ResponseResult<Void> updateUser(User user){
 		
 		return iUserService.updateUser(user);
 	}
@@ -136,7 +137,7 @@ public class UserController {
 	 * @return
 	 */
 	@RequestMapping("/center")
-	private String userCenter(ModelMap modelMap){
+	public String userCenter(ModelMap modelMap){
 		
 		return iUserService.userCenter(modelMap);
 	}
@@ -150,7 +151,7 @@ public class UserController {
 	 */
 	@RequestMapping("/unitUserList")
 	@ResponseBody
-	private ResponseResult<List<User>> queryUnitUser(Integer unitId,String unitName){
+	public ResponseResult<List<User>> queryUnitUser(Integer unitId,String unitName){
 		
 		return iUserService.queryUnitUser(unitId,unitName);
 	}

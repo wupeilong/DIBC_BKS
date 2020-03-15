@@ -25,29 +25,33 @@
 				<div class="workmens_info_top margin-bot">
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>所属企业</span>
-					  <div class="form-control box-shadow0 border0">老干妈</div>
+					  <div class="form-control box-shadow0 border0">${userDetail.unitName}</div>
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>职&ensp;&ensp;&ensp;&ensp;务</span>
-					  <div class="form-control box-shadow0 border0">老干妈</div>
+					  <div class="form-control box-shadow0 border0">${userDetail.duty }</div>
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>姓&ensp;&ensp;&ensp;&ensp;名</span>
-					  <div class="form-control box-shadow0 border0">老干妈</div>
+					  <div class="form-control box-shadow0 border0">${userDetail.username }</div>
+					</div>
+					<div class="input-group form-group fs">
+					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>身份证号</span>
+					  <div class="form-control box-shadow0 border0">${userDetail.idCard }</div>
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>年&ensp;&ensp;&ensp;&ensp;龄</span>
-					  <div class="form-control box-shadow0 border0">68岁</div>
+					  <div class="form-control box-shadow0 border0">${userDetail.age }岁</div>
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>健康证编号</span>
-					  <div class="form-control box-shadow0 border0">101101011001</div>
+					  <div class="form-control box-shadow0 border0">${userDetail.healthCertificateCode }</div>
 					</div>
 				</div>
 				<div class="">
 					  <div class="fc">
 						<div class="layui-upload-list fc">
-						  <img class="layui-upload-img" src="">
+						  <img class="layui-upload-img" src="${pageContext.request.contextPath}${userDetail.healthCertificate}">
 						</div>
 					  </div>
 					  <div class="text-center">从业人员健康证</div>
@@ -55,7 +59,7 @@
 			</form>
 			
 			<div class="margin-top2 margin-bot2">
-				<a href="${pageContext.request.contextPath}/user/workmens_health" class="btn btn-primary form-control">健康状况查询</a>
+				<a href="${pageContext.request.contextPath}/user/workmens_health?userId=${userDetail.id}" class="btn btn-primary form-control">健康状况查询</a>
 			</div>
 		</main>		
 	<c:import url="public/footer.jsp"></c:import>

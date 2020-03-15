@@ -22,7 +22,7 @@
 		<main class="main margin-top2 padding-side05">
 			<div class="fb">
 				<!-- <a href="" class="btn bg-primary padding-side"><i class="fa fa-search"></i></a> -->
-				<select>
+				<%-- <select>
 					<option value="BlackBerry">BlackBerry</option>
 					<option value="device">device</option>
 					<option value="with">with</option>
@@ -54,8 +54,8 @@
 					$(function(){
 						$('select').searchableSelect();
 					});
-				</script>
-				<a href="${pageContext.request.contextPath}/user/workmens_health_add" class="btn bg-primary padding-side"><i class="fa fa-plus"></i></a>
+				</script> 
+				<a href="${pageContext.request.contextPath}/user/workmens_health_add" class="btn bg-primary padding-side"><i class="fa fa-plus"></i></a> --%>
 			</div>
 			<div class="">
 				<table class="table table-striped table-hover" cellspacing="" cellpadding="">
@@ -64,8 +64,10 @@
 						<tr><th>编号</th><th>姓名</th><th>体温状况℃</th><th>测温日期</th><th>操作</th></tr>
 					</thead>
 					<tbody>
-						<tr><td>Data</td><td>Data</td><td>Data</td><td>Data</td><td><a href="${pageContext.request.contextPath}/user/workmens_health_detal">详情</a></td></tr>
-					</tbody>
+						<c:forEach items="${hygieneList}" var="item">
+							<tr><td>${item.hygieneId}</td><td>Data</td><td>Data</td><td>Data</td><td><a href="${pageContext.request.contextPath}/user/workmens_health_detal">详情</a></td></tr>
+						</c:forEach>	
+						</tbody>
 				</table>
 			</div>
 		</main>
