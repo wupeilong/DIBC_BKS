@@ -18,17 +18,63 @@
 			<div class="">
 				<div class=""><img src="${pageContext.request.contextPath}/static/images/bks_wap/banner.jpg" class="img-responsive"></div>
 			</div>
-			<div class="bg-success">
+			<div class="margin-top05 home_menu">
+				<div class="list_tit padding-side fonwei text-muted margin-top05"><h5 class="padding-side border-bottom fonwei">功能菜单</h5></div>
 				<ul class="function_list list-unstyled clearfix">
-					<li class=""><a href="${pageContext.request.contextPath}/unit/coopration_list"><div><i class="fa fa-info"></i><p class="padding-side05">企业信息</p></div></a></li>
-					<li class=""><a href="${pageContext.request.contextPath}/user/workmens"><div><i class="fa fa-users"></i><p class="padding-side05">从业人员</p></div></a></li>
-					<li class=""><a href="${pageContext.request.contextPath}/procurement/buy_list"><div><i class="fa fa-opencart"></i><p class="padding-side05">采购报送</p></div></a></li>
-					<li class=""><a href="javascript:;" id="ai"><div><i class="fa fa-eye"></i><p class="padding-side05">加工制作检视</p></div></a></li>
-					<li class=""><a href="${pageContext.request.contextPath}/dry/delivery"><div><i class="fa fa-truck"></i><p class="padding-side05">配送报备</p></div></a></li>
-					<li class=""><a href="${pageContext.request.contextPath}/clean/clean_list"><div><i class="fa fa-shower"></i><p class="padding-side05">清洗/消毒记录</p></div></a></li>
-					<li class=""><a href="${pageContext.request.contextPath}/inspect/inspect_choise"><div><i class="fa fa-edit"></i><p class="padding-side05">监管采集</p></div></a></li>
-					<li class=""><a href="${pageContext.request.contextPath}/detection/detection_list"><div><i class="fa fa-paper-plane-o"></i><p class="padding-side05">多频检测</p></div></a></li>
-					<li class=""><a href="javascript:alert('功能开发中……');"><div><i class="fa fa-crosshairs"></i><p class="padding-side05">视频监控</p></div></a></li>
+					<li class="">
+						<a href="${pageContext.request.contextPath}/unit/coopration_list">
+							<div><div class="padding-side icon_box"><i class="fa fa-info"></i></div></div>
+							<p class="padding-side05">企业信息</p>
+						</a>
+					</li>
+					<li class="">
+						<a href="${pageContext.request.contextPath}/user/workmens">
+							<div><div class="padding-side icon_box"><i class="fa fa-users"></i></div></div>
+							<p class="padding-side05">从业人员</p>
+						</a>
+					</li>
+					<li class="">
+						<a href="${pageContext.request.contextPath}/procurement/buy_list">
+							<div><div class="padding-side icon_box"><i class="fa fa-opencart"></i></div></div>
+							<p class="padding-side05">采购报送</p>
+						</a>
+					</li>
+					<li class="">
+						<a href="javascript:alert('功能开发中……');">
+							<div><div class="padding-side icon_box"><i class="fa fa-eye"></i></div></div>
+							<p class="padding-side05">制餐检视</p>
+						</a>
+					</li>
+					<li class="">
+						<a href="${pageContext.request.contextPath}/dry/delivery">
+							<div><div class="padding-side icon_box"><i class="fa fa-truck"></i></div></div>
+							<p class="padding-side05">配送报备</p>
+						</a>
+					</li>
+					<li class="">
+						<a href="${pageContext.request.contextPath}/clean/clean_list">
+							<div><div class="padding-side icon_box"><i class="fa fa-shower"></i></div></div>
+							<p class="padding-side05">清洁<!-- /消毒 -->记录</p>
+						</a>
+					</li>
+					<li class="">
+						<a href="${pageContext.request.contextPath}/inspect/inspect_choise">
+							<div><div class="padding-side icon_box"><i class="fa fa-edit"></i></div></div>
+							<p class="padding-side05">监管采集</p>
+						</a>
+					</li>
+					<li class="">
+						<a href="${pageContext.request.contextPath}/detection/detection_list">
+							<div><div class="padding-side icon_box"><i class="fa fa-paper-plane-o"></i></div></div>
+							<p class="padding-side05">检测报送</p>
+						</a>
+					</li>
+					<li class="">
+						<a href="javascript:alert('功能开发中……');">
+							<div><div class="padding-side icon_box"><i class="fa fa-crosshairs"></i></div></div>
+							<p class="padding-side05">视频监控</p>
+						</a>
+					</li>
 				</ul>
 			</div>
 		</main>

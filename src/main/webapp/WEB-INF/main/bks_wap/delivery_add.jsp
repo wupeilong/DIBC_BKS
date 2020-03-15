@@ -18,7 +18,6 @@
 		<div class="navigation bg-primary">
 			<div class="fb padding-side">
 				<a href="javascript:history.go(-1)" class="text-white"><i class="fa fa-angle-left"></i></a>
-				<a href="" class="text-white"><i class="fa fa-angle-right"></i></a>
 			</div>
 		</div>
 		<main class="main margin-top2 padding-side05">
