@@ -119,33 +119,6 @@
 				$(this).parents("form").find(".login_form1").addClass("cur");
 			})
 		
-			$("#login").click(function() {
-				// var username = $("#username").val();
-				// var password = $("#password").val();
-				$.ajax({
-					url:"",
-					type:"post",
-					data:$('form').serialize(),
-					// data:{'username':username,'password':password},
-					dataType:"json",
-					success:function(data) {
-						console.log(data)
-						if (data.code==1) {
-							layer.msg(data.msg,{
-								icon:1,
-								function(){}
-							})
-							location.href=data.url;
-						} else{
-							layer.msg(data.msg,{
-								icon:2,
-								function(){}
-							})
-						}
-						// location.href="{:url('home/common/login')}"
-					}
-				})
-			})
 		</script>
 	</body>
 </html>
