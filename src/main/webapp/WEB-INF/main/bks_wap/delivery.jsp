@@ -22,39 +22,14 @@
 				<div class="">
 					<div class="">
 						<!-- <a href="" class="btn bg-primary padding-side"><i class="fa fa-search"></i></a> -->
-						<select>
-							<option value="BlackBerry">BlackBerry</option>
-							<option value="device">device</option>
-							<option value="with">with</option>
-							<option value="entertainment">entertainment</option>
-							<option value="and">and</option>
-							<option value="social">social</option>
-							<option value="networking">networking</option>
-							<option value="apps">apps</option>
-							<option value="or">or</option>
-							<option value="apps">apps</option>
-							<option value="that">that</option>
-							<option value="will">will</option>
-							<option value="boost">boost</option>
-							<option value="your">your</option>
-							<option value="productivity">productivity</option>
-							<option value="Download">Download</option>
-							<option value="or">or</option>
-							<option value="buy">buy</option>
-							<option value="apps">apps</option>
-							<option value="from">from</option>
-							<option value="Afbb">Afbb</option>
-							<option value="Akademie">Akademie</option>
-							<option value="Berlin">Berlin</option>
-							<option value="reviews">reviews</option>
-							<option value="by">by</option>
-							<option value="real">real</option>
-						</select>
-						<script>
-							$(function(){
-								$('select').searchableSelect();
-							});
-						</script>
+						<c:if test="${user.type == 1}">
+							<select id="unit_list"">
+								<option value="">查询所有企业信息</option>
+								<c:forEach items="${unitList}" var="item">								
+									<option value="${item.unitId}">${item.unitName}</option>
+								</c:forEach>							
+							</select>
+						</c:if>
 					</div>
 				</div>
 				<a href="${pageContext.request.contextPath}/dry/delivery_add" class="btn bg-primary"><i class="fa fa-plus"></i></a>
@@ -75,5 +50,38 @@
 		</main>	
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
-
+	<script type="text/javascript">
+	$('select').searchableSelect({
+		"afterSelectItem":function(){
+			/* var url = "${pageContext.request.contextPath}/unit/list";
+			var data = "unitId=" + $("#unit_list").val();
+			$.ajax({
+				"url" : url,
+				"data" : data,
+				"type" : "POST",
+				"dataType" : "json",
+				"success" : function(obj) {
+					if (obj.state == 0) {
+						layer.msg(obj.message,{icon:2,time:1000});
+						return;
+					}else{
+						var result = "";
+						for(var i=0;i<obj.data.length;i++){
+							result += "<tr>";
+							result += "<td>" + obj.data[i].unitId + "</td>";
+							result += "<td>" + obj.data[i].unitName + "</td>";
+							result += "<td>" + obj.data[i].legalPerson + "</td>";
+							result += "<td><a href='${pageContext.request.contextPath}/unit/coopration_detal?unitId=" + obj.data[i].unitId + "'>详情</a></td>";
+							result += "</tr>";
+						}
+						$("#result_list").html(result);
+						console.log(obj.data);									
+					}				
+				}
+			});  */
+		}
+	});
+	
+	
+	</script>
 </html>
