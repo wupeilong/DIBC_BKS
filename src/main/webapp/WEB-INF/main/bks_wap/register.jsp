@@ -21,7 +21,7 @@
 				<form class="">
 					<legend>用户注册</legend>
 					<div class="register_progress fc" style="background-image: url();">
-						<img src="img/progress.png" class="width100">
+						<img src="${pageContext.request.contextPath}/static/images/bks_wap/progress.png" class="width100">
 						<div class="progbox clearfix">
 							<div class="prog prog1 cur"></div>
 							<div class="prog prog2"></div>

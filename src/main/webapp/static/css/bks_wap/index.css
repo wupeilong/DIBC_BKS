@@ -135,6 +135,9 @@ button.btn{
 .login_form .input-group>span{
 	width: 6em;
 }
+.login_form1 .input-group>span{
+	width: 10em;
+}
 .layui-upload-list{
 	width: 8em;
 	height: 8em;
