@@ -16,8 +16,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 
+import cn.dibcbks.entity.Hygiene;
 import cn.dibcbks.entity.Unit;
 import cn.dibcbks.entity.User;
+import cn.dibcbks.mapper.HygieneMapper;
 import cn.dibcbks.mapper.UnitMapper;
 import cn.dibcbks.mapper.UserMapper;
 import cn.dibcbks.service.IUserService;
@@ -38,7 +40,8 @@ public class IUserServiceImpl implements IUserService {
 	private UserMapper userMapper;
 	@Autowired
 	private UnitMapper unitMapper;
-	
+	@Autowired
+	private HygieneMapper hygieneMapper;
 	
 	@Override
 	public User queryUser(String idCard) {
@@ -57,7 +60,7 @@ public class IUserServiceImpl implements IUserService {
 	public ResponseResult<Void> registeradd(String idCard, String username, String password, String duty,
 			Integer age, String unitName, String legalPerson, String businessLicenseCode, String businessLicense,
 			String productionLicense, String unitAddress, Date expirationDate, Integer unitType) {
-		ResponseResult<Void> rr = null;
+//		ResponseResult<Void> rr = null;
 		try {
 			Unit queryUnit = unitMapper.queryUnit(businessLicenseCode);
 			if(queryUnit != null){
@@ -296,7 +299,7 @@ public class IUserServiceImpl implements IUserService {
 	public String queryUnitUserDetail(ModelMap modelMap,String id) {
 		try {
 			List<User> list = userMapper.select(" u.id = '" + id + "'", null, null, null);
-			modelMap.addAttribute("", list.isEmpty() ? null : list.get(0));
+			modelMap.addAttribute("userDetail", list.isEmpty() ? null : list.get(0));
 			//TODO 用户信息详情页
 			return "bks_wap/workmens_detal";
 		} catch (Exception e) {
@@ -321,6 +324,21 @@ public class IUserServiceImpl implements IUserService {
 		logger.info(Constants.SUCCESSU_HEAD_INFO + "用户进入从业人员信息页面成功！");
 		//TODO 从业人员信息页面
 		return "bks_wap/workmens";
+	}
+
+	@Override
+	public String workmensHealth(ModelMap modelMap,Integer userId) {
+		List<Hygiene> hygieneList = hygieneMapper.select(" h.user_id = '" + userId + "'", " h.upload_time DESC", null, null);
+		modelMap.addAttribute("hygieneList", hygieneList);
+		return "bks_wap/workmens_health";
+	}
+
+	@Override
+	public String workmensHealthDetal(ModelMap modelMap, Integer hygieneId) {
+		Hygiene hygieneDetail = hygieneMapper.queryHygiene(hygieneId);
+		System.out.println("体温信息详情：" + hygieneDetail);
+		modelMap.addAttribute("hygieneDetail", hygieneDetail);
+		return "bks_wap/workmens_health_detal";
 	}
 
 }

@@ -153,7 +153,7 @@ public class IUnitServiceImpl implements IUnitService {
 				modelMap.addAttribute("unitDetail", unitList.get(0));
 				logger.info(Constants.SUCCESSU_HEAD_INFO + "用户进入企业信息详情页面成功！");
 				//TODO 企业详情信息页
-				return "bks_wap/coopration_list";
+				return "bks_wap/coopration_detal";
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

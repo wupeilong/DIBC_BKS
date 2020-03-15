@@ -53,7 +53,7 @@ public class LoginController {
 	 * @return
 	 */
 	@RequestMapping("/IsExist")
-	private ResponseResult<Void> userIsExist(String username,String idCard){
+	public ResponseResult<Void> userIsExist(String username,String idCard){
 		
 		return iUserService.userIsExist(username,idCard);
 	}

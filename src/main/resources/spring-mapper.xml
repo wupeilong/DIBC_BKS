@@ -74,9 +74,6 @@
 	   <property name="cookie" ref="rememberMeCookie" />
 	</bean>
 	
-	<!-- 缓存管理器 -->
-	<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager"/>
-	
 	<bean id="myShiroRealm" class="cn.dibcbks.filter.MyShiroRealm" >
 		 <!-- 凭证匹配器(密码加密) -->
 	     <property name="credentialsMatcher">
@@ -86,6 +83,18 @@
     		</bean>
     	</property> 
 	</bean>
+	<!-- 缓存管理器 -->
+	<bean id="cacheManager" class="org.apache.shiro.cache.MemoryConstrainedCacheManager"/>
+	
+	<!-- <bean id="myShiroRealm" class="cn.dibcbks.filter.MyShiroRealm" >
+		 凭证匹配器(密码加密)
+	     <property name="credentialsMatcher">
+    		<bean class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
+    			<property name="hashAlgorithmName" value="MD5"/>
+    			<property name="hashIterations" value="1024"/> 
+    		</bean>
+    	</property> 
+	</bean> -->
 	<!-- 安全管理器 -->
 	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
 		<property name="realm" ref="myShiroRealm" />		

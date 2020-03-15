@@ -24,7 +24,7 @@ public class WorkbenchController {
 	 * @return
 	 */
 	@RequestMapping("/workbench")
-	private String workbench(ModelMap modelMap){
+	public String workbench(ModelMap modelMap){
 		
 		return iWorkbenchService.workbench(modelMap);
 	}
@@ -34,7 +34,7 @@ public class WorkbenchController {
 	 * @return
 	 */
 	@RequestMapping("/unitInfo")
-	private String unitInfo(ModelMap modelMap){
+	public String unitInfo(ModelMap modelMap){
 		
 		return iWorkbenchService.unitInfo(modelMap);
 	}
@@ -44,7 +44,7 @@ public class WorkbenchController {
 	 * @return
 	 */
 	@RequestMapping("/practitioners")
-	private String practitioners(ModelMap modelMap){
+	public String practitioners(ModelMap modelMap){
 		
 		return iWorkbenchService.practitioners(modelMap);
 	}
@@ -54,7 +54,7 @@ public class WorkbenchController {
 	 * @return
 	 */
 	@RequestMapping("/procurement")
-	private String procurement(ModelMap modelMap){
+	public String procurement(ModelMap modelMap){
 		
 		return iWorkbenchService.procurement(modelMap);
 	}
@@ -64,7 +64,7 @@ public class WorkbenchController {
 	 * @return
 	 */
 	@RequestMapping("/manufacturingInspection")
-	private String manufacturingInspection(ModelMap modelMap){
+	public String manufacturingInspection(ModelMap modelMap){
 		
 		return iWorkbenchService.manufacturingInspection(modelMap);
 	}
@@ -74,7 +74,7 @@ public class WorkbenchController {
 	 * @return
 	 */
 	@RequestMapping("/distribution")
-	private String distribution(ModelMap modelMap){
+	public String distribution(ModelMap modelMap){
 		
 		return iWorkbenchService.distribution(modelMap);
 	}
@@ -84,7 +84,7 @@ public class WorkbenchController {
 	 * @return
 	 */
 	@RequestMapping("/disinfection")
-	private String disinfection(ModelMap modelMap){
+	public String disinfection(ModelMap modelMap){
 		
 		return iWorkbenchService.disinfection(modelMap);
 	}
@@ -94,7 +94,7 @@ public class WorkbenchController {
 	 * @return
 	 */
 	@RequestMapping("/check")
-	private String check (ModelMap modelMap){
+	public String check (ModelMap modelMap){
 		
 		return iWorkbenchService.check(modelMap);
 	}
@@ -104,7 +104,7 @@ public class WorkbenchController {
 	 * @return
 	 */
 	@RequestMapping("/detection")
-	private String detectionReport(ModelMap modelMap){
+	public String detectionReport(ModelMap modelMap){
 		
 		return iWorkbenchService.detectionReport(modelMap);
 	}
@@ -114,7 +114,7 @@ public class WorkbenchController {
 	 * @return
 	 */
 	@RequestMapping("/videoSurveillance")
-	private String videoSurveillance (ModelMap modelMap){
+	public String videoSurveillance (ModelMap modelMap){
 		
 		return iWorkbenchService.videoSurveillance(modelMap);
 	}
