@@ -135,6 +135,9 @@ button.btn{
 .login_form .input-group>span{
 	width: 6em;
 }
+.login_form1 .input-group>span{
+	width: 10em;
+}
 .layui-upload-list{
 	width: 8em;
 	height: 8em;
@@ -210,3 +213,40 @@ legend{
 	left: 0;
 	z-index: 1;
 }
+
+/* register_progress */
+.register_progress{
+	height: 17.1667px;
+	position: relative;
+}
+.progbox{
+	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 7px;
+	left: 0;
+}
+.prog{
+	width: 50%;
+	height: 2px;
+	background-color: #337ab7;
+	float: left;
+	position: relative;
+	transition: all ease 1s;
+}
+.prog2{
+	position: absolute;
+	left: 0em;
+	overflow: hidden;
+}
+.prog2.cur{
+	left: 50%;
+	overflow: unset;
+}
+.inputbox{
+	display: none;
+}
+.inputbox.cur{
+	display: block;
+}
+
