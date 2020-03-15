@@ -24,11 +24,11 @@
 					<fieldset id="" class="margin-top margin-bot">
 						<div class="input-group input-group-lg form-group">
 						  <span class="input-group-addon" id="sizing-addon1">账号</span>
-						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入账号" aria-describedby="sizing-addon1">
+						  <input type="text" class="form-control box-shadow0" id="idCard" name="idCard" placeholder="请输入账号" aria-describedby="sizing-addon1">
 						</div>
 						<div class="input-group input-group-lg form-group">
 						  <span class="input-group-addon" id="sizing-addon1">密码</span>
-						  <input type="password" class="form-control box-shadow0" name="password" placeholder="请输入密码" aria-describedby="sizing-addon1">
+						  <input type="password" class="form-control box-shadow0" id="password" name="password" placeholder="请输入密码" aria-describedby="sizing-addon1">
 						</div>
 						<div class="input-group input-group-lg fs form-group">
 						  <span class="input-group-addon clear-bg border0" id="sizing-addon1"><input type="checkbox" name="" id="" value="" /></span>
@@ -43,32 +43,34 @@
 			</div>
 		</div>
 		<script>
-			$("#login").click(function() {
-				// var username = $("#username").val();
-				// var password = $("#password").val();
-				$.ajax({
-					url:"",
-					type:"post",
-					data:$('form').serialize(),
-					// data:{'username':username,'password':password},
-					dataType:"json",
-					success:function(data) {
-						console.log(data)
-						if (data.code==1) {
-							layer.msg(data.msg,{
-								icon:1,
-								function(){}
-							})
-							location.href=data.url;
-						} else{
-							layer.msg(data.msg,{
-								icon:2,
-								function(){}
-							})
-						}
-						// location.href="{:url('home/common/login')}"
-					}
-				})
+			$("#login").click(function() {				
+					if ($("#idCard").val() == "") {
+						layer.msg("请输入身份证号",{icon:2,time:1000});
+						$("#idCard").focus();		
+					}else if($("#password").val() == ""){
+						layer.msg("请输入密码",{icon:2,time:1000});
+						$("#password").focus();		
+					}else{
+						var url = "userLogin";
+						var idCard=$("#idCard").val();
+						var password=$("#password").val();		
+						var data = "idCard="+idCard+"&password="+password;		
+						$.ajax({
+							"url" : url,
+							"data" : data,
+							"type" : "POST",
+							"dataType" : "json",
+							"success" : function(obj) {
+								if (obj.state == 0) {
+									layer.msg(obj.message,{icon:2,time:1000});
+									return;
+								}else{
+									layer.msg(obj.message,{icon:1,time:1000},function(){location.href = "home";});
+									
+								}					
+							}
+						}); 
+					}				
 			})
 		</script>
 </body>
