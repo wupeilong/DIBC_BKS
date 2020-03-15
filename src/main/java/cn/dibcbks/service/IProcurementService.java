@@ -13,4 +13,6 @@ public interface IProcurementService {
 
 	ResponseResult<List<Procurement>> queryProcurementList(Integer unitId);
 
+	String buyList(ModelMap modelMap);
+
 }

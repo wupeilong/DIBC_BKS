@@ -21,7 +21,7 @@
 				<a href="javascript:history.go(-1)" class="text-white"><i class="fa fa-angle-left"></i></a>
 			</div>
 		</div>
-		${hygieneDetail }
+		
 		<main class="main padding-side05 workmen_health_detal">
 			<form action="" method="" class="clearfix margin-top">
 			
@@ -89,6 +89,8 @@
 			</div> -->
 		</main>		
 		<script type="text/javascript">
+			/* console.log('${hygieneDetail}'); */
+		
 			layui.use('upload', function(){
 			  var $ = layui.jquery
 			  ,upload = layui.upload;

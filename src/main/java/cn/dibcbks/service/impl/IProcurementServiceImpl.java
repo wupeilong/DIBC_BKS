@@ -55,5 +55,21 @@ public class IProcurementServiceImpl implements IProcurementService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public String buyList(ModelMap modelMap) {
+		Session session = SecurityUtils.getSubject().getSession();
+		User user = (User)session.getAttribute("user");
+		List<Procurement> procurementList = new ArrayList<>();
+		if(user.getType().equals(1)){//市场监管局账户
+			procurementList = procurementMapper.select(null, " p.purchasing_time DESC", null, null);
+		}else{
+			procurementList = procurementMapper.select(" p.unit_id = '" + user.getUnitId() + "'", " p.purchasing_time DESC", null, null);
+		}
+		modelMap.addAttribute("procurementList", procurementList);
+		logger.info(Constants.SUCCESSU_HEAD_INFO + "用户进入采购报送页面成功！");
+		//TODO 采购报送页面
+		return "bks_wap/buy_list";
+	}
 	
 }
