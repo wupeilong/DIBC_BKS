@@ -53,11 +53,7 @@
 					<div class="input-group form-group border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">个人卫生</span>
 					  <div class="form-control box-shadow0 border0">${hygieneDetail.hygiene }</div>
-					</div>
-					<div class="input-group form-group border-bottom">
-					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">其他</span>
-					  <div class="form-control box-shadow0 border0">${hygieneDetail.other }</div>
-					</div>
+					</div>					
 					<div class="input-group form-group border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">备注</span>
 					  <div class="form-control box-shadow0 border0">${hygieneDetail.remark }</div>

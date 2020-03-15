@@ -32,7 +32,7 @@
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>测温日期</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" id="dailyTime" name="dailyTime" peplaceholder="请输入姓名" aria-describedby="sizing-addon1">
+					  <input type="text" class="form-control box-shadow0 border-bottom" readonly="readonly" id="dailyTime" name="dailyTime" peplaceholder="请输入姓名" aria-describedby="sizing-addon1">
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>体测温度</span>
@@ -60,7 +60,7 @@
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>上传时间</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" id="uploadTime" name="uploadTime" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+					  <input type="text" class="form-control box-shadow0 border-bottom" id="uploadTime" readonly="readonly" name="uploadTime" placeholder="请输入姓名" aria-describedby="sizing-addon1">
 					</div>
 					<div class="margin-top">
 				<div class="fc">
@@ -93,10 +93,14 @@
 						 var now = new Date();
 						 document.getElementById("dailyTime").value = now.getFullYear() + "-"
 						 + (now.getMonth() + 1) + "-" + now.getDate();
-						 document.getElementById("uploadTime").value = " " + now.getHours() + ":"
-						 + now.getMinutes() + ":" + now.getSeconds();
+						/*  document.getElementById("uploadTime").value = " " + now.getHours() + ":"
+						 + now.getMinutes() + ":" + now.getSeconds(); */
 					}
 					window.setInterval("datetime()", 1000);  
+					setInterval(
+							"document.getElementById('uploadTime').value=new Date().toLocaleString()+'  星期'+'日一二三四五六'.charAt(new Date().getDay());",
+							1000);
+			
 			</script>
 			</div>
 				</div>
@@ -133,8 +137,16 @@ function save(){
 		}else{
 			var formData = new FormData();	
 			var data=$("#hygiene_form").serialize()
-			formData.append('healthCodePhoto',$("#fileinput")[0].files[0]);			
-			formData.append('hygiene',JSON.stringify(data));								
+			formData.append('healthCodePhoto',$("#fileinput")[0].files[0]);
+			formData.append('userId',$("#userId").val());	
+			formData.append('username',$("#username").val());	
+			formData.append('dailyTime',$("#dailyTime").val());	
+			formData.append('celsius',$("#celsius").val());	
+			formData.append('fever',$("#fever").val());	
+			formData.append('diarrhea',$("#diarrhea").val());	
+			formData.append('woundsFester',$("#woundsFester").val());	
+			formData.append('hygiene',$("#hygiene").val());	
+			formData.append('remark',$("#remark").val());		
 			 $.ajax({
 				 url: 'workmens_health_regadd',
 		          type: 'POST',

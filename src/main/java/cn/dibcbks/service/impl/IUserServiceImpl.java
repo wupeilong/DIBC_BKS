@@ -333,6 +333,7 @@ public class IUserServiceImpl implements IUserService {
 	@Override
 	public String workmensHealth(ModelMap modelMap,Integer userId) {
 		List<Hygiene> hygieneList = hygieneMapper.select(" h.user_id = '" + userId + "'", " h.upload_time DESC", null, null);
+		System.out.println(hygieneList);
 		modelMap.addAttribute("hygieneList", hygieneList);
 		return "bks_wap/workmens_health";
 	}

@@ -1,7 +1,9 @@
 package cn.dibcbks.controller;
 
 
+import java.util.Date;
 import java.util.List;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -10,15 +12,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-
 import cn.dibcbks.entity.Hygiene;
 import cn.dibcbks.entity.User;
 import cn.dibcbks.service.IUserService;
 import cn.dibcbks.util.GetCommonUser;
 import cn.dibcbks.util.ResponseResult;
+
+
 
 
 @Controller
@@ -113,12 +113,31 @@ public class UserController {
 	 */
 	@RequestMapping("/workmens_health_regadd")
 	@ResponseBody
-	public ResponseResult<Void> addHygiene(@RequestParam(value="healthCodePhoto",required=false)MultipartFile file,@RequestParam(value="hygiene",required=false)String hygiene){
-		System.out.println("rte");
-//		Hygiene rccData = JSON.parseObject(JSONObject.toJSONString("JSONString",Hygiene.class);
-//		Hygiene gg=(Hygiene)hygiene;
-//		System.err.println((Hygiene)hygiene);
-		return null;//iUserService.addHygiene(hygiene);
+	public ResponseResult<Void> addHygiene(@RequestParam(value="healthCodePhoto",required=false)MultipartFile file,
+													Integer userId,String username,String dailyTime,Double celsius,
+													String fever,String diarrhea,String woundsFester,String hygiene,
+													String remark){
+		ResponseResult<Void> responseResult=null;		
+		GetCommonUser get=new GetCommonUser();	
+		String hygienepath=get.uoladimg(file,((User)SecurityUtils.getSubject().getSession().getAttribute("user")).getIdCard());
+		if (hygienepath==null) {
+			responseResult=new ResponseResult<Void>(ResponseResult.ERROR,"健康码上传异常,信息添加失败");
+		}else{	
+			Hygiene hygiene2=new Hygiene();
+			hygiene2.setUserId(userId);
+			hygiene2.setUsername(username);
+			hygiene2.setDailyTime(dailyTime);
+			hygiene2.setCelsius(celsius);
+			hygiene2.setFever(fever);
+			hygiene2.setDiarrhea(diarrhea);
+			hygiene2.setWoundsFester(woundsFester);
+			hygiene2.setHygiene(hygiene);
+			hygiene2.setRemark(remark);
+			hygiene2.setHealthCodePhoto(hygienepath);
+			hygiene2.setUploadTime(new Date());
+			responseResult=iUserService.addHygiene(hygiene2);						
+		}		
+		return responseResult;		
 	}
 	/**
 	 * 进入从业人员信息健康信息添加页
