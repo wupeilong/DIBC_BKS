@@ -89,7 +89,7 @@ public class LoginController {
 			@RequestParam(value="businessLicense",required = true) String businessLicense,
 			@RequestParam(value="productionLicense",required = true) String productionLicense,
 			@RequestParam(value="unitAddress",required = true) String unitAddress,
-			@RequestParam(value="expirationDate",required = true) @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8") Date expirationDate,
+			@RequestParam(value="expirationDate",required = true) @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8") String expirationDate,
 			@RequestParam(value="unitType",required = true) Integer unitType){
 		
 		return iUserService.registeradd(idCard,username,password,duty,age,unitName,legalPerson,businessLicenseCode,businessLicense,productionLicense,unitAddress,expirationDate,unitType);

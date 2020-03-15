@@ -59,7 +59,7 @@ public class IUserServiceImpl implements IUserService {
 	@Override
 	public ResponseResult<Void> registeradd(String idCard, String username, String password, String duty,
 			Integer age, String unitName, String legalPerson, String businessLicenseCode, String businessLicense,
-			String productionLicense, String unitAddress, Date expirationDate, Integer unitType) {
+			String productionLicense, String unitAddress, String expirationDate, Integer unitType) {
 //		ResponseResult<Void> rr = null;
 		try {
 			Unit queryUnit = unitMapper.queryUnit(businessLicenseCode);

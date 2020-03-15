@@ -18,7 +18,7 @@ public interface IUserService {
 	User queryUser(String idCard);
 
 	ResponseResult<Void> registeradd(String idCard, String username, String password, String duty, Integer age,
-			String unitName, String legalPerson, String businessLicenseCode, String businessLicense, String productionLicense, String unitAddress, Date expirationDate, Integer unitType);
+			String unitName, String legalPerson, String businessLicenseCode, String businessLicense, String productionLicense, String unitAddress, String expirationDate, Integer unitType);
 
 	ResponseResult<Void> login(String idCard, String password);
 
