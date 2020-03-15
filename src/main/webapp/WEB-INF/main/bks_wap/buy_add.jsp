@@ -65,51 +65,38 @@
 			</div>
 			
 			<div class="margin-top">
-				  <div class="fc">
-				  	<div class="layui-upload-list fc">
-				  	  <label for="demo1" class="input-group-addon border0 clear-bg" id="test1"><i class="fa fa-plus padding-side05"></i>上传凭证</label>
-				  	  <img class="layui-upload-img" id="demo1">
-				  	  <p id="demoText"></p>
-				  	</div>
-				  </div>
+				<div class="fc">
+					<div class="upload_imgs">
+						<div class="fc tip_text">
+							<div class="text-info">
+								<div class="fc"> <i class="fa fa-plus padding-side05"></i> </div>
+								<div class="text-center">上传图片</div>
+							</div>
+						</div>
+						<input type="file" name="" id="fileinput" value="" accept="image/*"/>
+						<img src="" id="preview">
+					</div>
+				</div>
+				<script type="text/javascript">
+					$("#fileinput").on("change",function() {
+						changepic("fileinput","preview");
+					})
+					
+					function changepic(fid,img_id) {
+						 var reads = new FileReader();
+						 f = document.getElementById(fid).files[0];
+						 reads.readAsDataURL(f);
+						 reads.onload = function(e) {
+						 document.getElementById(img_id).src = this.result;
+						 $("#"+img_id).css("display", "block");
+						 };
+					}
+				</script>
 			</div>
 			<div class="margin-top2 margin-bot2">
 				<button type="button" class="btn btn-primary form-control">提交</button>
 			</div>
 		</main>		
-		<script type="text/javascript">
-			layui.use('upload', function(){
-			  var $ = layui.jquery
-			  ,upload = layui.upload;
-			  
-			  //普通图片上传
-			  var uploadInst = upload.render({
-			    elem: '#test1'
-			    ,url: 'https://httpbin.org/post' //改成您自己的上传接口
-			    ,before: function(obj){
-			      //预读本地文件示例，不支持ie8
-			      obj.preview(function(index, file, result){
-			        $('#demo1').attr('src', result); //图片链接（base64）
-			      });
-			    }
-			    ,done: function(res){
-			      //如果上传失败
-			      if(res.code > 0){
-			        return layer.msg('上传失败');
-			      }
-			      //上传成功
-			    }
-			    ,error: function(){
-			      //演示失败状态，并实现重传
-			      var demoText = $('#demoText');
-			      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-			      demoText.find('.demo-reload').on('click', function(){
-			        uploadInst.upload();
-			      });
-			    }
-			  });
-			  });
-		</script>	
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
 

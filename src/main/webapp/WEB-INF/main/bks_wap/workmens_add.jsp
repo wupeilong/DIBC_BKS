@@ -50,14 +50,36 @@
 					</div>
 				</div>
 				
-				<div class="fc">
-					<div class="layui-upload-list fc">
-					  <label for="demo1" class="input-group-addon border0 clear-bg" id="test1"><i class="fa fa-plus padding-side05"></i>上传健康证</label>
-					  <img class="layui-upload-img" id="demo1">
-					  <p id="demoText"></p>
+				<div class="">
+					<div class="fc">
+						<div class="upload_imgs">
+							<div class="fc tip_text">
+								<div class="text-info">
+									<div class="fc"> <i class="fa fa-plus padding-side05"></i> </div>
+									<div class="text-center">上传图片</div>
+								</div>
+							</div>
+							<input type="file" name="" id="fileinput" value="" accept="image/*"/>
+							<img src="" id="preview">
+						</div>
 					</div>
 				</div>
-				<input id="ficard" type="file" name="file" />
+				<script type="text/javascript">
+					$("#fileinput").on("change",function() {
+						changepic("fileinput","preview");
+					})
+					
+					function changepic(fid,img_id) {
+						 var reads = new FileReader();
+						 f = document.getElementById(fid).files[0];
+						 reads.readAsDataURL(f);
+						 reads.onload = function(e) {
+						 document.getElementById(img_id).src = this.result;
+						 $("#"+img_id).css("display", "block");
+						 };
+					}
+				</script>
+				<!-- <input id="ficard" type="file" name="file" /> -->
 			</form>
 			
 			<div class="margin-top2 margin-bot2">
