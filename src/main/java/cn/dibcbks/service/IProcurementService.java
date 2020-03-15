@@ -17,4 +17,8 @@ public interface IProcurementService {
 
 	String buyDetal(ModelMap modelMap, Integer id);
 
+	ResponseResult<Void> acceptanceProcurementList(String result, Integer id);
+
+	String buyAdd(ModelMap modelMap);
+
 }

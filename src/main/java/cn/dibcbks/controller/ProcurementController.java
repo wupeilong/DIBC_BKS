@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import cn.dibcbks.entity.Procurement;
 import cn.dibcbks.service.IProcurementService;
@@ -46,18 +47,19 @@ public class ProcurementController {
 	 * @return
 	 */
 	@RequestMapping("/buy_add")
-	public String buyAdd(){		
-		return "bks_wap/buy_add";
+	public String buyAdd(ModelMap modelMap){
+		return iProcurementService.buyAdd(modelMap);
+		//return "bks_wap/buy_add";
 	}
-	/**
+/*	*//**
 	 * 进入采购报送页面
 	 * @return
-	 */
+	 *//*
 	@RequestMapping("/reportPage")
 	public String procurementReportPage(ModelMap modelMap){
 		
 		return iProcurementService.procurementReportPage(modelMap);
-	}
+	}*/
 	
 	/**
 	 * 采购信息列表
@@ -68,5 +70,16 @@ public class ProcurementController {
 	public ResponseResult<List<Procurement>> queryProcurementList(Integer unitId){
 		
 		return iProcurementService.queryProcurementList(unitId);
+	}
+	
+	/**
+	 * 验收采购信息
+	 * @return
+	 */
+	@RequestMapping("/acceptance")
+	@ResponseBody
+	public ResponseResult<Void> acceptanceProcurementList(@RequestParam("result")String result, @RequestParam("id")Integer id){
+		
+		return iProcurementService.acceptanceProcurementList(result,id);
 	}
 }

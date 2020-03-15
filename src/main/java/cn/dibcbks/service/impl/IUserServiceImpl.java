@@ -58,7 +58,7 @@ public class IUserServiceImpl implements IUserService {
 	@Override
 	public ResponseResult<Void> registeradd(String idCard, String username, String password, String duty,
 			Integer age, String unitName, String legalPerson, String businessLicenseCode, String businessLicense,
-			String productionLicense, String unitAddress, Date expirationDate, Integer unitType) {
+			String productionLicense, String unitAddress, String expirationDate, Integer unitType) {
 //		ResponseResult<Void> rr = null;
 		try {
 			Unit queryUnit = unitMapper.queryUnit(businessLicenseCode);
@@ -345,4 +345,28 @@ public class IUserServiceImpl implements IUserService {
 		return "bks_wap/workmens_health_detal";
 	}
 
+	@Override
+	public String queryUserPcenter(ModelMap modelMap, String id) {
+		try {
+			List<User> list = userMapper.select(" u.id = '" + id + "'", null, null, null);
+			modelMap.addAttribute("userPcenter", list.isEmpty() ? null : list.get(0));
+			//TODO 用户信息详情页
+			return "bks_wap/user_pcenter";
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return "error/404";
+	}	
+	@Override
+	public ResponseResult<Void> addHygiene(Hygiene hygiene) {
+		ResponseResult<Void> rr = null;
+		try {
+			hygieneMapper.insert(hygiene);
+			rr = new ResponseResult<>(ResponseResult.SUCCESS,"操作成功！");
+		} catch (Exception e) {
+			e.printStackTrace();
+			rr = new ResponseResult<>(ResponseResult.ERROR,"操作失败！");
+		}
+		return rr;
+	}
 }

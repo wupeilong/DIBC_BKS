@@ -27,7 +27,7 @@ public interface ProcurementMapper {
 	 * @param businessLicenseCode
 	 * @return
 	 */
-	Procurement queryProcurement(String id);
+	Procurement queryProcurement(Integer id);
 	
 	/**
 	 * 查询采购信息列表

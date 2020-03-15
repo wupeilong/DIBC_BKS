@@ -6,8 +6,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import cn.dibcbks.service.IUserService;
+import cn.dibcbks.util.GetCommonUser;
 import cn.dibcbks.util.ResponseResult;
 
 /**
@@ -83,16 +86,28 @@ public class LoginController {
 			@RequestParam(value="password",required = true) String password,
 			@RequestParam(value="duty",required = true) String duty,
 			@RequestParam(value="age",required = true) Integer age, 
-			@RequestParam(value="unitName",required = true) String unitName,
-			@RequestParam(value="legalPerson",required = true) String legalPerson,
+			@RequestParam(value="unitName",required = true) String unitName,			
 			@RequestParam(value="businessLicenseCode",required = true) String businessLicenseCode,
-			@RequestParam(value="businessLicense",required = true) String businessLicense,
-			@RequestParam(value="productionLicense",required = true) String productionLicense,
-			@RequestParam(value="unitAddress",required = true) String unitAddress,
-			@RequestParam(value="expirationDate",required = true) @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8") Date expirationDate,
-			@RequestParam(value="unitType",required = true) Integer unitType){
-		
-		return iUserService.registeradd(idCard,username,password,duty,age,unitName,legalPerson,businessLicenseCode,businessLicense,productionLicense,unitAddress,expirationDate,unitType);
+			@RequestParam(value="businessLicense",required=false)MultipartFile file,
+			@RequestParam(value="productionLicense",required=false)MultipartFile file1,				
+			@RequestParam(value="unitAddress",required = true) String unitAddress,			
+			@RequestParam(value="unitType",required = true) Integer unitType,
+			@RequestParam(value="legalPerson",required = true) String legalPerson){
+		ResponseResult<Void> responseResult=null;		
+		GetCommonUser get=new GetCommonUser();			
+		String businessLicensepath=get.uoladimg(file,idCard);
+		if (businessLicensepath==null) {
+			responseResult=new ResponseResult<Void>(ResponseResult.ERROR,"营业执照上传异常,人员信息添加失败");
+		}else{
+			String productionLicensepath=get.uoladimg(file1,idCard);
+			if (productionLicensepath==null) {
+				responseResult=new ResponseResult<Void>(ResponseResult.ERROR,"许可证上传异常,人员信息添加失败");
+			}else{
+				responseResult=iUserService.registeradd(idCard,username,password,duty,age,unitName,legalPerson,businessLicenseCode,businessLicensepath,productionLicensepath,unitAddress,null,unitType);
+			}			
+		}		
+		return responseResult;
+
 	}
 	
 	/**

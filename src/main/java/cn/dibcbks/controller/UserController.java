@@ -1,7 +1,6 @@
 package cn.dibcbks.controller;
 
-import java.io.File;
-import java.util.Date;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+
+import cn.dibcbks.entity.Hygiene;
 import cn.dibcbks.entity.User;
 import cn.dibcbks.service.IUserService;
 import cn.dibcbks.util.GetCommonUser;
@@ -24,21 +28,14 @@ public class UserController {
 	@Autowired
 	private IUserService iUserService;
 	
-	/**
-	 * 进入企业信息页
-	 * @return
-	 */
-	@RequestMapping("/user_ccenter")
-	public String userCcenter(){
-		return "bks_wap/user_ccenter";
-	}
+	
 	/**
 	 * 进入个人信息页
 	 * @return
 	 */
 	@RequestMapping("/user_pcenter")
-	public String userPcenter(){
-		return "bks_wap/user_pcenter";
+	public String userPcenter(ModelMap modelMap,String id){
+		return iUserService.queryUserPcenter(modelMap, id);	
 	}
 	/**
 	 * 进入从业人员信息列表页
@@ -70,7 +67,7 @@ public class UserController {
 			String duty,String username,String idCard,Integer age,String healthCertificateCode){
 		ResponseResult<Void> responseResult=null;		
 		GetCommonUser get=new GetCommonUser();
-		String stratpath=get.uoladimg(file,idCard,healthCertificateCode);
+		String stratpath=get.uoladimg(file,idCard);
 		if (stratpath==null) {
 			responseResult=new ResponseResult<Void>(ResponseResult.ERROR,"健康证上传异常,人员信息添加失败");
 		}else{
@@ -83,6 +80,7 @@ public class UserController {
 	 * 进入从业人员信息详情页
 	 * @return
 	 *art=
+	 */
 	@RequestMapping("/workmens_detal")
 	public String workmensDetal(ModelMap modelMap,String id){
 		
@@ -107,7 +105,21 @@ public class UserController {
 	public String workmensHealthAdd(){		
 		return "bks_wap/workmens_health_add";
 	}
-	
+	/**
+	 * 新增健康信息
+	 * @param modelMap
+	 * @param hygieneId
+	 * @return
+	 */
+	@RequestMapping("/workmens_health_regadd")
+	@ResponseBody
+	public ResponseResult<Void> addHygiene(@RequestParam(value="healthCodePhoto",required=false)MultipartFile file,@RequestParam(value="hygiene",required=false)String hygiene){
+		System.out.println("rte");
+//		Hygiene rccData = JSON.parseObject(JSONObject.toJSONString("JSONString",Hygiene.class);
+//		Hygiene gg=(Hygiene)hygiene;
+//		System.err.println((Hygiene)hygiene);
+		return null;//iUserService.addHygiene(hygiene);
+	}
 	/**
 	 * 进入从业人员信息健康信息添加页
 	 * @return
