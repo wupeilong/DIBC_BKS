@@ -1,5 +1,7 @@
 package cn.dibcbks.service;
 
+
+
 import java.util.Date;
 import java.util.List;
 
@@ -22,7 +24,7 @@ public interface IUserService {
 
 	ResponseResult<Void> login(String idCard, String password);
 
-	ResponseResult<Void> allocateAccount(String idCard, String username, String password, String duty, Integer age);
+	ResponseResult<Void> allocateAccount(String idCard, String username, String password, String duty, Integer age,String healthCertificateCode,String stratpath);
 
 	ResponseResult<Void> updateUser(User user);
 
