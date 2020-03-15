@@ -26,7 +26,8 @@
 				<div class="workmens_info_top margin-bot">
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>所属企业</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="unitName" placeholder="请输入企业名称" aria-describedby="sizing-addon1" value="${user.unitName}">
+					  <div class="form-control box-shadow0 border0">${user.unitName}</div>
+					  <%-- <input type="text" class="form-control box-shadow0 border-bottom" name="unitName" placeholder="请输入企业名称" aria-describedby="sizing-addon1" value="${user.unitName}"> --%>
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>职&ensp;&ensp;&ensp;&ensp;务</span>

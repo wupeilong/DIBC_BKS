@@ -17,43 +17,108 @@
 			<div class="text-center margin-top2">
 				<h3 class="fonwei">云岩区市场监督管理局</h3>
 			</div>
-			<div class="margin-top4">
-				<form class="login_form">
+			<div class="margin-top3">
+				<form class="">
 					<legend>用户注册</legend>
-					<fieldset id="" class="margin-top margin-bot">
-						<div class="input-group input-group-lg form-group">
-						  <span class="input-group-addon" id="sizing-addon1">身份证号</span>
-						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入账号" aria-describedby="sizing-addon1">
+					<div class="register_progress fc" style="background-image: url();">
+						<img src="img/progress.png" class="width100">
+						<div class="progbox clearfix">
+							<div class="prog prog1 cur"></div>
+							<div class="prog prog2"></div>
 						</div>
-						<div class="input-group input-group-lg form-group">
-						  <span class="input-group-addon" id="sizing-addon1">密码</span>
-						  <input type="password" class="form-control box-shadow0" name="password" placeholder="请输入密码" aria-describedby="sizing-addon1">
+					</div>
+					<div class="login_form inputbox cur margin-top3 margin-bot">
+						<h5 class="fonwei margin-bot2">填写注册资料：</h5>
+						<div class="input-group form-group">
+						  <span class="input-group-addon">身份证号</span>
+						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入企业名称" aria-describedby="sizing-addon1">
 						</div>
-						<div class="input-group input-group-lg form-group">
-						  <span class="input-group-addon" id="sizing-addon1">确认密码</span>
-						  <input type="repassword" class="form-control box-shadow0" name="repassword" placeholder="请在次输入密码" aria-describedby="sizing-addon1">
+						<div class="input-group form-group">
+						  <span class="input-group-addon">密码</span>
+						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入企业名称" aria-describedby="sizing-addon1">
 						</div>
-						<div class="input-group input-group-lg form-group">
-						  <span class="input-group-addon" id="sizing-addon1">真实姓名</span>
-						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入真实姓名" aria-describedby="sizing-addon1">
+						<div class="input-group form-group">
+						  <span class="input-group-addon">确认密码</span>
+						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入企业名称" aria-describedby="sizing-addon1">
 						</div>
-						<div class="input-group input-group-lg form-group">
-						  <span class="input-group-addon" id="sizing-addon1">职务</span>
-						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入职务" aria-describedby="sizing-addon1">
+						<div class="input-group form-group">
+						  <span class="input-group-addon">真实姓名</span>
+						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入企业名称" aria-describedby="sizing-addon1">
 						</div>
-						<div class="input-group input-group-lg form-group">
-						  <span class="input-group-addon" id="sizing-addon1">年龄</span>
-						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入年龄" aria-describedby="sizing-addon1">
+						<div class="input-group form-group">
+						  <span class="input-group-addon">职务</span>
+						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入企业名称" aria-describedby="sizing-addon1">
+						</div>
+						<div class="input-group form-group">
+						  <span class="input-group-addon">年龄</span>
+						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入企业名称" aria-describedby="sizing-addon1">
 						</div>
 						<div class="margin-bot2 text-right">
-							<a href="${pageContext.request.contextPath}/login" class="">已有账号？去登陆</a>
+							<a href="http://192.168.1.106:8848/wap_MCLZ/login.html" class="">已有账号？去登陆</a>
 						</div>
-					</fieldset>
+						<div class="text-center margin-top margin-bot2"><a href="javascript:;" class="next_step btn btn-primary form-control" value="登陆">下一步</a></div>
+					</div>
+					
+					<div class="login_form1 inputbox margin-top3 margin-bot2">
+						<h5 class="fonwei margin-bot2">完善个人信息：</h5>
+						<div class="input-group form-group">
+						  <span class="input-group-addon">企业名称</span>
+						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入企业名称" aria-describedby="sizing-addon1">
+						</div>
+						<div class="input-group form-group">
+						  <span class="input-group-addon">统一社会信用代码</span>
+						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入统一社会信用代码" aria-describedby="sizing-addon1">
+						</div>
+						<div class="fsa border-bottom">
+							
+							<div class="margin-bot2">
+								  <div class="fc">
+								  	<div class="layui-upload-list fc">
+								  	  <label for="demo1" class="input-group-addon border0 clear-bg" id="test1"><i class="fa fa-plus padding-side05"></i>营业执照</label>
+								  	  <img class="layui-upload-img" id="demo1">
+								  	  <p id="demoText"></p>
+								  	</div>
+								  </div>
+							</div>
+							<div class="margin-bot2">
+								  <div class="fc">
+								  	<div class="layui-upload-list fc">
+								  	  <label for="demo2" class="input-group-addon border0 clear-bg" id="test2"><i class="fa fa-plus padding-side05"></i>食品许可证</label>
+								  	  <img class="layui-upload-img" id="demo2">
+								  	  <p id="demoText2"></p>
+								  	</div>
+								  </div>
+							</div>
+						</div>
+						<div class="input-group form-group">
+						  <span class="input-group-addon">到期日期</span>
+						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入企业名称" aria-describedby="sizing-addon1">
+						</div>
+						<div class="input-group form-group">
+						  <span class="input-group-addon">营业地址</span>
+						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入统一社会信用代码" aria-describedby="sizing-addon1">
+						</div>
+						<div class="input-group form-group">
+						  <span class="input-group-addon">企业类型</span>
+						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入统一社会信用代码" aria-describedby="sizing-addon1">
+						</div>
+						<div class="input-group form-group">
+						  <span class="input-group-addon">法人姓名</span>
+						  <input type="text" class="form-control box-shadow0" name="account" placeholder="请输入统一社会信用代码" aria-describedby="sizing-addon1">
+						</div>
+						<div class="text-center margin-top2 margin-bot2"><button type="button" class="btn btn-primary form-control" id="register" value="注册">注册</button></div>
+					</div>
 				</form>
-				<div class="text-center margin-top margin-bot2"><button type="submit" class="btn btn-primary form-control" id="login" value="登陆" style="height: 50px;">登陆</button></div>
+				
 			</div>
 		</div>
 		<script>
+			$(".next_step").click(function() {
+				$(this).parents("form").find(".register_progress .prog2").addClass("cur");
+				$(this).parents("form").find(".inputbox").removeClass("cur");
+				$(this).parents("form").find(".login_form1").addClass("cur");
+			})
+		
 			$("#login").click(function() {
 				// var username = $("#username").val();
 				// var password = $("#password").val();
