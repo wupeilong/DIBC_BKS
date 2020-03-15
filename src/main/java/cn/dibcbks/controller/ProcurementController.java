@@ -29,8 +29,9 @@ public class ProcurementController {
 	 * @return
 	 */
 	@RequestMapping("/buy_list")
-	public String buyList(){		
-		return "bks_wap/buy_list";
+	public String buyList(ModelMap modelMap){
+		return iProcurementService.buyList(modelMap);
+		//return "bks_wap/buy_list";
 	}
 	/**
 	 * 进入采购信息明细页
