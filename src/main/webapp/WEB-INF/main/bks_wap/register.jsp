@@ -138,7 +138,9 @@
 				$(this).parents("form").find(".register_progress .prog2").addClass("cur");
 				$(this).parents("form").find(".inputbox").removeClass("cur");
 				$(this).parents("form").find(".login_form1").addClass("cur");
+
 			})			
+
 		</script>
 	</body>
 </html>
