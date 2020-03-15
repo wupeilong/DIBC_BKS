@@ -1,14 +1,31 @@
 package cn.dibcbks.controller;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.alibaba.fastjson.JSONArray;
+
 import cn.dibcbks.entity.Procurement;
+import cn.dibcbks.entity.ProcurementDetail;
+import cn.dibcbks.entity.Unit;
+import cn.dibcbks.entity.User;
+import cn.dibcbks.mapper.ProcurementMapper;
+import cn.dibcbks.mapper.UnitMapper;
 import cn.dibcbks.service.IProcurementService;
+import cn.dibcbks.util.GetCommonUser;
 import cn.dibcbks.util.ResponseResult;
 
 /**
@@ -21,7 +38,10 @@ import cn.dibcbks.util.ResponseResult;
 public class ProcurementController {
 	@Autowired
 	private IProcurementService iProcurementService;
-	
+	@Autowired
+	private ProcurementMapper procurementMapper;
+	@Autowired
+	private UnitMapper unitMapper;
 	
 	/**
 	 * 进入采购列表页
@@ -51,6 +71,84 @@ public class ProcurementController {
 		return iProcurementService.buyAdd(modelMap);
 		//return "bks_wap/buy_add";
 	}
+	
+
+	/**
+	 * 新增采购信息
+	 * @param supplierUnitId
+	 * @param supplierBusinessLicense
+	 * @param supplierproductionLicense
+	 * @param supplierQualification
+	 * @param invoice
+	 * @param supplierPerson
+	 * @param supplierPhone
+	 * @param detailList
+	 * @return
+	 * @throws ParseException 
+	 */
+	@RequestMapping("/add")
+	@ResponseBody
+	@Transactional
+	public ResponseResult<Void> addProcurement(	Integer supplierUnitId,
+									MultipartFile supplierBusinessLicense,
+									MultipartFile supplierproductionLicense,
+									MultipartFile supplierQualification,
+									MultipartFile invoice,
+									String supplierPerson,
+									String supplierPhone,
+									String detailList) throws ParseException{
+		ResponseResult<Void> rr = null;
+		User user = (User)SecurityUtils.getSubject().getSession().getAttribute("user");
+		List<Unit> supplierUnit = unitMapper.select(" n.unit_id = '" + supplierUnitId + "'", null, null, null);
+		GetCommonUser get = new GetCommonUser();			
+		String supplierBusinessLicensePath = get.uoladimg(supplierBusinessLicense,user.getIdCard());//营业执照	
+		String supplierproductionLicensePath = get.uoladimg(supplierproductionLicense,user.getIdCard());//许可证
+		String supplierQualificationPath = get.uoladimg(supplierQualification,user.getIdCard());//资质
+		String invoicePath = get.uoladimg(invoice,user.getIdCard());//发票
+		if(supplierUnit.isEmpty()){
+			rr = new ResponseResult<>(ResponseResult.ERROR,"供货商信息不存在，添加采购信息失败！");
+		}else if(StringUtils.isEmpty(supplierBusinessLicensePath)){
+			rr = new ResponseResult<>(ResponseResult.ERROR,"营业执照上传失败，添加采购信息失败！");
+		}else if(StringUtils.isEmpty(invoicePath)){
+			rr = new ResponseResult<>(ResponseResult.ERROR,"发票上传失败，添加采购信息失败！");
+		}else if (StringUtils.isEmpty(detailList)) {
+			rr = new ResponseResult<>(ResponseResult.ERROR,"未添加采购详情，添加采购信息失败！");
+		}else {
+			//上传采购信息
+			Procurement procurement = new Procurement();
+			procurement.setUnitId(user.getUnitId());
+			procurement.setUserId(user.getId());
+			procurement.setUnitName(user.getUnitName());			
+			procurement.setSupplier(supplierUnit.get(0).getUnitName());
+			procurement.setSupplierBusinessLicense(supplierBusinessLicensePath);
+			procurement.setSupplierProductionLicense(supplierproductionLicensePath);
+			procurement.setSupplierQualification(supplierQualificationPath);
+			procurement.setInvoice(invoicePath);
+			procurement.setSupplierPerson(supplierPerson);
+			procurement.setSupplierPhone(supplierPhone);
+			procurement.setPurchasingTime(new Date());
+			procurement.setStatus(0);
+			procurementMapper.insertProcurement(procurement);
+			
+			ProcurementDetail procurementDetail = null;
+			Date productionDate = null;
+			JSONArray parseArray = JSONArray.parseArray(detailList);
+			JSONArray array = null;
+			for(int i=0; i<parseArray.size(); i++){
+				array = JSONArray.parseArray(parseArray.getString(i));
+				productionDate  = new SimpleDateFormat("yyyy年MM月dd日").parse(array.getString(2));
+				procurementDetail = new ProcurementDetail();
+				procurementDetail.setProcurementId(procurement.getId());
+				procurementDetail.setProductName(array.getString(0));
+				procurementDetail.setCount(array.getString(1));
+				procurementDetail.setProductionDate(productionDate);
+				procurementMapper.insertProcurementDetail(procurementDetail);
+			}
+			rr = new ResponseResult<>(ResponseResult.SUCCESS,"操作成功！");
+		}
+		return rr;
+	}
+	
 /*	*//**
 	 * 进入采购报送页面
 	 * @return

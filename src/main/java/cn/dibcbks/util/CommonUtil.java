@@ -2,7 +2,12 @@ package cn.dibcbks.util;
 
 import java.util.UUID;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
+
+import com.mysql.cj.Session;
+
+import cn.dibcbks.entity.User;
 
 public class CommonUtil {
 	/**
@@ -35,5 +40,13 @@ public class CommonUtil {
 	public static String getPath(){
 		
 		return new CommonUtil().getClass().getResource("/").getPath().replaceAll("/WEB-INF/classes/", "");
+	}
+	
+	/**
+	 * 获取当前登录用户
+	 * @return
+	 */
+	public static User getStessionUser() {
+		return (User)SecurityUtils.getSubject().getSession().getAttribute("user");
 	}
 }

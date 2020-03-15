@@ -13,7 +13,7 @@ public class Distribution implements Serializable {
 	 * 序列化版本ID
 	 */
 	private static final long serialVersionUID = 1L;
-	private Integer id;//主键ID
+	private String id;//主键ID
 	private String dailyTime;//当前日期
 	private Integer type;//送餐类型：1-早餐 2-午餐 3-晚餐'
 	private Integer cateringType;//配餐类型：1-学校自主开餐 2-餐饮业配餐
@@ -35,7 +35,7 @@ public class Distribution implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Distribution(Integer id, String dailyTime, Integer type, Integer cateringType, Integer mealsUnitName,
+	public Distribution(String id, String dailyTime, Integer type, Integer cateringType, Integer mealsUnitName,
 			Integer mealsUserName, Integer acceptanceUnitName, Integer acceptanceUserName, String packingPhoto,
 			String sealPhoto, String carPhoto, String openedPhoto, Date startTime, Date endTime, Date acceptanceTime,
 			Integer status, String address, Date createTime) {
@@ -59,10 +59,10 @@ public class Distribution implements Serializable {
 		this.address = address;
 		this.createTime = createTime;
 	}
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	public String getDailyTime() {
@@ -177,6 +177,7 @@ public class Distribution implements Serializable {
 				+ ", acceptanceTime=" + acceptanceTime + ", status=" + status + ", address=" + address + ", createTime="
 				+ createTime + "]";
 	}
+	
 	
 	
 }
