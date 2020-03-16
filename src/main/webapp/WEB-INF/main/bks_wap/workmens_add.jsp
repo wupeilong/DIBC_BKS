@@ -41,6 +41,10 @@
 					  <input type="text" class="form-control box-shadow0 border-bottom" id="username" name="username" placeholder="请输入姓名" aria-describedby="sizing-addon1">
 					</div>
 					<div class="input-group form-group fs">
+					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>密&ensp;&ensp;&ensp;&ensp;码</span>
+					  <input type="text" class="form-control box-shadow0 border-bottom" id="password" name="password" placeholder="请输入密码" aria-describedby="sizing-addon1">
+					</div>
+					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>身份证号</span>
 					  <input type="text" class="form-control box-shadow0 border-bottom" id="idCard" name="idCard" value="5222" placeholder="请输入身份证号" aria-describedby="sizing-addon1">
 					</div>
@@ -98,7 +102,10 @@
 			}else if($("#username").val() == ""){
 				layer.msg("请输入姓名",{icon:2,time:1000});
 				$("#username").focus();		
-			}else if($("#idCard").val() == ""){				
+			}else if($("#password").val() == ""){
+				layer.msg("请输入密码",{icon:2,time:1000});
+				$("#username").focus();		
+			}else if($("#idCard").val() == "" || $("#idCard").val().length<18){				
 				layer.msg("请输入18位身份证号码",{icon:2,time:1000});
 				$("#idCard").focus();		
 			}else if($("#age").val() == ""){
@@ -115,6 +122,7 @@
 				formData.append('unimg',$("#fileinput")[0].files[0]);
 				formData.append('duty',$("#duty").val());
 				formData.append('username',$("#username").val());
+				formData.append('password',$("#password").val());
 				formData.append('idCard',$("#idCard").val());
 				formData.append('age',$("#age").val());
 				formData.append('healthCertificateCode',$("#healthCertificateCode").val());				
@@ -130,7 +138,7 @@
 								layer.msg(obj.message,{icon:2,time:1000});
 								return;				
 							}else{					
-								layer.msg(obj.message,{icon:1,time:1000},function(){layer_close();});
+								layer.msg(obj.message,{icon:1,time:1000});
 							}				
 						}
 					}); 

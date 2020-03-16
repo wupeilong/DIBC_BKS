@@ -5,7 +5,7 @@
 <head>
 	<meta charset=utf-8>
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
-	<title></title>
+	<title>云监食安系统登录页</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/style.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/index.css"/>
@@ -17,7 +17,7 @@
 			<div class="text-center margin-top">
 				<div class="logo"><img src="${pageContext.request.contextPath}/static/images/bks_wap/logo.png" class="img-responsive"></div>
 				<h3 class="fonwei">云岩区市场监督管理局</h3>
-				<a href="${pageContext.request.contextPath}/home">进入主页</a>
+				<%-- <a href="${pageContext.request.contextPath}/home">进入主页</a> --%>
 			</div>
 			<div class="margin-top3">
 				<form class="login_form">
@@ -66,7 +66,6 @@
 									return;
 								}else{
 									layer.msg(obj.message,{icon:1,time:1000},function(){location.href = "home";});
-									
 								}					
 							}
 						}); 

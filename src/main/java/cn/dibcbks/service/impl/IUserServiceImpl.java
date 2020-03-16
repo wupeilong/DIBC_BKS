@@ -99,7 +99,7 @@ public class IUserServiceImpl implements IUserService {
 		}catch (Exception e) {
 			e.printStackTrace();
 			logger.error(Constants.ERROR_HEAD_INFO + "用户注册失败 原因：" + e.getMessage());
-			return new ResponseResult<>(ResponseResult.ERROR,"企业账户信息注册失败");
+			return new ResponseResult<>(ResponseResult.ERROR,"账户信息重复，注册失败");
 		}
 	}
 
