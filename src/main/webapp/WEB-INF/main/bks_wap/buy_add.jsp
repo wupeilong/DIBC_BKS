@@ -227,8 +227,8 @@
 											layer.msg(obj.message,{icon:1,time:1000});
 											//延时刷新页面
 											setTimeout(function (){							 
-												window.location.href = "${pageContext.request.contextPath}/dry/buy_list";
-											}, 3000);	
+												window.location.reload()/*  = "${pageContext.request.contextPath}/dry/buy_list" */;
+											}, 6000);	
 										}
 										
 									}
