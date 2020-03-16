@@ -27,22 +27,44 @@
 					<div class="">
 						<table class="table table-bordered" cellspacing="" cellpadding="">
 							<caption class="">
-								<span class="col-xs-6">消毒人员：</span>
-								<span class="col-xs-6">消毒日期：</span>
+								<span class="col-xs-6">消毒人员：<span>${user.username }</span></span>
+								<span class="col-xs-6">消毒日期：<span>
+									<script type="text/javascript">
+				                     var date = new Date();
+				                     document.write(date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日");
+				                    </script>
+			                   </span></span>
 							</caption>
 							<thead>
 								<tr><th colspan="2">消毒项目</th><th colspan="2">消毒结果</th></tr>
 							</thead>
 							<tbody>
-								<tr><td rowspan="4">餐(炊)具种类</td><td>小餐具类</td><td>是：<input type="radio" name="tableware" id="" value="" /></td><td>否：<input type="radio" name="tableware" id="" value="" /></td></tr>
-								<tr><td>大餐具类</td><td>是：<input type="radio" name="bigTableware" id="" value="" /></td><td>否：<input type="radio" name="bigTableware" id="" value="" /></td></tr>
-								<tr><td>筷子、勺子类</td><td>是：<input type="radio" name="chopsticks" id="" value="" /></td><td>否：<input type="radio" name="chopsticks" id="" value="" /></td></tr>
-								<tr><td>锅、盆类</td><td>是：<input type="radio" name="panPot" id="" value="" /></td><td>否：<input type="radio" name="panPot" id="" value="" /></td></tr>
+								<tr>
+									<td rowspan="4">餐(炊)具种类</td>
+									<td>小餐具类</td><td>是：<input type="radio" name="tableware" id="1" value="" /></td><td>否：<input type="radio" name="tableware" id="" value="" /></td>
+								</tr>
+								<tr>
+									<td>大餐具类</td><td>是：<input type="radio" name="bigTableware" id="2" value="" /></td><td>否：<input type="radio" name="bigTableware" id="" value="" /></td>
+								</tr>
+								<tr>
+									<td>筷子、勺子类</td><td>是：<input type="radio" name="chopsticks" id="3" value="" /></td><td>否：<input type="radio" name="chopsticks" id="" value="" /></td>
+								</tr>
+								<tr>
+									<td>锅、盆类</td><td>是：<input type="radio" name="panPot" id="" value="4" /></td><td>否：<input type="radio" name="panPot" id="" value="" /></td>
+								</tr>
 								
-								<tr><td colspan="2">工具类</td><td>是：<input type="radio" name="toolsType" id="" value="" /></td><td>否：<input type="radio" name="toolsType" id="" value="" /></td></tr>
-								<tr><td colspan="2">餐具保洁设施</td><td>是：<input type="radio" name="establish" id="" value="" /></td><td>否：<input type="radio" name="establish" id="" value="" /></td></tr>
-								<tr><td rowspan="2">消毒方法</td><td>电子消毒柜</td><td>是：<input type="radio" name="sterilizer" id="" value="" /></td><td>否：<input type="radio" name="sterilizer" id="" value="" /></td></tr>
-								<tr><td>消毒药水</td><td>是：<input type="radio" name="disinfectant" id="" value="" /></td><td>否：<input type="radio" name="disinfectant" id="" value="" /></td></tr>
+								<tr>
+									<td colspan="2">工具类</td><td>是：<input type="radio" name="toolsType" id="" value="" /></td><td>否：<input type="radio" name="toolsType" id="" value="" /></td>
+								</tr>
+								<tr>
+									<td colspan="2">餐具保洁设施</td><td>是：<input type="radio" name="establish" id="" value="" /></td><td>否：<input type="radio" name="establish" id="" value="" /></td>
+								</tr>
+								<tr>
+									<td rowspan="2">消毒方法</td><td>电子消毒柜</td><td>是：<input type="radio" name="sterilizer" id="" value="" /></td><td>否：<input type="radio" name="sterilizer" id="" value="" /></td>
+								</tr>
+								<tr>
+									<td>消毒药水</td><td>是：<input type="radio" name="disinfectant" id="" value="" /></td><td>否：<input type="radio" name="disinfectant" id="" value="" /></td>
+								</tr>
 								<tr>
 									<td colspan="2">消毒时间</td>
 									<td colspan="2">
