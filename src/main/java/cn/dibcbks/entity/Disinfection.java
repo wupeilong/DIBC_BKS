@@ -3,7 +3,6 @@ package cn.dibcbks.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 
 /**
  * 清洗消毒信息表
@@ -11,42 +10,37 @@ import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
  *
  */
 public class Disinfection implements Serializable {
+	
 	/**
-	 * 序列化版本ID
+	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -9081659886805268936L;
 	private Integer id;//主键ID
 	private String dailyTime;//清洗消毒日期
 	private Integer unitId;//清洗消毒单位
+	private String unitName;//消毒人员
 	private Integer userId;//消毒人员ID
-	private String username;//消毒人员
-	private String tools;//工具类
-	private String cleaningFacilities;//保洁设施
-	private String method;//消毒方法
-	private String tablewareType;//餐（饮）具种类
+	private String username;//消毒人员		
 	private Date startTime;//开始时间
 	private Date endTime;//结束时间
+	private String result;//清洗消毒图片
 	private String disinfectionPhoto;//清洗消毒图片
 	private Date createTime;//创建时间
 	public Disinfection() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public Disinfection(Integer id, String dailyTime, Integer unitId, Integer userId, String username, String tools,
-			String cleaningFacilities, String method, String tablewareType, Date startTime, Date endTime,
-			String disinfectionPhoto, Date createTime) {
+	public Disinfection(Integer id, String dailyTime, Integer unitId, String unitName, Integer userId, String username,
+			Date startTime, Date endTime, String result, String disinfectionPhoto, Date createTime) {
 		super();
 		this.id = id;
 		this.dailyTime = dailyTime;
 		this.unitId = unitId;
+		this.unitName = unitName;
 		this.userId = userId;
 		this.username = username;
-		this.tools = tools;
-		this.cleaningFacilities = cleaningFacilities;
-		this.method = method;
-		this.tablewareType = tablewareType;
 		this.startTime = startTime;
 		this.endTime = endTime;
+		this.result = result;
 		this.disinfectionPhoto = disinfectionPhoto;
 		this.createTime = createTime;
 	}
@@ -68,6 +62,12 @@ public class Disinfection implements Serializable {
 	public void setUnitId(Integer unitId) {
 		this.unitId = unitId;
 	}
+	public String getUnitName() {
+		return unitName;
+	}
+	public void setUnitName(String unitName) {
+		this.unitName = unitName;
+	}
 	public Integer getUserId() {
 		return userId;
 	}
@@ -80,30 +80,6 @@ public class Disinfection implements Serializable {
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	public String getTools() {
-		return tools;
-	}
-	public void setTools(String tools) {
-		this.tools = tools;
-	}
-	public String getCleaningFacilities() {
-		return cleaningFacilities;
-	}
-	public void setCleaningFacilities(String cleaningFacilities) {
-		this.cleaningFacilities = cleaningFacilities;
-	}
-	public String getMethod() {
-		return method;
-	}
-	public void setMethod(String method) {
-		this.method = method;
-	}
-	public String getTablewareType() {
-		return tablewareType;
-	}
-	public void setTablewareType(String tablewareType) {
-		this.tablewareType = tablewareType;
-	}
 	public Date getStartTime() {
 		return startTime;
 	}
@@ -115,6 +91,12 @@ public class Disinfection implements Serializable {
 	}
 	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
+	}
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
 	}
 	public String getDisinfectionPhoto() {
 		return disinfectionPhoto;
@@ -130,10 +112,10 @@ public class Disinfection implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return "Disinfection [id=" + id + ", dailyTime=" + dailyTime + ", unitId=" + unitId + ", userId=" + userId
-				+ ", username=" + username + ", tools=" + tools + ", cleaningFacilities=" + cleaningFacilities
-				+ ", method=" + method + ", tablewareType=" + tablewareType + ", startTime=" + startTime + ", endTime="
-				+ endTime + ", disinfectionPhoto=" + disinfectionPhoto + ", createTime=" + createTime + "]";
+		return "Disinfection [id=" + id + ", dailyTime=" + dailyTime + ", unitId=" + unitId + ", unitName=" + unitName
+				+ ", userId=" + userId + ", username=" + username + ", startTime=" + startTime + ", endTime=" + endTime
+				+ ", result=" + result + ", disinfectionPhoto=" + disinfectionPhoto + ", createTime=" + createTime
+				+ "]";
 	}
-			  
+	
 }

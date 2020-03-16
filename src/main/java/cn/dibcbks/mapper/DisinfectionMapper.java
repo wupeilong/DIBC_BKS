@@ -15,7 +15,7 @@ public interface DisinfectionMapper {
 	
 	Disinfection queryDisinfection(@Param("id")Integer id);
 	
-	Integer updateById(Disinfection disinfection);
+	//Integer updateById(Disinfection disinfection);
 	
 	Integer deleteById(Integer id);
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,27 +28,110 @@
 					<div class="">
 						<table class="table table-bordered" cellspacing="" cellpadding="">
 							<caption class="">
-								<span class="col-xs-6">消毒人员：</span>
-								<span class="col-xs-6">消毒日期：</span>
+								<span class="col-xs-6">消毒人员：<span>${disinfectionbyid[0].username}</span></span>
+								<span class="col-xs-6">消毒日期：<span>${disinfectionbyid[0].dailyTime}</span><span>			                   
 							</caption>
 							<thead>
 								<tr><th colspan="2">消毒项目</th><th colspan="2">消毒结果</th></tr>
 							</thead>
 							<tbody>
-								<tr><td rowspan="4">餐(炊)具种类</td><td>小餐具类</td><td>是：<input type="radio" name="tableware" id="" value="" /></td><td>否：<input type="radio" name="tableware" id="" value="" /></td></tr>
-								<tr><td>大餐具类</td><td>是：<input type="radio" name="bigTableware" id="" value="" /></td><td>否：<input type="radio" name="bigTableware" id="" value="" /></td></tr>
-								<tr><td>筷子、勺子类</td><td>是：<input type="radio" name="chopsticks" id="" value="" /></td><td>否：<input type="radio" name="chopsticks" id="" value="" /></td></tr>
-								<tr><td>锅、盆类</td><td>是：<input type="radio" name="panPot" id="" value="" /></td><td>否：<input type="radio" name="panPot" id="" value="" /></td></tr>
+							
+							
+								<tr>
+									<td rowspan="4">餐(炊)具种类</td>
+									<td>小餐具类</td>
+									<c:if test="${DisinfectionDetal[0]==1}">
+										<td>是：<input type="radio" name="tableware0" id="tableware" value="1" checked="checked" /></td>
+										<td>否：<input type="radio" name="tableware0" id="tableware" value="2" /></td>
+									</c:if>
+									<c:if test="${DisinfectionDetal[0]!=1}">
+										<td>是：<input type="radio" name="tableware0" id="tableware" value="1"  /></td>
+										<td>否：<input type="radio" name="tableware0" id="tableware" value="2" checked="checked"/></td>
+									</c:if>
+								</tr>
+								<tr>
+									<td>大餐具类</td>
+									<c:if test="${DisinfectionDetal[1]==1}">
+										<td>是：<input type="radio" name="tableware1" id="tableware" value="1" checked="checked" /></td>
+										<td>否：<input type="radio" name="tableware1" id="tableware" value="2" /></td>
+									</c:if>
+									<c:if test="${DisinfectionDetal[1]!=1}">
+										<td>是：<input type="radio" name="tableware1" id="tableware" value="1"  /></td>
+										<td>否：<input type="radio" name="tableware1" id="tableware" value="2" checked="checked"/></td>
+									</c:if>
+								</tr>
+								<tr>
+									<td>筷子、勺子类</td>
+									<c:if test="${DisinfectionDetal[2]==1}">
+										<td>是：<input type="radio" name="tableware2" id="tableware" value="1" checked="checked" /></td>
+										<td>否：<input type="radio" name="tableware2" id="tableware" value="2" /></td>
+									</c:if>
+									<c:if test="${DisinfectionDetal[2]!=1}">
+										<td>是：<input type="radio" name="tableware2" id="tableware" value="1"  /></td>
+										<td>否：<input type="radio" name="tableware2" id="tableware" value="2" checked="checked"/></td>
+									</c:if>
+								</tr>
+								<tr>
+									<td>锅、盆类</td>
+									<c:if test="${DisinfectionDetal[3]==1}">
+										<td>是：<input type="radio" name="tableware3" id="tableware" value="1" checked="checked" /></td>
+										<td>否：<input type="radio" name="tableware3" id="tableware" value="2" /></td>
+									</c:if>
+									<c:if test="${DisinfectionDetal[3]!=1}">
+										<td>是：<input type="radio" name="tableware3" id="tableware" value="1"  /></td>
+										<td>否：<input type="radio" name="tableware3" id="tableware" value="2" checked="checked"/></td>
+									</c:if>
+								</tr>
 								
-								<tr><td colspan="2">工具类</td><td>是：<input type="radio" name="toolsType" id="" value="" /></td><td>否：<input type="radio" name="toolsType" id="" value="" /></td></tr>
-								<tr><td colspan="2">餐具保洁设施</td><td>是：<input type="radio" name="establish" id="" value="" /></td><td>否：<input type="radio" name="establish" id="" value="" /></td></tr>
-								<tr><td rowspan="2">消毒方法</td><td>电子消毒柜</td><td>是：<input type="radio" name="sterilizer" id="" value="" /></td><td>否：<input type="radio" name="sterilizer" id="" value="" /></td></tr>
-								<tr><td>消毒药水</td><td>是：<input type="radio" name="disinfectant" id="" value="" /></td><td>否：<input type="radio" name="disinfectant" id="" value="" /></td></tr>
+								<tr>
+									<td colspan="2">工具类</td>
+									<c:if test="${DisinfectionDetal[4]==1}">
+										<td>是：<input type="radio" name="tableware4" id="tableware" value="1" checked="checked" /></td>
+										<td>否：<input type="radio" name="tableware4" id="tableware" value="2" /></td>
+									</c:if>
+									<c:if test="${DisinfectionDetal[4]!=1}">
+										<td>是：<input type="radio" name="tableware4" id="tableware" value="1"  /></td>
+										<td>否：<input type="radio" name="tableware4" id="tableware" value="2" checked="checked"/></td>
+									</c:if>
+								</tr>
+								<tr>
+									<td colspan="2">餐具保洁设施</td>
+									<c:if test="${DisinfectionDetal[5]==1}">
+										<td>是：<input type="radio" name="tableware5" id="tableware" value="1" checked="checked" /></td>
+										<td>否：<input type="radio" name="tableware5" id="tableware" value="2" /></td>
+									</c:if>
+									<c:if test="${DisinfectionDetal[5]!=1}">
+										<td>是：<input type="radio" name="tableware5" id="tableware" value="1"  /></td>
+										<td>否：<input type="radio" name="tableware5" id="tableware" value="2" checked="checked"/></td>
+									</c:if>
+								</tr>
+								<tr>
+									<td rowspan="2">消毒方法</td><td>电子消毒柜</td>
+									<c:if test="${DisinfectionDetal[6]==1}">
+										<td>是：<input type="radio" name="tableware6" id="tableware" value="1" checked="checked" /></td>
+										<td>否：<input type="radio" name="tableware6" id="tableware" value="2" /></td>
+									</c:if>
+									<c:if test="${DisinfectionDetal[6]!=1}">
+										<td>是：<input type="radio" name="tableware6" id="tableware" value="1"  /></td>
+										<td>否：<input type="radio" name="tableware6" id="tableware" value="2" checked="checked"/></td>
+									</c:if>
+								</tr>
+								<tr>
+									<td>消毒药水</td>
+									<c:if test="${DisinfectionDetal[7]==1}">
+										<td>是：<input type="radio" name="tableware7" id="tableware" value="1" checked="checked" /></td>
+										<td>否：<input type="radio" name="tableware7" id="tableware" value="2" /></td>
+									</c:if>
+									<c:if test="${DisinfectionDetal[7]!=1}">
+										<td>是：<input type="radio" name="tableware7" id="tableware" value="1"  /></td>
+										<td>否：<input type="radio" name="tableware7" id="tableware" value="2" checked="checked"/></td>
+									</c:if>
+								</tr>
 								<tr>
 									<td colspan="2">消毒时间</td>
 									<td colspan="2">
 										<div class="">
-											<input readonly="" class="form-control" type="text" id="date-group1-6" placeholder="hh:mm">
+											<input readonly="" class="form-control" type="text" id="date-group1-6" value="<fmt:formatDate value="${disinfectionbyid[0].createTime}" pattern="yyyy-MM-dd HH:mm:ss"/>" placeholder="hh:mm">
 										</div>
 										<!-- <select name="">
 											<option value="">请选择时间</option>
@@ -62,46 +146,7 @@
 			<div class="margin-top2 margin-bot2">
 				<!-- <button type="button" class="btn btn-primary form-control">提交</button> -->
 			</div>
-		</main>		
-		<script src="${pageContext.request.contextPath}/static/js/bks_wap/rolldate.min.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-			new Rolldate({
-				el: '#date-group1-6',
-				format: 'hh:mm'
-			})
-			
-			layui.use('upload', function(){
-			  var $ = layui.jquery
-			  ,upload = layui.upload;
-			  
-			  //普通图片上传
-			  var uploadInst = upload.render({
-			    elem: '#test1'
-			    ,url: 'https://httpbin.org/post' //改成您自己的上传接口
-			    ,before: function(obj){
-			      //预读本地文件示例，不支持ie8
-			      obj.preview(function(index, file, result){
-			        $('#demo1').attr('src', result); //图片链接（base64）
-			      });
-			    }
-			    ,done: function(res){
-			      //如果上传失败
-			      if(res.code > 0){
-			        return layer.msg('上传失败');
-			      }
-			      //上传成功
-			    }
-			    ,error: function(){
-			      //演示失败状态，并实现重传
-			      var demoText = $('#demoText');
-			      demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-			      demoText.find('.demo-reload').on('click', function(){
-			        uploadInst.upload();
-			      });
-			    }
-			  });
-			  });
-		</script>
+		</main>			
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
 

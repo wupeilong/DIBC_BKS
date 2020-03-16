@@ -21,40 +21,14 @@
 				<a href="javascript:history.go(-1)" class="text-white"><i class="fa fa-angle-left"></i></a>
 				<div class="">
 					<div class="">
-						<!-- <a href="" class="btn bg-primary padding-side"><i class="fa fa-search"></i></a> -->
-						<select>
-							<option value="BlackBerry">BlackBerry</option>
-							<option value="device">device</option>
-							<option value="with">with</option>
-							<option value="entertainment">entertainment</option>
-							<option value="and">and</option>
-							<option value="social">social</option>
-							<option value="networking">networking</option>
-							<option value="apps">apps</option>
-							<option value="or">or</option>
-							<option value="apps">apps</option>
-							<option value="that">that</option>
-							<option value="will">will</option>
-							<option value="boost">boost</option>
-							<option value="your">your</option>
-							<option value="productivity">productivity</option>
-							<option value="Download">Download</option>
-							<option value="or">or</option>
-							<option value="buy">buy</option>
-							<option value="apps">apps</option>
-							<option value="from">from</option>
-							<option value="Afbb">Afbb</option>
-							<option value="Akademie">Akademie</option>
-							<option value="Berlin">Berlin</option>
-							<option value="reviews">reviews</option>
-							<option value="by">by</option>
-							<option value="real">real</option>
-						</select>
-						<script>
-							$(function(){
-								$('select').searchableSelect();
-							});
-						</script>
+						<c:if test="${user.type==1}">
+							<select id="unit_list"">
+									<option value="0">选择全部企业信息</option>
+									<c:forEach items="${unitlistall}" var="item">								
+										<option value="${item.unitId}">${item.unitName}</option>
+									</c:forEach>							
+							</select>
+						</c:if>						
 					</div>
 				</div>
 				<a href="${pageContext.request.contextPath}/clean/clean_add" class="btn bg-primary"><i class="fa fa-plus"></i></a>
@@ -66,13 +40,48 @@
 					<thead>
 						<tr><th>序号</th><th>学校名称</th><th>消毒日期</th><th>操作</th></tr>
 					</thead>
-					<tbody>
-						<tr><td>1</td><td>贵阳市第一实验中学</td><td>03-12</td><td><a href="${pageContext.request.contextPath}/clean/clean_detal">详情</a></td></tr>
+					<tbody id="datvarbody">
+						<c:forEach items="${disinfectionlist}" var="f">
+							<tr>
+								<td>${f.id}</td>
+								<td>${f.unitName}</td>
+								<td>${f.dailyTime}</td>
+								<td><a href="${pageContext.request.contextPath}/clean/clean_detal?id=${f.id}">详情</a></td>
+							</tr>
+						</c:forEach>						
 					</tbody>
 				</table>
 			</div>
 		</main>	
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
-
+<script type="text/javascript">
+	$('#unit_list').searchableSelect({
+		"afterSelectItem":function(){			
+				var url = "../clean/clean_alllist";
+				var data = "unitId=" + $("#unit_list").val();
+				$.ajax({
+					"url" : url,
+					"data" : data,
+					"type" : "POST",
+					"dataType" : "json",
+					"success" : function(obj) {
+						if (obj.state == 0) {
+							layer.msg(obj.message,{icon:2,time:1000});
+							return;
+						}else{							
+							var datvar="";							
+							for(var i=0;i<obj.data.length;i++){
+								datvar +='<tr><td>'+obj.data[i].id+'</td>'+
+										'<td>'+obj.data[i].unitName+'</td>'+
+										'<td>'+obj.data[i].dailyTime+'</td>'+
+										'<td><a href="${pageContext.request.contextPath}/clean/clean_detal?id='+obj.data[i].id+'">详情</a></td></tr>';							
+							}
+							$("#datvarbody").html(datvar);													
+						}				
+					}
+				}); 					
+		}
+	});	
+</script>
 </html>

@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
 import cn.dibcbks.entity.Detection;
-import cn.dibcbks.entity.Unit;
 import cn.dibcbks.mapper.DetectionMapper;
-import cn.dibcbks.mapper.UnitMapper;
 import cn.dibcbks.service.IDetectionService;
 import cn.dibcbks.util.Constants;
 import cn.dibcbks.util.ResponseResult;
@@ -20,8 +18,7 @@ public class IDetectionServiceImpl implements IDetectionService{
 	private static final Logger logger = LogManager.getLogger(IDetectionServiceImpl.class.getName());
 	@Autowired
 	private DetectionMapper detectionMapper;
-	@Autowired
-	private UnitMapper unitMapper;
+
 	
 	@Override
 	public ResponseResult<List<Detection>> queryDetectionList(ModelMap modelMap,Integer unitId) {

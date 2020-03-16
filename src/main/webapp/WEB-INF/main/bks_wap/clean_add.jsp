@@ -12,7 +12,8 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/index.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/js/layui/css/layui.css"/>
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
-	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>		
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>	
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/2.4/layer.js"></script>		
 </head>
 	<body class="contain">
 		<div class="navigation bg-primary">
@@ -41,52 +42,75 @@
 							<tbody>
 								<tr>
 									<td rowspan="4">餐(炊)具种类</td>
-									<td>小餐具类</td><td>是：<input type="radio" name="tableware" id="1" value="" /></td><td>否：<input type="radio" name="tableware" id="" value="" /></td>
+									<td>小餐具类</td><td>是：<input type="radio" name="tableware0" id="tableware" value="1" /></td><td>否：<input type="radio" name="tableware0" id="tableware" value="2" /></td>
 								</tr>
 								<tr>
-									<td>大餐具类</td><td>是：<input type="radio" name="bigTableware" id="2" value="" /></td><td>否：<input type="radio" name="bigTableware" id="" value="" /></td>
+									<td>大餐具类</td><td>是：<input type="radio" name="tableware1" id="tableware1" value="1" /></td><td>否：<input type="radio" name="tableware1" id="tableware1" value="2" /></td>
 								</tr>
 								<tr>
-									<td>筷子、勺子类</td><td>是：<input type="radio" name="chopsticks" id="3" value="" /></td><td>否：<input type="radio" name="chopsticks" id="" value="" /></td>
+									<td>筷子、勺子类</td><td>是：<input type="radio" name="tableware2" id="tableware2" value="1" /></td><td>否：<input type="radio" name="tableware2" id="tableware2" value="2" /></td>
 								</tr>
 								<tr>
-									<td>锅、盆类</td><td>是：<input type="radio" name="panPot" id="" value="4" /></td><td>否：<input type="radio" name="panPot" id="" value="" /></td>
+									<td>锅、盆类</td><td>是：<input type="radio" name="tableware3" id="" value="1" /></td><td>否：<input type="radio" name="tableware3" id="" value="2" /></td>
 								</tr>
 								
 								<tr>
-									<td colspan="2">工具类</td><td>是：<input type="radio" name="toolsType" id="" value="" /></td><td>否：<input type="radio" name="toolsType" id="" value="" /></td>
+									<td colspan="2">工具类</td><td>是：<input type="radio" name="tableware4" id="" value="1" /></td><td>否：<input type="radio" name="tableware4" id="" value="2" /></td>
 								</tr>
 								<tr>
-									<td colspan="2">餐具保洁设施</td><td>是：<input type="radio" name="establish" id="" value="" /></td><td>否：<input type="radio" name="establish" id="" value="" /></td>
+									<td colspan="2">餐具保洁设施</td><td>是：<input type="radio" name="tableware5" id="" value="1" /></td><td>否：<input type="radio" name="tableware5" id="" value="2" /></td>
 								</tr>
 								<tr>
-									<td rowspan="2">消毒方法</td><td>电子消毒柜</td><td>是：<input type="radio" name="sterilizer" id="" value="" /></td><td>否：<input type="radio" name="sterilizer" id="" value="" /></td>
+									<td rowspan="2">消毒方法</td><td>电子消毒柜</td><td>是：<input type="radio" name="tableware6" id="" value="1" /></td><td>否：<input type="radio" name="tableware6" id="" value="2" /></td>
 								</tr>
 								<tr>
-									<td>消毒药水</td><td>是：<input type="radio" name="disinfectant" id="" value="" /></td><td>否：<input type="radio" name="disinfectant" id="" value="" /></td>
+									<td>消毒药水</td><td>是：<input type="radio" name="tableware7" id="" value="1" /></td><td>否：<input type="radio" name="tableware7" id="" value="2" /></td>
 								</tr>
-								<tr>
+								<!-- <tr>
 									<td colspan="2">消毒时间</td>
 									<td colspan="2">
 										<div class="">
 											<input readonly="" class="form-control" type="text" id="date-group1-6" placeholder="hh:mm">
 										</div>
-										<!-- <select name="">
+										<select name="">
 											<option value="">请选择时间</option>
-										</select> -->
+										</select>
 									</td>
-								</tr>
+								</tr> -->
 							</tbody>
 						</table>
 					</div>
 				  </fieldset>
 			</form>
 			<div class="margin-top2 margin-bot2">
-				<button type="button" class="btn btn-primary form-control">提交</button>
+				<button type="button" class="btn btn-primary form-control" onclick="diskinput()">提交</button>
 			</div>
 		</main>		
 		<script src="${pageContext.request.contextPath}/static/js/bks_wap/rolldate.min.js" type="text/javascript" charset="utf-8"></script>
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
-
+<script type="text/javascript">
+function diskinput(){	
+	var queryrights=new Array();	 	
+	for(var i = 0; i < 8; i++){ 
+		queryrights[i]=$("input[name='tableware"+i+"']:checked").val();	
+	} 	
+	var url="clean_regadd"; 
+	var  data ="queryrights="+JSON.stringify(queryrights);	 			  
+    $.ajax({    	   
+	   "url":url,    	  
+	   "data":data,
+	   "type":"POST",
+	   "dataType":"json",
+	   "success":function(obj){    		  
+		   if (obj.state == 0) {
+				layer.msg(obj.message,{icon:2,time:1000});
+				return;				
+			}else{					
+				layer.msg(obj.message,{icon:1,time:1000},function(){location.href="../clean/clean_list"});
+			}  
+	   }      
+	});  
+}
+</script>
 </html>
