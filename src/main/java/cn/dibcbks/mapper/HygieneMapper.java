@@ -15,7 +15,7 @@ public interface HygieneMapper {
 	
 	Hygiene queryHygiene(@Param("hygieneId")Integer hygieneId);
 	
-	Hygiene updateById(Hygiene hygiene);
+	Integer updateById(Hygiene hygiene);
 	
 	Integer deleteById(Integer id);
 }

@@ -17,10 +17,10 @@ public class Distribution implements Serializable {
 	private String dailyTime;//当前日期
 	private Integer type;//送餐类型：1-早餐 2-午餐 3-晚餐'
 	private Integer cateringType;//配餐类型：1-学校自主开餐 2-餐饮业配餐
-	private Integer mealsUnitName;//送餐单位
-	private Integer mealsUserName;//送餐人
-	private Integer acceptanceUnitName;//学校ID
-	private Integer acceptanceUserName;//验收人ID
+	private String mealsUnitName;//送餐单位
+	private String mealsUserName;//送餐人
+	private String acceptanceUnitName;//学校ID
+	private String acceptanceUserName;//验收人ID
 	private String packingPhoto;//送餐装箱图
 	private String sealPhoto;//装完箱贴封条图
 	private String carPhoto;//送餐车图
@@ -35,8 +35,8 @@ public class Distribution implements Serializable {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Distribution(String id, String dailyTime, Integer type, Integer cateringType, Integer mealsUnitName,
-			Integer mealsUserName, Integer acceptanceUnitName, Integer acceptanceUserName, String packingPhoto,
+	public Distribution(String id, String dailyTime, Integer type, Integer cateringType, String mealsUnitName,
+			String mealsUserName, String acceptanceUnitName, String acceptanceUserName, String packingPhoto,
 			String sealPhoto, String carPhoto, String openedPhoto, Date startTime, Date endTime, Date acceptanceTime,
 			Integer status, String address, Date createTime) {
 		super();
@@ -83,28 +83,28 @@ public class Distribution implements Serializable {
 	public void setCateringType(Integer cateringType) {
 		this.cateringType = cateringType;
 	}
-	public Integer getMealsUnitName() {
+	public String getMealsUnitName() {
 		return mealsUnitName;
 	}
-	public void setMealsUnitName(Integer mealsUnitName) {
+	public void setMealsUnitName(String mealsUnitName) {
 		this.mealsUnitName = mealsUnitName;
 	}
-	public Integer getMealsUserName() {
+	public String getMealsUserName() {
 		return mealsUserName;
 	}
-	public void setMealsUserName(Integer mealsUserName) {
+	public void setMealsUserName(String mealsUserName) {
 		this.mealsUserName = mealsUserName;
 	}
-	public Integer getAcceptanceUnitName() {
+	public String getAcceptanceUnitName() {
 		return acceptanceUnitName;
 	}
-	public void setAcceptanceUnitName(Integer acceptanceUnitName) {
+	public void setAcceptanceUnitName(String acceptanceUnitName) {
 		this.acceptanceUnitName = acceptanceUnitName;
 	}
-	public Integer getAcceptanceUserName() {
+	public String getAcceptanceUserName() {
 		return acceptanceUserName;
 	}
-	public void setAcceptanceUserName(Integer acceptanceUserName) {
+	public void setAcceptanceUserName(String acceptanceUserName) {
 		this.acceptanceUserName = acceptanceUserName;
 	}
 	public String getPackingPhoto() {

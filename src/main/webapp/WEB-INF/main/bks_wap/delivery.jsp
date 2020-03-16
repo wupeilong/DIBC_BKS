@@ -26,7 +26,7 @@
 							<select id="unit_list"">
 								<option value="">查询所有企业信息</option>
 								<c:forEach items="${unitList}" var="item">								
-									<option value="${item.unitId}">${item.unitName}</option>
+									<option value="${item.unitName}">${item.unitName}</option>
 								</c:forEach>							
 							</select>
 						</c:if>
@@ -41,9 +41,16 @@
 					<thead>
 						<tr><th>序号</th><th>配送单号</th><th>供应商</th><th>验收单位</th><th>操作</th></tr>
 					</thead>
-					<tbody>
-						<tr><td>1</td><td>001011</td><td>data</td><td>data</td><td><a href="${pageContext.request.contextPath}/dry/delivery_detal">详情</a></td></tr>
-						<tr><td>2</td><td>001012</td><td>data</td><td>data</td><td><a href="">详情</a></td></tr>
+					<tbody id="result_list">
+						<c:forEach items="${distributionList}" var="item" varStatus="vs">
+							<tr>
+							<td>${vs.count}</td>
+							<td>${item.id }</td>
+							<td>${item.mealsUnitName}</td>
+							<td>${item.acceptanceUnitName}</td>
+							<td><a href="${pageContext.request.contextPath}/dry/delivery_detal?id=${item.id}">详情</a></td>
+							</tr>
+						</c:forEach>				
 					</tbody>
 				</table>
 			</div>
@@ -53,8 +60,8 @@
 	<script type="text/javascript">
 	$('select').searchableSelect({
 		"afterSelectItem":function(){
-			/* var url = "${pageContext.request.contextPath}/unit/list";
-			var data = "unitId=" + $("#unit_list").val();
+			var url = "${pageContext.request.contextPath}/dry/deliveryList";
+			var data = "unitName=" + $("#unit_list").val();	
 			$.ajax({
 				"url" : url,
 				"data" : data,
@@ -68,17 +75,18 @@
 						var result = "";
 						for(var i=0;i<obj.data.length;i++){
 							result += "<tr>";
-							result += "<td>" + obj.data[i].unitId + "</td>";
-							result += "<td>" + obj.data[i].unitName + "</td>";
-							result += "<td>" + obj.data[i].legalPerson + "</td>";
-							result += "<td><a href='${pageContext.request.contextPath}/unit/coopration_detal?unitId=" + obj.data[i].unitId + "'>详情</a></td>";
+							result += "<td>" + i + "</td>";
+							result += "<td>" + obj.data[i].id + "</td>";
+							result += "<td>" + obj.data[i].mealsUnitName + "</td>";
+							result += "<td>" + obj.data[i].acceptanceUnitName + "</td>";
+							result += "<td><a href='${pageContext.request.contextPath}/dry/delivery_detal?id=" + obj.data[i].id + "'>详情</a></td>";
 							result += "</tr>";
 						}
 						$("#result_list").html(result);
 						console.log(obj.data);									
 					}				
 				}
-			});  */
+			});
 		}
 	});
 	

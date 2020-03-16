@@ -16,7 +16,7 @@ public interface DistributionMapper {
 	
 	Distribution queryDistribution(@Param("id")String id);
 	
-	Distribution updateById(Distribution distribution);
+	Integer updateById(Distribution distribution);
 	
 	Integer deleteById(Integer id);
 }
