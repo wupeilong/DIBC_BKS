@@ -26,6 +26,9 @@
 	<insert id="insert" parameterType="cn.dibcbks.entity.Distribution">
 		INSERT INTO  distribution
 	    <trim prefix="(" suffix=")" suffixOverrides=",">
+	    <if test="id != null">
+	        id,
+	     </if>	    	
 	      <if test="dailyTime != null">
 	        daily_time,
 	      </if>
@@ -36,7 +39,7 @@
 	        catering_type,
 	      </if>	      
 	      <if test="mealsUnitName != null">
-	        meals_unit_id,
+	        meals_unit_name,
 	      </if>
 	      <if test="mealsUserName != null">
 	        meals_user_name,
@@ -79,6 +82,9 @@
 	      </if>
 	    </trim>
 	    <trim prefix="values (" suffix=")" suffixOverrides=",">
+	    <if test="id != null">
+	        #{id},
+	      </if>
 	      <if test="dailyTime != null">
 	        #{dailyTime},
 	      </if>

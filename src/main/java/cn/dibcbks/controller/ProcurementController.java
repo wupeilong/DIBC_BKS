@@ -88,7 +88,6 @@ public class ProcurementController {
 	 */
 	@RequestMapping("/add")
 	@ResponseBody
-	@Transactional
 	public ResponseResult<Void> addProcurement(	Integer supplierUnitId,
 									MultipartFile supplierBusinessLicense,
 									MultipartFile supplierproductionLicense,
@@ -97,6 +96,7 @@ public class ProcurementController {
 									String supplierPerson,
 									String supplierPhone,
 									String detailList) throws ParseException{
+		System.out.println("开始添加采集信息========");
 		ResponseResult<Void> rr = null;
 		User user = (User)SecurityUtils.getSubject().getSession().getAttribute("user");
 		List<Unit> supplierUnit = unitMapper.select(" n.unit_id = '" + supplierUnitId + "'", null, null, null);
@@ -128,7 +128,9 @@ public class ProcurementController {
 			procurement.setSupplierPhone(supplierPhone);
 			procurement.setPurchasingTime(new Date());
 			procurement.setStatus(0);
-			procurementMapper.insertProcurement(procurement);
+			System.out.println("采购订单：" + procurement);
+			Integer row = procurementMapper.insertProcurement(procurement);
+			System.out.println("采购订单：" + row);
 			
 			ProcurementDetail procurementDetail = null;
 			Date productionDate = null;
@@ -136,16 +138,18 @@ public class ProcurementController {
 			JSONArray array = null;
 			for(int i=0; i<parseArray.size(); i++){
 				array = JSONArray.parseArray(parseArray.getString(i));
-				productionDate  = new SimpleDateFormat("yyyy年MM月dd日").parse(array.getString(2));
+				productionDate  = new SimpleDateFormat("yyyy-MM-dd").parse(array.getString(2));
 				procurementDetail = new ProcurementDetail();
 				procurementDetail.setProcurementId(procurement.getId());
 				procurementDetail.setProductName(array.getString(0));
 				procurementDetail.setCount(array.getString(1));
 				procurementDetail.setProductionDate(productionDate);
-				procurementMapper.insertProcurementDetail(procurementDetail);
+				row = procurementMapper.insertProcurementDetail(procurementDetail);
+				System.out.println("采购详情：" + row);
 			}
 			rr = new ResponseResult<>(ResponseResult.SUCCESS,"操作成功！");
 		}
+		System.out.println("结束添加采集信息========");
 		return rr;
 	}
 	

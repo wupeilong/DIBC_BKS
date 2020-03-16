@@ -1,6 +1,7 @@
 package cn.dibcbks.controller;
 
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +21,7 @@ import cn.dibcbks.mapper.DistributionMapper;
 import cn.dibcbks.mapper.UnitMapper;
 import cn.dibcbks.util.CommonUtil;
 import cn.dibcbks.util.GetCommonUser;
+import cn.dibcbks.util.IDWorkUtil;
 import cn.dibcbks.util.ResponseResult;
 
 
@@ -154,8 +156,69 @@ public class DeliveryController {
 	 * @return
 	 */
 	@RequestMapping("/delivery_add")
-	public String deliveryAdd(){		
+	public String deliveryAdd(ModelMap modelMap){
+		List<Unit> unitList = unitMapper.select(" n.unit_type BETWEEN 2 AND 4 ", " n.create_time DESC", null, null);
+		modelMap.addAttribute("unitList", unitList);
+		modelMap.addAttribute("unitDetail", unitMapper.select(" n.unit_id = '" + CommonUtil.getStessionUser().getUnitId() + "'", null, null, null).get(0));
 		return "bks_wap/delivery_add";
 	}
 
+	
+	/**
+	 * 新增配送信息
+	 * @param type
+	 * @param mealsUnitName
+	 * @param acceptanceUnitName
+	 * @param mealsUserName
+	 * @param packingPhoto
+	 * @param sealPhoto
+	 * @param carPhoto
+	 * @param address
+	 * @return
+	 */
+	@RequestMapping("/add")
+	@ResponseBody
+	public ResponseResult<Void> deliveryAdd(	Integer type,
+								String mealsUnitName,
+								String acceptanceUnitName,
+								String mealsUserName,
+								MultipartFile packingPhoto,
+								MultipartFile sealPhoto,
+								MultipartFile carPhoto,
+								String address){
+			
+		ResponseResult<Void> rr = null;
+		User user = CommonUtil.getStessionUser();
+		GetCommonUser get = new GetCommonUser();		
+		String packingPhotoPath = get.uoladimg(packingPhoto,user.getIdCard());
+		String sealPhotoPath = get.uoladimg(sealPhoto,user.getIdCard());
+		String carPhotoPath = get.uoladimg(carPhoto,user.getIdCard());
+		if(StringUtils.isEmpty(packingPhotoPath)){
+			rr = new ResponseResult<>(ResponseResult.ERROR,"送餐装箱图上传失败，请重新上传！");
+		}else if (StringUtils.isEmpty(sealPhotoPath)) {
+			rr = new ResponseResult<>(ResponseResult.ERROR,"装箱封条图上传失败，请重新上传！");
+		}else if (StringUtils.isEmpty(carPhotoPath)) {
+			rr = new ResponseResult<>(ResponseResult.ERROR,"送餐车图上传失败，请重新上传！");
+		}else {
+			Date createTime = new Date();
+			Distribution distribution = new Distribution();
+			distribution.setId(IDWorkUtil.getUniqueCode());
+			distribution.setDailyTime(new SimpleDateFormat("yyyy年MM月dd日").format(createTime));
+			distribution.setType(type);
+			distribution.setMealsUnitName(mealsUnitName);
+			distribution.setMealsUserName(mealsUserName);
+			distribution.setAcceptanceUnitName(acceptanceUnitName);
+			distribution.setPackingPhoto(packingPhotoPath);
+			distribution.setSealPhoto(sealPhotoPath);
+			distribution.setCarPhoto(carPhotoPath);
+			distribution.setAddress(address);
+			distribution.setStartTime(createTime);
+			distribution.setStatus(1);//启送中
+			distribution.setCreateTime(createTime);
+			System.out.println("distribution : " + distribution);
+			distributionMapper.insert(distribution);
+			rr = new ResponseResult<>(ResponseResult.SUCCESS,"操作成功！");
+		}
+		return rr;
+	}
 }
