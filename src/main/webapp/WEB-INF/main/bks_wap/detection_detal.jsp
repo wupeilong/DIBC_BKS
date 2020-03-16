@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,40 +27,40 @@
 				    <!-- <legend class="text-center">检测详情:</legend> -->
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">检测对象</span>
-					  <div class="form-control box-shadow0 border0">老干妈</div>
+					  <div class="form-control box-shadow0 border0">${detectionDetail.unitName}</div>
 					</div>
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">检测时间</span>
-					  <div class="form-control box-shadow0 border0">老干妈</div>
+					  <div class="form-control box-shadow0 border0"><fmt:formatDate value="${detectionDetail.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/></div>
 					</div>
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">样品名</span>
-					  <div class="form-control box-shadow0 border0">老干妈</div>
+					  <div class="form-control box-shadow0 border0">${detectionDetail.samplName}</div>
 					</div>
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">包装分类</span>
-					  <div class="form-control box-shadow0 border0">老干妈</div>
+					  <div class="form-control box-shadow0 border0">${detectionDetail.specifications}</div>
 					</div>
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">抽检批次</span>
-					  <div class="form-control box-shadow0 border0">老干妈</div>
+					  <div class="form-control box-shadow0 border0">${detectionDetail.bath}</div>
 					</div>
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">检测项目</span>
-					  <div class="form-control box-shadow0 border0">老干妈</div>
+					  <div class="form-control box-shadow0 border0">${detectionDetail.item}</div>
 					</div>
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">检测结果</span>
-					  <div class="form-control box-shadow0 border0">老干妈</div>
+					  <div class="form-control box-shadow0 border0">${detectionDetail.result}</div>
 					</div>
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">备注</span>
-					  <div class="form-control box-shadow0 border0">老干妈</div>
+					  <div class="form-control box-shadow0 border0">${detectionDetail.remark}</div>
 					</div>
 					<div class="">
 						  <div class="fc">
 							<div class="layui-upload-list fc">
-							  <img class="layui-upload-img" src="">
+							  <img class="layui-upload-img" src="${pageContext.request.contextPath}${detectionDetail.detectionPhoto}">
 							</div>
 						  </div>
 						  <div class="text-center">检测过程照</div>

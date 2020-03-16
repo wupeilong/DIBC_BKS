@@ -21,6 +21,7 @@ import cn.dibcbks.entity.User;
 import cn.dibcbks.mapper.CheckMapper;
 import cn.dibcbks.mapper.UnitMapper;
 import cn.dibcbks.service.ICheckService;
+import cn.dibcbks.util.CommonUtil;
 import cn.dibcbks.util.Constants;
 import cn.dibcbks.util.ResponseResult;
 
@@ -65,7 +66,7 @@ public class ICheckServiceImpl implements ICheckService {
 	}
 	
 	@Override
-	public String getCheckList(ModelMap modelMap) {
+	public List<Check> getCheckList(ModelMap modelMap) {
 		try {
 			Subject subject = SecurityUtils.getSubject();
 			Session session = subject.getSession();
@@ -77,15 +78,14 @@ public class ICheckServiceImpl implements ICheckService {
 				checkList = checkMapper.select(" c.unit_id = '" + user.getUnitId() + "'", " c.create_time DESC", null, null);
 			}
 			System.out.println(checkList);
-			modelMap.addAttribute("checkList", checkList);
+			
 			logger.info(Constants.SUCCESSU_HEAD_INFO + "用户进入监管采集信息查看页面成功！");
 			//TODO 监管采集信息查看页面
-			return "bks_wap/inspect_list";
-		} catch (Exception e) {
-			e.printStackTrace();
+			return checkList;// 
+		} catch (Exception e) {			
 			logger.error(Constants.ERROR_HEAD_INFO + "用户进入信息采集信息查看页面失败，原因：" + e.getMessage());
-		}
-		return "error/404";
+			return null;
+		}		
 	}
 
 
@@ -166,11 +166,8 @@ public class ICheckServiceImpl implements ICheckService {
 			String dailyTime,Integer checkType,String checkPhoto) {
 		ResponseResult<Void> rr = null;
 		try {
-//			Subject subject = SecurityUtils.getSubject();
-//			Session session = subject.getSession();
-//			User user = (User)session.getAttribute("user");
 			Check check = new Check();
-			//check.setUserId(userId);
+			check.setUserId(CommonUtil.getStessionUser().getId());
 			check.setUnitId(unitId);
 			check.setUnitName(unitName);
 			check.setUnitType(unitType);
@@ -193,6 +190,18 @@ public class ICheckServiceImpl implements ICheckService {
 			logger.error(Constants.ERROR_HEAD_INFO + "用户进入督察组专检页面失败，原因：" + e.getMessage());
 		}
 		return rr;
+	}
+
+	@Override
+	public List<Check> getCheckListbyid(Integer id) {
+		String where="id="+id;		
+		return checkMapper.select(where, null, null, null);
+	}
+
+	@Override
+	public List<Check> getCheckListbyuserid(Integer userId) {
+		String where="user_id="+userId;		
+		return checkMapper.select(where, null, null, null);
 	}
 
 

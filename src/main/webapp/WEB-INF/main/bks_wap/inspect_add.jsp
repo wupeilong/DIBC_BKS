@@ -9,11 +9,14 @@
 	<title>添加监督检查记录</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/js/selector/jquery.searchableSelect.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/style.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/index.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/js/layui/css/layui.css"/>
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
-	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>		
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>	
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/selector/jquery.searchableSelect.js"></script>
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/2.4/layer.js"></script>		
 </head>
 	<body class="contain">
 		<div class="navigation bg-primary">
@@ -26,15 +29,34 @@
 				  <div class="">
 				  	<table class="table table-bordered" cellspacing="" cellpadding="">
 				  		<caption>
-							<h3 class="text-center">食品商家专项监督检查表</h3>
+				  			<c:if test="${checkType==1}">
+				  				<h3 class="text-center">食品商家专项监督检查表</h3>
+				  			</c:if>
+							<c:if test="${checkType==2}">
+				  				<h3 class="text-center">监督管理局专项监督检查表</h3>
+				  			</c:if>
+				  			<c:if test="${checkType==3}">
+				  				<h3 class="text-center">督查专项监督检查表</h3>
+				  			</c:if>							
 							<div class="margin-top2">
-								<div class="">
+								<div class="">									
 									<div class="padding-side margin-top05">
-										<span class="">名称：</span><span>${unitlist[0].unitName}</span>
-										<input type="hidden" id="unitId" value="${unitlist[0].unitId}"/>
+										<span class="">名称：</span>
+										<c:if test="${unitlist==null}">
+											<select id="unit_list"">
+												<option value="0">请选择企业信息</option>
+												<c:forEach items="${unitlistall}" var="item">								
+													<option value="${item.unitId}">${item.unitName}</option>
+												</c:forEach>							
+											</select>
+										</c:if>
+										<c:if test="${unitlist!=null}">
+											<span>${unitlist[0].unitName}</span>											
+										</c:if>	
+										<input type="hidden" id="unitId" value="${unitlist[0].unitId}"/>									
 									</div>
 									<div class="padding-side margin-top05">
-										<span class="">地址：</span><span>${unitlist[0].unitAddress}</span>
+										<span class="">地址：</span><span id="unitAddress">${unitlist[0].unitAddress}</span>
 									</div>
 								</div>
 								<div class="fs margin-top05 padding-side">
@@ -50,7 +72,7 @@
 								</div>
 								<div class="fb margin-top05">
 									<div class="padding-side">
-										<span class="">负责人员：</span><span class="">${unitlist[0].legalPerson}</span>
+										<span class="">负责人员：</span><span class="" id="legalPerson">${unitlist[0].legalPerson}</span>
 									</div>
 									<div class="padding-side fs">
 					  					<span class="" style="width: 100px;" >联系电话：</span>
@@ -131,7 +153,7 @@
 							<tr><td>达到专人采购、专人保管、专人领用、专人登记、专柜保存要求</td><td><select name="inspectruset"> <option value="0">不合格</option> <option value="1">合格</option> </select></td></tr>
 							<tr>
 								<td class="vertical-mid" style="height: 5em;">其它需要说明的情况</td>
-								<td colspan="2" contenteditable="true" class="text-muted" id="other">大股东撒办法吧</td>
+								<td colspan="2" contenteditable="true" class="text-muted" id="other">请输入说明的内容</td>
 							</tr>
 				  		</tbody>
 				  	</table>
@@ -143,6 +165,37 @@
 		</main>	
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
+	<script type="text/javascript">
+	$('#unit_list').searchableSelect({
+		"afterSelectItem":function(){
+			if($("#unit_list").val()==0){
+				return;				
+			}else{
+				var url = "${pageContext.request.contextPath}/unit/list";
+				var data = "unitId=" + $("#unit_list").val();
+				$.ajax({
+					"url" : url,
+					"data" : data,
+					"type" : "POST",
+					"dataType" : "json",
+					"success" : function(obj) {
+						if (obj.state == 0) {
+							layer.msg(obj.message,{icon:2,time:1000});
+							return;
+						}else{
+							$("#unitId").val(obj.data[0].unitId );
+							$("#unitAddress").html(obj.data[0].unitAddress );
+							$("#legalPerson").html(obj.data[0].legalPerson );
+													
+						}				
+					}
+				}); 
+			}			
+		}
+	});
+	
+	
+	</script>
 <script type="text/javascript">
 function diskinput(){	
 	var queryrights=new Array();
@@ -150,13 +203,13 @@ function diskinput(){
 	var unitId=$("#unitId").val();	
 	var unitPhone=$("#unitPhone").val();
 	var other=$("#other").text();
+	var checkType=parseInt("${checkType}");  
 	var rs = document.querySelectorAll("select[name='inspectruset']");
 	for(var i = 0; i < rs.length; i++){ 
 		queryrights[i]=rs[i].value;		
-	} 
-	console.log(queryrights);
+	} 	
 	var url="inspect_regadd"; 
-	var  data ="queryrights="+JSON.stringify(queryrights)+"&unitId="+unitId+"&unitType="+unitType+"&other="+other+"&unitPhone="+unitPhone;	    			  
+	var  data ="queryrights="+JSON.stringify(queryrights)+"&unitId="+unitId+"&unitType="+unitType+"&other="+other+"&unitPhone="+unitPhone+"&checkType="+checkType;	 			  
     $.ajax({    	   
 	   "url":url,    	  
 	   "data":data,

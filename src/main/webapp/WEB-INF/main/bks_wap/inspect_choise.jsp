@@ -22,18 +22,25 @@
 		<main class="main height100 fc bg-warning">
 			<!-- <div class="text-right padding-side"><a href="javascript:history.go(-1)" class="btn btn-primary"><i class="fa fa-angle-double-left"></i>返回</a></div> -->
 			<div class="width100">
-				<div class="padding-side margin-bot2">
-					<a href="${pageContext.request.contextPath}/inspect/inspect_list" class="btn btn-info form-control">信息查看</a>
-				</div>
-				<div class="padding-side margin-bot2">
-					<a href="${pageContext.request.contextPath}/inspect/inspect_add" class="btn btn-info form-control">商家自检</a>
-				</div>
-				<div class="padding-side margin-bot2">
-					<a href="${pageContext.request.contextPath}/inspect/inspect_add" class="btn btn-info form-control">管局专检</a>
-				</div>
-				<div class="padding-side margin-bot2">
-					<a href="${pageContext.request.contextPath}/inspect/inspect_add" class="btn btn-info form-control">督察专检</a>
-				</div>
+				<c:if test="${user.type==1}">
+					<div class="padding-side margin-bot2">
+						<a href="${pageContext.request.contextPath}/inspect/inspect_list?start=1" class="btn btn-info form-control">信息查看</a>
+					</div>					
+					<div class="padding-side margin-bot2">
+						<a href="${pageContext.request.contextPath}/inspect/inspect_add?checkType=2" class="btn btn-info form-control">管局专检</a>
+					</div>
+					<div class="padding-side margin-bot2">
+						<a href="${pageContext.request.contextPath}/inspect/inspect_add?checkType=3" class="btn btn-info form-control">督察专检</a>
+					</div>
+				</c:if>
+				<c:if test="${user.type==2}">
+					<div class="padding-side margin-bot2">
+						<a href="${pageContext.request.contextPath}/inspect/inspect_list?start=2" class="btn btn-info form-control">信息查看</a>
+					</div>
+					<div class="padding-side margin-bot2">
+						<a href="${pageContext.request.contextPath}/inspect/inspect_add?checkType=1" class="btn btn-info form-control">商家自检</a>
+					</div>					
+				</c:if>				
 				<!-- <table class="table table-striped table-hover" cellspacing="" cellpadding="">
 					<thead>
 						<tr><th>序号</th><th>样品名称</th><th>抽检批次</th><th>检查结果</th><th>操作</th></tr>
