@@ -5,7 +5,7 @@
 <head>
 	<meta charset=utf-8>
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
-	<title>配送信息</title>
+	<title>云监食安系统注册页</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/style.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/index.css"/>
@@ -170,10 +170,14 @@
 				          contentType: false,
 							"success" : function(obj) {
 								if (obj.state == 0) {
-									layer.msg(obj.message,{icon:2,time:1000});
+									layer.msg(obj.message,{icon:2,time:1000});									 
 									return;				
 								}else{					
 									layer.msg(obj.message,{icon:1,time:1000},function(){layer_close();});
+									
+									setTimeout(function (){							 
+										window.location.href = "${pageContext.request.contextPath}/login";
+									}, 3000);
 								}
 								
 							}
