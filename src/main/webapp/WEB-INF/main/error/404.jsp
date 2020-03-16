@@ -6,7 +6,8 @@
 <head>
 <meta charset=utf-8>
 <title>404页</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/error.css"  media="screen" />
 </head>

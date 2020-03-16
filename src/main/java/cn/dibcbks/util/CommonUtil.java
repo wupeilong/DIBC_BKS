@@ -4,9 +4,6 @@ import java.util.UUID;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.crypto.hash.SimpleHash;
-
-import com.mysql.cj.Session;
-
 import cn.dibcbks.entity.User;
 
 public class CommonUtil {
@@ -49,4 +46,5 @@ public class CommonUtil {
 	public static User getStessionUser() {
 		return (User)SecurityUtils.getSubject().getSession().getAttribute("user");
 	}
+
 }

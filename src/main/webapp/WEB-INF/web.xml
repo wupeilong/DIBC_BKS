@@ -59,7 +59,7 @@
   </filter-mapping> 
    <error-page>
 	   <error-code>404</error-code>
-	   <location>/WEB-INF/main/error/hqt_error_404.jsp</location>
+	   <location>/WEB-INF/main/error/404.jsp</location>
 	</error-page>  
 	<!--log4j2-->
     <context-param>

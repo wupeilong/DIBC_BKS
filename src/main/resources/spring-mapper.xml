@@ -108,17 +108,16 @@
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
 		<property name="securityManager" ref="securityManager" />		
 		<property name="loginUrl" value="/login" />
-		<!-- <property name="successUrl" value="/index" />
-		<property name="unauthorizedUrl" value="/error" /> -->
+		<property name="successUrl" value="/hoem" />
+		<property name="unauthorizedUrl" value="/error" />
 		<property name="filterChainDefinitions">
 			<value>
-				*.js = anon
-				*.css = anon
 				/static/** = anon
 				/login = anon
 				/register = anon
 				/registeradd = anon
 				/userLogin = anon
+				/admin_login = anon
 				/*/** = authc
    			</value>
 		</property>

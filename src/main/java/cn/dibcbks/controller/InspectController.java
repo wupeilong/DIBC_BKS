@@ -52,7 +52,8 @@ public class InspectController {
 	 */
 	@RequestMapping("/inspect_list")
 	public String InspectList(ModelMap modelMap,Integer start){
-		if (start==1) {
+		User user = CommonUtil.getStessionUser();
+		if (user.getType().equals(1)) {
 			List<Check> checkList =iCheckService.getCheckList(modelMap);
 			modelMap.addAttribute("checkList", checkList);
 		}else{

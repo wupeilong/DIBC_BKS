@@ -63,12 +63,15 @@
 							<p class="padding-side05">监管采集</p>
 						</a>
 					</li>
-					<li class="">
+					<c:if test="${user.type == 1 }">
+						<li class="">
 						<a href="${pageContext.request.contextPath}/detection/detection_list">
 							<div><div class="padding-side icon_box"><i class="fa fa-paper-plane-o"></i></div></div>
 							<p class="padding-side05">检测报送</p>
 						</a>
 					</li>
+					</c:if>
+					
 					<li class="">
 						<a href="javascript:alert('功能开发中……');">
 							<div><div class="padding-side icon_box"><i class="fa fa-crosshairs"></i></div></div>

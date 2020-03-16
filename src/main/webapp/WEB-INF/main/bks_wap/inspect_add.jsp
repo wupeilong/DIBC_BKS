@@ -186,7 +186,7 @@
 							$("#unitId").val(obj.data[0].unitId );
 							$("#unitAddress").html(obj.data[0].unitAddress );
 							$("#legalPerson").html(obj.data[0].legalPerson );
-													
+												
 						}				
 					}
 				}); 
@@ -217,8 +217,11 @@ function diskinput(){
 	   "dataType":"json",
 	   "success":function(obj){    		  
 		   if(obj.state==0){
-			   alert(obj.message);
+			   layer.msg(obj.message,{icon:2,time:1000});
 			   return;
+  			}else{
+  				layer.msg(obj.message,{icon:1,time:1000});
+				location.href = "inspect_list";	
   			} 	  
 	   }      
 	}); 
