@@ -1,6 +1,7 @@
 package cn.dibcbks.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
@@ -17,14 +18,18 @@ public class CleanController {
 	public String cleanList(){		
 		return "bks_wap/clean_list";
 	}
+	
 	/**
 	 * 进入清洗/消毒记录添加页
 	 * @return
 	 */
 	@RequestMapping("/clean_add")
-	public String cleanAdd(){		
+	public String cleanAdd(ModelMap modelMap){
+		
 		return "bks_wap/clean_add";
 	}
+	
+	
 	/**
 	 * 进入清洗/消毒记录详情页
 	 * @return
