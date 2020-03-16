@@ -212,7 +212,7 @@
 							formData.append('supplierPhone',$("#supplierPhone").val());//联系电话
 							formData.append('detailList',JSON.stringify(detailList));//采购详情			
 							 $.ajax({
-								 url: "${pageContext.request.contextPath}/dry/add",
+								 url: "${pageContext.request.contextPath}/procurement/add",
 						          type: 'POST',
 						          cache: false,
 						          data: formData,				        
@@ -223,7 +223,6 @@
 											layer.msg(obj.message,{icon:2,time:1000});
 											return;				
 										}else{		
-											alert(obj.message);
 											layer.msg(obj.message,{icon:1,time:1000});
 											//延时刷新页面
 											setTimeout(function (){							 

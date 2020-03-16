@@ -1,13 +1,23 @@
 package cn.dibcbks.controller;
 
 
+import java.util.List;
+
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+
+import cn.dibcbks.entity.User;
+import cn.dibcbks.mapper.UserMapper;
 import cn.dibcbks.service.IUserService;
+import cn.dibcbks.util.CommonUtil;
+import cn.dibcbks.util.Constants;
 import cn.dibcbks.util.GetCommonUser;
 import cn.dibcbks.util.ResponseResult;
 
@@ -20,7 +30,8 @@ import cn.dibcbks.util.ResponseResult;
 public class LoginController {
 	@Autowired
 	private IUserService iUserService;
-	
+	@Autowired
+	private UserMapper userMapper;
 	
 	/**
 	 * 进入登录页
@@ -122,5 +133,67 @@ public class LoginController {
 		return iUserService.login(idCard,password);
 	}
 	
-
+	/**
+	 * 错误登录页
+	 * @return
+	 */
+	@RequestMapping("/error")
+	public String error(){		
+		return "error/404";
+	}
+	
+	
+	/**
+	 * 进入登录页
+	 * @return
+	 */
+	@RequestMapping("/admin_login")
+	public String adminlogin(){		
+		return "bks_wap/admin_login";
+	}
+	
+	/**
+	 * 监管人员注册
+	 */
+	@RequestMapping("/admin_add")
+	@ResponseBody
+	public ResponseResult<Void> adminAdd(	String duty,
+											String username,
+											String password,
+											String idCard,
+											String phone,
+											Integer age){
+		
+		ResponseResult<Void> rr = null;
+		try {
+			User queryUser = userMapper.queryUser(idCard);
+			if (queryUser != null ) {
+				return new ResponseResult<>(ResponseResult.ERROR, "身份证已存在！");
+			}
+			List<User> list = userMapper.select(" u.username = '" + username + "'", null, null,null);
+			if (!list.isEmpty()) {
+				return new ResponseResult<>(ResponseResult.ERROR,"用户姓名重复！");
+			}			
+			String uuid = CommonUtil.getUUID();
+			password = password == null ? Constants.INITIAL_PASSWORD : password;
+	 			String hashPassword = CommonUtil.getEncrpytedPassword(Constants.MD5, password, uuid, 1024);
+	 			User user = new User();
+					user.setIdCard(idCard);
+					user.setUsername(username);
+					user.setUuid(uuid);
+					user.setPassword(hashPassword);
+					user.setDuty(duty);
+					user.setAge(age);
+					user.setParentId(0);//父级ID
+					user.setType(1);//用户类型
+					user.setUnitId(1);
+					userMapper.insert(user);
+					rr = new ResponseResult<>(ResponseResult.SUCCESS,"企业账户分配成功!");				
+			
+		} catch (Exception e) {
+			rr = new ResponseResult<Void>(ResponseResult.ERROR, "操作失败！");
+		}		
+		return rr;			
+	}
+	
 }
