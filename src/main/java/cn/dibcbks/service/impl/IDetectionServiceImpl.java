@@ -43,18 +43,17 @@ public class IDetectionServiceImpl implements IDetectionService{
 	}
 
 	@Override
-	public String addDetectionPage(ModelMap modelMap) {
+	public List<Detection> addDetectionPage() {
 		try {
-			List<Unit> unitList = unitMapper.select(" n.unit_type BETWEEN 2 AND 4", " n.create_time DESC", null, null);
-			modelMap.addAttribute("unitList", unitList);
+			List<Detection> unitList = detectionMapper.select(null, null, null, null);
 			logger.info(Constants.SUCCESSU_HEAD_INFO + "用户进入多频次检测新增信息页！");
 			//TODO 多频次检测新增页
-			return "";
-		} catch (Exception e) {
-			e.printStackTrace();
+			return unitList;
+		} catch (Exception e) {	
 			logger.error(Constants.ERROR_HEAD_INFO + "用户进入多频次检测新增信息页失败，原因：" + e.getMessage());
+			return null;
 		}
-		return "error/404";
+	
 	}
 
 	@Override
@@ -77,11 +76,11 @@ public class IDetectionServiceImpl implements IDetectionService{
 		try {
 			Detection detectionDetail = detectionMapper.queryDetection(id);
 			modelMap.addAttribute("detectionDetail", detectionDetail);
+			System.out.println(detectionDetail);
 			logger.info(Constants.SUCCESSU_HEAD_INFO + "用户进入多频次检测详情信息页！");
 			//TODO 多频次检测详情页
-			return "";
-		} catch (Exception e) {
-			e.printStackTrace();
+			return "bks_wap/detection_detal";
+		} catch (Exception e) {			
 			logger.error(Constants.ERROR_HEAD_INFO + "用户进入多频次检测详情信息页失败，原因：" + e.getMessage());
 		}
 		return "error/404";

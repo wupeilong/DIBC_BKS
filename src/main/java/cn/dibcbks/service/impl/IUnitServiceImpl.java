@@ -1,7 +1,7 @@
 package cn.dibcbks.service.impl;
 
 
-import java.util.ArrayList;
+
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -11,7 +11,6 @@ import org.apache.shiro.session.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
-import cn.dibcbks.entity.Procurement;
 import cn.dibcbks.entity.Unit;
 import cn.dibcbks.entity.User;
 import cn.dibcbks.mapper.UnitMapper;
@@ -173,6 +172,12 @@ public class IUnitServiceImpl implements IUnitService {
 		}
 		modelMap.addAttribute("unitDetail", unitDetail);
 		return "bks_wap/coopration_detal";
+	}
+
+
+	@Override
+	public List<Unit> CooprationList() {				
+		return unitMapper.select(" n.unit_type BETWEEN 2 AND 4 ", " n.create_time DESC", null, null);
 	}
 
 }

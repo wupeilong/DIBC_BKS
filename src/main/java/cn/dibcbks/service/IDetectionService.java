@@ -5,13 +5,14 @@ import java.util.List;
 import org.springframework.ui.ModelMap;
 
 import cn.dibcbks.entity.Detection;
+import cn.dibcbks.entity.Unit;
 import cn.dibcbks.util.ResponseResult;
 
 public interface IDetectionService {
 
 	ResponseResult<List<Detection>> queryDetectionList(ModelMap modelMap,Integer unitId);
 
-	String addDetectionPage(ModelMap modelMap);
+	List<Detection> addDetectionPage();
 
 	ResponseResult<Void> addDetection(Detection detection);
 

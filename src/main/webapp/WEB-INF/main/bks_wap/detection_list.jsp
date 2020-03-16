@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,40 +22,13 @@
 				<a href="javascript:history.go(-1)" class="text-white"><i class="fa fa-angle-left"></i></a>
 				<div class="">
 					<div class="">
-						<!-- <a href="" class="btn bg-primary padding-side"><i class="fa fa-search"></i></a> -->
-						<select>
-							<option value="BlackBerry">BlackBerry</option>
-							<option value="device">device</option>
-							<option value="with">with</option>
-							<option value="entertainment">entertainment</option>
-							<option value="and">and</option>
-							<option value="social">social</option>
-							<option value="networking">networking</option>
-							<option value="apps">apps</option>
-							<option value="or">or</option>
-							<option value="apps">apps</option>
-							<option value="that">that</option>
-							<option value="will">will</option>
-							<option value="boost">boost</option>
-							<option value="your">your</option>
-							<option value="productivity">productivity</option>
-							<option value="Download">Download</option>
-							<option value="or">or</option>
-							<option value="buy">buy</option>
-							<option value="apps">apps</option>
-							<option value="from">from</option>
-							<option value="Afbb">Afbb</option>
-							<option value="Akademie">Akademie</option>
-							<option value="Berlin">Berlin</option>
-							<option value="reviews">reviews</option>
-							<option value="by">by</option>
-							<option value="real">real</option>
+						<select id="unit_list"">
+								<option value="">查看全部企业</option>
+								<c:forEach items="${unitlistall}" var="item">								
+									<option value="${item.unitId}">${item.unitName}</option>
+								</c:forEach>							
 						</select>
-						<script>
-							$(function(){
-								$('select').searchableSelect();
-							});
-						</script>
+						
 					</div>
 				</div>
 				<a href="${pageContext.request.contextPath}/detection/detection_add" class="btn bg-primary"><i class="fa fa-plus"></i></a>
@@ -66,13 +40,63 @@
 					<thead>
 						<tr><th>检查单位公司</th><th>样品名称</th><th style="width: 4em">日期</th><th style="width: 4em">操作</th></tr>
 					</thead>
-					<tbody>
-						<tr><td>贵阳市第一实验中学</td><td>贵阳市第一实验中学</td><td class="vertical-mid">03-12</td><td class="vertical-mid"><a href="${pageContext.request.contextPath}/detection/detection_detal">详情</a></td></tr>
+					<tbody id="result_list">
+						<c:forEach items="${unitList}" var="f">
+							<tr>
+								<td>${f.unitName }</td>
+								<td>${f.samplName }</td>
+								<td class="vertical-mid"><fmt:formatDate value="${f.createTime}" pattern="yyyy-MM-dd"/></td>
+								<td class="vertical-mid"><a href="${pageContext.request.contextPath}/detection/detection_detal?id=${f.id}">详情</a></td>
+							</tr>
+						</c:forEach>
+						
 					</tbody>
 				</table>
 			</div>
 		</main>
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
-
+<script>
+						$('#unit_list').searchableSelect({
+							"afterSelectItem":function(){								
+									var url = "queryList";
+									var data = "unitId=" + $("#unit_list").val();
+									$.ajax({
+										"url" : url,
+										"data" : data,
+										"type" : "POST",
+										"dataType" : "json",
+										"success" : function(obj) {
+											if (obj.state == 0) {
+												layer.msg(obj.message,{icon:2,time:1000});
+												return;
+											}else{
+												var result = "";
+												for(var i=0;i<obj.data.length;i++){
+													var time=timestampToTime(obj.data[i].createTime);
+													result += "<tr>";
+													result += "<td>" + obj.data[i].unitName + "</td>";
+													result += "<td>" + obj.data[i].samplName + "</td>";
+													result += "<td>"+time+"</td>";
+													result += "<td class='vertical-mid'><a href='${pageContext.request.contextPath}/detection/detection_detal?id="+obj.data[i].id+"'>详情</a></td>";
+													result += "</tr>";
+												}
+												$("#result_list").html(result);
+											}				
+										}
+									}); 											
+							}
+						});
+						function timestampToTime(timestamp) {
+					        var date = new Date(timestamp);//时间戳为10位需*1000，时间戳为13位的话不需乘1000
+					        var Y = date.getFullYear() + '-';
+					        var M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+					        var D = date.getDate() + ' ';
+					       	var h = date.getHours() + ':';
+					       	var m = date.getMinutes() + ':';
+					       	var s = date.getSeconds();
+					        return M+D;
+					    }
+					    
+						</script>
 </html>

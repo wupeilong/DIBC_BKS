@@ -18,7 +18,9 @@ import cn.dibcbks.entity.Check;
 import cn.dibcbks.entity.Unit;
 import cn.dibcbks.entity.User;
 import cn.dibcbks.service.ICheckService;
+import cn.dibcbks.service.IUnitService;
 import cn.dibcbks.service.IUserService;
+import cn.dibcbks.util.CommonUtil;
 import cn.dibcbks.util.ResponseResult;
 
 /**
@@ -34,6 +36,8 @@ public class InspectController {
 	private ICheckService iCheckService;
 	@Autowired
 	private IUserService iUserService;
+	@Autowired
+	private IUnitService iUnitService;
 	/**
 	 * 进入监管采集选择页
 	 * @return
@@ -47,18 +51,31 @@ public class InspectController {
 	 * @return
 	 */
 	@RequestMapping("/inspect_list")
-	public String InspectList(ModelMap modelMap){		
-		return iCheckService.getCheckList(modelMap);// "bks_wap/inspect_list";
+	public String InspectList(ModelMap modelMap,Integer start){
+		if (start==1) {
+			List<Check> checkList =iCheckService.getCheckList(modelMap);
+			modelMap.addAttribute("checkList", checkList);
+		}else{
+			List<Check> checkList =iCheckService.getCheckListbyuserid(CommonUtil.getStessionUser().getId());
+			modelMap.addAttribute("checkList", checkList);
+		}		
+		return "bks_wap/inspect_list";
 	}
 	/**
 	 * 进入监管采集记录表添加页
 	 * @return
 	 */
 	@RequestMapping("/inspect_add")
-	public String InspectAdd(ModelMap map){	
-		Integer unitid = ((User)SecurityUtils.getSubject().getSession().getAttribute("user")).getUnitId();
-		List<Unit> queryUnitUserDetail = iUserService.queryUnitUserDetail(unitid);		
-		map.addAttribute("unitlist", queryUnitUserDetail);
+	public String InspectAdd(ModelMap map,Integer checkType){	
+		if (checkType==1) {
+			Integer unitid = ((User)SecurityUtils.getSubject().getSession().getAttribute("user")).getUnitId();
+			List<Unit> queryUnitUserDetail = iUserService.queryUnitUserDetail(unitid);			
+			map.addAttribute("unitlist", queryUnitUserDetail);
+		}else{
+			List<Unit> unitList = iUnitService.CooprationList();
+			map.addAttribute("unitlistall", unitList);
+		}
+		map.addAttribute("checkType", checkType);
 		return "bks_wap/inspect_add";
 	}
 	/**
@@ -66,7 +83,11 @@ public class InspectController {
 	 * @return
 	 */
 	@RequestMapping("/inspect_detal")
-	public String InspectDetal(){		
+	public String InspectDetal(ModelMap map,Integer id){	
+		List<Check> checkListbyid = iCheckService.getCheckListbyid(id);				
+		JSONArray jsonArray = JSONArray.parseArray(checkListbyid.get(0).getResult());
+		map.addAttribute("InspectDetal", jsonArray);
+		map.addAttribute("checkListbyid", checkListbyid);		
 		return "bks_wap/inspect_detal";
 	}
 	
@@ -83,16 +104,6 @@ public class InspectController {
 		return iCheckService.queryCheckListInfo(unitId,unitType);
 	}
 	
-	/**
-	 * 进入检查信息列表页
-	 * @param modelMap
-	 * @return
-	 */
-	@RequestMapping("/list")
-	public String checkhListInfo(ModelMap modelMap){
-		
-		return iCheckService.getCheckList(modelMap);
-	}
 	
 	
 	/**
@@ -159,11 +170,11 @@ public class InspectController {
 	 */
 	@RequestMapping("/inspect_regadd")
 	@ResponseBody
-	public ResponseResult<Void> addCheckInfo(@RequestParam(value="queryrights") String queryrights,Integer unitId,String unitType,String other,String unitPhone){
+	public ResponseResult<Void> addCheckInfo(@RequestParam(value="queryrights") String queryrights,Integer unitId,String unitType,String other,String unitPhone,Integer checkType){
 		List<Unit> queryUnit = iUserService.queryUnitUserDetail(unitId);
 		String username = ((User)SecurityUtils.getSubject().getSession().getAttribute("user")).getUsername();
-		String resultList=JSONArray.toJSONString(queryrights);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");        
-		return  iCheckService.addCheckInfo(unitId,queryUnit.get(0).getUnitName(),unitType,queryUnit.get(0).getUnitAddress(),queryUnit.get(0).getLegalPerson(),unitPhone,resultList,other,username,sdf.format(new Date()),1,null);
+		//String resultList=JSONArray.toJSONString(queryrights);
+		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd");        
+		return  iCheckService.addCheckInfo(unitId,queryUnit.get(0).getUnitName(),unitType,queryUnit.get(0).getUnitAddress(),queryUnit.get(0).getLegalPerson(),unitPhone,queryrights,other,username,sdf.format(new Date()),checkType,null);
 	}
 }

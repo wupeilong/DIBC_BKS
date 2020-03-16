@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"	pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,24 +18,7 @@
 		<div class="navigation bg-primary">
 			<div class="fb padding-side">
 				<a href="javascript:history.go(-1)" class="text-white"><i class="fa fa-angle-left"></i></a>
-				<div class="">
-					<div class="">
-						<!-- <a href="" class="btn bg-primary padding-side"><i class="fa fa-search"></i></a> -->
-						<select>
-							<option value="Afbb">Afbb</option>
-							<option value="Akademie">Akademie</option>
-							<option value="Berlin">Berlin</option>
-							<option value="reviews">reviews</option>
-							<option value="by">by</option>
-							<option value="real">real</option>
-						</select>
-						<script>
-							$(function(){
-								// $('select').searchableSelect();
-							});
-						</script>
-					</div>
-				</div>
+				
 				<!-- <a href="http://192.168.1.106:8848/wap_MCLZ/inspect_add.html" class="btn bg-primary"><i class="fa fa-plus"></i></a> -->
 			</div>
 		</div>
@@ -46,7 +30,25 @@
 						<tr><th>企业名称</th><th>检查类型</th><th>检查时间</th><th>操作</th></tr>
 					</thead>
 					<tbody>
-						<tr><td>贵阳市第一实验中学</td><td>单位自检</td><td>03-13</td><td style="4em"><a href="${pageContext.request.contextPath}/inspect/inspect_detal">详情</a></td></tr>
+						<c:forEach items="${checkList}" var="f">
+							<tr>
+								<td>${f.unitName}</td>
+								<td>
+									<c:if test="${f.checkType==1}">
+										单位自检
+									</c:if>
+									<c:if test="${f.checkType==2}">
+										市监局专监
+									</c:if>
+									<c:if test="${f.checkType==3}">
+										督查组检查
+									</c:if>
+								</td>
+								<td>${f.dailyTime}</td>
+								<td style="4em"><a href="${pageContext.request.contextPath}/inspect/inspect_detal?id=${f.id}">详情</a></td>
+							</tr>
+						</c:forEach>
+						
 					</tbody>
 				</table>
 			</div>

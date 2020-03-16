@@ -10,7 +10,9 @@ public interface ICheckService {
 
 	ResponseResult<List<Check>> queryCheckListInfo(String unitId, Integer unitType);
 	
-	String getCheckList(ModelMap modelMap);
+	List<Check> getCheckList(ModelMap modelMap);
+	List<Check> getCheckListbyid(Integer id);
+	List<Check> getCheckListbyuserid(Integer userId);
 
 	String businessPage(ModelMap modelMap);
 
