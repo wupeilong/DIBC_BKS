@@ -15,7 +15,7 @@ public interface CheckMapper {
 	
 	Check queryCheck(@Param("id")Integer id);
 	
-	Check updateById(Check check);
+	Integer updateById(Check check);
 	
 	Integer deleteById(Integer id);
 }

@@ -19,7 +19,7 @@ public interface UserMapper {
 	
 	User queryUser(@Param("idCard")String idCard);
 	
-	User updateById(User user);
+	Integer updateById(User user);
 	
 	Integer deleteById(Integer id);
 }
