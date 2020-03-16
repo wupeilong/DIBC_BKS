@@ -58,9 +58,9 @@
 			</form>
 			
 			<div class="margin-top2 margin-bot2">
-				<a href="${pageContext.request.contextPath}/unit/coopration_detal?unitId=${userPcenter.unitId}" class="btn btn-primary form-control">企业信息查询</a>
-				<a href="${pageContext.request.contextPath}/user/workmens_health?userId=${user.id}" class="btn btn-primary form-control">健康状况查询</a>
-				<a href="${pageContext.request.contextPath}/user/workmens_health_add" class="btn btn-primary form-control">健康状况录入</a>
+				<a href="${pageContext.request.contextPath}/unit/coopration_detal?unitId=${userPcenter.unitId}" class="btn btn-primary margin-bot form-control">企业信息查询</a>
+				<a href="${pageContext.request.contextPath}/user/workmens_health?userId=${user.id}" class="btn btn-primary margin-bot form-control">健康状况查询</a>
+				<a href="${pageContext.request.contextPath}/user/workmens_health_add" class="btn btn-primary margin-bot form-control">健康状况录入</a>
 			</div>
 		</main>	
 	<c:import url="public/footer.jsp"></c:import>

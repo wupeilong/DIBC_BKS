@@ -66,7 +66,6 @@
 									return;
 								}else{
 									layer.msg(obj.message,{icon:1,time:1000},function(){location.href = "home";});
-									
 								}					
 							}
 						}); 
