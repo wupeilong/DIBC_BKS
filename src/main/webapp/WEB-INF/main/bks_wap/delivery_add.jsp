@@ -17,6 +17,9 @@
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/selector/jquery.searchableSelect.js"></script>
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/2.4/layer.js"></script>	
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/ajaxfileupload.js"></script>	
+	<style type="text/css">
+		.searchable-select-dropdown{z-index:9;}
+	</style>
 </head>
 	<body class="contain">
 		<div class="navigation bg-primary">
@@ -49,15 +52,15 @@
 					</div>					
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>订餐单位</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="acceptance_unit_name" value="${user.unitName }" readonly aria-describedby="sizing-addon1">
+					  <input type="text" class="width100 box-shadow0 border-bottom" name="acceptance_unit_name" value="${user.unitName }" readonly aria-describedby="sizing-addon1">
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>送餐人</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="meals_user_name" value="${user.username }" readonly aria-describedby="sizing-addon1">
+					  <input type="text" class="width100 box-shadow0 border-bottom" name="meals_user_name" value="${user.username }" readonly aria-describedby="sizing-addon1">
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>配送地址</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" name="address" id="address"  aria-describedby="sizing-addon1">
+					  <input type="text" class="width100 box-shadow0 border-bottom" name="address" id="address"  aria-describedby="sizing-addon1">
 					</div>
 					<div class="fsa margin-bot2">
 						<div class="">
@@ -157,8 +160,7 @@
 								if (obj.state == 0) {
 									layer.msg(obj.message,{icon:2,time:1000});
 									return;				
-								}else{		
-									alert(obj.message);
+								}else{
 									layer.msg(obj.message,{icon:1,time:1000});
 									//延时刷新页面
 									setTimeout(function (){							 

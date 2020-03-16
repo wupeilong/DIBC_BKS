@@ -118,6 +118,7 @@
 				/registeradd = anon
 				/userLogin = anon
 				/admin_login = anon
+				/admin_add = anon
 				/*/** = authc
    			</value>
 		</property>
