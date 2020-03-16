@@ -14,7 +14,11 @@
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>	
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/2.4/layer.js"></script>	
-	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/ajaxfileupload.js"></script>	
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/ajaxfileupload.js"></script>
+	<script src="${pageContext.request.contextPath}/static/js/bks_wap/rolldate.min.js" type="text/javascript" charset="utf-8"></script>
+	<style type="text/css">
+   .table > tbody > tr > td{padding: 0;}
+  </style>
 </head>
 	<body class="contain">
 		<div class="navigation bg-primary">
@@ -98,7 +102,7 @@
 					</div>
 				  </fieldset>
 			</form>
-			<div class="margin-top2">
+			<%-- <div class="margin-top2">
 				<table class="table table-striped table-bordered table-hover" cellspacing="" cellpadding="">
 					<caption>供货明细：</caption>
 					<thead>
@@ -111,7 +115,27 @@
 				<div class="text-right">
 					<a href="" class="btn btn-primary">新增商品</a>
 				</div>
-			</div>
+			</div> --%>
+			<div class="margin-top2 goods_list" id="">
+		    <table class="table table-striped table-bordered table-hover" id="mytable" cellspacing="" cellpadding="">
+		     <caption>供货明细：</caption>
+		     <thead>
+		      <tr><th style="width: 3.4em;">序号</th><th>商品名</th><th>数量</th><th style="width: 8.4em;">生产日期</th><th style="width: 3.4em;">操作</th></tr>
+		     </thead>
+		     <tbody>
+		      <tr> 
+		       <td contenteditable="false" class="vertical-mid">1</td>
+		       <td class="vertical-mid" name="good_sname" contenteditable></td>
+		       <td class="vertical-mid" name="good_scount" contenteditable></td>
+		       <td name="good_stime"><input readonly="" class="el_time form-control border0" type="text" id="date" placeholder="请选择日期"></td>
+		       <td class="vertical-mid" contenteditable="false"><a href="javascript:;" onclick="del_tr(this)" class="del_tr text-danger">删除</ a></td>
+		      </tr>
+		     </tbody>
+		    </table>
+		    <div class="text-right">
+		     <a href="javascript:;" onclick="add_tr(this)" class="btn btn-success" id="add_tr">新增商品</ a>
+		    </div>
+		   </div>
 			
 			<div class="margin-top">
 				<div class="margin-bot2">
@@ -136,15 +160,28 @@
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
 <script type="text/javascript">
-					$("#add").click(function() {
-						var detailList = new Array(); 
-						var detail = document.querySelectorAll("td[name='detail']");
-						for(var i = 0; i < ys.length; i++){ 			
-						   query[i]=new Array(); 
-						   query[i][0]=ys[i].id;       
-						   query[i][1]=ys[i].value;
-						   query[i][1]=ys[i].value; 
-						}
+					$("#add").click(function() {						
+						 var detailList = new Array(); 
+						   var tr = document.querySelectorAll("tbody tr");
+						   for(var i = 0; i < tr.length; i++){    
+							   detailList[i]=new Array(); 
+							   detailList[i][0] = tr[i].cells[1].innerText;
+							   if(tr[i].cells[1].innerText == ""){
+								   layer.msg("请完善供货明细！",{icon:2,time:1000});
+								   return;
+							   }
+							   detailList[i][1] = tr[i].cells[2].innerText; 
+							   if(tr[i].cells[2].innerText == ""){
+								   layer.msg("请完善供货明细！",{icon:2,time:1000});	
+								   return;
+							   }
+							   detailList[i][2] = tr[i].cells[3].querySelector("input").value;
+							   if(tr[i].cells[3].querySelector("input").value == ""){
+								   layer.msg("请完善供货明细！",{icon:2,time:1000});	
+								   return;
+								}							 
+						   }
+						   console.log(detailList);
 						if($("#unit_list").val() == ""){
 							layer.msg("请选择供货商",{icon:2,time:1000});
 							$("#select").focus();	
@@ -173,9 +210,9 @@
 							formData.append('invoice',$("#fileinput3")[0].files[0]);//发票
 							formData.append('supplierPerson',$("#supplierPerson").val());//联系人					
 							formData.append('supplierPhone',$("#supplierPhone").val());//联系电话
-										
+							formData.append('detailList',JSON.stringify(detailList));//采购详情			
 							 $.ajax({
-								 url: "${pageContext.request.contextPath}/procurement/add",
+								 url: "${pageContext.request.contextPath}/dry/add",
 						          type: 'POST',
 						          cache: false,
 						          data: formData,				        
@@ -185,8 +222,13 @@
 										if (obj.state == 0) {
 											layer.msg(obj.message,{icon:2,time:1000});
 											return;				
-										}else{					
-											layer.msg(obj.message,{icon:1,time:1000},function(){layer_close();});
+										}else{		
+											alert(obj.message);
+											layer.msg(obj.message,{icon:1,time:1000});
+											//延时刷新页面
+											setTimeout(function (){							 
+												window.location.href = "${pageContext.request.contextPath}/dry/buy_list";
+											}, 3000);	
 										}
 										
 									}
@@ -195,15 +237,78 @@
 							}
 					});
 					
-					//新增商品行
-				   function add_tr(obj) {
-					   var tr='<tr> <td>1</td><td>白菜</td><td>一大车</td><td>03-12</td><td>< a href=" " onclick="del_tr(this)" class="del_tr text-danger">删除</ a></td></tr>'
-					   $(obj).parents(".goods_list").find("table tbody").append(tr);
-				   }
-					//删除商品行
-				   function del_tr(obj) {
-				   		$(obj).parents("tr").remove();
-				   }
+				/* 	$("#submit").click(function() {
+					    if($("input[name='supplier_business_License']").val()==''){
+					     alert("供货商执照不能为空")
+					    }
+					   }) */
+					   
+					  
+					   
+					 /*   //图片上传
+					   $("#fileinput").on("change",function() {
+					    changepic("fileinput","preview");
+					   })
+					   function changepic(fid,img_id) {
+					     var reads = new FileReader();
+					     f = document.getElementById(fid).files[0];
+					     reads.readAsDataURL(f);
+					     reads.onload = function(e) {
+					     document.getElementById(img_id).src = this.result;
+					     $("#"+img_id).css("display", "block");
+					     };
+					   }
+					    */
+					   new Rolldate({
+					    el: '#date',
+					    format: 'YYYY-MM-DD',
+					    lang:{
+					     title:'选择日期'
+					    },
+					    confirm: function(date) {
+					     $("#date").val(date);
+					     console.log($("#date").val())
+					    },
+					   })
+					   
+					   /**
+					    * @param {Object} obj
+					    */
+					   function add_tr(obj) {
+					    var tr='',index;
+					    var trlen=$(obj).parents(".goods_list").find("tbody tr").length;
+					    if (trlen==0) {
+					     index=0
+					    } else{
+					     index=parseInt($(obj).parents(".goods_list").find("tbody tr:last td:first").text());
+					    }
+					    console.log(index)
+					    for (var i=(index+1);i<(index+2);i++) {
+					     tr += '<tr> <td class="vertical-mid">'+i+'</td><td class="vertical-mid" contenteditable></td><td class="vertical-mid" contenteditable></td>'+
+					     '<td class="vertical-mid"><input readonly="" class="form-control el_time border0" type="text" id="date'+index+'" placeholder="请选择日期"></td>'+
+					     '<td class="vertical-mid"><a href="" onclick="del_tr(this)" class="del_tr text-danger">删除</ a></td></tr>'
+					    }
+					    $(obj).parents(".goods_list").find("table tbody").append(tr);
+					    var dateObj = {
+					     el: '#date'+index,
+					     format: 'YYYY-MM-DD',
+					     lang:{
+					      title:'选择日期'
+					     },
+					     confirm: function(date) {
+					      $("#date"+index).val(date);
+					      console.log($("#date"+index).val())
+					     }
+					    }
+					    new Rolldate(dateObj)
+					   }
+					   
+					   /**
+					    * @param {Object} obj
+					    */
+					   function del_tr(obj) {
+					    $(obj).parents("tr").remove();
+					   }
 					
 					$("#fileinput").on("change",function() {
 						changepic("fileinput","preview");						

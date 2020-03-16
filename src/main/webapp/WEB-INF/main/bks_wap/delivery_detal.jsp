@@ -14,7 +14,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/js/layui/css/layui.css"/>
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>
-		<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/2.4/layer.js"></script>	
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/2.4/layer.js"></script>	
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/ajaxfileupload.js"></script>	
 </head>
 	<body class="contain">
@@ -94,10 +94,10 @@
 										</div>
 									</div>
 									<input type="file" name="" id="fileinput" value="" accept="image/*"/>
-									<c:if test="${distributionDetial == 3}">
+									<c:if test="${distributionDetial.status == 3}">
 										<img alt="" src="${pageContext.request.contextPath}${distributionDetial.openedPhoto}" id="preview">
 									</c:if>
-									<c:if test="${distributionDetial != 3}">
+									<c:if test="${distributionDetial.status != 3}">
 										<img src="" id="preview">
 									</c:if>	
 								</div>
@@ -238,10 +238,12 @@
 			formData.append('openedPhoto',$("#fileinput")[0].files[0]);//拆封取餐照
 			var url = "${pageContext.request.contextPath}/dry/acceptance";
 			$.ajax({
-				"url" : url,
-				"data" : formData,
-				"type" : "POST",
-				"dataType" : "json",
+				  url: url,
+		          type: 'POST',
+		          cache: false,
+		          data: formData,				        
+		          processData: false,
+		          contentType: false,
 				"success" : function(obj) {
 					if (obj.state == 0) {
 						layer.msg(obj.message,{icon:2,time:1000});						
