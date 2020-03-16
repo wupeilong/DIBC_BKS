@@ -19,7 +19,7 @@ public interface ICheckService {
 	String supervisionPage(ModelMap modelMap);
 
 	ResponseResult<Void> addCheckInfo(Integer unitId,String unitName,String unitType,String unitAddress,
-			String unitPrincipal,String unitPhone,List<Integer> resultList,String other,String inspectors,
+			String unitPrincipal,String unitPhone,String resultList,String other,String inspectors,
 			String dailyTime,Integer checkType,String checkPhoto);
 
 	String checkDetailInfo(ModelMap modelMap,Integer id);

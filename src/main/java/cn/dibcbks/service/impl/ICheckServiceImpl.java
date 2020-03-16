@@ -76,10 +76,11 @@ public class ICheckServiceImpl implements ICheckService {
 			}else {
 				checkList = checkMapper.select(" c.unit_id = '" + user.getUnitId() + "'", " c.create_time DESC", null, null);
 			}
+			System.out.println(checkList);
 			modelMap.addAttribute("checkList", checkList);
 			logger.info(Constants.SUCCESSU_HEAD_INFO + "用户进入监管采集信息查看页面成功！");
 			//TODO 监管采集信息查看页面
-			return "";
+			return "bks_wap/inspect_list";
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error(Constants.ERROR_HEAD_INFO + "用户进入信息采集信息查看页面失败，原因：" + e.getMessage());
@@ -161,7 +162,7 @@ public class ICheckServiceImpl implements ICheckService {
 
 	@Override
 	public ResponseResult<Void> addCheckInfo(Integer unitId,String unitName,String unitType,String unitAddress,
-			String unitPrincipal,String unitPhone,List<Integer> resultList,String other,String inspectors,
+			String unitPrincipal,String unitPhone,String resultList,String other,String inspectors,
 			String dailyTime,Integer checkType,String checkPhoto) {
 		ResponseResult<Void> rr = null;
 		try {
@@ -169,13 +170,14 @@ public class ICheckServiceImpl implements ICheckService {
 //			Session session = subject.getSession();
 //			User user = (User)session.getAttribute("user");
 			Check check = new Check();
+			//check.setUserId(userId);
 			check.setUnitId(unitId);
 			check.setUnitName(unitName);
 			check.setUnitType(unitType);
 			check.setUnitAddress(unitAddress);
 			check.setUnitPrincipal(unitPrincipal);
 			check.setUnitPhone(unitPhone);
-			check.setResult(JSONArray.toJSONString(resultList));
+			check.setResult(resultList);
 			check.setOther(other);
 			check.setInspectors(inspectors);
 			check.setDailyTime(dailyTime);
