@@ -46,5 +46,10 @@ public class CommonUtil {
 	public static User getStessionUser() {
 		return (User)SecurityUtils.getSubject().getSession().getAttribute("user");
 	}
-
+	
+	public static void main(String[] args) {
+		String uuid = getUUID();
+		System.out.println("uuid: " + uuid);
+		System.out.println("密码: " + getEncrpytedPassword(Constants.MD5,"wpl1201314",uuid,1024));
+	}
 }
