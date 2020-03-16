@@ -12,7 +12,8 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/index.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/js/layui/css/layui.css"/>
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
-	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>		
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>	
+	<script src="${pageContext.request.contextPath}/static/js/bks_wap/rolldate.min.js" type="text/javascript" charset="utf-8"></script>	
 </head>
 	<body class="contain">
 		<div class="navigation bg-primary">
@@ -63,7 +64,30 @@
 				<button type="button" class="btn btn-primary form-control">提交</button>
 			</div>
 		</main>		
-		<script src="${pageContext.request.contextPath}/static/js/bks_wap/rolldate.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			// var query = new Array();
+			// var tr = document.querySelectorAll("tbody tr");
+			// for(var i = 0; i < tr.length; i++){
+			//    query[i]=new Array(); 
+			//    query[i][0]=tr[i].cells[1].innerText;
+			//    query[i][1]=tr[i].cells[2].innerText; 
+			//    query[i][2]=tr[i].cells[3].querySelector("input").value;
+			// }
+			// console.log(query)
+			
+			new Rolldate({
+				el: '#date-group1-6',
+				format: 'hh:mm',
+				lang:{
+					title:'选择时间'
+				},
+				confirm: function(date) {
+					$("#date").val(date);
+					console.log($("#date-group1-6").val())
+				},
+			})
+			
+		</script>
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
 
