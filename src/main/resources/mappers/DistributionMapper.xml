@@ -4,7 +4,7 @@
 <mapper namespace="cn.dibcbks.mapper.DistributionMapper">
 	<resultMap id="BaseResultMap" type="cn.dibcbks.entity.Distribution">
 	    <id column="id" property="id" />
-	    <result column="daily_time" property="dailytime" />
+	    <result column="daily_time" property="dailyTime" />
 	    <result column="type" property="type" />
 	    <result column="catering_type" property="cateringType" />
 	    <result column="meals_unit_name" property="mealsUnitName" />

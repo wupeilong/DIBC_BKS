@@ -14,7 +14,7 @@ public interface DetectionMapper {
 	
 	Detection queryDetection(@Param("id")Integer id);
 	
-	Detection updateById(Detection detection);
+	Integer updateById(Detection detection);
 	
 	Integer deleteById(Integer id);
 }
