@@ -11,22 +11,38 @@
 	        	layer.msg('文件类型错误,文件格式必须为:png/jpg/jpeg!',{icon:2,time:1000}); 	          
 	            return;
 	        }
-	        var index = layer.load(1, {
-	 			  shade: [0.1,'#fff'] //0.1透明度的白色背景
-	 		});
+	        var index = layerloadingOpen();
 	        if(fileObj.size > maxSize){	        	
 	            //调用函数,对图片进行压缩
 	            compressBase64(fileObj,function (imgBase64) {
 	                imgBase64 = imgBase64;
 	                $("#"+imgId).attr('src',imgBase64);
+	                layer.close(index);
 	            })
 	        }else{
 	        	noBase64(fileObj,function (imgBase64) {
 	                imgBase64 = imgBase64;
-	                $("#"+imgId).attr('src',imgBase64);	               
+	                $("#"+imgId).attr('src',imgBase64);	
+	                layer.close(index);
 	            });
 	        }
 	        
+	 	}
+	 	function layerloadingOpen(){
+	 		var loadingIndex = layer.load(1, { //icon支持传入0-2
+			    shade: [0.5, 'gray'], //0.5透明度的灰色背景
+			    content: '加载中...',
+			    success: function (layero) {
+			        layero.find('.layui-layer-content').css({
+			            'padding-top': '39px',
+			            'width': '160px',		            
+			            'color': 'rgb(45, 26, 26)',
+			        	'font-size': '15px',
+			        	'font-weight': '600'
+			        });
+			    }
+			});
+	 		return loadingIndex;
 	 	}
 	    //不对图片进行压缩
 	    function noBase64(fileObj,callback) {
