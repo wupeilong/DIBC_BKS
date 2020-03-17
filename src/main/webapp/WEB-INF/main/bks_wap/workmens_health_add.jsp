@@ -55,7 +55,7 @@
 					  <input type="text" class="form-control box-shadow0 border-bottom" id="hygiene" name="hygiene" value="无" aria-describedby="sizing-addon1">
 					</div>
 					<div class="input-group form-group fs">
-					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>备注</span>
+					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid"> </i>备注</span>
 					  <input type="text" class="form-control box-shadow0 border-bottom" id="remark" name="remark" value="无" aria-describedby="sizing-addon1">
 					</div>
 					<div class="input-group form-group fs">
@@ -129,7 +129,7 @@ function save(){
 			var we7 = layerloadingOpen();
 			var formData = new FormData();	
 			var data=$("#hygiene_form").serialize()
-			formData.append('healthCodePhoto',dataURLtoFile($("#preview").attr('src'),"we"));
+			formData.append('healthCodePhoto',dataURLtoFile($("#preview").attr('src'),"we.jpg"));
 			formData.append('userId',$("#userId").val());	
 			formData.append('username',$("#username").val());	
 			formData.append('dailyTime',$("#dailyTime").val());	
@@ -152,7 +152,7 @@ function save(){
 							layer.msg(obj.message,{icon:2,time:1000});
 							return;				
 						}else{					
-							layer.msg(obj.message,{icon:1,time:1000},function(){layer_close();});
+							layer.msg(obj.message,{icon:1,time:1000},function(){location.href = '${pageContext.request.contextPath}/user/workmens_health?userId=' + ${user.id}});
 						}
 						
 					}
