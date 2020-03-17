@@ -11,11 +11,13 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/style.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/index.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/js/layui/css/layui.css"/>
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/js/selector/jquery.searchableSelect.css">
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>	
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/2.4/layer.js"></script>	
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/ajaxfileupload.js"></script>
 	<script src="${pageContext.request.contextPath}/static/js/bks_wap/rolldate.min.js" type="text/javascript" charset="utf-8"></script>
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/selector/jquery.searchableSelect.js"></script>	
 	<style type="text/css">
    .table > tbody > tr > td{padding: 0;}
   </style>
@@ -31,7 +33,7 @@
 				<fieldset>
 					<div class="input-group form-group fs">
 						  <span class="input-group-addon border0 clear-bg fonwei">供&ensp;应&ensp;商</span>
-							<select id="unit_list" class="form-control box-shadow0 border-bottom">
+							<select id="unit_list" ><!-- class="form-control box-shadow0 border-bottom" -->
 								<option value="">查询所有企业信息</option>
 								<c:forEach items="${unitList}" var="item">								
 									<option value="${item.unitId}">${item.unitName}</option>
@@ -86,11 +88,11 @@
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg fonwei">联&ensp;系&ensp;人</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" placeholder="请输如联系人"> 
+					  <input type="text" class="form-control box-shadow0 border-bottom" id="supplierPerson" placeholder="请输如联系人"> 
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg fonwei">联系电话</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" placeholder="请输如联系电话"> 
+					  <input type="text" class="form-control box-shadow0 border-bottom" id="supplierPhone" placeholder="请输入联系电话"> 
 					</div>					
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg fonwei">采购公司</span>
@@ -102,20 +104,6 @@
 					</div>
 				  </fieldset>
 			</form>
-			<%-- <div class="margin-top2">
-				<table class="table table-striped table-bordered table-hover" cellspacing="" cellpadding="">
-					<caption>供货明细：</caption>
-					<thead>
-						<tr><th>序号</th><th>商品名</th><th>数量</th><th>生产日期</th><th>操作</th></tr>
-					</thead>
-					<tbody>
-						<tr> <td>1</td><td>白菜</td><td>一大车</td><td>03-12</td><td><a href="" class="text-danger">删除</a></td></tr>
-					</tbody>
-				</table>
-				<div class="text-right">
-					<a href="" class="btn btn-primary">新增商品</a>
-				</div>
-			</div> --%>
 			<div class="margin-top2 goods_list" id="">
 		    <table class="table table-striped table-bordered table-hover" id="mytable" cellspacing="" cellpadding="">
 		     <caption>供货明细：</caption>
@@ -133,7 +121,6 @@
 		     </tbody>
 		    </table>
 		    <div class="text-right">
-		     	<!-- <a href="javascript:;" onclick="add_tr(this)" class="btn btn-success" id="add_tr">新增商品</ a> -->
 		     	<input type="button" onclick="add_tr(this)"class="btn btn-success" id="add_tr" value="新增商品" >
 		    </div>
 		   </div>
@@ -153,14 +140,16 @@
 						</div>
 					  </div>
 				</div>					
-			 </div> 
+			 </div>
 			<div class="margin-top2 margin-bot2">
 				<button type="button" class="btn btn-primary form-control" id="add">提交</button>
 			</div>
 		</main>		
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/bks_wap/imgBase64.js"></script>
 <script type="text/javascript">
+					$('select').searchableSelect();
 					$("#add").click(function() {						
 						 var detailList = new Array(); 
 						   var tr = document.querySelectorAll("tbody tr");
@@ -182,7 +171,6 @@
 								   return;
 								}							 
 						   }
-						   console.log(detailList);
 						if($("#unit_list").val() == ""){
 							layer.msg("请选择供货商",{icon:2,time:1000});
 							$("#select").focus();	
@@ -199,19 +187,21 @@
 							layer.msg("请填写供货商联系电话",{icon:2,time:1000});
 							$("#supplierPhone").focus();
 						}else{
+							var we1 = layerloadingOpen();
 							var formData = new FormData();				
 							formData.append('supplierUnitId',$("#unit_list").val());//供货商ID
-							formData.append('supplierBusinessLicense',$("#fileinput")[0].files[0]);//营业执照
+							formData.append('supplierBusinessLicense',dataURLtoFile($("#preview").attr('src'),"we.jpg"));//营业执照
 							if($("#preview1").attr('src') != ""){
-								formData.append('supplierproductionLicense',$("#fileinput1")[0].files[0]);//许可证
+								formData.append('supplierproductionLicense',dataURLtoFile($("#preview1").attr('src'),"we.jpg"));//许可证
 							}
 							if($("#preview2").attr('src') != ""){
-								formData.append('supplierQualification',$("#fileinput2")[0].files[0]);//资质
+								formData.append('supplierQualification',dataURLtoFile($("#preview2").attr('src'),"we.jpg"));//资质
 							}
-							formData.append('invoice',$("#fileinput3")[0].files[0]);//发票
+							formData.append('invoice',dataURLtoFile($("#preview3").attr('src'),"we.jpg"));//发票 
 							formData.append('supplierPerson',$("#supplierPerson").val());//联系人					
 							formData.append('supplierPhone',$("#supplierPhone").val());//联系电话
-							formData.append('detailList',JSON.stringify(detailList));//采购详情			
+							formData.append('detailList',JSON.stringify(detailList));//采购详情
+							console.log(formData);
 							 $.ajax({
 								 url: "${pageContext.request.contextPath}/procurement/add",
 						          type: 'POST',
@@ -219,16 +209,15 @@
 						          data: formData,				        
 						          processData: false,
 						          contentType: false,
-									"success" : function(obj) {
-										if (obj.state == 0) {
+									"success" : function(obj) {	
+										layer.close(we1);
+										if (obj.state == 0) {											
 											layer.msg(obj.message,{icon:2,time:1000});
 											return;				
 										}else{		
 											layer.msg(obj.message,{icon:1,time:1000});
-											//延时刷新页面
-											setTimeout(function (){							 
-												window.location.reload()/*  = "${pageContext.request.contextPath}/dry/buy_list" */;
-											}, 6000);	
+											//延时刷新页面																	 
+											location.href = "${pageContext.request.contextPath}/procurement/buy_list";											
 										}
 										
 									}
@@ -237,28 +226,7 @@
 							}
 					});
 					
-				/* 	$("#submit").click(function() {
-					    if($("input[name='supplier_business_License']").val()==''){
-					     alert("供货商执照不能为空")
-					    }
-					   }) */
-					   
-					  
-					   
-					 /*   //图片上传
-					   $("#fileinput").on("change",function() {
-					    changepic("fileinput","preview");
-					   })
-					   function changepic(fid,img_id) {
-					     var reads = new FileReader();
-					     f = document.getElementById(fid).files[0];
-					     reads.readAsDataURL(f);
-					     reads.onload = function(e) {
-					     document.getElementById(img_id).src = this.result;
-					     $("#"+img_id).css("display", "block");
-					     };
-					   }
-					    */
+			
 					   new Rolldate({
 					    el: '#date',
 					    format: 'YYYY-MM-DD',
@@ -267,7 +235,6 @@
 					    },
 					    confirm: function(date) {
 					     $("#date").val(date);
-					     console.log($("#date").val())
 					    },
 					   })
 					   
@@ -282,7 +249,6 @@
 					    } else{
 					     index=parseInt($(obj).parents(".goods_list").find("tbody tr:last td:first").text());
 					    }
-					    console.log(index)
 					    for (var i=(index+1);i<(index+2);i++) {
 					     tr += '<tr> <td class="vertical-mid">'+i+'</td><td class="vertical-mid" contenteditable></td><td class="vertical-mid" contenteditable></td>'+
 					     '<td class="vertical-mid"><input readonly="" class="form-control el_time border0" type="text" id="date'+index+'" placeholder="请选择日期"></td>'+
@@ -297,7 +263,6 @@
 					     },
 					     confirm: function(date) {
 					      $("#date"+index).val(date);
-					      console.log($("#date"+index).val())
 					     }
 					    }
 					    new Rolldate(dateObj)
@@ -311,26 +276,17 @@
 					   }
 					
 					$("#fileinput").on("change",function() {
-						changepic("fileinput","preview");						
+						intoBase64("fileinput","preview");						
 					})
 					$("#fileinput1").on("change",function() {						
-						changepic("fileinput1","preview1");
+						intoBase64("fileinput1","preview1");
 					})
 					$("#fileinput2").on("change",function() {						
-						changepic("fileinput2","preview2");
+						intoBase64("fileinput2","preview2");
 					})
-					$("#fileinput3").on("change",function() {						
-						changepic("fileinput3","preview3");
+					$("#fileinput3").on("change",function() {				
+						intoBase64("fileinput3","preview3");
 					})
-					function changepic(fid,img_id) {
-						 var reads = new FileReader();
-						 f = document.getElementById(fid).files[0];
-						 reads.readAsDataURL(f);
-						 reads.onload = function(e) {
-						 document.getElementById(img_id).src = this.result;
-						 $("#"+img_id).css("display", "block");
-						 };
-					}
 					
 					
 </script>

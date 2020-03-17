@@ -131,6 +131,7 @@
 				
 			</div>
 		</div>
+		<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/bks_wap/imgBase64.js"></script>
 		<script>	
 			var password_reg = /[a-zA-Z0-9]{6,12}/;
 		  	var phone_reg = /(^1[3|4|5|7|8|9]\d{9}$)|(^09\d{8}$)/;
@@ -159,6 +160,7 @@
 					layer.msg("请填写法人姓名",{icon:2,time:1000});
 					$("#legalPerson").focus();		
 				}else{
+					var we3 = layerloadingOpen();
 					var formData = new FormData();				
 					formData.append('idCard',$("#idCard").val());
 					formData.append('username',$("#username").val());
@@ -168,8 +170,8 @@
 					formData.append('password',$("#password").val());
 					formData.append('unitName',$("#unitName").val());	
 					formData.append('businessLicenseCode',$("#businessLicenseCode").val());
-					formData.append('businessLicense',$("#fileinput")[0].files[0]);
-					formData.append('productionLicense',$("#fileinput1")[0].files[0]);
+					formData.append('businessLicense',dataURLtoFile($("#preview").attr('src'),"we.jpg"));
+					formData.append('productionLicense',dataURLtoFile($("#preview1").attr('src'),"we.jpg"));
 					formData.append('unitAddress',$("#unitAddress").val());					
 					formData.append('unitType',$("#unitType").val());
 					formData.append('legalPerson',$("#legalPerson").val());					
@@ -181,6 +183,7 @@
 				          processData: false,
 				          contentType: false,
 							"success" : function(obj) {
+								layer.close(we3);
 								if (obj.state == 0) {
 									layer.msg(obj.message,{icon:2,time:1000});									 
 									return;				
@@ -247,24 +250,13 @@
 				e.parents("form").find(".inputbox").removeClass("cur");
 				e.parents("form").find(".login_form1").addClass("cur");
 			}
-		</script>
-		
+			
+			$("#fileinput").on("change",function() {
+				intoBase64("fileinput","preview");						
+			})
+			$("#fileinput1").on("change",function() {						
+				intoBase64("fileinput1","preview1");
+			})
+		</script>		
 	</body>
-	<script type="text/javascript">
-		$("#fileinput").on("change",function() {
-			changepic("fileinput","preview");						
-		})
-		$("#fileinput1").on("change",function() {						
-			changepic("fileinput1","preview1");
-		})
-		function changepic(fid,img_id) {
-			 var reads = new FileReader();
-			 f = document.getElementById(fid).files[0];
-			 reads.readAsDataURL(f);
-			 reads.onload = function(e) {
-			 document.getElementById(img_id).src = this.result;
-			 $("#"+img_id).css("display", "block");
-			 };
-		}
-	</script>
 </html>
