@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import cn.dibcbks.entity.Hygiene;
 import cn.dibcbks.entity.User;
+import cn.dibcbks.mapper.UserMapper;
 import cn.dibcbks.service.IUserService;
 import cn.dibcbks.util.GetCommonUser;
 import cn.dibcbks.util.ResponseResult;
@@ -24,7 +25,8 @@ import cn.dibcbks.util.ResponseResult;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-	
+	@Autowired
+	private UserMapper userMapper;
 	@Autowired
 	private IUserService iUserService;
 	
@@ -65,16 +67,22 @@ public class UserController {
 	@ResponseBody
 	public ResponseResult<Void> uploadFiesle(@RequestParam(value="unimg",required=false)MultipartFile file,
 			String duty,String username,String password, String phone, String idCard,Integer age,String healthCertificateCode){
-		ResponseResult<Void> responseResult=null;		
+		User user = userMapper.queryUser(idCard);
+		if (user != null) {
+			return new ResponseResult<>(ResponseResult.ERROR,"身份证号已存在！");
+		}
+		user = userMapper.queryUserByPhone(phone);
+		if (user != null) {
+			System.out.println("走了这步...");
+			return new ResponseResult<>(ResponseResult.ERROR,"手机号已存在！");
+		}
 		GetCommonUser get=new GetCommonUser();
 		String stratpath=get.uoladimg(file,idCard);
-		if (stratpath==null) {
-			responseResult=new ResponseResult<Void>(ResponseResult.ERROR,"健康证上传异常,人员信息添加失败");
+		if (stratpath == null) {
+			return new ResponseResult<Void>(ResponseResult.ERROR,"健康证上传异常,人员信息添加失败");
 		}else{
-//			String password = idCard.substring(idCard.length()-6);
-			responseResult=iUserService.allocateAccount(idCard, username, password, phone, duty, age,healthCertificateCode,stratpath);			
+			return iUserService.allocateAccount(idCard, username, password, phone, duty, age,healthCertificateCode,stratpath);			
 		}		
-		return responseResult;
 	}
 	
 	/**
