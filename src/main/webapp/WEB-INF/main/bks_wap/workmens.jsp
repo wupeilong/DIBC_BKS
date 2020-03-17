@@ -44,8 +44,8 @@
 					</thead>
 					<tbody id="result_list">
 						
-						<c:forEach items="${userList}" var="item">
-							<tr><td>${item.id }</td><td>${item.username }</td><td>${item.duty }</td><td>${item.age }</td><td><a href="${pageContext.request.contextPath}/user/workmens_detal?id=${item.id }">详情</a></td></tr>
+						<c:forEach items="${userList}" var="item" varStatus="vs">
+							<tr><td>${vs.count }</td><td>${item.username }</td><td>${item.duty }</td><td>${item.age }</td><td><a href="${pageContext.request.contextPath}/user/workmens_detal?id=${item.id }">详情</a></td></tr>
 						</c:forEach>
 						
 					</tbody>
@@ -72,7 +72,7 @@
 						var result = "";
 						for(var i=0;i<obj.data.length;i++){				
 							result += "<tr>";
-							result += "<td>" + obj.data[i].id + "</td>";
+							result += "<td>" + i + "</td>";
 							result += "<td>" + obj.data[i].username + "</td>";
 							result += "<td>" + obj.data[i].duty + "</td>";
 							result += "<td>" + obj.data[i].age + "</td>";

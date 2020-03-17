@@ -86,12 +86,12 @@
 							<tr><th>序号</th><th>商品名</th><th>数量</th><th>生产日期</th><th>验收结果</th></tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${procurementDetail.detailList}" var="item">
+							<c:forEach items="${procurementDetail.detailList}" var="item" varStatus="vs">
 								<tr>	
-									<td>${item.procurementDetailId}</td>
+									<td>${vs.count}</td>
 									<td>${item.productName }</td>
 									<td>${item.count}</td>
-									<td><fmt:formatDate value="${item.productionDate}" pattern="yyyy年MM月dd日" /></td>
+									<td><fmt:formatDate value="${item.productionDate}" pattern="yyyy-MM-dd" /></td>
 									<td>
 										<c:if test="${item.qualified == 0}">
 											不合格

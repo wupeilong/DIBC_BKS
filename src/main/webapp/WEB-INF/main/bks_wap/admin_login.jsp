@@ -35,10 +35,14 @@
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg"><i class="padding-side05 text-danger vertical-mid">*</i>确认密码</span>
 					  <input type="password" class="form-control box-shadow0 border-bottom" name="repassword" placeholder="请再次输入密码" aria-describedby="sizing-addon1">
-					</div>
+					</div>					
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg"><i class="padding-side05 text-danger vertical-mid">*</i>姓&ensp;&ensp;&ensp;&ensp;名</span>
 					  <input type="text" class="form-control box-shadow0 border-bottom" name="username" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+					</div>
+					<div class="input-group form-group fs">
+					  <span class="input-group-addon border0 clear-bg"><i class="padding-side05 text-danger vertical-mid">*</i>年&ensp;&ensp;&ensp;&ensp;龄</span>
+					  <input type="text" class="form-control box-shadow0 border-bottom" name="age" placeholder="请输入年龄" aria-describedby="sizing-addon1">
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg"><i class="padding-side05 text-danger vertical-mid">*</i>电&ensp;&ensp;&ensp;&ensp;话</span>
@@ -70,10 +74,12 @@
 				  var username=$("input[name='username']").val();
 				  var phone=$("input[name='phone']").val();
 				  var duty=$("input[name='duty']").val();
+				  var age = $("input[name='age']").val();
 				  var judge = /[a-zA-Z0-9]{6,12}/;
 				  var mobileReg = /(^1[3|4|5|7|8|9]\d{9}$)|(^09\d{8}$)/;
 				  var nameReg = /^[\u4E00-\u9FA5]{2,4}$/;
 				  var idCard_judge=/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
+				  var age_reg = /^[0-9]{1,3}/; 
 				 if(idCard=='' || password=='' || repassword=='' || username=='' || phone=='' || duty==''){
 					  layer.msg('请完善信息后再进行操作',{icon:2,time:1000});					
 				}else	if (!idCard_judge.test(idCard)) {
@@ -85,6 +91,8 @@
 				}else  if (!nameReg.test(username)) {
 					  layer.msg("输入的姓名不合法",{icon:2,time:1000});						
 				}else if (!mobileReg.test(phone)) {
+					  layer.msg("输入的手机号不合法",{icon:2,time:1000});						
+				}else if (!age_reg.test(phone)) {
 					  layer.msg("输入的手机号不合法",{icon:2,time:1000});						
 				}else {
 					$.ajax({
