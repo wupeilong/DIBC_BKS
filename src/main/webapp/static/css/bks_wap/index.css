@@ -152,6 +152,9 @@ button.btn{
 	width: 164px;
 	text-align: right;
 }
+.detection_add .input-group>span{
+	width: 8em;
+}
 .login_formIn .input-group>span{
 	width: 4em;
 }
