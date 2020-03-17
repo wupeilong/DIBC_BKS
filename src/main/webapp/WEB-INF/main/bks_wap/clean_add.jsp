@@ -63,10 +63,10 @@
 								</tr>
 								
 								<tr>
-									<td colspan="2" class="vertical-mid">工具类</td><td>是：<input type="radio" name="tableware4" id="" value="1" /></td><td>否：<input type="radio" name="tableware4" id="" value="2" /></td>
+									<td colspan="2" class="">工具类</td><td>是：<input type="radio" name="tableware4" id="" value="1" /></td><td>否：<input type="radio" name="tableware4" id="" value="2" /></td>
 								</tr>
 								<tr>
-									<td colspan="2" class="vertical-mid">餐具保洁设施</td><td>是：<input type="radio" name="tableware5" id="" value="1" /></td><td>否：<input type="radio" name="tableware5" id="" value="2" /></td>
+									<td colspan="2" class="">餐具保洁设施</td><td>是：<input type="radio" name="tableware5" id="" value="1" /></td><td>否：<input type="radio" name="tableware5" id="" value="2" /></td>
 								</tr>
 								<tr>
 									<td rowspan="2" class="vertical-mid">消毒方法</td><td>电子消毒柜</td><td>是：<input type="radio" name="tableware6" id="" value="1" /></td><td>否：<input type="radio" name="tableware6" id="" value="2" /></td>
