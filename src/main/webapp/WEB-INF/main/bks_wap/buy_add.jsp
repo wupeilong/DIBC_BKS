@@ -133,12 +133,13 @@
 		     </tbody>
 		    </table>
 		    <div class="text-right">
-		     <a href="javascript:;" onclick="add_tr(this)" class="btn btn-success" id="add_tr">新增商品</ a>
+		     	<!-- <a href="javascript:;" onclick="add_tr(this)" class="btn btn-success" id="add_tr">新增商品</ a> -->
+		     	<input type="button" onclick="add_tr(this)"class="btn btn-success" id="add_tr" value="新增商品" >
 		    </div>
 		   </div>
 			
-			<div class="margin-top">
-				<div class="margin-bot2">
+			<div class="margin-top"> 
+				<div class="">
 								  <div class="fc">
 								  	<div class="upload_imgs">
 										<div class="fc tip_text">
@@ -152,7 +153,7 @@
 									</div>
 								  </div>
 							</div>					
-			</div>
+			 </div> 
 			<div class="margin-top2 margin-bot2">
 				<button type="button" class="btn btn-primary form-control" id="add">提交</button>
 			</div>
