@@ -86,7 +86,7 @@
 								</tr>
 								
 								<tr>
-									<td colspan="2" class="vertical-mid">工具类</td>
+									<td colspan="2" class="">工具类</td>
 									<c:if test="${DisinfectionDetal[4]==1}">
 										<td>是：<input type="radio" name="tableware4" id="tableware" value="1" checked="checked" /></td>
 										<td>否：<input type="radio" name="tableware4" id="tableware" value="2" /></td>
@@ -97,7 +97,7 @@
 									</c:if>
 								</tr>
 								<tr>
-									<td colspan="2" class="vertical-mid">餐具保洁设施</td>
+									<td colspan="2" class="">餐具保洁设施</td>
 									<c:if test="${DisinfectionDetal[5]==1}">
 										<td>是：<input type="radio" name="tableware5" id="tableware" value="1" checked="checked" /></td>
 										<td>否：<input type="radio" name="tableware5" id="tableware" value="2" /></td>
@@ -130,7 +130,7 @@
 									</c:if>
 								</tr>
 								<tr>
-									<td colspan="2">消毒时间</td>
+									<td colspan="2" class="vertical-mid">消毒时间</td>
 									<td colspan="2" style="width: 15em;">
 										<div class="">
 											<input readonly="" class="form-control" type="text" id="date-group1-6" value="<fmt:formatDate value="${disinfectionbyid[0].createTime}" pattern="yyyy-MM-dd HH:mm:ss"/>" placeholder="hh:mm">

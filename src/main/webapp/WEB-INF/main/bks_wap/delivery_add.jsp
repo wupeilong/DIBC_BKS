@@ -116,13 +116,10 @@
 	</body>
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/bks_wap/imgBase64.js"></script>
 	<script type="text/javascript">
-	$(function () {
-		
+	$(function () {		
 		$('select').searchableSelect();
-	    $('#fileinput').on('change',function () {
-	    	
-	    	intoBase64("fileinput","preview");	  
-	    	
+	    $('#fileinput').on('change',function () {	    	
+	    	intoBase64("fileinput","preview");	    	
 	    });	 
 	    $('#fileinput1').on('change',function () {
 	    	intoBase64("fileinput1","preview1");	        
@@ -151,6 +148,7 @@
 				layer.msg("请填写配餐类型",{icon:2,time:1000});
 				$("#type").focus();
 			}else{ 
+				var loadingindex=layerloadingOpen();
 				var formData = new FormData();				
 				formData.append('type',$("#type").val());//送餐类型
 				formData.append('mealsUnitName',$("#mealsUnitName").val());//供餐企业
@@ -169,10 +167,13 @@
 			          contentType: false,
 						"success" : function(obj) {
 							if (obj.state == 0) {
-								layer.msg(obj.message,{icon:2,time:1000});
+								layer.close(loadingindex);
+								layer.msg(obj.message,{icon:2,time:1000});								
 								return;				
 							}else{
+								layer.close(loadingindex);
 								layer.msg(obj.message,{icon:1,time:1000});
+								
 								//延时刷新页面
 								setTimeout(function (){							 
 									window.location.href = "${pageContext.request.contextPath}/dry/delivery";
