@@ -247,6 +247,7 @@ public class IUserServiceImpl implements IUserService {
 			List<User> list = userMapper.select(" u.phone = '" + phone + "'", null, null,null);
 			System.out.println("phone_card_user : " + list);
 			if (!list.isEmpty()) {
+				System.out.println("走了这步...");
 				return new ResponseResult<>(ResponseResult.ERROR,"手机号已存在！");
 			}
 			return new ResponseResult<>(ResponseResult.SUCCESS,"操作成功！");

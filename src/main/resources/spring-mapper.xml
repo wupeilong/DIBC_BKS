@@ -21,9 +21,7 @@
 	   <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan> 
 	
-	<!-- 启动事务 -->
-	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
-	<aop:aspectj-autoproxy proxy-target-class="true" expose-proxy="true"/>
+	
 	
 	<!-- 异常统一处理类 HandlerExceptionResolver 注释 -->
   	<bean id="handlerExceptionResolver" class="cn.dibcbks.exception.MyExceptionResolver" /> 
@@ -55,6 +53,11 @@
 			<tx:method name="*" isolation="REPEATABLE_READ" propagation="NOT_SUPPORTED"/>
 		</tx:attributes>	
 	</tx:advice>
+	
+	<!-- 启动事务  -->
+	<!-- <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/> -->
+	<!-- 暴露事务 -->
+	<aop:aspectj-autoproxy proxy-target-class="true" expose-proxy="true"/>
 	
 	<aop:config>
 		<aop:pointcut expression="execution(* cn.dibcbks.service..*(..))" id="point"/>

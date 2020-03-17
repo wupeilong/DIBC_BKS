@@ -221,14 +221,14 @@
 						$("#newpassword").focus();		
 					}else {
 						var url = "${pageContext.request.contextPath}/is_exist";
-						var data = "idCard=" + $("idCard").val() + "phone=" + $("#phone").val();
+						var data = "idCard=" + $("idCard").val() + "&phone=" + $("#phone").val();
 						$.ajax({
 							"url" : url,
 							"data" : data,							
 							"type" : "POST",
 							"dataType" : "json",
 							"success" : function(obj) {
-								alert(ob.message);
+								alert(obj.message);
 								if (obj.state == 0) {
 									layer.msg(obj.message,{icon:2,time:1000});
 									//return;
