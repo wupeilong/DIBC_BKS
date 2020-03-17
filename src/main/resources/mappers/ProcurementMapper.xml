@@ -282,8 +282,8 @@
 	      <if test="supplierPhone != null">
 	        supplier_phone =  #{supplierPhone},
 	      </if>
-	      <if test="acceptanceUserId != null">
-	        acceptance_user_id =  #{acceptanceUserId},
+	      <if test="acceptanceUsername != null">
+	        acceptance_username =  #{acceptanceUsername},
 	      </if>
 	      <if test="invoice != null">
 	        invoice =  #{invoice},

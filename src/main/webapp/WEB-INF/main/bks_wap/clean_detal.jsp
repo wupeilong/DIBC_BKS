@@ -37,8 +37,6 @@
 								<tr><th colspan="2">消毒项目</th><th colspan="2">消毒结果</th></tr>
 							</thead>
 							<tbody>
-							
-							
 								<tr>
 									<td rowspan="4" class="vertical-mid">餐(炊)具种类</td>
 									<td>小餐具类</td>

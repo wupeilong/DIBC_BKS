@@ -112,7 +112,8 @@
 				}else if($("#preview").attr('src') == ""){
 					layer.msg("请输入上传健康证",{icon:2,time:1000});
 					$("#preview").focus();		
-				}else{ 				
+				}else{ 		
+					var we2 = layerloadingOpen();
 				 	var formData = new FormData();				
 					formData.append('unimg',dataURLtoFile($("#preview").attr('src'),"we.jpg"));
 					formData.append('duty',$("#duty").val());
@@ -130,6 +131,7 @@
 				          processData: false,
 				          contentType: false,
 							"success" : function(obj) {
+								layer.close(we2);
 								if (obj.state == 0) {
 									layer.msg(obj.message,{icon:2,time:1000});
 									return;				

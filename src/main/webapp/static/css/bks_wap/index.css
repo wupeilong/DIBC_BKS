@@ -281,3 +281,6 @@ legend{
 .delivery_add .searchable-select{
 	width: 100%;
 }
+.searchable-select-dropdown{
+	z-index:99;
+}
