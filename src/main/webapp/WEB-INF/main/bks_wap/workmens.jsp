@@ -31,7 +31,7 @@
 						</select>		
 					</c:if>								
 				</div>
-				<c:if test="${user.parentId == 0 }">
+				<c:if test="${user.parentId == 0 && user.type == 2 }">
 					<a href="${pageContext.request.contextPath}/user/workmens_add" class="btn bg-primary"><i class="fa fa-plus"></i></a>
 				</c:if>
 			</div>

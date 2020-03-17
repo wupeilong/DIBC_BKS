@@ -32,7 +32,9 @@
 						</c:if>
 					</div>
 				</div>
-				<a href="${pageContext.request.contextPath}/dry/delivery_add" class="btn bg-primary"><i class="fa fa-plus"></i></a>
+				<c:if test="${user.type == 2}">
+					<a href="${pageContext.request.contextPath}/dry/delivery_add" class="btn bg-primary"><i class="fa fa-plus"></i></a>
+				</c:if>				
 			</div>
 		</div>
 		<main class="main margin-top2 padding-side05">
