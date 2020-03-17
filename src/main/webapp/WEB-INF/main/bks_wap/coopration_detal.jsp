@@ -90,7 +90,13 @@
 				<button type="button" class="btn btn-primary form-control">保存</button>
 			</div> -->
 		</main>		
+		<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/bks_wap/imgBase64.js"></script>
 		<script type="text/javascript">
+			var $current = $("fieldset");		
+			$current.find("img").bind("click",function(){
+				var path=$(this).attr('src');			
+				layerImg(path);
+			});	
 			layui.use('upload', function(){
 			  var $ = layui.jquery
 			  ,upload = layui.upload;
