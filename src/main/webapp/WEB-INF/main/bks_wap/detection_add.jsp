@@ -55,8 +55,10 @@
 						</div>
 						<div class="input-group form-group fs">
 						  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>检测时间</span>
-						 		<jsp:useBean id="now" class="java.util.Date" scope="page"/>
-								<fmt:formatDate value="${now}" pattern="yyyy年MM月dd日" />						 		
+						  <span class="width100">
+					 		<jsp:useBean id="now" class="java.util.Date" scope="page"/>
+							<fmt:formatDate value="${now}" pattern="yyyy年MM月dd日" />
+						  </span>
 						</div>
 						<div class="input-group form-group fs">
 						  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>样品名</span>
