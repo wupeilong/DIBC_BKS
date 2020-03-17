@@ -95,55 +95,61 @@
 			</div>
 		</main>		
 		<script type="text/javascript">
-		 $('#register').click(function() {
-			 if ($("#duty").val() == "") {
-				layer.msg("请输入职务",{icon:2,time:1000});
-				$("#duty").focus();		
-			}else if($("#username").val() == ""){
-				layer.msg("请输入姓名",{icon:2,time:1000});
-				$("#username").focus();		
-			}else if($("#password").val() == ""){
-				layer.msg("请输入密码",{icon:2,time:1000});
-				$("#username").focus();		
-			}else if($("#idCard").val() == "" || $("#idCard").val().length<18){				
-				layer.msg("请输入18位身份证号码",{icon:2,time:1000});
-				$("#idCard").focus();		
-			}else if($("#age").val() == ""){
-				layer.msg("请填写年龄",{icon:2,time:1000});
-				$("#age").focus();		
-			}else if($("#healthCertificateCode").val() == ""){
-				layer.msg("请输入健康证编号",{icon:2,time:1000});
-				$("#healthCertificateCode").focus();		
-			}else if($("#preview").attr('src') == ""){
-				layer.msg("请输入上传健康证",{icon:2,time:1000});
-				$("#preview").focus();		
-			}else{ 				
-			 	var formData = new FormData();				
-				formData.append('unimg',$("#fileinput")[0].files[0]);
-				formData.append('duty',$("#duty").val());
-				formData.append('username',$("#username").val());
-				formData.append('password',$("#password").val());
-				formData.append('idCard',$("#idCard").val());
-				formData.append('age',$("#age").val());
-				formData.append('healthCertificateCode',$("#healthCertificateCode").val());				
-				 $.ajax({
-					 url: '../user/workmens_reg',
-			          type: 'POST',
-			          cache: false,
-			          data: formData,				        
-			          processData: false,
-			          contentType: false,
-						"success" : function(obj) {
-							if (obj.state == 0) {
-								layer.msg(obj.message,{icon:2,time:1000});
-								return;				
-							}else{					
-								layer.msg(obj.message,{icon:1,time:1000});
-							}				
-						}
-					}); 
-				}
-	     	});		
+			var password_reg = /[a-zA-Z0-9]{6,12}/;
+		  	var phone_reg = /(^1[3|4|5|7|8|9]\d{9}$)|(^09\d{8}$)/;
+		  	var username_reg = /^[\u4E00-\u9FA5]{2,6}$/;	
+		  	var name_reg = /^[\u0391-\uFFE5]+$/;
+			var idCard_judge = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
+			var age_reg = /^[0-9]{1,3}/; 
+			 $('#register').click(function() {
+				 if (!name_reg.test($("#duty").val())) {
+					layer.msg("请输入职务",{icon:2,time:1000});
+					$("#duty").focus();		
+				}else if(!username_reg.test($("#username").val())){
+					layer.msg("请输入姓名",{icon:2,time:1000});
+					$("#username").focus();		
+				}else if(!password_reg.test($("#password").val())){
+					layer.msg("请输入密码",{icon:2,time:1000});
+					$("#password").focus();		
+				}else if(!idCard_judge.test($("#idCard").val())){				
+					layer.msg("请输入18位身份证号码",{icon:2,time:1000});
+					$("#idCard").focus();		
+				}else if(!age_reg.test($("#age").val())){
+					layer.msg("请填写年龄",{icon:2,time:1000});
+					$("#age").focus();		
+				}else if($("#healthCertificateCode").val() == ""){
+					layer.msg("请输入健康证编号",{icon:2,time:1000});
+					$("#healthCertificateCode").focus();		
+				}else if($("#preview").attr('src') == ""){
+					layer.msg("请输入上传健康证",{icon:2,time:1000});
+					$("#preview").focus();		
+				}else{ 				
+				 	var formData = new FormData();				
+					formData.append('unimg',$("#fileinput")[0].files[0]);
+					formData.append('duty',$("#duty").val());
+					formData.append('username',$("#username").val());
+					formData.append('password',$("#password").val());
+					formData.append('idCard',$("#idCard").val());
+					formData.append('age',$("#age").val());
+					formData.append('healthCertificateCode',$("#healthCertificateCode").val());				
+					 $.ajax({
+						 url: '../user/workmens_reg',
+				          type: 'POST',
+				          cache: false,
+				          data: formData,				        
+				          processData: false,
+				          contentType: false,
+							"success" : function(obj) {
+								if (obj.state == 0) {
+									layer.msg(obj.message,{icon:2,time:1000});
+									return;				
+								}else{					
+									layer.msg(obj.message,{icon:1,time:1000});
+								}				
+							}
+						}); 
+					}
+		     	});		
 		</script>
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
