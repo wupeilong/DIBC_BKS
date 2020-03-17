@@ -75,20 +75,11 @@
 						<img src="" id="preview">
 					</div>
 				</div>
+				<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/bks_wap/imgBase64.js"></script>
 				<script type="text/javascript">
 					$("#fileinput").on("change",function() {
-						changepic("fileinput","preview");
+						intoBase64("fileinput","preview");
 					})
-					
-					function changepic(fid,img_id) {
-						 var reads = new FileReader();
-						 f = document.getElementById(fid).files[0];
-						 reads.readAsDataURL(f);
-						 reads.onload = function(e) {
-						 document.getElementById(img_id).src = this.result;
-						 $("#"+img_id).css("display", "block");
-						 };
-					}
 				 	function datetime() {
 						 var now = new Date();
 						 document.getElementById("dailyTime").value = now.getFullYear() + "-"
@@ -135,9 +126,10 @@ function save(){
 		}else if($("#preview").attr('src') == ""){
 			layer.msg("请上传你的健康吗",{icon:2,time:1000});							
 		}else{
+			var we7 = layerloadingOpen();
 			var formData = new FormData();	
 			var data=$("#hygiene_form").serialize()
-			formData.append('healthCodePhoto',$("#fileinput")[0].files[0]);
+			formData.append('healthCodePhoto',dataURLtoFile($("#preview").attr('src'),"we"));
 			formData.append('userId',$("#userId").val());	
 			formData.append('username',$("#username").val());	
 			formData.append('dailyTime',$("#dailyTime").val());	
@@ -155,6 +147,7 @@ function save(){
 		          processData: false,
 		          contentType: false,
 					"success" : function(obj) {
+						layer.close(we7);
 						if (obj.state == 0) {
 							layer.msg(obj.message,{icon:2,time:1000});
 							return;				
