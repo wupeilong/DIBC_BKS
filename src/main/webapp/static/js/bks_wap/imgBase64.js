@@ -1,0 +1,99 @@
+ 
+	 	function intoBase64(inputId,imgId){	 		
+	 		var filePath = $("#"+inputId).val(), //获取input的value,里面是文件的路径
+            	fileFormat = filePath.substring(filePath.lastIndexOf('.')).toLowerCase(),
+            	imgBase64 = '', //存储图片的base64
+           	 	maxSize = 1*1024*1024,
+            	fileObj = $("#"+inputId)[0].files[0];//document.getElementById('upload').files[0]; //上传文件的对象,要这样写才行，用jquery写法获取不到对象
+            	
+	 		//检查文件格式
+	        if(!fileFormat.match(/.png|.jpg|.jpeg|.gif/)){
+	        	layer.msg('文件类型错误,文件格式必须为:png/jpg/jpeg!',{icon:2,time:1000}); 	          
+	            return;
+	        }
+	        var index = layer.load(1, {
+	 			  shade: [0.1,'#fff'] //0.1透明度的白色背景
+	 		});
+	        if(fileObj.size > maxSize){	        	
+	            //调用函数,对图片进行压缩
+	            compressBase64(fileObj,function (imgBase64) {
+	                imgBase64 = imgBase64;
+	                $("#"+imgId).attr('src',imgBase64);
+	            })
+	        }else{
+	        	noBase64(fileObj,function (imgBase64) {
+	                imgBase64 = imgBase64;
+	                $("#"+imgId).attr('src',imgBase64);	               
+	            });
+	        }
+	        
+	 	}
+	    //不对图片进行压缩
+	    function noBase64(fileObj,callback) {
+	        var r = new FileReader();
+	        //转成base64
+	        r.onload = function () {
+	            imgBase64 = r.result;
+	         //   console.log(imgBase64);
+	            callback(imgBase64);
+	        }
+	        r.readAsDataURL(fileObj);//转成base64格式
+	    }
+	 
+	    //对图片进行压缩
+	 
+	    function compressBase64(fileObj,callback) {
+	        if(typeof (FileReader) === 'undefined'){
+	        	layer.msg("当前浏览器内核不支持base64图片压缩",{icon:2,time:1000}); 	                     
+	        }else{
+	            try{
+	                var reader = new FileReader();
+	                reader.onload = function (e) {
+	                	var path=this.result;
+	                	var img = new Image();
+	                    img.src = path;
+	                    img.onload = function(){
+	                        var that = this;
+	                        // 默认按比例压缩
+	                        var w = that.width,
+	                            h = that.height,
+	                            scale = w / h;
+	                        w = fileObj.width || w;
+	                        h = fileObj.height || (w / scale);
+	                        var quality = 0.2;  // 默认图片质量为0.7
+	                        //生成canvas
+	                        var canvas = document.createElement('canvas');
+	                        var ctx = canvas.getContext('2d');
+	                        // 创建属性节点
+	                        var anw = document.createAttribute("width");
+	                        anw.nodeValue = w;
+	                        var anh = document.createAttribute("height");
+	                        anh.nodeValue = h;
+	                        canvas.setAttributeNode(anw);
+	                        canvas.setAttributeNode(anh);
+	                        ctx.drawImage(that, 0, 0, w, h);
+	                        // 图像质量
+	                        if(fileObj.quality && fileObj.quality <= 1 && fileObj.quality > 0){
+	                            quality = fileObj.quality;
+	                        }
+	                        // quality值越小，所绘制出的图像越模糊
+	                        var base64 = canvas.toDataURL('image/jpeg', quality);
+	                        // 回调函数返回base64的值
+	                        callback(base64);
+	                        console.log(base64);
+	                    } 	                   
+	                };
+	                reader.readAsDataURL(fileObj);
+	            }catch (e) {
+	            	layer.msg('图片处理失败!',{icon:2,time:1000});               
+	            }
+	        }
+	    }
+	    function dataURLtoFile(dataurl, filename) {//将base64转换为文件，dataurl为base64字符串，filename为文件名（必须带后缀名，如.jpg,.png）
+	        var arr = dataurl.split(','), mime = arr[0].match(/:(.*?);/)[1],
+	            bstr = atob(arr[1]), n = bstr.length, u8arr = new Uint8Array(n);
+	        while(n--){
+	            u8arr[n] = bstr.charCodeAt(n);
+	        }
+	        return new File([u8arr], filename, {type:mime});
+	      }
