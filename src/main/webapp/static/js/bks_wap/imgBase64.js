@@ -28,6 +28,37 @@
 	        }
 	        
 	 	}
+	 	function layerImg(imgId){	 		
+	 		layer.open({
+	 			  type: 1,
+	 			  title: "",
+	 			  closeBtn: 0,
+	 			  area: ['auto'],	 			 
+	 			  shadeClose: false,
+	 		/*	  btn: '关闭',*/
+	 			  content:'<div><img src="'+imgId+'" id="preview" style="width: 360px;height: 200px;"><span class="layui-layer-setwin"><a class="layui-layer-ico layui-layer-close layui-layer-close2" href="javascript:;"></a></span></div>',
+	 			 success: function (layero) {
+				        layero.find('.layui-layer-content').css({	
+				        	'height':'200px',
+				            'width': '360px',		            
+				            'color': 'rgb(45, 26, 26)',
+				        	'font-size': '15px',
+				        	'font-weight': '600'
+				        });
+				        layero.find('.layui-layer-setwin').css({				            
+				        	'right': '28px',
+				        	'top': '28px'
+				        });
+				        layero.find('.layui-layer-btn').css({
+				            'padding': '0px',
+				            'margin': '0px',		            
+				            'color': 'rgb(45, 26, 26)',
+				        	'font-size': '15px',
+				        	'font-weight': '600'
+				        });
+				    }
+	 		});
+	 	}
 	 	function layerloadingOpen(){
 	 		var loadingIndex = layer.load(1, { //icon支持传入0-2
 			    shade: [0.5, 'gray'], //0.5透明度的灰色背景
