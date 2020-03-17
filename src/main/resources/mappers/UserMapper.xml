@@ -184,6 +184,33 @@
 			u.id_card = #{idCard} 
 	</select>
 	 
+	 	<!-- 查询单个用户信息 -->
+	<select id="queryUserByPhone" resultMap="BaseResultMap" parameterType="java.lang.String">
+		SELECT
+			u.id,
+			u.id_card,
+			u.username,
+			u.`password`,
+			u.phone,
+			u.unit_id,
+			n.unit_name,
+			u.deparment,
+			u.duty,
+			u.age,
+			u.health_certificate_code,
+			u.health_certificate,
+			u.head_url,
+			u.parent_id,
+			u.sex,
+			u.type,
+			u.uuid,
+			u.create_time
+		FROM
+			user AS u
+		LEFT JOIN unit AS n ON n.unit_id = u.unit_id
+		WHERE
+			u.phone = #{phone}
+	</select>
 
 	<update id="updateById"  parameterType="cn.dibcbks.entity.User">
 		update user

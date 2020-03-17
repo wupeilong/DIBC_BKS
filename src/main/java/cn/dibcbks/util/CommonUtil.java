@@ -48,8 +48,8 @@ public class CommonUtil {
 	}
 	
 	public static void main(String[] args) {
-		String uuid = getUUID();
+		String uuid = "1";
 		System.out.println("uuid: " + uuid);
-		System.out.println("密码: " + getEncrpytedPassword(Constants.MD5,"wpl1201314",uuid,1024));
+		System.out.println("密码: " + getEncrpytedPassword(Constants.MD5,"1",uuid,1024));
 	}
 }
