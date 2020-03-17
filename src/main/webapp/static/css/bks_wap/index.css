@@ -152,6 +152,9 @@ button.btn{
 	width: 164px;
 	text-align: right;
 }
+.detection_add .input-group>span{
+	width: 8em;
+}
 .login_formIn .input-group>span{
 	width: 4em;
 }
@@ -280,4 +283,7 @@ legend{
 }
 .delivery_add .searchable-select{
 	width: 100%;
+}
+.searchable-select-dropdown{
+	z-index:99;
 }

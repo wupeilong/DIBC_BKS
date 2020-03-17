@@ -66,19 +66,16 @@
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
 	<script type="text/javascript">
-	console.log('${procurementList}');
 	$('select').searchableSelect({
 		"afterSelectItem":function(){
 			var url = "${pageContext.request.contextPath}/procurement/list";
 			var data = "unitId=" + $("#unit_list").val();
-			console.log("unitId: " + data);
 			$.ajax({
 				"url" : url,
 				"data" : data,
 				"type" : "POST",
 				"dataType" : "json",
 				"success" : function(obj) {
-					console.log('obj '+ obj);
 					if (obj.state == 0) {
 						layer.msg(obj.message,{icon:2,time:1000});
 						return;
@@ -97,8 +94,7 @@
 							result += "<td><a href='${pageContext.request.contextPath}/procurement/buy_detal?id=" + obj.data[i].id + "'>详情</a></td>";
 							result += "</tr>";
 						}
-						$("#result_list").html(result);
-						console.log(obj.data);								
+						$("#result_list").html(result);							
 					}		
 				}
 			});

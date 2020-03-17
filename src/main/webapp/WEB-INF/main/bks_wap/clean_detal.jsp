@@ -6,7 +6,7 @@
 <head>
 	<meta charset=utf-8>
 	<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
-	<title>从业人员信息添加</title>
+	<title>清洗消毒详情</title>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/bootstrap.min.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/style.css"/>
@@ -37,8 +37,6 @@
 								<tr><th colspan="2">消毒项目</th><th colspan="2">消毒结果</th></tr>
 							</thead>
 							<tbody>
-							
-							
 								<tr>
 									<td rowspan="4" class="vertical-mid">餐(炊)具种类</td>
 									<td>小餐具类</td>

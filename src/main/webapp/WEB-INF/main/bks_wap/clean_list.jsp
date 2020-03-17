@@ -11,9 +11,9 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/js/selector/jquery.searchableSelect.css">
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/style.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/index.css"/>
-	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
-	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>	
-	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/selector/jquery.searchableSelect.js"></script>	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/selector/jquery.searchableSelect.js"></script>	
 </head>
 	<body class="contain">
 		<div class="navigation bg-primary">
@@ -60,29 +60,29 @@
 <script type="text/javascript">
 	$('#unit_list').searchableSelect({
 		"afterSelectItem":function(){			
-				var url = "../clean/clean_alllist";
-				var data = "unitId=" + $("#unit_list").val();
-				$.ajax({
-					"url" : url,
-					"data" : data,
-					"type" : "POST",
-					"dataType" : "json",
-					"success" : function(obj) {
-						if (obj.state == 0) {
-							layer.msg(obj.message,{icon:2,time:1000});
-							return;
-						}else{							
-							var datvar="";							
-							for(var i=0;i<obj.data.length;i++){
-								datvar +='<tr><td>'+obj.data[i].id+'</td>'+
-										'<td>'+obj.data[i].unitName+'</td>'+
-										'<td>'+obj.data[i].dailyTime+'</td>'+
-										'<td><a href="${pageContext.request.contextPath}/clean/clean_detal?id='+obj.data[i].id+'">详情</a></td></tr>';							
-							}
-							$("#datvarbody").html(datvar);													
-						}				
-					}
-				}); 					
+			var url = "../clean/clean_alllist";
+			var data = "unitId=" + $("#unit_list").val();
+			$.ajax({
+				"url" : url,
+				"data" : data,
+				"type" : "POST",
+				"dataType" : "json",
+				"success" : function(obj) {
+					if (obj.state == 0) {
+						layer.msg(obj.message,{icon:2,time:1000});
+						return;
+					}else{							
+						var datvar="";							
+						for(var i=0;i<obj.data.length;i++){
+							datvar +='<tr><td>'+obj.data[i].id+'</td>'+
+									'<td>'+obj.data[i].unitName+'</td>'+
+									'<td>'+obj.data[i].dailyTime+'</td>'+
+									'<td><a href="${pageContext.request.contextPath}/clean/clean_detal?id='+obj.data[i].id+'">详情</a></td></tr>';							
+						}
+						$("#datvarbody").html(datvar);													
+					}				
+				}
+			}); 					
 		}
 	});	
 </script>
