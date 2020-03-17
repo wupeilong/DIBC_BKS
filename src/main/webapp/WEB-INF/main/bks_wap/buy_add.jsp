@@ -27,11 +27,11 @@
 			</div>
 		</div>
 		<main class="main margin-top padding-side05">
-			<form action="" method="post">
+			<form action="" method="post" class="padding-side login_formc">
 				<fieldset>
 					<div class="input-group form-group fs">
-						  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid"></i>供&ensp;应&ensp;商&ensp;&ensp;&ensp;</span>
-							<select id="unit_list">
+						  <span class="input-group-addon border0 clear-bg fonwei">供&ensp;应&ensp;商</span>
+							<select id="unit_list" class="form-control box-shadow0 border-bottom">
 								<option value="">查询所有企业信息</option>
 								<c:forEach items="${unitList}" var="item">								
 									<option value="${item.unitId}">${item.unitName}</option>
@@ -40,7 +40,7 @@
 						  <!-- <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>供&ensp;应&ensp;商</span>
 						  <input type="text" class="form-control box-shadow0 border-bottom" name="account"  aria-describedby="sizing-addon1"> -->					
 					</div>
-					<div class="fsa border-bottom">							
+					<div class="fsa">							
 							<div class="margin-bot2">								 
 								<div class="fc">
 									<div class="upload_imgs">
@@ -50,7 +50,7 @@
 												<div class="text-center">上传营业执照</div>
 											</div>
 										</div>
-										<input type="file" name="" id="fileinput" value="" accept="image/*"/>
+										<input type="file" name="" id="fileinput" value="" accept="image/*" />
 										<img src="" id="preview">
 									</div>
 								</div>			
@@ -84,20 +84,20 @@
 								  </div>
 							</div>
 					</div>
-					<div class="input-group form-group fs border-bottom">
-					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">联&ensp;系&ensp;人</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" id="supplierPerson"  aria-describedby="sizing-addon1"> 
+					<div class="input-group form-group fs">
+					  <span class="input-group-addon border0 clear-bg fonwei">联&ensp;系&ensp;人</span>
+					  <input type="text" class="form-control box-shadow0 border-bottom" placeholder="请输如联系人"> 
 					</div>
-					<div class="input-group form-group fs border-bottom">
-					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">联系电话</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" id="supplierPhone"  aria-describedby="sizing-addon1"> 
+					<div class="input-group form-group fs">
+					  <span class="input-group-addon border0 clear-bg fonwei">联系电话</span>
+					  <input type="text" class="form-control box-shadow0 border-bottom" placeholder="请输如联系电话"> 
 					</div>					
-					<div class="input-group form-group fs border-bottom">
-					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">采购公司</span>
+					<div class="input-group form-group fs">
+					  <span class="input-group-addon border0 clear-bg fonwei">采购公司</span>
 					  <div class="form-control box-shadow0 border0">${user.unitName }</div>
 					</div>
-					<div class="input-group form-group fs border-bottom">
-					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">采&ensp;购&ensp;人</span>
+					<div class="input-group form-group fs">
+					  <span class="input-group-addon border0 clear-bg fonwei">采&ensp;购&ensp;人</span>
 					  <div class="form-control box-shadow0 border0">${user.username }</div>
 					</div>
 				  </fieldset>
@@ -286,7 +286,7 @@
 					    for (var i=(index+1);i<(index+2);i++) {
 					     tr += '<tr> <td class="vertical-mid">'+i+'</td><td class="vertical-mid" contenteditable></td><td class="vertical-mid" contenteditable></td>'+
 					     '<td class="vertical-mid"><input readonly="" class="form-control el_time border0" type="text" id="date'+index+'" placeholder="请选择日期"></td>'+
-					     '<td class="vertical-mid"><a href="" onclick="del_tr(this)" class="del_tr text-danger">删除</ a></td></tr>'
+					     '<td class="vertical-mid"><a href="javascript:;" onclick="del_tr(this)" class="del_tr text-danger">删除</ a></td></tr>'
 					    }
 					    $(obj).parents(".goods_list").find("table tbody").append(tr);
 					    var dateObj = {
