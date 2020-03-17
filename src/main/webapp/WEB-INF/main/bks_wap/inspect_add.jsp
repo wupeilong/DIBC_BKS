@@ -70,7 +70,7 @@
 										<label for="" class="padding-side05"><input type="radio" name="objectType" id="" value="餐饮企业" />餐饮企业</label>
 									</div>
 								</div>
-								<div class="fb margin-top05 padding-side fb">
+								<div class="margin-top05 padding-side fb">
 									<div class="">
 										<div class="">
 											负责人员：<span class="" id="legalPerson">${unitlist[0].legalPerson}</span>
