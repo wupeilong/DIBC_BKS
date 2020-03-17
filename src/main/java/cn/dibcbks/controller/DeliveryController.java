@@ -188,11 +188,14 @@ public class DeliveryController {
 								String address){
 			
 		ResponseResult<Void> rr = null;
+		System.out.println(packingPhoto);
 		User user = CommonUtil.getStessionUser();
 		GetCommonUser get = new GetCommonUser();		
 		String packingPhotoPath = get.uoladimg(packingPhoto,user.getIdCard());
 		String sealPhotoPath = get.uoladimg(sealPhoto,user.getIdCard());
 		String carPhotoPath = get.uoladimg(carPhoto,user.getIdCard());
+		
+		System.out.println(112);
 		if(StringUtils.isEmpty(packingPhotoPath)){
 			rr = new ResponseResult<>(ResponseResult.ERROR,"送餐装箱图上传失败，请重新上传！");
 		}else if (StringUtils.isEmpty(sealPhotoPath)) {
@@ -216,6 +219,7 @@ public class DeliveryController {
 			distribution.setStatus(1);//启送中
 			distribution.setCreateTime(createTime);
 			System.out.println("distribution : " + distribution);
+			
 			distributionMapper.insert(distribution);
 			rr = new ResponseResult<>(ResponseResult.SUCCESS,"操作成功！");
 		}
