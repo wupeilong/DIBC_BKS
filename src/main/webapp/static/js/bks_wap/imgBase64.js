@@ -11,9 +11,9 @@
 	        	layer.msg('文件类型错误,文件格式必须为:png/jpg/jpeg!',{icon:2,time:1000}); 	          
 	            return;
 	        }
-	        var index = layer.load(1, {
-	 			  shade: [0.1,'#fff'] //0.1透明度的白色背景
-	 		});
+//	        var index = layer.load(1, {
+//	 			  shade: [0.1,'#fff'] //0.1透明度的白色背景
+//	 		});
 	        if(fileObj.size > maxSize){	        	
 	            //调用函数,对图片进行压缩
 	            compressBase64(fileObj,function (imgBase64) {

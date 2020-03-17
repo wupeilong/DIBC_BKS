@@ -240,13 +240,11 @@ public class IUserServiceImpl implements IUserService {
 	public ResponseResult<Void> userIsExist(String idCard,String phone) {
 		try {
 			User user = userMapper.queryUser(idCard);
-			System.out.println("id_card_user : " + user);
 			if(user != null){
 				return new ResponseResult<>(ResponseResult.ERROR,"身份证号已存在！");
 			}
-			List<User> list = userMapper.select(" u.phone = '" + phone + "'", null, null,null);
-			System.out.println("phone_card_user : " + list);
-			if (!list.isEmpty()) {
+			user = userMapper.queryUserByPhone(phone);
+			if (user != null) {
 				System.out.println("走了这步...");
 				return new ResponseResult<>(ResponseResult.ERROR,"手机号已存在！");
 			}
