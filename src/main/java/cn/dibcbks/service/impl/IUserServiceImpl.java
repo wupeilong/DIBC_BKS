@@ -10,7 +10,6 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
-import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -80,8 +79,7 @@ public class IUserServiceImpl implements IUserService {
 			unit.setUnitAddress(unitAddress);
 			unit.setExpirationDate(expirationDate);
 			unit.setUnitType(unitType);
-			UnitMapper unitProxy = (UnitMapper) AopContext.currentProxy();
-			unitProxy.insert(unit);
+			unitMapper.insert(unit);
 			String uuid = CommonUtil.getUUID();
 			String hashPassword = CommonUtil.getEncrpytedPassword(Constants.MD5, password, uuid, 1024);
 			User user = new User();
@@ -95,8 +93,7 @@ public class IUserServiceImpl implements IUserService {
 			user.setParentId(0);//父级ID: 默认 0
 			user.setType(2);//用户类型：1-监管 2-企业
 			user.setUnitId(unit.getUnitId());
-			UserMapper userProxy = (UserMapper) AopContext.currentProxy();
-			userProxy.insert(user);
+			userMapper.insert(user);
 			logger.info(Constants.SUCCESSU_HEAD_INFO + "用户注册成功");
 			return new ResponseResult<>(ResponseResult.SUCCESS,"企业账户信息注册成功!");		
 	}
@@ -109,6 +106,9 @@ public class IUserServiceImpl implements IUserService {
 			System.out.println("用户：" + idCard + " " + password);
 			Subject subject = SecurityUtils.getSubject();
 			User user = userMapper.queryUser(idCard);
+			if(user == null){
+				user = userMapper.queryUserByPhone(idCard);
+			}
 			if (user == null) {
 				rr = new ResponseResult<Void>(ResponseResult.ERROR, "账户信息不存在！请重新输入...");
 				logger.error(Constants.ERROR_HEAD_INFO + "账户信息不存在 ，账号：" + idCard);

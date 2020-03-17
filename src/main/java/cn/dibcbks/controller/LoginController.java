@@ -62,8 +62,7 @@ public class LoginController {
 	@RequestMapping("/is_exist")
 	@ResponseBody
 	public ResponseResult<Void> userIsExist(String idCard,String phone){
-		System.out.println("idCard : " + idCard);
-		System.out.println("phone : " + phone);
+		
 		return iUserService.userIsExist(idCard,phone);
 	}
 
@@ -168,7 +167,7 @@ public class LoginController {
 			if (queryUser != null ) {
 				rr = new ResponseResult<Void>(ResponseResult.ERROR, "身份证已存在！");
 			}else{
-				List<User> list = userMapper.select(" u.username = '" + user.getUsername() + "'", null, null,null);
+				List<User> list = userMapper.select(" u.phone = '" + user.getPhone() + "'", null, null,null);
 				if (!list.isEmpty()) {
 					rr =  new ResponseResult<Void>(ResponseResult.ERROR,"用户姓名重复！");
 				}else{

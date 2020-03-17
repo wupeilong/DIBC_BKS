@@ -221,19 +221,19 @@
 						$("#newpassword").focus();		
 					}else {
 						var url = "${pageContext.request.contextPath}/is_exist";
-						var data = "idCard=" + $("idCard").val() + "&phone=" + $("#phone").val();
+						var data = "idCard=" + $("#idCard").val() + "&phone=" + $("#phone").val();
+						console.log(data);
 						$.ajax({
 							"url" : url,
 							"data" : data,							
 							"type" : "POST",
 							"dataType" : "json",
-							"success" : function(obj) {
-								alert(obj.message);
+							"success" : function(obj) {							
 								if (obj.state == 0) {
 									layer.msg(obj.message,{icon:2,time:1000});
 									//return;
 								}else{
-									layer.msg(obj.message,{icon:1,time:1000});
+									//layer.msg(obj.message,{icon:1,time:1000});
 									next(e);				
 								}		
 							}
