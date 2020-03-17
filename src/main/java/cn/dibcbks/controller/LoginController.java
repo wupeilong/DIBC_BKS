@@ -166,10 +166,12 @@ public class LoginController {
 			User queryUser = userMapper.queryUser(user.getIdCard());
 			if (queryUser != null ) {
 				rr = new ResponseResult<Void>(ResponseResult.ERROR, "身份证已存在！");
+			}else if(userMapper.queryUserByPhone(user.getPhone()) != null){
+				rr =  new ResponseResult<Void>(ResponseResult.ERROR,"手机号重复！");
 			}else{
-				List<User> list = userMapper.select(" u.phone = '" + user.getPhone() + "'", null, null,null);
+				List<User> list = userMapper.select(" u.username = '" + user.getUsername() + "'", null, null,null);
 				if (!list.isEmpty()) {
-					rr =  new ResponseResult<Void>(ResponseResult.ERROR,"用户姓名重复！");
+					rr =  new ResponseResult<Void>(ResponseResult.ERROR,"手机号重复！");
 				}else{
 					String uuid = CommonUtil.getUUID();
 					String password = user.getPassword() == null ? Constants.INITIAL_PASSWORD : user.getPassword();
