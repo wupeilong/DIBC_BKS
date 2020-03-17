@@ -30,21 +30,26 @@
 				<fieldset>
 					<div class="">
 						<table class="table table-bordered" cellspacing="" cellpadding="">
-							<caption class="">
-								<span class="col-xs-6">消毒人员：<span>${user.username }</span></span>
-								<span class="col-xs-6">消毒日期：<span>
-									<script type="text/javascript">
-				                     var date = new Date();
-				                     document.write(date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日");
-				                    </script>
-			                   </span></span>
+							<caption>
+								<div class="fb">
+									<span class="">消毒人员：<span>${user.username }</span></span>
+									<span class="">消毒日期：
+										<span>
+											<script type="text/javascript">
+						                     var date = new Date();
+						                     document.write(date.getFullYear() + "年" + (date.getMonth() + 1) + "月" + date.getDate() + "日");
+						                    </script>
+					                   	</span>
+				                   	</span>
+								</div>
+			                   </span>
 							</caption>
 							<thead>
 								<tr><th colspan="2">消毒项目</th><th colspan="2">消毒结果</th></tr>
 							</thead>
 							<tbody>
 								<tr>
-									<td rowspan="4">餐(炊)具种类</td>
+									<td rowspan="4" class="vertical-mid">餐(炊)具种类</td>
 									<td>小餐具类</td><td>是：<input type="radio" name="tableware0" id="tableware" value="1" /></td><td>否：<input type="radio" name="tableware0" id="tableware" value="2" /></td>
 								</tr>
 								<tr>
@@ -58,13 +63,13 @@
 								</tr>
 								
 								<tr>
-									<td colspan="2">工具类</td><td>是：<input type="radio" name="tableware4" id="" value="1" /></td><td>否：<input type="radio" name="tableware4" id="" value="2" /></td>
+									<td colspan="2" class="">工具类</td><td>是：<input type="radio" name="tableware4" id="" value="1" /></td><td>否：<input type="radio" name="tableware4" id="" value="2" /></td>
 								</tr>
 								<tr>
-									<td colspan="2">餐具保洁设施</td><td>是：<input type="radio" name="tableware5" id="" value="1" /></td><td>否：<input type="radio" name="tableware5" id="" value="2" /></td>
+									<td colspan="2" class="">餐具保洁设施</td><td>是：<input type="radio" name="tableware5" id="" value="1" /></td><td>否：<input type="radio" name="tableware5" id="" value="2" /></td>
 								</tr>
 								<tr>
-									<td rowspan="2">消毒方法</td><td>电子消毒柜</td><td>是：<input type="radio" name="tableware6" id="" value="1" /></td><td>否：<input type="radio" name="tableware6" id="" value="2" /></td>
+									<td rowspan="2" class="vertical-mid">消毒方法</td><td>电子消毒柜</td><td>是：<input type="radio" name="tableware6" id="" value="1" /></td><td>否：<input type="radio" name="tableware6" id="" value="2" /></td>
 								</tr>
 								<tr>
 									<td>消毒药水</td><td>是：<input type="radio" name="tableware7" id="" value="1" /></td><td>否：<input type="radio" name="tableware7" id="" value="2" /></td>
