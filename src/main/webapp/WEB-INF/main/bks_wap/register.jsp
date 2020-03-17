@@ -251,20 +251,20 @@
 		
 	</body>
 	<script type="text/javascript">
-					$("#fileinput").on("change",function() {
-						changepic("fileinput","preview");						
-					})
-					$("#fileinput1").on("change",function() {						
-						changepic("fileinput1","preview1");
-					})
-					function changepic(fid,img_id) {
-						 var reads = new FileReader();
-						 f = document.getElementById(fid).files[0];
-						 reads.readAsDataURL(f);
-						 reads.onload = function(e) {
-						 document.getElementById(img_id).src = this.result;
-						 $("#"+img_id).css("display", "block");
-						 };
-					}
-				</script>
+		$("#fileinput").on("change",function() {
+			changepic("fileinput","preview");						
+		})
+		$("#fileinput1").on("change",function() {						
+			changepic("fileinput1","preview1");
+		})
+		function changepic(fid,img_id) {
+			 var reads = new FileReader();
+			 f = document.getElementById(fid).files[0];
+			 reads.readAsDataURL(f);
+			 reads.onload = function(e) {
+			 document.getElementById(img_id).src = this.result;
+			 $("#"+img_id).css("display", "block");
+			 };
+		}
+	</script>
 </html>
