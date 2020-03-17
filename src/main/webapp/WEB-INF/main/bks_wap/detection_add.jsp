@@ -97,22 +97,7 @@
 								<input type="file" name="" id="fileinput" value="" accept="image/*"/>
 								<img src="" id="preview">
 							</div>
-						</div>
-						<script type="text/javascript">
-							$("#fileinput").on("change",function() {
-								changepic("fileinput","preview");
-							})
-							
-							function changepic(fid,img_id) {
-								 var reads = new FileReader();
-								 f = document.getElementById(fid).files[0];
-								 reads.readAsDataURL(f);
-								 reads.onload = function(e) {
-								 document.getElementById(img_id).src = this.result;
-								 $("#"+img_id).css("display", "block");
-								 };
-							}
-						</script>
+						</div>						
 					</div>
 					
 				  </fieldset>
@@ -123,6 +108,7 @@
 		</main>		
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
+<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/bks_wap/imgBase64.js"></script>
 <script type="text/javascript">
 $("#detection").click(function() {	
 	if($("#unit_list").val() == 0){
@@ -148,6 +134,7 @@ $("#detection").click(function() {
 	}else if($("#preview").attr('src') == ""){
 		layer.msg("请上传过程图片",{icon:2,time:1000});				
 	}else{
+		var we5 = layerloadingOpen();
 		var formData = new FormData();				
 		formData.append('unitId',$("#unit_list").val());
 		formData.append('unitName',$("#unitName").val());
@@ -155,9 +142,9 @@ $("#detection").click(function() {
 		formData.append('specifications',$("#specifications").val());
 		formData.append('bath',$("#bath").val());
 		formData.append('item',$("#item").val());
-		formData.append('result',$("#result").val());	
+		formData.append('result',$("#result").val());
 		formData.append('remark',$("#remark").val());
-		formData.append('detectionPhoto',$("#fileinput")[0].files[0]);						
+		formData.append('detectionPhoto',dataURLtoFile($("#preview").attr('src'),"we.jpg"));						
 		 $.ajax({
 			 url: 'detection_regadd',
 	          type: 'POST',
@@ -166,6 +153,7 @@ $("#detection").click(function() {
 	          processData: false,
 	          contentType: false,
 				"success" : function(obj) {
+					layer.close(we5);
 					if (obj.state == 0) {
 						layer.msg(obj.message,{icon:2,time:1000});
 						return;				
@@ -177,5 +165,9 @@ $("#detection").click(function() {
 			}); 
 	}
 })
+
+	$("#fileinput").on("change",function() {
+		intoBase64("fileinput","preview");
+	})
 </script>
 </html>

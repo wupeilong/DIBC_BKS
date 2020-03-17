@@ -190,7 +190,7 @@
 						}				
 					}
 				}); 
-			}			
+			}	
 		}
 	});
 	
@@ -200,7 +200,11 @@
 function diskinput(){	
 	var queryrights=new Array();
 	var unitType = $("input[name='objectType']:checked").val();
-	var unitId=$("#unitId").val();	
+	var unitId=$("#unitId").val();
+	if(unitId == ""){
+		layer.msg("请选择检查的企业",{icon:2,time:1000});
+		return;
+	}
 	var unitPhone=$("#unitPhone").val();
 	var other=$("#other").text();
 	var checkType=parseInt("${checkType}");  
@@ -221,7 +225,7 @@ function diskinput(){
 			   return;
   			}else{
   				layer.msg(obj.message,{icon:1,time:1000});
-				location.href = "inspect_list";	
+				location.href = "inspect_list";
   			} 	  
 	   }      
 	}); 

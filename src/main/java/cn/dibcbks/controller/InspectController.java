@@ -3,7 +3,6 @@ package cn.dibcbks.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,12 +10,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.alibaba.fastjson.JSONArray;
-
 import cn.dibcbks.entity.Check;
 import cn.dibcbks.entity.Unit;
 import cn.dibcbks.entity.User;
+import cn.dibcbks.mapper.UnitMapper;
 import cn.dibcbks.service.ICheckService;
 import cn.dibcbks.service.IUnitService;
 import cn.dibcbks.service.IUserService;
@@ -38,6 +36,9 @@ public class InspectController {
 	private IUserService iUserService;
 	@Autowired
 	private IUnitService iUnitService;
+	@Autowired
+	private UnitMapper unitMapper;
+	
 	/**
 	 * 进入监管采集选择页
 	 * @return
@@ -55,6 +56,8 @@ public class InspectController {
 		User user = CommonUtil.getStessionUser();
 		if (user.getType().equals(1)) {
 			List<Check> checkList =iCheckService.getCheckList(modelMap);
+			List<Unit> unitList = unitMapper.select(" n.unit_type BETWEEN 2 AND 4 ", " n.create_time DESC", null, null);
+			modelMap.addAttribute("unitList", unitList);
 			modelMap.addAttribute("checkList", checkList);
 		}else{
 			List<Check> checkList =iCheckService.getCheckListbyuserid(CommonUtil.getStessionUser().getId());
@@ -175,7 +178,7 @@ public class InspectController {
 		List<Unit> queryUnit = iUserService.queryUnitUserDetail(unitId);
 		String username = ((User)SecurityUtils.getSubject().getSession().getAttribute("user")).getUsername();
 		//String resultList=JSONArray.toJSONString(queryrights);
-		SimpleDateFormat sdf = new SimpleDateFormat("MM-dd");        
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");        
 		return  iCheckService.addCheckInfo(unitId,queryUnit.get(0).getUnitName(),unitType,queryUnit.get(0).getUnitAddress(),queryUnit.get(0).getLegalPerson(),unitPhone,queryrights,other,username,sdf.format(new Date()),checkType,null);
 	}
 }
