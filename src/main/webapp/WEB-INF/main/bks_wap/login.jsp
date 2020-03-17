@@ -43,18 +43,25 @@
 			</div>
 		</div>
 		<script>
-			$("#login").click(function() {				
-					if ($("#idCard").val() == "") {
-						layer.msg("请输入身份证号",{icon:2,time:1000});
-						$("#idCard").focus();		
-					}else if($("#password").val() == ""){
-						layer.msg("请输入密码",{icon:2,time:1000});
-						$("#password").focus();		
+			$("#login").click(function() {
+					var account = $("input[name='idCard']").val();
+					var password = $("input[name='password']").val();
+					var mobileReg = /(^1[3|4|5|7|8|9]\d{9}$)|(^09\d{8}$)/;
+					var idCardReg=/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
+					var passwordReg= /[a-zA-Z0-9]{6,12}/;
+					//!idCardReg.test(account) && !mobileReg.test(account)
+					//$(!passwordReg.test(password))
+					if (account=='') {
+						layer.msg("账号或密码有误，请重新输入",{icon:2,time:1000});
+						$("input[name='idCard']").focus();		
+					}else if(password==''){
+						layer.msg("账号或密码有误，请重新输入",{icon:2,time:1000});
+						$("input[name='password']").focus();
 					}else{
 						var url = "userLogin";
-						var idCard=$("#idCard").val();
-						var password=$("#password").val();		
-						var data = "idCard="+idCard+"&password="+password;		
+						/* var idCard=$("#idCard").val();
+						var password=$("#password").val();	 */	
+						var data = "idCard="+account+"&password="+password;		
 						$.ajax({
 							"url" : url,
 							"data" : data,

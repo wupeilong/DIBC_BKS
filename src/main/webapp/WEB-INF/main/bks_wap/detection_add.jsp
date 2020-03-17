@@ -55,13 +55,13 @@
 						</div>
 						<div class="input-group form-group fs">
 						  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>检测时间</span>
-						  <span class="width100">
+						  <div class="box-shadow0 width100 border-bottom">
 					 		<jsp:useBean id="now" class="java.util.Date" scope="page"/>
 							<fmt:formatDate value="${now}" pattern="yyyy年MM月dd日" />
-						  </span>
+						  </div>
 						</div>
 						<div class="input-group form-group fs">
-						  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>样品名</span>
+						  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>样&ensp;品&ensp;名</span>
 						  <input type="text" class="box-shadow0 width100 border-bottom" id="samplName" name="samplName" placeholder="请输入样品名" aria-describedby="sizing-addon1">
 						</div>
 						<div class="input-group form-group fs">
@@ -81,7 +81,7 @@
 						  <input type="text" class="width100 box-shadow0 border-bottom" id="result" name="result" placeholder="请输入检测结果" aria-describedby="sizing-addon1">
 						</div>
 						<div class="input-group form-group fs">
-						  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>备注</span>
+						  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>备&ensp;&ensp;&ensp;&ensp;注</span>
 						  <input type="text" class="width100 box-shadow0 border-bottom" id="remark" name="remark" placeholder="请输入备注" aria-describedby="sizing-addon1">
 						</div>
 					</div>
