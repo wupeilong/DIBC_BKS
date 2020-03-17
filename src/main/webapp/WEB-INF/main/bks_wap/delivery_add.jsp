@@ -52,15 +52,15 @@
 					</div>					
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>订餐单位</span>
-					  <input type="text" class="width100 box-shadow0 border-bottom" name="acceptance_unit_name" value="${user.unitName }" readonly aria-describedby="sizing-addon1">
+					  <input type="text" class="width100 box-shadow0 border-bottom" name="acceptance_unit_name" value="${user.unitName }" readonly>
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>送餐人</span>
-					  <input type="text" class="width100 box-shadow0 border-bottom" name="meals_user_name" value="${user.username }" readonly aria-describedby="sizing-addon1">
+					  <input type="text" class="width100 box-shadow0 border-bottom" name="meals_user_name" value="${user.username }" >
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>配送地址</span>
-					  <input type="text" class="width100 box-shadow0 border-bottom" name="address" id="address"  aria-describedby="sizing-addon1">
+					  <input type="text" class="width100 box-shadow0 border-bottom" name="address" id="address" placeholder="请输入配送地址">
 					</div>
 					<div class="fsa margin-bot2">
 						<div class="">
