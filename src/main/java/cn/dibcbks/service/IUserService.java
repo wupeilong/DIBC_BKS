@@ -21,12 +21,12 @@ public interface IUserService {
 
 	User queryUser(String idCard);
 
-	ResponseResult<Void> registeradd(String idCard, String username, String password, String duty, Integer age,
+	ResponseResult<Void> registeradd(String idCard, String username, String password, String phone, String duty, Integer age,
 			String unitName, String legalPerson, String businessLicenseCode, String businessLicense, String productionLicense, String unitAddress, String expirationDate, Integer unitType);
 
 	ResponseResult<Void> login(String idCard, String password);
 
-	ResponseResult<Void> allocateAccount(String idCard, String username, String password, String duty, Integer age,String healthCertificateCode,String stratpath);
+	ResponseResult<Void> allocateAccount(String idCard, String username, String password, String phone, String duty, Integer age,String healthCertificateCode,String stratpath);
 
 	ResponseResult<Void> updateUser(User user);
 
@@ -34,7 +34,7 @@ public interface IUserService {
 
 	String allocateAccountPage();
 
-	ResponseResult<Void> userIsExist(String username, String idCard);
+	ResponseResult<Void> userIsExist(String idCard,String phone);
 
 	ResponseResult<List<User>> queryUnitUser(Integer unitId, String unitName);
 

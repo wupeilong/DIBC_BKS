@@ -11,6 +11,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/index.css"/>
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/2.4/layer.js"></script>		
+		<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/2.4/layer.js"></script>
 </head>
 	<body class="bg-info container">
 		<div class="container">
@@ -52,6 +53,10 @@
 						<div class="input-group form-group">
 						  <span class="input-group-addon">确认密码</span>
 						  <input type="text" class="form-control box-shadow0" id="newpassword" name="newpassword" placeholder="请确认密码" aria-describedby="sizing-addon1">
+						</div>
+						<div class="input-group form-group">
+						  <span class="input-group-addon">手机号</span>
+						  <input type="text" class="form-control box-shadow0" id="phone" name="phone" placeholder="请输入手机号" aria-describedby="sizing-addon1">
 						</div>
 						<div class="margin-bot2 text-right">
 							<a href="${pageContext.request.contextPath}/login" class="">已有账号？去登陆</a>
@@ -126,31 +131,38 @@
 				
 			</div>
 		</div>
-		<script>				
-			$("#register").click(function() {
-				if($("#unitName").val() == ""){
-					layer.msg("请输入企业名称",{icon:2,time:1000});
+		<script>	
+			var password_reg = /[a-zA-Z0-9]{6,12}/;
+		  	var phone_reg = /(^1[3|4|5|7|8|9]\d{9}$)|(^09\d{8}$)/;
+		  	var username_reg = /^[\u4E00-\u9FA5]{2,6}$/;	
+		  	var name_reg = /^[\u0391-\uFFE5]+$/;
+			var idCard_judge = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
+			var age_reg = /^[0-9]{1,3}/; 
+			$("#register").click(function() {			 	
+				if(!name_reg.test($("#unitName").val())){
+					layer.msg("请正确输入企业名称",{icon:2,time:1000});
 					$("#unitName").focus();		
-				}else if ($("#businessLicenseCode").val() == "") {
-					layer.msg("请输入社会统一信用代码",{icon:2,time:1000});
+				}else if (!password_reg.test($("#businessLicenseCode").val())) {
+					layer.msg("请正确输入社会统一信用代码",{icon:2,time:1000});
 					$("#businessLicenseCode").focus();		
 				}else if($("#preview").attr('src') == ""){
-					layer.msg("请输入上传营业执照",{icon:2,time:1000});							
+					layer.msg("请上传营业执照",{icon:2,time:1000});							
 				}else if($("#preview1").attr('src') == ""){
-					layer.msg("请输入上传食品许可证",{icon:2,time:1000});							
+					layer.msg("请上传食品许可证",{icon:2,time:1000});							
 				}else if($("#unitType").val() == 0){
 					layer.msg("请选择企业类型",{icon:2,time:1000});
 					$("#unitType").focus();		
-				}else  if($("#unitAddress").val() == ""){
-					layer.msg("请填写营业地址",{icon:2,time:1000});
+				}else  if(!name_reg.test($("#unitAddress").val())){
+					layer.msg("请正确填写营业地址",{icon:2,time:1000});
 					$("#unitAddress").focus();		
-				}else if($("#legalPerson").val() == ""){
+				}else if(!username_reg.test($("#legalPerson").val())){
 					layer.msg("请填写法人姓名",{icon:2,time:1000});
 					$("#legalPerson").focus();		
 				}else{
 					var formData = new FormData();				
 					formData.append('idCard',$("#idCard").val());
 					formData.append('username',$("#username").val());
+					formData.append('phone',$("#phone").val());
 					formData.append('duty',$("#duty").val());
 					formData.append('age',$("#age").val());
 					formData.append('password',$("#password").val());
@@ -164,7 +176,7 @@
 					 $.ajax({
 						 url: 'registeradd',
 				          type: 'POST',
-				          cache: false,
+				          cache: false,				          
 				          data: formData,				        
 				          processData: false,
 				          contentType: false,
@@ -174,41 +186,67 @@
 									return;				
 								}else{					
 									layer.msg(obj.message,{icon:1,time:1000},function(){layer_close();});
-									
 									setTimeout(function (){							 
 										window.location.href = "${pageContext.request.contextPath}/login";
 									}, 3000);
-								}
-								
+								}								
 							}
 						}); 
 				}
 			})
+			
+			//下一步跳转
 			$(".next_step").click(function() {
-					if($("#idCard").val() == ""){				
+					var e = $(this);
+					if(!idCard_judge.test($("#idCard").val())){				
 						layer.msg("请输入18位身份证号码",{icon:2,time:1000});
 						$("#idCard").focus();		
-					}else if($("#username").val() == ""){
-						layer.msg("请输入姓名",{icon:2,time:1000});
+					}else if(!username_reg.test($("#username").val())){
+						layer.msg("请正确输入姓名",{icon:2,time:1000});
 						$("#username").focus();		
-					}else if ($("#duty").val() == "") {
-						layer.msg("请输入职务",{icon:2,time:1000});
+					}else if(!name_reg.test($("#duty").val())) {
+						layer.msg("请正确输入职务",{icon:2,time:1000});
 						$("#duty").focus();		
-					}else  if($("#age").val() == ""){
-						layer.msg("请填写年龄",{icon:2,time:1000});
+					}else if(!age_reg.test($("#age").val())){
+						layer.msg("请正确填写年龄",{icon:2,time:1000});
 						$("#age").focus();		
-					}else if($("#password").val() == ""){
-						layer.msg("请输入密码",{icon:2,time:1000});
+					}else if(!password_reg.test($("#password").val())){
+						layer.msg("请正确输入密码",{icon:2,time:1000});
 						$("#password").focus();		
 					}else if($("#password").val() != $("#newpassword").val()){
 						layer.msg("两次输入的密码不一致",{icon:2,time:1000});
 						$("#newpassword").focus();		
+					}else if(!phone_reg.test($("#phone").val())){
+						layer.msg("请正确输入手机号",{icon:2,time:1000});
+						$("#newpassword").focus();		
 					}else {
-						$(this).parents("form").find(".register_progress .prog2").addClass("cur");
-						$(this).parents("form").find(".inputbox").removeClass("cur");
-						$(this).parents("form").find(".login_form1").addClass("cur");
+						var url = "${pageContext.request.contextPath}/is_exist";
+						var data = "idCard=" + $("#idCard").val() + "&phone=" + $("#phone").val();
+						console.log(data);
+						$.ajax({
+							"url" : url,
+							"data" : data,							
+							"type" : "POST",
+							"dataType" : "json",
+							"success" : function(obj) {							
+								if (obj.state == 0) {
+									layer.msg(obj.message,{icon:2,time:1000});
+									//return;
+								}else{
+									//layer.msg(obj.message,{icon:1,time:1000});
+									next(e);				
+								}		
+							}
+						});						
 					}
 			})
+			
+			//下一步
+			function next(e){
+				e.parents("form").find(".register_progress .prog2").addClass("cur");
+				e.parents("form").find(".inputbox").removeClass("cur");
+				e.parents("form").find(".login_form1").addClass("cur");
+			}
 		</script>
 		
 	</body>

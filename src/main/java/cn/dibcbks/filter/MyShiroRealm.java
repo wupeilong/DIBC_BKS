@@ -12,6 +12,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import cn.dibcbks.entity.User;
+import cn.dibcbks.mapper.UserMapper;
 import cn.dibcbks.service.IUserService;
 
 
@@ -29,7 +30,7 @@ import cn.dibcbks.service.IUserService;
 public class MyShiroRealm extends AuthorizingRealm{
 	
 	@Autowired
-	public IUserService iUserService;
+	public UserMapper userMapper;
 	
 	//每次验证权限执行
 	@Override
@@ -49,7 +50,10 @@ public class MyShiroRealm extends AuthorizingRealm{
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {		
 		String idCard = (String)token.getPrincipal();
-		User user = iUserService.queryUser(idCard);
+		User user = userMapper.queryUser(idCard);
+		if(user == null){
+			user = userMapper.queryUserByPhone(idCard);
+		}
 		if(user != null){
 			ByteSource byteSource = ByteSource.Util.bytes(user.getUuid());
 			SimpleAuthenticationInfo info = new SimpleAuthenticationInfo(idCard,user.getPassword(),getName());

@@ -56,7 +56,7 @@ public class UserController {
 	}
 	
 	/**
-	 * 文件上传
+	 * 分配员工账户
 	 * @param file 文件名
 	 * @param idCard 身份证号
 	 * @return
@@ -64,7 +64,7 @@ public class UserController {
 	@PostMapping("/workmens_reg")
 	@ResponseBody
 	public ResponseResult<Void> uploadFiesle(@RequestParam(value="unimg",required=false)MultipartFile file,
-			String duty,String username,String password,String idCard,Integer age,String healthCertificateCode){
+			String duty,String username,String password, String phone, String idCard,Integer age,String healthCertificateCode){
 		ResponseResult<Void> responseResult=null;		
 		GetCommonUser get=new GetCommonUser();
 		String stratpath=get.uoladimg(file,idCard);
@@ -72,7 +72,7 @@ public class UserController {
 			responseResult=new ResponseResult<Void>(ResponseResult.ERROR,"健康证上传异常,人员信息添加失败");
 		}else{
 //			String password = idCard.substring(idCard.length()-6);
-			responseResult=iUserService.allocateAccount(idCard, username, password, duty, age,healthCertificateCode,stratpath);			
+			responseResult=iUserService.allocateAccount(idCard, username, password, phone, duty, age,healthCertificateCode,stratpath);			
 		}		
 		return responseResult;
 	}
