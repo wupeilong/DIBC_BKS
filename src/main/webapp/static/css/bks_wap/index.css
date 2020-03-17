@@ -275,4 +275,9 @@ legend{
 .inputbox.cur{
 	display: block;
 }
-
+.searchable-select-holder{
+	color:#999;
+}
+.delivery_add .searchable-select{
+	width: 100%;
+}
