@@ -74,17 +74,17 @@
 								<tr>
 									<td>消毒药水</td><td>是：<input type="radio" name="tableware7" id="" value="1" /></td><td>否：<input type="radio" name="tableware7" id="" value="2" /></td>
 								</tr>
-								<!-- <tr>
+								<tr>
 									<td colspan="2">消毒时间</td>
 									<td colspan="2">
 										<div class="">
-											<input readonly="" class="form-control" type="text" id="date-group1-6" placeholder="hh:mm">
+											<input readonly="" class="form-control" type="text" id="date-group1-6" placeholder="请输入消毒时间">
 										</div>
-										<select name="">
+										<!-- <select name="">
 											<option value="">请选择时间</option>
-										</select>
+										</select> -->
 									</td>
-								</tr> -->
+								</tr>
 							</tbody>
 						</table>
 					</div>
@@ -112,7 +112,7 @@
 					title:'选择时间'
 				},
 				confirm: function(date) {
-					$("#date").val(date);
+					$("#date-group1-6").val(date);
 					console.log($("#date-group1-6").val())
 				},
 			})

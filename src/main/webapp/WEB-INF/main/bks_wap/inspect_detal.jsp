@@ -58,24 +58,28 @@
 									$(":radio[name='objectType'][value='"+$('#unitType').val()+"']").prop("checked", "checked");
 									</script>
 								</div>
-								<div class="fb margin-top05">
-									<div class="padding-side">
-										<span class="">负责人员：</span><span class="">${checkListbyid[0].unitPrincipal }</span>
+								<div class="margin-top05 padding-side fb">
+									<div class="">
+										<div class="">
+											负责人员：<span class="" id="legalPerson">${checkListbyid[0].unitPrincipal }</span>
+										</div>
+										<div class="margin-top05">
+											检查人员：</span><span class="">${checkListbyid[0].inspectors }</span>
+										</div>
 									</div>
-									<div class="padding-side">
-										<span class="">联系电话：</span><span class="">${checkListbyid[0].unitPhone }</span>
-									</div>
-								</div>
-								<div class="fb margin-top05">
-									<div class="padding-side">
-										<span class="">检查人员：</span><span class="">${checkListbyid[0].inspectors }</span>
-									</div>
-									<div class="padding-side">
-										<span class="">检查时间：</span><span class="">${checkListbyid[0].dailyTime }</span>
+									<div class="">
+										<div class="">
+										联系电话：<span class="">${checkListbyid[0].unitPhone }</span>
+										</div>
+										<div class="margin-top05">
+											<span class="" style="width: 100px;" >检查时间：</span>
+						  					<span class="">${checkListbyid[0].dailyTime }</span>
+										</div>
 									</div>
 								</div>
 							</div>
 						</caption>
+						
 						<!-- <select name=""> <option value="">请选择</option> <option value="">合格</option> <option value="">不合格</option> </select> -->
 				  		<thead>
 				  			<tr><th style="width: 6em;">检查项目</th><th>检查内容</th><th style="width: 6em;">检查结果</th></tr>
