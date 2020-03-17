@@ -117,9 +117,12 @@
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/bks_wap/imgBase64.js"></script>
 	<script type="text/javascript">
 	$(function () {
+		
 		$('select').searchableSelect();
 	    $('#fileinput').on('change',function () {
-	    	intoBase64("fileinput","preview");	        
+	    	
+	    	intoBase64("fileinput","preview");	  
+	    	
 	    });	 
 	    $('#fileinput1').on('change',function () {
 	    	intoBase64("fileinput1","preview1");	        
