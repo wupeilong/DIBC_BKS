@@ -114,84 +114,75 @@
 		</main>		
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/bks_wap/imgBase64.js"></script>
 	<script type="text/javascript">
-			$(function(){
-				$('select').searchableSelect();
-			});
-	
-			//新增图片
-			$("#add").click(function() {				
-				if($("#preview").attr('src') == ""){
-					layer.msg("请上传送餐装箱照",{icon:2,time:1000});
-					$("#preview").focus();
-				}else if($("#preview1").attr('src') == ""){
-					layer.msg("请上传装箱封条照",{icon:2,time:1000});
-					$("#preview1").focus();
-				}else if($("#preview2").attr('src') == ""){
-					layer.msg("请上传送餐车照",{icon:2,time:1000});
-					$("#preview2").focus();
-				}else if($("#mealsUnitName").val() == ""){
-					layer.msg("请选择供配餐企业",{icon:2,time:1000});
-					$("#mealsUnitName").focus();
-				}else if($("#address").val() == ""){
-					layer.msg("请填写配送地址",{icon:2,time:1000});
-					$("#address").focus();
-				}else if($("#type").val() == ""){
-					layer.msg("请填写配餐类型",{icon:2,time:1000});
-					$("#type").focus();
-				}else{
-					var formData = new FormData();		
-					formData.append('type',$("#type").val());//送餐类型
-					formData.append('mealsUnitName',$("#mealsUnitName").val());//供餐企业
-					formData.append('acceptanceUnitName','${user.unitName}');//订餐企业
-					formData.append('mealsUserName','${user.username}');//订餐企业
-					formData.append('packingPhoto',$("#fileinput")[0].files[0]);//送餐装箱图
-					formData.append('sealPhoto',$("#fileinput1")[0].files[0]);//装箱封条图
-					formData.append('carPhoto',$("#fileinput2")[0].files[0]);//送餐车图
-					formData.append('address',$("#address").val());//送餐地址
-					$.ajax({
-						 url: "${pageContext.request.contextPath}/dry/add",
-				          type: 'POST',
-				          cache: false,
-				          data: formData,				        
-				          processData: false,
-				          contentType: false,
-							"success" : function(obj) {
-								if (obj.state == 0) {
-									layer.msg(obj.message,{icon:2,time:1000});
-									return;				
-								}else{
-									layer.msg(obj.message,{icon:1,time:1000});
-									//延时刷新页面
-									setTimeout(function (){							 
-										window.location.href = "${pageContext.request.contextPath}/dry/delivery";
-									}, 3000);	
-								}
-								
-							}
-						}); 
-				}
-			});		
+	$(function () {
 		
-			
-			$("#fileinput").on("change",function() {
-				changepic("fileinput","preview");						
-			})
-			$("#fileinput1").on("change",function() {						
-				changepic("fileinput1","preview1");
-			})
-			$("#fileinput2").on("change",function() {						
-				changepic("fileinput2","preview2");
-			})			
-			function changepic(fid,img_id) {
-				 var reads = new FileReader();
-				 f = document.getElementById(fid).files[0];
-				 reads.readAsDataURL(f);
-				 reads.onload = function(e) {
-				 document.getElementById(img_id).src = this.result;
-				 $("#"+img_id).css("display", "block");
-				 };
+		$('select').searchableSelect();
+	    $('#fileinput').on('change',function () {
+	    	
+	    	intoBase64("fileinput","preview");	  
+	    	
+	    });	 
+	    $('#fileinput1').on('change',function () {
+	    	intoBase64("fileinput1","preview1");	        
+	    });
+	    $('#fileinput2').on('change',function () {
+	    	intoBase64("fileinput2","preview2");	        
+	    });
+	  //新增图片
+		$("#add").click(function() {				
+			if($("#preview").attr('src') == ""){
+				layer.msg("请上传送餐装箱照",{icon:2,time:1000});
+				$("#preview").focus();
+			}else if($("#preview1").attr('src') == ""){
+				layer.msg("请上传装箱封条照",{icon:2,time:1000});
+				$("#preview1").focus();
+			}else if($("#preview2").attr('src') == ""){
+				layer.msg("请上传送餐车照",{icon:2,time:1000});
+				$("#preview2").focus();
+			}else if($("#mealsUnitName").val() == ""){
+				layer.msg("请选择供配餐企业",{icon:2,time:1000});
+				$("#mealsUnitName").focus();
+			}else if($("#address").val() == ""){
+				layer.msg("请填写配送地址",{icon:2,time:1000});
+				$("#address").focus();
+			}else if($("#type").val() == ""){
+				layer.msg("请填写配餐类型",{icon:2,time:1000});
+				$("#type").focus();
+			}else{ 
+				var formData = new FormData();				
+				formData.append('type',$("#type").val());//送餐类型
+				formData.append('mealsUnitName',$("#mealsUnitName").val());//供餐企业
+				formData.append('acceptanceUnitName','${user.unitName}');//订餐企业
+				formData.append('mealsUserName','${user.username}');//订餐企业
+				formData.append('packingPhoto',dataURLtoFile($("#preview").attr('src'),'dsf.jpg'));//送餐装箱图
+				formData.append('sealPhoto',dataURLtoFile($("#preview1").attr('src'),'dsf1.jpg'));//装箱封条图
+				formData.append('carPhoto',dataURLtoFile($("#preview2").attr('src'),'dsf2.jpg'));//送餐车图
+				formData.append('address',$("#address").val());//送餐地址
+				$.ajax({
+					 url: "${pageContext.request.contextPath}/dry/add",
+			          type: 'POST',
+			          cache: false,
+			          data: formData,				        
+			          processData: false,
+			          contentType: false,
+						"success" : function(obj) {
+							if (obj.state == 0) {
+								layer.msg(obj.message,{icon:2,time:1000});
+								return;				
+							}else{
+								layer.msg(obj.message,{icon:1,time:1000});
+								//延时刷新页面
+								setTimeout(function (){							 
+									window.location.href = "${pageContext.request.contextPath}/dry/delivery";
+								}, 3000);	
+							}
+							
+						}
+				}); 
 			}
+		});	
+	})					
 	</script>
-
 </html>
