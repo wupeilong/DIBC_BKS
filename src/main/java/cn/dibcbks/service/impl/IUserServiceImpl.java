@@ -1,7 +1,6 @@
 package cn.dibcbks.service.impl;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import org.apache.commons.lang.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -11,8 +10,10 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
+import org.springframework.aop.framework.AopContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import cn.dibcbks.entity.Hygiene;
 import cn.dibcbks.entity.Unit;
@@ -56,11 +57,10 @@ public class IUserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public ResponseResult<Void> registeradd(String idCard, String username, String password, String duty,
+	@Transactional(rollbackFor=Exception.class)
+	public ResponseResult<Void> registeradd(String idCard, String username, String password, String phone, String duty,
 			Integer age, String unitName, String legalPerson, String businessLicenseCode, String businessLicense,
 			String productionLicense, String unitAddress, String expirationDate, Integer unitType) {
-//		ResponseResult<Void> rr = null;
-		try {
 			Unit queryUnit = unitMapper.queryUnit(businessLicenseCode);
 			if(queryUnit != null){
 				logger.error(Constants.ERROR_HEAD_INFO + "用户注册失败  原因：企业信息已存在");
@@ -80,7 +80,8 @@ public class IUserServiceImpl implements IUserService {
 			unit.setUnitAddress(unitAddress);
 			unit.setExpirationDate(expirationDate);
 			unit.setUnitType(unitType);
-			unitMapper.insert(unit);
+			UnitMapper unitProxy = (UnitMapper) AopContext.currentProxy();
+			unitProxy.insert(unit);
 			String uuid = CommonUtil.getUUID();
 			String hashPassword = CommonUtil.getEncrpytedPassword(Constants.MD5, password, uuid, 1024);
 			User user = new User();
@@ -88,19 +89,16 @@ public class IUserServiceImpl implements IUserService {
 			user.setUsername(username);
 			user.setUuid(uuid);
 			user.setPassword(hashPassword);
+			user.setPhone(phone);
 			user.setDuty(duty);
 			user.setAge(age);
 			user.setParentId(0);//父级ID: 默认 0
 			user.setType(2);//用户类型：1-监管 2-企业
 			user.setUnitId(unit.getUnitId());
-			userMapper.insert(user);
+			UserMapper userProxy = (UserMapper) AopContext.currentProxy();
+			userProxy.insert(user);
 			logger.info(Constants.SUCCESSU_HEAD_INFO + "用户注册成功");
 			return new ResponseResult<>(ResponseResult.SUCCESS,"企业账户信息注册成功!");		
-		}catch (Exception e) {
-			e.printStackTrace();
-			logger.error(Constants.ERROR_HEAD_INFO + "用户注册失败 原因：" + e.getMessage());
-			return new ResponseResult<>(ResponseResult.ERROR,"账户信息重复，注册失败");
-		}
 	}
 
 
@@ -136,23 +134,11 @@ public class IUserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public ResponseResult<Void> allocateAccount(String idCard, String username, String password, String duty,
+	public ResponseResult<Void> allocateAccount(String idCard, String username, String password, String phone, String duty,
 			Integer age,String healthCertificateCode,String stratpath) {
 		ResponseResult<Void> rr = null;
-		GetCommonUser get=new GetCommonUser();
+		GetCommonUser get = new GetCommonUser();
 		try {
-			User queryUser = queryUser(idCard);
-			if (queryUser != null ) {
-				logger.error(Constants.ERROR_HEAD_INFO + "用户添加从业人员失败，原因：身份证已存在！");
-				get.deluoladimg(stratpath);
-				return new ResponseResult<>(ResponseResult.ERROR, "身份证已存在！");
-			}
-			List<User> list = userMapper.select(" u.username = '" + username + "'", null, null,null);
-			if (!list.isEmpty()) {
-				get.deluoladimg(stratpath);
-				logger.error(Constants.ERROR_HEAD_INFO + "用户添加从业人员失败，原因：姓名已存在！");
-				return new ResponseResult<>(ResponseResult.ERROR,"用户姓名重复！");
-			}
 			Subject subject = SecurityUtils.getSubject();
 			if(subject.isAuthenticated()){
 				Session session = subject.getSession();
@@ -168,6 +154,7 @@ public class IUserServiceImpl implements IUserService {
 					User user = new User();
 					user.setIdCard(idCard);
 					user.setUsername(username);
+					user.setPhone(phone);
 					user.setUuid(uuid);
 					user.setPassword(hashPassword);
 					user.setDuty(duty);
@@ -250,15 +237,17 @@ public class IUserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public ResponseResult<Void> userIsExist(String username, String idCard) {
+	public ResponseResult<Void> userIsExist(String idCard,String phone) {
 		try {
-			User user = queryUser(idCard);
+			User user = userMapper.queryUser(idCard);
+			System.out.println("id_card_user : " + user);
 			if(user != null){
-				return new ResponseResult<>(ResponseResult.ERROR,"身份证号重复！");
+				return new ResponseResult<>(ResponseResult.ERROR,"身份证号已存在！");
 			}
-			List<User> list = userMapper.select(" u.username = '" + username + "'", null, null,null);
+			List<User> list = userMapper.select(" u.phone = '" + phone + "'", null, null,null);
+			System.out.println("phone_card_user : " + list);
 			if (!list.isEmpty()) {
-				return new ResponseResult<>(ResponseResult.ERROR,"用户姓名重复！");
+				return new ResponseResult<>(ResponseResult.ERROR,"手机号已存在！");
 			}
 			return new ResponseResult<>(ResponseResult.SUCCESS,"操作成功！");
 		} catch (Exception e) {

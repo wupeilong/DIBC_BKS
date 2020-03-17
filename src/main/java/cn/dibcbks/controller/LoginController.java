@@ -59,10 +59,12 @@ public class LoginController {
 	 * @param idCard
 	 * @return
 	 */
-	@RequestMapping("/IsExist")
-	public ResponseResult<Void> userIsExist(String username,String idCard){
-		
-		return iUserService.userIsExist(username,idCard);
+	@RequestMapping("/is_exist")
+	@ResponseBody
+	public ResponseResult<Void> userIsExist(String idCard,String phone){
+		System.out.println("idCard : " + idCard);
+		System.out.println("phone : " + phone);
+		return iUserService.userIsExist(idCard,phone);
 	}
 
 	/**
@@ -88,6 +90,7 @@ public class LoginController {
 			@RequestParam(value="idCard",required = true) String idCard,
 			@RequestParam(value="username",required = true) String username,
 			@RequestParam(value="password",required = true) String password,
+			@RequestParam(value="phone",required = true) String phone,
 			@RequestParam(value="duty",required = true) String duty,
 			@RequestParam(value="age",required = true) Integer age, 
 			@RequestParam(value="unitName",required = true) String unitName,			
@@ -97,21 +100,26 @@ public class LoginController {
 			@RequestParam(value="unitAddress",required = true) String unitAddress,			
 			@RequestParam(value="unitType",required = true) Integer unitType,
 			@RequestParam(value="legalPerson",required = true) String legalPerson){
-		ResponseResult<Void> responseResult=null;		
-		GetCommonUser get=new GetCommonUser();			
-		String businessLicensepath=get.uoladimg(file,idCard);
-		if (businessLicensepath==null) {
-			responseResult=new ResponseResult<Void>(ResponseResult.ERROR,"营业执照上传异常,人员信息添加失败");
-		}else{
-			String productionLicensepath=get.uoladimg(file1,idCard);
-			if (productionLicensepath==null) {
-				responseResult=new ResponseResult<Void>(ResponseResult.ERROR,"许可证上传异常,人员信息添加失败");
+		ResponseResult<Void> responseResult = null;
+		try {
+			GetCommonUser get=new GetCommonUser();	
+			String businessLicensepath=get.uoladimg(file,idCard);
+			if (businessLicensepath==null) {
+				responseResult=new ResponseResult<Void>(ResponseResult.ERROR,"营业执照上传异常,人员信息添加失败");
 			}else{
-				responseResult=iUserService.registeradd(idCard,username,password,duty,age,unitName,legalPerson,businessLicenseCode,businessLicensepath,productionLicensepath,unitAddress,null,unitType);
-			}			
-		}		
+				String productionLicensepath=get.uoladimg(file1,idCard);
+				if (productionLicensepath==null) {
+					responseResult=new ResponseResult<Void>(ResponseResult.ERROR,"许可证上传异常,人员信息添加失败");
+				}else{
+					responseResult=iUserService.registeradd(idCard,username,password,phone,duty,age,unitName,legalPerson,businessLicenseCode,businessLicensepath,productionLicensepath,unitAddress,null,unitType);
+				}			
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			responseResult = new ResponseResult<>(ResponseResult.ERROR,"账户信息重复，注册失败");
+		}
 		return responseResult;
-
+	
 	}
 	
 	/**

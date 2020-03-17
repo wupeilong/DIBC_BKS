@@ -20,6 +20,11 @@
 	 <context:component-scan base-package="cn.dibcbks">
 	   <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan> 
+	
+	<!-- 启动事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+	<aop:aspectj-autoproxy proxy-target-class="true" expose-proxy="true"/>
+	
 	<!-- 异常统一处理类 HandlerExceptionResolver 注释 -->
   	<bean id="handlerExceptionResolver" class="cn.dibcbks.exception.MyExceptionResolver" /> 
 	<util:properties id="dbConf" location="classpath:config.properties" />
@@ -119,6 +124,7 @@
 				/userLogin = anon
 				/admin_login = anon
 				/admin_add = anon
+				/is_exist = anon
 				/*/** = authc
    			</value>
 		</property>
