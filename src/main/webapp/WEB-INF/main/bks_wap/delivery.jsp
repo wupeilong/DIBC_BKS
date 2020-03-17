@@ -77,7 +77,7 @@
 						var result = "";
 						for(var i=0;i<obj.data.length;i++){
 							result += "<tr>";
-							result += "<td>" + i + "</td>";
+							result += "<td>" + (i+1) + "</td>";
 							result += "<td>" + obj.data[i].id + "</td>";
 							result += "<td>" + obj.data[i].mealsUnitName + "</td>";
 							result += "<td>" + obj.data[i].acceptanceUnitName + "</td>";
