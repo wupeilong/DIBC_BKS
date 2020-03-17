@@ -140,19 +140,19 @@
 			
 			<div class="margin-top"> 
 				<div class="">
-								  <div class="fc">
-								  	<div class="upload_imgs">
-										<div class="fc tip_text">
-											<div class="text-info">
-												<div class="fc"> <i class="fa fa-plus padding-side05"></i> </div>
-												<div class="text-center">上传发票图片</div>
-											</div>
-										</div>
-										<input type="file" name="" id="fileinput3" value="" accept="image/*"/>
-										<img src="" id="preview3">
-									</div>
-								  </div>
-							</div>					
+					  <div class="fc">
+					  	<div class="upload_imgs">
+							<div class="fc tip_text">
+								<div class="text-info">
+									<div class="fc"> <i class="fa fa-plus padding-side05"></i> </div>
+									<div class="text-center">上传发票图片</div>
+								</div>
+							</div>
+							<input type="file" name="" id="fileinput3" value="" accept="image/*"/>
+							<img src="" id="preview3">
+						</div>
+					  </div>
+				</div>					
 			 </div> 
 			<div class="margin-top2 margin-bot2">
 				<button type="button" class="btn btn-primary form-control" id="add">提交</button>
