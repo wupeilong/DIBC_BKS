@@ -49,6 +49,7 @@
 					var mobileReg = /(^1[3|4|5|7|8|9]\d{9}$)|(^09\d{8}$)/;
 					var idCardReg=/^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
 					var passwordReg= /[a-zA-Z0-9]{6,12}/;
+					//验证条件
 					//!idCardReg.test(account) && !mobileReg.test(account)
 					//$(!passwordReg.test(password))
 					if (account=='') {

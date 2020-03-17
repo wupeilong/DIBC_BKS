@@ -70,26 +70,27 @@
 										<label for="" class="padding-side05"><input type="radio" name="objectType" id="" value="餐饮企业" />餐饮企业</label>
 									</div>
 								</div>
-								<div class="fb margin-top05 padding-side">
-									<table border="0" cellspacing="" cellpadding="">
-										<tr>
-											<td>
-												<div class="">负责人员：<span class="" id="legalPerson">${unitlist[0].legalPerson}</span></div>
-											</td>
-											<td><div class="padding-side">联系电话：<input type="text" class="box-shadow0 border-bottom" id="unitPhone" style="width: 128px;" placeholder="请输入联系电话"></div></td></tr>
-										<tr>
-											<td><div class="">检查人员：<span class="">${user.username}</span></div></td>
-											<td>
-												<div class="padding-side">
-								  					<span class="" style="width: 100px;" >检查时间：</span>
-								  					<span class=""  >
-								  						<jsp:useBean id="now" class="java.util.Date" scope="page"/>
-														<fmt:formatDate value="${now}" pattern="yyyy年MM月dd日" />
-													</span>					  					
-												</div>
-											</td>
-										</tr>
-									</table>
+								<div class="fb margin-top05 padding-side fb">
+									<div class="">
+										<div class="">
+											负责人员：<span class="" id="legalPerson">${unitlist[0].legalPerson}</span>
+										</div>
+										<div class="">
+											检查人员：<span class="">${user.username}</span>
+										</div>
+									</div>
+									<div class="">
+										<div class="">
+										联系电话：<input type="text" class="box-shadow0 border-bottom" id="unitPhone" style="width: 128px;" placeholder="请输入联系电话">
+										</div>
+										<div class="">
+											<span class="" style="width: 100px;" >检查时间：</span>
+						  					<span class=""  >
+						  						<jsp:useBean id="now" class="java.util.Date" scope="page"/>
+												<fmt:formatDate value="${now}" pattern="yyyy年MM月dd日" />
+											</span>
+										</div>
+									</div>
 								</div>
 									
 							</div>

@@ -25,7 +25,7 @@
 			</div>
 		</div>
 		<main class="main margin-top2 padding-side05">
-			<form action="" method="post">
+			<form action="" method="post" class="detection_add padding-side">
 				<fieldset>
 				    <legend class="">检测详情:</legend>
 					<div class="border-bottom margin-bot2">
