@@ -109,7 +109,7 @@
 				  </fieldset>
 			</form>
 			<div class="margin-top2 margin-bot2">
-				<button type="button" class="btn btn-primary form-control" id="add">提交</button>
+				<button type="button"  class="btn btn-primary form-control" id="add">提交</button>
 			</div>
 		</main>		
 	<c:import url="public/footer.jsp"></c:import>

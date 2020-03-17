@@ -35,7 +35,7 @@ public class LoginController {
 	@RequestMapping("/login")
 	public String loginPage(){		
 		return "bks_wap/login";
-	}
+	}	
 	/**
 	 * 进入首页
 	 * @return

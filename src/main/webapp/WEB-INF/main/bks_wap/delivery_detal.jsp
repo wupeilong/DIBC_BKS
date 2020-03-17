@@ -79,7 +79,7 @@
 						<div class="">
 							<div class="fc">
 								<div class="layui-upload-list">
-								  <img class="layui-upload-img" src="${pageContext.request.contextPath}${distributionDetial.carPhoto }">
+								  <img class="layui-upload-img" id="fee" src="${pageContext.request.contextPath}${distributionDetial.carPhoto }">
 								</div>
 							</div>
 							<div class="text-center">送餐车图</div>
@@ -162,7 +162,13 @@
 				</c:if>		
 			</div>
 		</main>		
+		<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/bks_wap/imgBase64.js"></script>
 		<script type="text/javascript">
+		var $current = $("fieldset");		
+		$current.find("img").bind("click",function(){
+			var path=$(this).attr('src');			
+			layerImg(path);
+		});		
 		$("#end").click(function () { 
 			var sd_user = '${user.username}';
 			var dd_user = '${distributionDetial.mealsUserName}';
