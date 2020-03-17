@@ -33,12 +33,12 @@
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>配餐类型</span>
 					  <!-- <input type="text" class="form-control box-shadow0 border-bottom" name="account" placeholder="请输入姓名" aria-describedby="sizing-addon1"> -->
-							<select id="type">		
-								<option value="">请选择送餐类型</option>					
-								<option value="1">早餐</option>
-								<option value="2">午餐</option>
-								<option value="3">晚餐</option>					
-							</select>
+					  <select id="type">		
+						<option value="">请选择送餐类型</option>					
+						<option value="1">早餐</option>
+						<option value="2">午餐</option>
+						<option value="3">晚餐</option>					
+					  </select>
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>配餐单位</span>
