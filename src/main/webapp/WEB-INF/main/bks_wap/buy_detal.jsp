@@ -12,7 +12,8 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/style.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/index.css"/>
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
-	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>		
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>	
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/2.4/layer.js"></script>	
 </head>
 	<body class="contain">
 		<div class="navigation bg-primary">
@@ -137,7 +138,13 @@
 					</c:if>			
 			</div>
 		</main>		
+		<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/bks_wap/imgBase64.js"></script>
 		<script type="text/javascript">
+		var $current = $("main");		
+		$current.find("img").bind("click",function(){
+			var path=$(this).attr('src');			
+			layerImg(path);
+		});	
 		//点击验收
 		$("#acceptance").click(function () { 
 			layer.confirm('是否确认验收？', {

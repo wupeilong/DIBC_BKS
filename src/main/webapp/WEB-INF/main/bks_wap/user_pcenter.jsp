@@ -12,6 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/index.css"/>	
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>		
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/2.4/layer.js"></script>
 </head>
 	<body class="contain">
 		<div class="navigation bg-primary">
@@ -63,7 +64,14 @@
 				<a href="${pageContext.request.contextPath}/user/workmens_health_add" class="btn btn-primary margin-bot form-control">健康状况录入</a>
 			</div>
 		</main>	
+		<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/bks_wap/imgBase64.js"></script>	
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
-
+<script type="text/javascript">
+var $current = $("form");		
+$current.find("img").bind("click",function(){
+	var path=$(this).attr('src');			
+	layerImg(path);
+});	
+</script>
 </html>
