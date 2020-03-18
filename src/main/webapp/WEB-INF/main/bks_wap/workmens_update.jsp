@@ -32,6 +32,7 @@
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>身份证号</span>
 					  <input type="hidden" id="id" name="id" value="${userDetail.id }">
+					  <input type="hidden" id="healthCertificate" name="healthCertificate" value="${userDetail.healthCertificate }">
 					  <input type="text" class="form-control box-shadow0 border-bottom" id="idCard" name="idCard" value="${userDetail.idCard }" placeholder="请输入身份证号" aria-describedby="sizing-addon1">
 					</div>
 					<div class="input-group form-group fs">
@@ -136,7 +137,8 @@
 					formData.append('idCard',$("#idCard").val());
 					formData.append('age',$("#age").val());
 					formData.append('phone',$("#phone").val());
-					formData.append('healthCertificateCode',$("#healthCertificateCode").val());				
+					formData.append('healthCertificateCode',$("#healthCertificateCode").val());		
+					formData.append('healthCertificate',$("#healthCertificate").val());	
 					 $.ajax({
 						 url: '${pageContext.request.contextPath}/user/update',
 				          type: 'POST',
