@@ -24,68 +24,24 @@
 		</div>
 		<main class="main margin-top padding-side">
 			<form action="" method="" class="clearfix">
-				<div class="workmens_info_top margin-bot">
+				<div class="margin-bot margin-top">
 					<div class="input-group form-group fs">
-					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>所属企业</span>
-					  <div class="form-control box-shadow0 border0">${userDetail.unitName}</div>					 
+					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>原&ensp;&ensp;密&ensp;&ensp;码</span>
+					  <input type="" class="form-control box-shadow0 border0 border-bottom" name="" id="" value="" placeholder="请输入原密码"/>
 					</div>
 					<div class="input-group form-group fs">
-					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>身份证号</span>
-					  <input type="hidden" id="id" name="id" value="${userDetail.id }">
-					  <input type="text" class="form-control box-shadow0 border-bottom" id="idCard" name="idCard" value="${userDetail.idCard }" placeholder="请输入身份证号" aria-describedby="sizing-addon1">
+					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>新&ensp;&ensp;密&ensp;&ensp;码</span>
+					  <input type="" class="form-control box-shadow0 border0 border-bottom" name="" id="" value="" placeholder="请输入新密码"/>
 					</div>
 					<div class="input-group form-group fs">
-					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>手&ensp;机&ensp;号</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" id="phone" name="phone"  value="${userDetail.phone }"  placeholder="请输入手机号" aria-describedby="sizing-addon1">
-					</div>
-					<div class="input-group form-group fs">
-					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>职&ensp;&ensp;&ensp;&ensp;务</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" id="duty" name="duty"  value="${userDetail.duty }"  placeholder="请输入职务" aria-describedby="sizing-addon1">
-					</div>
-					<div class="input-group form-group fs">
-					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>姓&ensp;&ensp;&ensp;&ensp;名</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" id="username" name="username"  value="${userDetail.username }"  placeholder="请输入姓名" aria-describedby="sizing-addon1">
-					</div>
-					<div class="input-group form-group fs">
-					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>密&ensp;&ensp;&ensp;&ensp;码</span>
-					  <div class="form-control box-shadow0 border0">
-					  	<div class="fb"><span>********</span><span><a href="use_resetpassword.html" class="btn btn-warning btn-sm">修改密码</a></span></div>
-					  </div>
-					  <%-- <input type="password" class="form-control box-shadow0 border-bottom" readonly="readonly" value="${userDetail.password }"  id="password" name="password" placeholder="请输入密码" aria-describedby="sizing-addon1"> --%>
-					</div>
-					<div class="input-group form-group fs">
-					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>年&ensp;&ensp;&ensp;&ensp;龄</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom"  value="${userDetail.age }"  id="age" name="age" placeholder="请输入年龄" aria-describedby="sizing-addon1">
-					</div>
-					<div class="input-group form-group fs">
-					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>健康证号</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom"  value="${userDetail.healthCertificateCode }"  id="healthCertificateCode" name="healthCertificateCode" placeholder="请输入健康证编号" aria-describedby="sizing-addon1">
+					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>确认新密码</span>
+					  <input type="" class="form-control box-shadow0 border0 border-bottom" name="" id="" value="" placeholder="请再次输入新密码"/>
 					</div>
 				</div>
-				
-				<div class="">
-					<div class="fc">
-						<div class="upload_imgs">
-							<div class="fc tip_text">
-								<div class="text-info">
-									<div class="fc"> <i class="fa fa-plus padding-side05"></i> </div>
-									<div class="text-center">上传图片</div>
-								</div>
-							</div>
-							<input type="file" name="" id="fileinput" value="" accept="image/*"/>
-							<c:if test="${userDetail.healthCertificate == null }">
-								<img src="" id="preview">
-							</c:if>
-							<c:if test="${userDetail.healthCertificate != null }">
-								<img src="${pageContext.request.contextPath}${userDetail.healthCertificate}" id="preview">
-							</c:if>							
-						</div>
-					</div>
-				</div>				
 			</form>
 			
 			<div class="margin-top2 margin-bot2">
-				<button type="button" class="btn btn-primary form-control" id="register">保存</button>
+				<button type="button" class="btn btn-primary form-control" id="register">保存修改</button>
 			</div>
 		</main>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/bks_wap/imgBase64.js"></script>		
