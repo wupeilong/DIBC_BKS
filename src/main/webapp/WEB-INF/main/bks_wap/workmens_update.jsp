@@ -107,10 +107,10 @@
 				}else if(!username_reg.test($("#username").val())){
 					layer.msg("请正确输入姓名",{icon:2,time:1000});
 					$("#username").focus();		
-				}else if(!password_reg.test($("#password").val())){
+				}/* else if(!password_reg.test($("#password").val())){
 					layer.msg("请正确输入密码",{icon:2,time:1000});
 					$("#password").focus();		
-				}else if(!idCard_judge.test($("#idCard").val())){				
+				} */else if(!idCard_judge.test($("#idCard").val())){				
 					layer.msg("请输入18位身份证号码",{icon:2,time:1000});
 					$("#idCard").focus();		
 				}else if(!phone_reg.test($("#phone").val())){
