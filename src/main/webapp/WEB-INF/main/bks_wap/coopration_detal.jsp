@@ -27,7 +27,10 @@
 					<div class="fb padding-side05 sb margin-bot">
 						<div class="item_name fonwei">企业信息</div>
 						<div class="">
-							<span><a href="user_update.html"><i class="fa fa-edit"></i></a></span>
+							<span>
+								<c:if test="${user.parentId == 0}"></c:if>
+								<a href="${pageContext.request.contextPath}/unit/coopration_update"><i class="fa fa-edit"></i></a>
+							</span>
 						</div>
 					</div>
 				</div>
