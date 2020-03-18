@@ -3,6 +3,8 @@ package cn.dibcbks.controller;
 
 import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import cn.dibcbks.entity.Hygiene;
 import cn.dibcbks.entity.User;
 import cn.dibcbks.mapper.UserMapper;
 import cn.dibcbks.service.IUserService;
+import cn.dibcbks.util.CommonUtil;
 import cn.dibcbks.util.GetCommonUser;
 import cn.dibcbks.util.ResponseResult;
 
@@ -76,12 +79,13 @@ public class UserController {
 			System.out.println("走了这步...");
 			return new ResponseResult<>(ResponseResult.ERROR,"手机号已存在！");
 		}
+		String uuid = CommonUtil.getUUID();
 		GetCommonUser get=new GetCommonUser();
-		String stratpath=get.uoladimg(file,idCard);
+		String stratpath=get.uoladimg(file,uuid);
 		if (stratpath == null) {
 			return new ResponseResult<Void>(ResponseResult.ERROR,"健康证上传异常,人员信息添加失败");
 		}else{
-			return iUserService.allocateAccount(idCard, username, password, phone, duty, age,healthCertificateCode,stratpath);			
+			return iUserService.allocateAccount(uuid,idCard, username, password, phone, duty, age,healthCertificateCode,stratpath);			
 		}		
 	}
 	
@@ -127,8 +131,8 @@ public class UserController {
 													String fever,String diarrhea,String woundsFester,String hygiene,
 													String remark){
 		ResponseResult<Void> responseResult=null;		
-		GetCommonUser get=new GetCommonUser();	
-		String hygienepath=get.uoladimg(file,((User)SecurityUtils.getSubject().getSession().getAttribute("user")).getIdCard());
+		GetCommonUser get=new GetCommonUser();
+		String hygienepath=get.uoladimg(file,CommonUtil.getStessionUser().getUuid());
 		if (hygienepath==null) {
 			responseResult=new ResponseResult<Void>(ResponseResult.ERROR,"健康码上传异常,信息添加失败");
 		}else{	
@@ -176,9 +180,36 @@ public class UserController {
 	 */
 	@RequestMapping("/update")
 	@ResponseBody
-	public ResponseResult<Void> updateUser(User user){
-		
-		return iUserService.updateUser(user);
+	public ResponseResult<Void> updateUser(
+			@RequestParam(value="unimg",required=false)MultipartFile file,
+			Integer id,	String duty,String username,
+			String password,String phone,String idCard,
+			Integer age,String healthCertificateCode){
+		User user = new User();
+		user.setId(id);
+		user.setUsername(username);
+		user.setPassword(password);
+		user.setPhone(phone);
+		user.setIdCard(idCard);
+		user.setAge(age);
+		user.setDuty(duty);
+		user.setHealthCertificateCode(healthCertificateCode);
+		System.out.println(file);
+		if(file != null){
+			GetCommonUser get=new GetCommonUser();
+			if(StringUtils.isNotEmpty(CommonUtil.getStessionUser().getHealthCertificate())){
+				get.deluoladimg(CommonUtil.getStessionUser().getHealthCertificate());
+			}
+			String stratpath = get.uoladimg(file,idCard);
+			if (stratpath == null) {
+				return new ResponseResult<Void>(ResponseResult.ERROR,"健康证上传异常,人员信息添加失败");
+			}else{
+				user.setHealthCertificate(stratpath);
+				return iUserService.updateUser(user);
+			}		
+		}else{
+			return iUserService.updateUser(user);
+		}
 	}
 	
 	
@@ -188,7 +219,8 @@ public class UserController {
 	 */
 	@RequestMapping("/workmens_update")
 	public String updateUserPage(ModelMap modelMap){
-		
+		User user = userMapper.queryUser(CommonUtil.getStessionUser().getIdCard());
+		modelMap.addAttribute("userDetail", user);
 		return "bks_wap/workmens_update";
 	}
 	

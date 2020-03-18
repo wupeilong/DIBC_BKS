@@ -43,19 +43,19 @@ public class GetCommonUser {
             }
         }       
     }
-    public  String uoladimg(MultipartFile file,String idCard)
+    public  String uoladimg(MultipartFile file,String uuid)
     {
     	String start=null;
     	String path1=this.getpath();	
     	long time = new Date().getTime();
 	    String extName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));	  
 	    try {
-	    	File file5 = new File(path1+"/static/images/bks_wap/company_img/"+idCard);
+	    	File file5 = new File(path1+"/static/images/bks_wap/company_img/"+uuid);
 		    if (!file5.exists()) {
 		        file5.mkdirs();	       			
 		    } 
-		    file.transferTo(new File(path1+"/static/images/bks_wap/company_img/"+idCard+"/"+time+extName));
-		    start="/static/images/bks_wap/company_img/"+idCard+"/"+time+extName;
+		    file.transferTo(new File(path1+"/static/images/bks_wap/company_img/"+uuid+"/"+time+extName));
+		    start="/static/images/bks_wap/company_img/"+uuid+"/"+time+extName;
 		} catch (Exception e) {
 			return start;
 		}

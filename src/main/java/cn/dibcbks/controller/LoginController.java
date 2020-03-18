@@ -101,16 +101,17 @@ public class LoginController {
 			@RequestParam(value="legalPerson",required = true) String legalPerson){
 		ResponseResult<Void> responseResult = null;
 		try {
-			GetCommonUser get=new GetCommonUser();	
-			String businessLicensepath=get.uoladimg(file,idCard);
+			GetCommonUser get=new GetCommonUser();
+			String uuid = CommonUtil.getUUID();
+			String businessLicensepath=get.uoladimg(file,uuid);
 			if (businessLicensepath==null) {
 				responseResult=new ResponseResult<Void>(ResponseResult.ERROR,"营业执照上传异常,人员信息添加失败");
 			}else{
-				String productionLicensepath=get.uoladimg(file1,idCard);
+				String productionLicensepath=get.uoladimg(file1,uuid);
 				if (productionLicensepath==null) {
 					responseResult=new ResponseResult<Void>(ResponseResult.ERROR,"许可证上传异常,人员信息添加失败");
 				}else{
-					responseResult=iUserService.registeradd(idCard,username,password,phone,duty,age,unitName,legalPerson,businessLicenseCode,businessLicensepath,productionLicensepath,unitAddress,null,unitType);
+					responseResult=iUserService.registeradd(uuid,idCard,username,password,phone,duty,age,unitName,legalPerson,businessLicenseCode,businessLicensepath,productionLicensepath,unitAddress,null,unitType);
 				}			
 			}
 		}catch (Exception e) {
@@ -159,11 +160,10 @@ public class LoginController {
 	 */
 	@RequestMapping("/admin_add")
 	@ResponseBody
-	public ResponseResult<Void> adminAdd(User user){
-		System.out.println(user);
+	public ResponseResult<Void> adminAdd(User user){		
 		ResponseResult<Void> rr = null;
 		try {
-			User queryUser = userMapper.queryUser(user.getIdCard());
+			User queryUser = userMapper.queryUser(user.getIdCard());			
 			if (queryUser != null ) {
 				rr = new ResponseResult<Void>(ResponseResult.ERROR, "身份证已存在！");
 			}else if(userMapper.queryUserByPhone(user.getPhone()) != null){

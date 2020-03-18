@@ -97,10 +97,10 @@ public class ProcurementController {
 		User user = (User)SecurityUtils.getSubject().getSession().getAttribute("user");
 		List<Unit> supplierUnit = unitMapper.select(" n.unit_id = '" + supplierUnitId + "'", null, null, null);
 		GetCommonUser get = new GetCommonUser();			
-		String supplierBusinessLicensePath = get.uoladimg(supplierBusinessLicense,user.getIdCard());//营业执照	
-		String supplierproductionLicensePath = get.uoladimg(supplierproductionLicense,user.getIdCard());//许可证
-		String supplierQualificationPath = get.uoladimg(supplierQualification,user.getIdCard());//资质
-		String invoicePath = get.uoladimg(invoice,user.getIdCard());//发票
+		String supplierBusinessLicensePath = get.uoladimg(supplierBusinessLicense,user.getUuid());//营业执照	
+		String supplierproductionLicensePath = get.uoladimg(supplierproductionLicense,user.getUuid());//许可证
+		String supplierQualificationPath = get.uoladimg(supplierQualification,user.getUuid());//资质
+		String invoicePath = get.uoladimg(invoice,user.getUuid());//发票
 		if(supplierUnit.isEmpty()){
 			rr = new ResponseResult<>(ResponseResult.ERROR,"供货商信息不存在，添加采购信息失败！");
 		}else if(StringUtils.isEmpty(supplierBusinessLicensePath)){

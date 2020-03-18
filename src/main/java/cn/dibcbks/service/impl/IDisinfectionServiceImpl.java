@@ -30,7 +30,7 @@ public class IDisinfectionServiceImpl implements IDisinfectionService {
 		try {
 			Disinfection disinfection=new Disinfection();
 			Date now =new Date();
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");        
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");  
 	        String dailyTime=sdf.format(now);
 			disinfection.setDailyTime(dailyTime);
 			disinfection.setUnitId(CommonUtil.getStessionUser().getUnitId());

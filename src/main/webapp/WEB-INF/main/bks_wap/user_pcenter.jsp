@@ -21,9 +21,9 @@
 				<div class="munulist">
 					<a href="javascript:;" class="text-white"> <i class="fa fa-list"></i></a>
 					<ul class="list-unstyled margin0">
-						<li><a href="" class="fonwei">企业信息查询</a></li>
-						<li><a href="" class="fonwei">健康状况查询</a></li>
-						<li><a href="" class="fonwei">健康信息录入</a></li>
+						<li><a href="${pageContext.request.contextPath}/unit/coopration_detal?unitId=${userPcenter.unitId}" class="btn btn-primary margin-bot form-control" class="fonwei">企业信息查询</a></li>
+						<li><a href="${pageContext.request.contextPath}/user/workmens_health?userId=${user.id}" class="fonwei">健康状况查询</a></li>
+						<li><a href="${pageContext.request.contextPath}/user/workmens_health_add" class="fonwei">健康信息录入</a></li>
 					</ul>
 				</div>
 			</div>
@@ -32,17 +32,16 @@
 			<form action="" method="" class="clearfix update_info">
 				<div class="border-bottom margin-top">
 					<div class="fb padding-side05 sb margin-bot">
-						<div class="item_name fonwei">资料修改</div>
+						<div class="input-group form-group fs">
+						  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid"></i>个人信息</span>
+						</div>
 						<div class="">
-							<span><a href="${pageContext.request.contextPath}/user/user_pcupdate"><i class="fa fa-edit"></i></a></span>
+							<span><a href="${pageContext.request.contextPath}/user/workmens_update"><i class="fa fa-edit"></i></a></span>
 						</div>
 					</div>
 				</div>
 				<div class="workmens_info_top margin-bot">
-					<div class="input-group form-group fs">
-					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid"></i>个人信息</span>
-					  <div class="form-control box-shadow0 border0"></div>
-					</div>
+					
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>所属单位</span>
 					  <div class="form-control box-shadow0 border0">${userPcenter.unitName}</div>
@@ -78,11 +77,11 @@
 				</div>
 			</form>
 			
-			<div class="margin-top2 margin-bot2">
+			<%-- <div class="margin-top2 margin-bot2">
 				<a href="${pageContext.request.contextPath}/unit/coopration_detal?unitId=${userPcenter.unitId}" class="btn btn-primary margin-bot form-control">企业信息查询</a>
 				<a href="${pageContext.request.contextPath}/user/workmens_health?userId=${user.id}" class="btn btn-primary margin-bot form-control">健康状况查询</a>
 				<a href="${pageContext.request.contextPath}/user/workmens_health_add" class="btn btn-primary margin-bot form-control">健康状况录入</a>
-			</div>
+			</div> --%>
 		<script type="text/javascript">
 			$(".munulist").click(function() {
 				$(this).find("ul").toggle()
