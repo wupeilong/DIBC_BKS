@@ -327,3 +327,20 @@ legend{
 	display: block;
 	color: #fff;
 }
+table.table_arrange>tbody>tr>td:nth-of-type(3)>div,
+table.table_arrange>tbody>tr>td:nth-of-type(4)>div{
+	width: 84px;
+	/* background-color: #5CB85C; */
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	
+	/* display: -webkit-box;
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 3;
+	overflow: hidden; */
+}
+table.table_arrange>tbody>tr>td:nth-of-type(3)>div:active,
+table.table_arrange>tbody>tr>td:nth-of-type(4)>div:active{
+	color: #007DDB;
+}
