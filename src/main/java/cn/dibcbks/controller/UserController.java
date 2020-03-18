@@ -3,6 +3,8 @@ package cn.dibcbks.controller;
 
 import java.util.Date;
 import java.util.List;
+
+import org.apache.commons.lang.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,7 @@ import cn.dibcbks.entity.Hygiene;
 import cn.dibcbks.entity.User;
 import cn.dibcbks.mapper.UserMapper;
 import cn.dibcbks.service.IUserService;
+import cn.dibcbks.util.CommonUtil;
 import cn.dibcbks.util.GetCommonUser;
 import cn.dibcbks.util.ResponseResult;
 
@@ -174,11 +177,55 @@ public class UserController {
 	 * @param user
 	 * @return
 	 */
-	@RequestMapping("/updateUser")
+	@RequestMapping("/update")
 	@ResponseBody
-	public ResponseResult<Void> updateUser(User user){
-		
-		return iUserService.updateUser(user);
+	public ResponseResult<Void> updateUser(
+			@RequestParam(value="unimg",required=false)MultipartFile file,
+			Integer id,
+			String duty,
+			String username,
+			String password, 
+			String phone, 
+			String idCard,
+			Integer age,
+			String healthCertificateCode){
+		User user = new User();
+		user.setId(id);
+		user.setUsername(username);
+		user.setPassword(password);
+		user.setPhone(phone);
+		user.setIdCard(idCard);
+		user.setAge(age);
+		user.setDuty(duty);
+		user.setHealthCertificateCode(healthCertificateCode);
+		if(file != null){
+			GetCommonUser get=new GetCommonUser();
+			if(StringUtils.isNotEmpty(CommonUtil.getStessionUser().getHealthCertificate())){
+				get.deluoladimg(CommonUtil.getStessionUser().getHealthCertificate());
+			}			
+			String stratpath = get.uoladimg(file,idCard);
+			System.out.println("stratpath: " + stratpath);
+			if (stratpath == null) {
+				return new ResponseResult<Void>(ResponseResult.ERROR,"健康证上传异常,人员信息添加失败");
+			}else{
+				user.setHealthCertificate(stratpath);
+				return iUserService.updateUser(user);
+			}		
+		}else{
+			return iUserService.updateUser(user);
+		}
+	}
+	
+	
+	/**
+	 * 进入个人中心修改页面
+	 * @return
+	 */
+	@RequestMapping("/workmens_update")
+	public String updateUserPage(ModelMap modelMap){
+		User user = userMapper.queryUser(CommonUtil.getStessionUser().getIdCard());
+		modelMap.addAttribute("userDetail", user);
+		return "bks_wap/workmens_update";
 	}
 	
 	

@@ -178,7 +178,7 @@ public class InspectController {
 		List<Unit> queryUnit = iUserService.queryUnitUserDetail(unitId);
 		String username = ((User)SecurityUtils.getSubject().getSession().getAttribute("user")).getUsername();
 		//String resultList=JSONArray.toJSONString(queryrights);
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");        
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");        
 		return  iCheckService.addCheckInfo(unitId,queryUnit.get(0).getUnitName(),unitType,queryUnit.get(0).getUnitAddress(),queryUnit.get(0).getLegalPerson(),unitPhone,queryrights,other,username,sdf.format(new Date()),checkType,null);
 	}
 }

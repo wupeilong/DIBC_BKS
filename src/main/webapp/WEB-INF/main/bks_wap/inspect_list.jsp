@@ -39,7 +39,7 @@
 			<div class="bg-warning margin-top2">
 				<table class="table table-striped table-hover" cellspacing="" cellpadding="">
 					<thead>
-						<tr><th>企业名称</th><th>检查类型</th><th>检查时间</th><th>操作</th></tr>
+						<tr><th>企业名称</th><th width="90">检查类型</th><th width="90px">检查时间</th><th width="45px">操作</th></tr>
 					</thead>
 					<tbody id="result_list">
 						<c:forEach items="${checkList}" var="f">
