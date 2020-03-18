@@ -28,8 +28,9 @@
 						<div class="item_name fonwei">企业信息</div>
 						<div class="">
 							<span>
-								<c:if test="${user.parentId == 0}"></c:if>
-								<a href="${pageContext.request.contextPath}/unit/coopration_update"><i class="fa fa-edit"></i></a>
+								<c:if test="${user.parentId == 0 && user.unitId == unitDetail.unitId}">
+									<a href="${pageContext.request.contextPath}/unit/coopration_update"><i style="font-size: 20px;color: #1294b3;" class="fa fa-edit"></i></a>
+								</c:if>
 							</span>
 						</div>
 					</div>
