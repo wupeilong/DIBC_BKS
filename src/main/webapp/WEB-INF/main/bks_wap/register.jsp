@@ -207,7 +207,7 @@
 					}else if(!username_reg.test($("#username").val())){
 						layer.msg("请正确输入姓名",{icon:2,time:1000});
 						$("#username").focus();		
-					}else if(!name_reg.test($("#duty").val())) {
+					}else if($("#duty").val() == "") {
 						layer.msg("请正确输入职务",{icon:2,time:1000});
 						$("#duty").focus();		
 					}else if(!age_reg.test($("#age").val())){

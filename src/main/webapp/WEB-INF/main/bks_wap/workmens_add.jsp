@@ -91,7 +91,7 @@
 			var idCard_judge = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
 			var age_reg = /^[0-9]{1,3}/; 
 			 $('#register').click(function() {
-				 if (!name_reg.test($("#duty").val())) {
+				 if ($("#duty").val() == "") {
 					layer.msg("请正确输入职务",{icon:2,time:1000});
 					$("#duty").focus();		
 				}else if(!username_reg.test($("#username").val())){
@@ -112,6 +112,9 @@
 				}else if($("#preview").attr('src') == ""){
 					layer.msg("请输入上传健康证",{icon:2,time:1000});
 					$("#preview").focus();		
+				}else if(age_reg.test($("#age").val())){
+					layer.msg("请正确输入年龄",{icon:2,time:1000});
+					$("#age").focus();		
 				}else{ 		
 					var we2 = layerloadingOpen();
 				 	var formData = new FormData();				
