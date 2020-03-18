@@ -148,12 +148,12 @@
 									return;				
 								}else{					
 									layer.msg(obj.message,{icon:1,time:1000});
-									//location.href = "${pageContext.request.contextPath}/user/workmens";
+									location.href = "${pageContext.request.contextPath}/user/workmens";
 								}				
 							}
 						}); 
 					}
-		     	});		
+		     	});
 		</script>
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
