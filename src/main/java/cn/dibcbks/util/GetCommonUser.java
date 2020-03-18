@@ -63,7 +63,7 @@ public class GetCommonUser {
     }   	
     public  void deluoladimg(String path)
     {
-    	String path1=this.getpath();
+    	String path1=this.getpath();    	
     	File file5 = new File(path1+path);
     	if (file5.exists()) {	    	
     		file5.delete();	    		

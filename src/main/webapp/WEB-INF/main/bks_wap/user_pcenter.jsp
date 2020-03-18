@@ -10,6 +10,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/fonts/font-awesome-4.7.0/css/font-awesome.min.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/style.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/index.css"/>	
+	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/js/layui/css/layui.css">
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>		
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/2.4/layer.js"></script>
@@ -27,7 +28,8 @@
 					</ul>
 				</div>
 			</div>
-		</div>
+		</div> 
+		
 		<main class="main margin-top padding-side">			
 			<form action="" method="" class="clearfix update_info">
 				<div class="border-bottom margin-top">
@@ -35,8 +37,9 @@
 						<div class="input-group form-group fs">
 						  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid"></i>个人信息</span>
 						</div>
-						<div class="">
-							<span><a href="${pageContext.request.contextPath}/user/workmens_update"><i class="fa fa-edit"></i></a></span>
+						<div class="">							
+								<span><a href="${pageContext.request.contextPath}/user/workmens_update"><i class="fa fa-edit" style="font-size: 20px;"></i></a></span>
+												
 						</div>
 					</div>
 				</div>
