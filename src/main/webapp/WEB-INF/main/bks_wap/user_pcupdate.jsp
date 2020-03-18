@@ -12,39 +12,26 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/index.css"/>	
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>		
-	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/2.4/layer.js"></script>
 </head>
 	<body class="contain">
 		<div class="navigation bg-primary">
 			<div class="fb padding-side">
 				<a href="javascript:history.go(-1)" class="text-white"><i class="fa fa-angle-left"></i></a>
-				<div class="munulist">
-					<a href="javascript:;" class="text-white"> <i class="fa fa-list"></i></a>
-					<ul class="list-unstyled margin0">
-						<li><a href="" class="fonwei">企业信息查询</a></li>
-						<li><a href="" class="fonwei">健康状况查询</a></li>
-						<li><a href="" class="fonwei">健康信息录入</a></li>
-					</ul>
-				</div>
 			</div>
 		</div>
 		<main class="main margin-top padding-side">			
-			<form action="" method="" class="clearfix update_info">
+			<form action="" method="" class="clearfix">
 				<div class="border-bottom margin-top">
 					<div class="fb padding-side05 sb margin-bot">
-						<div class="item_name fonwei"></div>
-						<div class="">
-							<span><a href="user_update.html"><i class="fa fa-edit"></i></a></span>
-						</div>
+						<div class="item_name fonwei">修改资料</div>
+						<!-- <div class="">
+							<span><a href=""><i class="fa fa-edit"></i></a></span>
+						</div> -->
 					</div>
 				</div>
 				<div class="workmens_info_top margin-bot">
 					<div class="input-group form-group fs">
-					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid"></i>个人信息</span>
-					  <div class="form-control box-shadow0 border0"></div>
-					</div>
-					<div class="input-group form-group fs">
-					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>所属单位</span>
+					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>所属企业/单位</span>
 					  <div class="form-control box-shadow0 border0">${userPcenter.unitName}</div>
 					</div>
 					<div class="input-group form-group fs">
@@ -64,10 +51,25 @@
 					  <div class="form-control box-shadow0 border0">${userPcenter.age}岁</div>
 					</div>
 					<div class="input-group form-group fs">
-					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>健康证号</span>
+					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>健康证编号</span>
 					  <div class="form-control box-shadow0 border0">${userPcenter.healthCertificateCode}</div>
 					</div>
 				</div>
+				<div class="margin-bot2">
+					  <div class="fc">
+					  	<div class="upload_imgs">
+							<div class="fc tip_text">
+								<div class="text-info">
+									<div class="fc"> <i class="fa fa-plus padding-side05"></i> </div>
+									<div class="text-center">从业人员健康证</div>
+								</div>
+							</div>
+							<input type="file" name="" id="fileinput2" value="" accept="image/*"/>
+							<img src="" id="preview2">
+						</div>
+					  </div>
+				</div>
+				
 				<div class="">
 					  <div class="fc">
 						<div class="layui-upload-list fc">
@@ -83,20 +85,8 @@
 				<a href="${pageContext.request.contextPath}/user/workmens_health?userId=${user.id}" class="btn btn-primary margin-bot form-control">健康状况查询</a>
 				<a href="${pageContext.request.contextPath}/user/workmens_health_add" class="btn btn-primary margin-bot form-control">健康状况录入</a>
 			</div>
-		<script type="text/javascript">
-			$(".munulist").click(function() {
-				$(this).find("ul").toggle()
-			})
-		</script>	
 		</main>	
-		<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/bks_wap/imgBase64.js"></script>	
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
-<script type="text/javascript">
-var $current = $("form");		
-$current.find("img").bind("click",function(){
-	var path=$(this).attr('src');			
-	layerImg(path);
-});	
-</script>
+
 </html>

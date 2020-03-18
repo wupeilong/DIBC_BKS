@@ -287,3 +287,43 @@ legend{
 .searchable-select-dropdown{
 	z-index:99;
 }
+/* usercenter_update */
+.update_info ul li a{
+	padding: 1em 1em;
+}
+.update_info ul li a:active{
+	color: red;
+	background-color: #ddd;
+}
+.update_info  ul li a .item_name{
+	width: 7em;
+	text-align: start;
+}
+.munulist{
+	position: relative;
+}
+.munulist ul{
+	display: none;
+	width: 8em;
+	/* border-radius: 2px; */
+	overflow: hidden;
+	position: absolute;
+	right: -12px;
+	top: 35px;
+	background-color: #54ace3;
+}
+.munulist ul li{
+	/* border-top: 1px solid #999; */
+	border-bottom: 1px solid #97919166;
+	padding: .4em .5em;
+}
+.munulist ul li:last-of-type{
+	border: 0;
+}
+.munulist ul li:active{
+	background-color: #ddd;
+}
+.munulist ul li>a{
+	display: block;
+	color: #fff;
+}
