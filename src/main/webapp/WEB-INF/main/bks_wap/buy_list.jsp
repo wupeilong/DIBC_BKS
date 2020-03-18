@@ -44,7 +44,7 @@
 			<div class="">
 				<table class="table table-striped table-hover" cellspacing="" cellpadding="">
 					<thead>
-						<tr><th>采购商</th><th>状态</th><th>采购日期</th><th>操作</th></tr>
+						<tr><th>采购商</th><th width="60">状态</th><th width="100px">采购日期</th><th width="50px">操作</th></tr>
 					</thead>
 					<tbody id="result_list">
 						<c:forEach items="${procurementList}" var="item">
@@ -55,7 +55,7 @@
 							<c:if test="${item.status == 1}">
 								<td>已验收</td>
 							</c:if>
-							<td><fmt:formatDate value="${item.purchasingTime}" pattern="yyyy年MM月dd日" /></td>
+							<td><fmt:formatDate value="${item.purchasingTime}" pattern="yyyy-MM-dd" /></td>
 							<td><a href="${pageContext.request.contextPath}/procurement/buy_detal?id=${item.id}">详情</a></td>
 							</tr>
 						</c:forEach>						
