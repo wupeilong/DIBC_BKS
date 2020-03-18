@@ -22,7 +22,7 @@
 				<div class="munulist">
 					<a href="javascript:;" class="text-white"> <i class="fa fa-list"></i></a>
 					<ul class="list-unstyled margin0">
-						<li><a href="${pageContext.request.contextPath}/unit/coopration_detal?unitId=${userPcenter.unitId}" class="btn btn-primary margin-bot form-control" class="fonwei">企业信息查询</a></li>
+						<li><a href="${pageContext.request.contextPath}/unit/coopration_detal?unitId=${userPcenter.unitId}" class="fonwei">企业信息查询</a></li>
 						<li><a href="${pageContext.request.contextPath}/user/workmens_health?userId=${user.id}" class="fonwei">健康状况查询</a></li>
 						<li><a href="${pageContext.request.contextPath}/user/workmens_health_add" class="fonwei">健康信息录入</a></li>
 					</ul>
@@ -34,12 +34,9 @@
 			<form action="" method="" class="clearfix update_info">
 				<div class="border-bottom margin-top">
 					<div class="fb padding-side05 sb margin-bot">
-						<div class="input-group form-group fs">
-						  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid"></i>个人信息</span>
-						</div>
-						<div class="">							
-								<span><a href="${pageContext.request.contextPath}/user/workmens_update"><i class="fa fa-edit" style="font-size: 20px;"></i></a></span>
-												
+						<div class="item_name fonwei">个人信息</div>						
+						<div class="">
+							<span><a href="${pageContext.request.contextPath}/user/workmens_update"><i class="fa fa-edit" style="font-size: 20px;"></i></a></span>
 						</div>
 					</div>
 				</div>
