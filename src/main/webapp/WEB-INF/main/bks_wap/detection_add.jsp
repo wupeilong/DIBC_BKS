@@ -159,6 +159,7 @@ $("#detection").click(function() {
 						return;				
 					}else{					
 						layer.msg(obj.message,{icon:1,time:1000});
+						location.href = "${pageContext.request.contextPath}/detection/detection_add";
 					}
 					
 				}
