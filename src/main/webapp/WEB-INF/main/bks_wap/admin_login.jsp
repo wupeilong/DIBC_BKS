@@ -60,12 +60,6 @@
 				<button type="button" id="register" class="btn btn-primary form-control">注册</button>
 			</div>
 		</main>
-		<div class="tabBar">
-			<ul class="list-unstyled clearfix margin0">
-				<li><a href="http://192.168.1.106:8848/wap_MCLZ/home.html"><div><i class="fa fa-home"></i><div>工作台</div></div></a></li>
-				<li><a href=""><div><i class="fa fa-user"></i><div>个人中心</div></div></a></li>
-			</ul>
-		</div>
 		<script>			
 			$("#register").click(function() {
 				var idCard=$("input[name=idCard]").val();
