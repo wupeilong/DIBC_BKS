@@ -78,6 +78,14 @@
 					</div>
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">企业类型</span>
+					  <select class="form-control box-shadow0 border0" name="">
+					  	<option value="">监管局</option>
+						<option value="">学校</option>
+						<option value="">食品企业</option>
+					  </select>
+					</div>
+					<div class="input-group form-group fs border-bottom">
+					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">企业类型</span>
 					  <c:choose>
 					  	<c:when test="${unitDetail.unitType == 1}">
 					  		<div class="form-control box-shadow0 border0">监管局</div>
