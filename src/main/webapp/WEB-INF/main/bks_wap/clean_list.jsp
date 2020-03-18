@@ -40,7 +40,7 @@
 			<div class="">
 				<table class="table table-striped table-hover" cellspacing="" cellpadding="">
 					<thead>
-						<tr><th>序号</th><th>学校名称</th><th>消毒日期</th><th>操作</th></tr>
+						<tr><th width="45">序号</th><th>学校名称</th><th>消毒日期</th><th width="45">操作</th></tr>
 					</thead>
 					<tbody id="datvarbody">
 						<c:forEach items="${disinfectionlist}" var="f" varStatus="vs">

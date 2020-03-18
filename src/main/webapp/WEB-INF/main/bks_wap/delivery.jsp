@@ -41,7 +41,7 @@
 			<div class="">
 				<table class="table table-striped table-hover" cellspacing="" cellpadding="">
 					<thead>
-						<tr><th>序号</th><th>配送单号</th><th>供应商</th><th>验收单位</th><th>操作</th></tr>
+						<tr><th width="45px">序号</th><th>配送单号</th><th>供应商</th><th>验收单位</th><th width="45px">操作</th></tr>
 					</thead>
 					<tbody id="result_list">
 						<c:forEach items="${distributionList}" var="item" varStatus="vs">
