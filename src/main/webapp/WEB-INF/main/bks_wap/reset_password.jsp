@@ -23,26 +23,54 @@
 			</div>
 		</div>
 		<main class="main margin-top padding-side">
-			<form action="" method="" class="clearfix">
+			<form action="" method="" class="clearfix update_info">
 				<div class="margin-bot margin-top">
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>原&ensp;&ensp;密&ensp;&ensp;码</span>
-					  <input type="" class="form-control box-shadow0 border0 border-bottom" name="" id="" value="" placeholder="请输入原密码"/>
+					  <input type="" class="form-control box-shadow0 border0 border-bottom" name="before_pwd" id="" value="" placeholder="请输入原密码"/>
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>新&ensp;&ensp;密&ensp;&ensp;码</span>
-					  <input type="" class="form-control box-shadow0 border0 border-bottom" name="" id="" value="" placeholder="请输入新密码"/>
+					  <input type="" class="form-control box-shadow0 border0 border-bottom" name="new_pwd" id="" value="" placeholder="请输入新密码"/>
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>确认新密码</span>
-					  <input type="" class="form-control box-shadow0 border0 border-bottom" name="" id="" value="" placeholder="请再次输入新密码"/>
+					  <input type="" class="form-control box-shadow0 border0 border-bottom" name="renew_pwd" id="" value="" placeholder="请再次输入新密码"/>
 					</div>
 				</div>
 			</form>
 			
 			<div class="margin-top2 margin-bot2">
-				<button type="button" class="btn btn-primary form-control" id="register">保存修改</button>
+				<a href="http://192.168.1.106:8848/wap_MCLZ/workmen_health.html" class="btn btn-primary form-control" id="changepwd">保存修改</a>
 			</div>
+			<script type="text/javascript">
+				var before_pwd=$("input[name='before_pwd']");
+				var new_pwd=$("input[name='new_pwd']");
+				var renew_pwd=$("input[name='renew_pwd']");
+				$("#changepwd").click(function() {
+					if (before_pwd.val()=='') {
+						alert("原密码不能为空")
+						before_pwd.focus()
+					} else if(new_pwd.val()==''){
+						alert("新密码不能为空")
+						new_pwd.focus()
+					}else if(renew_pwd.val()==''){
+						alert("请重新输入新密码")
+						renew_pwd.focus()
+					}else{
+						$.ajax({
+							url:"",
+							type:"post",
+							data:"",
+							dataType:"json",
+							success:function (data) {
+								console.log(data)
+							}
+							
+						})
+					}
+				})
+			</script>
 		</main>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/bks_wap/imgBase64.js"></script>		
 		<script type="text/javascript">
