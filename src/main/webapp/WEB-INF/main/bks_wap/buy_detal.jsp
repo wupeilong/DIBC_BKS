@@ -12,7 +12,8 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/style.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/index.css"/>
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
-	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>		
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>	
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/2.4/layer.js"></script>	
 </head>
 	<body class="contain">
 		<div class="navigation bg-primary">
@@ -86,12 +87,12 @@
 							<tr><th>序号</th><th>商品名</th><th>数量</th><th>生产日期</th><th>验收结果</th></tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${procurementDetail.detailList}" var="item">
+							<c:forEach items="${procurementDetail.detailList}" var="item" varStatus="vs">
 								<tr>	
-									<td>${item.procurementDetailId}</td>
+									<td>${vs.count}</td>
 									<td>${item.productName }</td>
 									<td>${item.count}</td>
-									<td><fmt:formatDate value="${item.productionDate}" pattern="yyyy年MM月dd日" /></td>
+									<td><fmt:formatDate value="${item.productionDate}" pattern="yyyy-MM-dd" /></td>
 									<td>
 										<c:if test="${item.qualified == 0}">
 											不合格
@@ -137,7 +138,13 @@
 					</c:if>			
 			</div>
 		</main>		
+		<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/bks_wap/imgBase64.js"></script>
 		<script type="text/javascript">
+		var $current = $("main");		
+		$current.find("img").bind("click",function(){
+			var path=$(this).attr('src');			
+			layerImg(path);
+		});	
 		//点击验收
 		$("#acceptance").click(function () { 
 			layer.confirm('是否确认验收？', {

@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/index.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/js/layui/css/layui.css">
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/2.4/layer.js"></script>
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>	
 </head>
 	<body class="contain">
@@ -83,10 +84,15 @@
 			<!-- <div class="margin-top2 margin-bot2">
 				<button type="button" class="btn btn-primary form-control">保存</button>
 			</div> -->
-		</main>		
+		</main>
+		<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/bks_wap/imgBase64.js"></script>		
 		<script type="text/javascript">
 			/* console.log('${hygieneDetail}'); */
-		
+			var $current = $("form");		
+			$current.find("img").bind("click",function(){
+				var path=$(this).attr('src');			
+				layerImg(path);
+			});	
 			layui.use('upload', function(){
 			  var $ = layui.jquery
 			  ,upload = layui.upload;

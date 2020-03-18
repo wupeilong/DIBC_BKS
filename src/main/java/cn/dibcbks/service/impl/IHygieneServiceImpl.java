@@ -55,7 +55,9 @@ public class IHygieneServiceImpl implements IHygieneService {
 	public ResponseResult<Void> addHygiene(Hygiene hygiene) {
 		ResponseResult<Void> rr = null;
 		try {
+			System.out.println("2222");
 			hygieneMapper.insert(hygiene);
+			System.out.println("1111");
 			rr = new ResponseResult<>(ResponseResult.SUCCESS,"操作成功！");
 		} catch (Exception e) {
 			e.printStackTrace();

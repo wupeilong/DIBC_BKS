@@ -48,11 +48,11 @@
 						</div>
 						<div class="input-group form-group">
 						  <span class="input-group-addon">密码</span>
-						  <input type="text" class="form-control box-shadow0" id="password" name="password" placeholder="请输入密码" aria-describedby="sizing-addon1">
+						  <input type="password" class="form-control box-shadow0" id="password" name="password" placeholder="请输入密码" aria-describedby="sizing-addon1">
 						</div>
 						<div class="input-group form-group">
 						  <span class="input-group-addon">确认密码</span>
-						  <input type="text" class="form-control box-shadow0" id="newpassword" name="newpassword" placeholder="请确认密码" aria-describedby="sizing-addon1">
+						  <input type="password" class="form-control box-shadow0" id="newpassword" name="newpassword" placeholder="请确认密码" aria-describedby="sizing-addon1">
 						</div>
 						<div class="input-group form-group">
 						  <span class="input-group-addon">手机号</span>

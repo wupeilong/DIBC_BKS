@@ -36,10 +36,10 @@
 	 			  area: ['auto'],	 			 
 	 			  shadeClose: false,
 	 		/*	  btn: '关闭',*/
-	 			  content:'<div><img src="'+imgId+'" id="preview" style="width: 360px;height: 200px;"><span class="layui-layer-setwin"><a class="layui-layer-ico layui-layer-close layui-layer-close2" href="javascript:;"></a></span></div>',
+	 			  content:'<div><img src="'+imgId+'" id="preview" style="width: 360px;height: 360px;"><span class="layui-layer-setwin"><a class="layui-layer-ico layui-layer-close layui-layer-close2" href="javascript:;"></a></span></div>',
 	 			 success: function (layero) {
 				        layero.find('.layui-layer-content').css({	
-				        	'height':'200px',
+				        	'height':'360px',
 				            'width': '360px',		            
 				            'color': 'rgb(45, 26, 26)',
 				        	'font-size': '15px',

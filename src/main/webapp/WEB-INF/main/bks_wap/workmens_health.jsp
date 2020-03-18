@@ -27,8 +27,8 @@
 						<tr><th>编号</th><th>姓名</th><th>体温状况℃</th><th>测温日期</th><th>操作</th></tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${hygieneList}" var="item">
-							<tr><td>${item.hygieneId}</td><td>${item.username}</td><td>${item.celsius}</td><td>${item.dailyTime }</td><td><a href="${pageContext.request.contextPath}/user/workmens_health_detal?hygieneId=${item.hygieneId}">详情</a></td></tr>
+						<c:forEach items="${hygieneList}" var="item" varStatus="vs">
+							<tr><td>${vs.count}</td><td>${item.username}</td><td>${item.celsius}</td><td>${item.dailyTime }</td><td><a href="${pageContext.request.contextPath}/user/workmens_health_detal?hygieneId=${item.hygieneId}">详情</a></td></tr>
 						</c:forEach>	
 						</tbody>
 				</table>

@@ -40,8 +40,8 @@
 						<tr><th>序号</th><th>企业名称</th><th>企业法人</th><th>操作</th></tr>
 					</thead>
 					<tbody id="result_list">
-						<c:forEach items="${unitList}" var="item">
-							<tr><td>${item.unitId}</td><td>${item.unitName}</td><td>${item.legalPerson}</td><td><a href="${pageContext.request.contextPath}/unit/coopration_detal?unitId=${item.unitId}">详情</a></td></tr>
+						<c:forEach items="${unitList}" var="item" varStatus="vs">
+							<tr><td>${vs.count}</td><td>${item.unitName}</td><td>${item.legalPerson}</td><td><a href="${pageContext.request.contextPath}/unit/coopration_detal?unitId=${item.unitId}">详情</a></td></tr>
 						</c:forEach>						
 					</tbody>
 				</table>
@@ -67,7 +67,7 @@
 						var result = "";
 						for(var i=0;i<obj.data.length;i++){
 							result += "<tr>";
-							result += "<td>" + obj.data[i].unitId + "</td>";
+							result += "<td>" + (i+1) + "</td>";
 							result += "<td>" + obj.data[i].unitName + "</td>";
 							result += "<td>" + obj.data[i].legalPerson + "</td>";
 							result += "<td><a href='${pageContext.request.contextPath}/unit/coopration_detal?unitId=" + obj.data[i].unitId + "'>详情</a></td>";

@@ -84,6 +84,7 @@
 							</div>
 							<div class="text-center">送餐车图</div>
 						</div>
+										
 						<div class="">
 							<div class="fc">
 								<div class="upload_imgs margin_tb10">
@@ -92,33 +93,19 @@
 											<div class="fc"> <i class="fa fa-plus padding-side05"></i> </div>
 											<div class="text-center">拆封取餐照</div>
 										</div>
-									</div>
-									<input type="file" name="" id="fileinput" value="" accept="image/*"/>
+									</div>									
 									<c:if test="${distributionDetial.status == 3}">
 										<img alt="" src="${pageContext.request.contextPath}${distributionDetial.openedPhoto}" id="preview">
 									</c:if>
-									<c:if test="${distributionDetial.status != 3}">
+									<c:if test="${distributionDetial.status == 2 }">
+										<input type="file" name="" id="fileinput" value="" accept="image/*"/>
 										<img src="" id="preview">
 									</c:if>	
 								</div>
-							</div>
-							<script type="text/javascript">
-								$("#fileinput").on("change",function() {
-									changepic("fileinput","preview");
-								})
-								
-								function changepic(fid,img_id) {
-									 var reads = new FileReader();
-									 f = document.getElementById(fid).files[0];
-									 reads.readAsDataURL(f);
-									 reads.onload = function(e) {
-									 document.getElementById(img_id).src = this.result;
-									 $("#"+img_id).css("display", "block");
-									 };
-								}
-							</script>
+							</div>							
 							<div class="text-center">拆封取餐照</div>
 						</div>
+						
 					</div>
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">验收时间</span>
@@ -168,7 +155,10 @@
 		$current.find("img").bind("click",function(){
 			var path=$(this).attr('src');			
 			layerImg(path);
-		});		
+		});	
+		 $('#fileinput').on('change',function () {	    	
+		    	intoBase64("fileinput","preview");	    	
+		    });	
 		$("#end").click(function () { 
 			var sd_user = '${user.username}';
 			var dd_user = '${distributionDetial.mealsUserName}';
@@ -238,10 +228,11 @@
 				});
 		})
 		//确认验收
-		function acceptance(){			
+		function acceptance(){	
+			var loadingindex=layerloadingOpen();
 			var formData = new FormData();				
 			formData.append('id','${distributionDetial.id}');//订单ID
-			formData.append('openedPhoto',$("#fileinput")[0].files[0]);//拆封取餐照
+			formData.append('openedPhoto',dataURLtoFile($("#preview").attr('src'),'dsf.jpg'));//拆封取餐照
 			var url = "${pageContext.request.contextPath}/dry/acceptance";
 			$.ajax({
 				  url: url,
@@ -251,6 +242,7 @@
 		          processData: false,
 		          contentType: false,
 				"success" : function(obj) {
+					layer.close(loadingindex);
 					if (obj.state == 0) {
 						layer.msg(obj.message,{icon:2,time:1000});						
 					}else{

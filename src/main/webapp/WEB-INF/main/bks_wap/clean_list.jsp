@@ -43,9 +43,9 @@
 						<tr><th>序号</th><th>学校名称</th><th>消毒日期</th><th>操作</th></tr>
 					</thead>
 					<tbody id="datvarbody">
-						<c:forEach items="${disinfectionlist}" var="f">
+						<c:forEach items="${disinfectionlist}" var="f" varStatus="vs">
 							<tr>
-								<td>${f.id}</td>
+								<td>${vs.count}</td>
 								<td>${f.unitName}</td>
 								<td>${f.dailyTime}</td>
 								<td><a href="${pageContext.request.contextPath}/clean/clean_detal?id=${f.id}">详情</a></td>
@@ -74,7 +74,7 @@
 					}else{							
 						var datvar="";							
 						for(var i=0;i<obj.data.length;i++){
-							datvar +='<tr><td>'+obj.data[i].id+'</td>'+
+							datvar +='<tr><td>' + (i+1) + '</td>'+
 									'<td>'+obj.data[i].unitName+'</td>'+
 									'<td>'+obj.data[i].dailyTime+'</td>'+
 									'<td><a href="${pageContext.request.contextPath}/clean/clean_detal?id='+obj.data[i].id+'">详情</a></td></tr>';							
