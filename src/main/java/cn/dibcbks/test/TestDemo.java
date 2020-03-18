@@ -64,6 +64,17 @@ public class TestDemo {
 //		System.out.println(userMapper.queryUser("522601199210015432"));
 //		System.out.println(unitMapper.queryUnit("19921001"));
 		
+		Unit unit = new Unit();
+		unit.setUnitId(2);
+		unit.setUnitName("贵州随机森林科技有限责任公司");
+		unit.setLegalPerson("吴培龙");
+		unit.setBusinessLicenseCode("19921001");
+		unit.setBusinessLicense("http://www.gzws.online");
+		unit.setProductionLicense("http://www.gzws.online");
+		unit.setUnitAddress("贵州黔东南");
+		unit.setExpirationDate("2100年10月1日");
+		unit.setUnitType(1);
+		unitMapper.updateById(unit);
 		ResponseResult<Void> login = iUserService.login("522601199210015432", "wpl1201314");
 		System.err.println(login.getState() + " " + login.getMessage());
 	}

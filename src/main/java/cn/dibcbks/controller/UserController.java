@@ -174,11 +174,22 @@ public class UserController {
 	 * @param user
 	 * @return
 	 */
-	@RequestMapping("/updateUser")
+	@RequestMapping("/update")
 	@ResponseBody
 	public ResponseResult<Void> updateUser(User user){
 		
 		return iUserService.updateUser(user);
+	}
+	
+	
+	/**
+	 * 进入个人中心修改页面
+	 * @return
+	 */
+	@RequestMapping("/workmens_update")
+	public String updateUserPage(ModelMap modelMap){
+		
+		return "bks_wap/workmens_update";
 	}
 	
 	
