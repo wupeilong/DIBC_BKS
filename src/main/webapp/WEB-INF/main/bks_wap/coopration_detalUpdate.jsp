@@ -35,34 +35,46 @@
 				    <!-- <legend>企业信息:</legend> -->
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">企业名称</span>
-					  <div class="form-control box-shadow0 border0">${unitDetail.unitName}</div>
+					  <input type="" class="form-control box-shadow0 border0" name="" id="" value="${unitDetail.unitName}" placeholder="请输入企业名称"/>
 					</div>
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">统一社会信用代码</span>
 					  <div class="form-control box-shadow0 border0">${unitDetail.businessLicenseCode}</div>
+					  <input type="" class="form-control box-shadow0 border0" name="" id="" value="${unitDetail.businessLicenseCode}" placeholder="请输入企业统一社会信用代码"/>
 					</div>
-					<div class="fsa border-bottom">
-						<div class="margin-bot2">
-							  <div class="fc">
-								<div class="layui-upload-list fc">
-								  <img class="layui-upload-img" src="${pageContext.request.contextPath}${unitDetail.businessLicense}">
+					<div class="fsa">							
+						<div class="margin-bot2">								 
+							<div class="fc">
+								<div class="upload_imgs">
+									<div class="fc tip_text">
+										<div class="text-info">
+											<div class="fc"> <i class="fa fa-plus padding-side05"></i> </div>
+											<div class="text-center">上传营业执照</div>
+										</div>
+									</div>
+									<input type="file" name="" id="fileinput" value="" accept="image/*" />
+									<img src="" id="preview">
 								</div>
-							  </div>
-							  <div class="text-center text-muted">营业执照</div>
+							</div>			
 						</div>
 						<div class="margin-bot2">
 							  <div class="fc">
-								<div class="layui-upload-list fc">
-								  <img class="layui-upload-img" src="${pageContext.request.contextPath}${unitDetail.productionLicense}">
+							  	<div class="upload_imgs">
+									<div class="fc tip_text">
+										<div class="text-info">
+											<div class="fc"> <i class="fa fa-plus padding-side05"></i> </div>
+											<div class="text-center">上传经营许可证</div>
+										</div>
+									</div>
+									<input type="file" name="" id="fileinput1" value="" accept="image/*"/>
+									<img src="" id="preview1">
 								</div>
 							  </div>
-							  <div class="text-center text-muted">食品许可证</div>
 						</div>
 					</div>
-					
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">营业地址</span>
-					  <div class="form-control box-shadow0 border0">${unitDetail.unitAddress}</div>
+					  <input type="" class="form-control box-shadow0 border0" name="" id="" value="${unitDetail.unitAddress}" placeholder="请输入企业营业地址"/>
 					</div>
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">企业类型</span>
@@ -84,7 +96,7 @@
 					</div>
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">法人姓名</span>
-					  <div class="form-control box-shadow0 border0">${unitDetail.legalPerson}</div>
+					  <input type="" class="form-control box-shadow0 border0" name="" id="" value="${unitDetail.legalPerson}" placeholder="请输入法人代表姓名"/>
 					</div>
 				  </fieldset>
 				 <!-- <div class="margin-top2">

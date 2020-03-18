@@ -32,9 +32,9 @@
 			<form action="" method="" class="clearfix update_info">
 				<div class="border-bottom margin-top">
 					<div class="fb padding-side05 sb margin-bot">
-						<div class="item_name fonwei"></div>
+						<div class="item_name fonwei">资料修改</div>
 						<div class="">
-							<span><a href="user_update.html"><i class="fa fa-edit"></i></a></span>
+							<span><a href="${pageContext.request.contextPath}/user/user_pcupdate"><i class="fa fa-edit"></i></a></span>
 						</div>
 					</div>
 				</div>
