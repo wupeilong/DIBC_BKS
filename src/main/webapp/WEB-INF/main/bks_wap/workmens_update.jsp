@@ -122,10 +122,8 @@
 					var we8 = layerloadingOpen();
 				 	var formData = new FormData();
 				 	var path = $("#preview").attr('src');
-				 	console.log("1111")
-				 	console.log(path);
-				 	if(path.substring(0,4) == "data:"){
-				 		console.log("2222")
+				 	console.log(path.substring(0,5));
+				 	if(path.substring(0,5) == "data:"){
 				 		formData.append('unimg',dataURLtoFile($("#preview").attr('src'),"we.jpg"));
 				 	}
 				 	formData.append('id',$("#id").val());
@@ -150,7 +148,7 @@
 									return;				
 								}else{					
 									layer.msg(obj.message,{icon:1,time:1000});
-									location.href = "${pageContext.request.contextPath}/user/workmens";
+									//location.href = "${pageContext.request.contextPath}/user/workmens";
 								}				
 							}
 						}); 

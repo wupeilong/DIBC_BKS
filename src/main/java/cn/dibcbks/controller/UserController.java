@@ -79,12 +79,13 @@ public class UserController {
 			System.out.println("走了这步...");
 			return new ResponseResult<>(ResponseResult.ERROR,"手机号已存在！");
 		}
+		String uuid = CommonUtil.getUUID();
 		GetCommonUser get=new GetCommonUser();
-		String stratpath=get.uoladimg(file,idCard);
+		String stratpath=get.uoladimg(file,uuid);
 		if (stratpath == null) {
 			return new ResponseResult<Void>(ResponseResult.ERROR,"健康证上传异常,人员信息添加失败");
 		}else{
-			return iUserService.allocateAccount(idCard, username, password, phone, duty, age,healthCertificateCode,stratpath);			
+			return iUserService.allocateAccount(uuid,idCard, username, password, phone, duty, age,healthCertificateCode,stratpath);			
 		}		
 	}
 	
@@ -130,8 +131,8 @@ public class UserController {
 													String fever,String diarrhea,String woundsFester,String hygiene,
 													String remark){
 		ResponseResult<Void> responseResult=null;		
-		GetCommonUser get=new GetCommonUser();	
-		String hygienepath=get.uoladimg(file,((User)SecurityUtils.getSubject().getSession().getAttribute("user")).getIdCard());
+		GetCommonUser get=new GetCommonUser();
+		String hygienepath=get.uoladimg(file,CommonUtil.getStessionUser().getUuid());
 		if (hygienepath==null) {
 			responseResult=new ResponseResult<Void>(ResponseResult.ERROR,"健康码上传异常,信息添加失败");
 		}else{	
@@ -202,9 +203,8 @@ public class UserController {
 			GetCommonUser get=new GetCommonUser();
 			if(StringUtils.isNotEmpty(CommonUtil.getStessionUser().getHealthCertificate())){
 				get.deluoladimg(CommonUtil.getStessionUser().getHealthCertificate());
-			}			
+			}
 			String stratpath = get.uoladimg(file,idCard);
-			System.out.println("stratpath: " + stratpath);
 			if (stratpath == null) {
 				return new ResponseResult<Void>(ResponseResult.ERROR,"健康证上传异常,人员信息添加失败");
 			}else{

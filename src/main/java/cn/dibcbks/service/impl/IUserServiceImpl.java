@@ -57,7 +57,7 @@ public class IUserServiceImpl implements IUserService {
 
 	@Override
 	@Transactional(rollbackFor=Exception.class)
-	public ResponseResult<Void> registeradd(String idCard, String username, String password, String phone, String duty,
+	public ResponseResult<Void> registeradd(String uuid, String idCard, String username, String password, String phone, String duty,
 			Integer age, String unitName, String legalPerson, String businessLicenseCode, String businessLicense,
 			String productionLicense, String unitAddress, String expirationDate, Integer unitType) {
 			Unit queryUnit = unitMapper.queryUnit(businessLicenseCode);
@@ -79,8 +79,7 @@ public class IUserServiceImpl implements IUserService {
 			unit.setUnitAddress(unitAddress);
 			unit.setExpirationDate(expirationDate);
 			unit.setUnitType(unitType);
-			unitMapper.insert(unit);
-			String uuid = CommonUtil.getUUID();
+			unitMapper.insert(unit);			
 			String hashPassword = CommonUtil.getEncrpytedPassword(Constants.MD5, password, uuid, 1024);
 			User user = new User();
 			user.setIdCard(idCard);
@@ -134,7 +133,7 @@ public class IUserServiceImpl implements IUserService {
 	}
 
 	@Override
-	public ResponseResult<Void> allocateAccount(String idCard, String username, String password, String phone, String duty,
+	public ResponseResult<Void> allocateAccount(String uuid,String idCard, String username, String password, String phone, String duty,
 			Integer age,String healthCertificateCode,String stratpath) {
 		ResponseResult<Void> rr = null;
 		GetCommonUser get = new GetCommonUser();
@@ -148,7 +147,6 @@ public class IUserServiceImpl implements IUserService {
 					rr = new ResponseResult<Void>(ResponseResult.ERROR, "该账户不是管理员，不能分配账户！");
 					logger.error(Constants.ERROR_HEAD_INFO + "分配账号失败， 原因：该账户不是管理员账户");
 				}else {
-					String uuid = CommonUtil.getUUID();
 					password = password == null ? Constants.INITIAL_PASSWORD : password;
 	 				String hashPassword = CommonUtil.getEncrpytedPassword(Constants.MD5, password, uuid, 1024);
 					User user = new User();
