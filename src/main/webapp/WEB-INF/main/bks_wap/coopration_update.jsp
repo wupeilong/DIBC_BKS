@@ -41,7 +41,7 @@
 					</div>
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">统一社会信用代码</span>
-					  <div class="form-control box-shadow0 border0">${unitDetail.businessLicenseCode}</div>
+					  
 					  <input type="" class="form-control box-shadow0 border0" name="businessLicenseCode" id="businessLicenseCode" value="${detailUnit.businessLicenseCode}" placeholder="请输入企业统一社会信用代码"/>
 					</div>
 					<div class="fsa">							
