@@ -72,7 +72,7 @@ public class DetectionController {
 			@RequestParam(value="detectionPhoto",required=false)MultipartFile file){
 		ResponseResult<Void> responseResult=null;		
 		GetCommonUser get=new GetCommonUser();			
-		String detectionpath=get.uoladimg(file,CommonUtil.getStessionUser().getIdCard());
+		String detectionpath=get.uoladimg(file,CommonUtil.getStessionUser().getUuid());
 		if (detectionpath==null) {
 			responseResult=new ResponseResult<Void>(ResponseResult.ERROR,"图片上传异常,人员信息添加失败");
 		}else{

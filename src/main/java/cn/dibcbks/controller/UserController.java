@@ -181,14 +181,9 @@ public class UserController {
 	@ResponseBody
 	public ResponseResult<Void> updateUser(
 			@RequestParam(value="unimg",required=false)MultipartFile file,
-			Integer id,
-			String duty,
-			String username,
-			String password, 
-			String phone, 
-			String idCard,
-			Integer age,
-			String healthCertificateCode){
+			Integer id,	String duty,String username,
+			String password,String phone,String idCard,
+			Integer age,String healthCertificateCode){
 		User user = new User();
 		user.setId(id);
 		user.setUsername(username);
@@ -198,6 +193,7 @@ public class UserController {
 		user.setAge(age);
 		user.setDuty(duty);
 		user.setHealthCertificateCode(healthCertificateCode);
+		System.out.println(file);
 		if(file != null){
 			GetCommonUser get=new GetCommonUser();
 			if(StringUtils.isNotEmpty(CommonUtil.getStessionUser().getHealthCertificate())){

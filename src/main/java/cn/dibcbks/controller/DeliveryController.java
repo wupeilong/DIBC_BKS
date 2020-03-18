@@ -128,7 +128,7 @@ public class DeliveryController {
 		try {			
 			User user = CommonUtil.getStessionUser();
 			GetCommonUser get = new GetCommonUser();			
-			String openedPhotoPath = get.uoladimg(openedPhoto,user.getIdCard());
+			String openedPhotoPath = get.uoladimg(openedPhoto,user.getUuid());
 			if (StringUtils.isNotEmpty(openedPhotoPath)) {
 				Distribution distribution = new Distribution();
 				distribution.setId(id);
@@ -187,15 +187,12 @@ public class DeliveryController {
 								MultipartFile carPhoto,
 								String address){
 			
-		ResponseResult<Void> rr = null;
-		System.out.println(packingPhoto);
+		ResponseResult<Void> rr = null;	
 		User user = CommonUtil.getStessionUser();
 		GetCommonUser get = new GetCommonUser();		
-		String packingPhotoPath = get.uoladimg(packingPhoto,user.getIdCard());
-		String sealPhotoPath = get.uoladimg(sealPhoto,user.getIdCard());
-		String carPhotoPath = get.uoladimg(carPhoto,user.getIdCard());
-		
-		System.out.println(112);
+		String packingPhotoPath = get.uoladimg(packingPhoto,user.getUuid());
+		String sealPhotoPath = get.uoladimg(sealPhoto,user.getUuid());
+		String carPhotoPath = get.uoladimg(carPhoto,user.getUuid());		
 		if(StringUtils.isEmpty(packingPhotoPath)){
 			rr = new ResponseResult<>(ResponseResult.ERROR,"送餐装箱图上传失败，请重新上传！");
 		}else if (StringUtils.isEmpty(sealPhotoPath)) {
@@ -217,9 +214,7 @@ public class DeliveryController {
 			distribution.setAddress(address);
 			distribution.setStartTime(createTime);
 			distribution.setStatus(1);//启送中
-			distribution.setCreateTime(createTime);
-			System.out.println("distribution : " + distribution);
-			
+			distribution.setCreateTime(createTime);			
 			distributionMapper.insert(distribution);
 			rr = new ResponseResult<>(ResponseResult.SUCCESS,"操作成功！");
 		}
