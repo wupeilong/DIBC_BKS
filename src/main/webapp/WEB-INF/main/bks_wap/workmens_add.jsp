@@ -31,7 +31,7 @@
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>身份证号</span>
-					  <input type="text" class="form-control box-shadow0 border-bottom" id="idCard" name="idCard" value="5222" placeholder="请输入身份证号" aria-describedby="sizing-addon1">
+					  <input type="text" class="form-control box-shadow0 border-bottom" id="idCard" name="idCard" value="" placeholder="请输入身份证号" aria-describedby="sizing-addon1">
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>手&ensp;机&ensp;号</span>

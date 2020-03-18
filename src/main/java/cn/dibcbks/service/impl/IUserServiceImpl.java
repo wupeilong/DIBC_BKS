@@ -111,12 +111,11 @@ public class IUserServiceImpl implements IUserService {
 			if (user == null) {
 				rr = new ResponseResult<Void>(ResponseResult.ERROR, "账户信息不存在！请重新输入...");
 				logger.error(Constants.ERROR_HEAD_INFO + "账户信息不存在 ，账号：" + idCard);
-			} else {
-				System.err.println("password:" + password);
+			} else {				
 				UsernamePasswordToken token = new UsernamePasswordToken(idCard, password);
 				subject.login(token);
 				Session session = subject.getSession();
-				JSONObject userJson = JSONObject.fromObject(user);
+				JSONObject userJson = JSONObject.fromObject(user);				
 				session.setAttribute("userJson", userJson);
 				session.setAttribute("user", user);
 				rr = new ResponseResult<Void>(ResponseResult.SUCCESS, "登录成功");

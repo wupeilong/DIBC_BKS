@@ -3,9 +3,6 @@ package cn.dibcbks.controller;
 
 import java.util.Date;
 import java.util.List;
-
-import org.apache.commons.lang.StringUtils;
-import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -184,7 +181,7 @@ public class UserController {
 			@RequestParam(value="unimg",required=false)MultipartFile file,
 			Integer id,	String duty,String username,
 			String password,String phone,String idCard,
-			Integer age,String healthCertificateCode){
+			Integer age,String healthCertificateCode,String healthCertificate){
 		User user = new User();
 		user.setId(id);
 		user.setUsername(username);
@@ -193,14 +190,13 @@ public class UserController {
 		user.setIdCard(idCard);
 		user.setAge(age);
 		user.setDuty(duty);
-		user.setHealthCertificateCode(healthCertificateCode);
-		System.out.println(file);
+		user.setHealthCertificateCode(healthCertificateCode);		
 		if(file != null){
-			GetCommonUser get=new GetCommonUser();
-			if(StringUtils.isNotEmpty(CommonUtil.getStessionUser().getHealthCertificate())){
-				get.deluoladimg(CommonUtil.getStessionUser().getHealthCertificate());
+			GetCommonUser get=new GetCommonUser();				
+			if(healthCertificate != null || healthCertificate != ""){				
+				get.deluoladimg(healthCertificate);
 			}
-			String stratpath = get.uoladimg(file,idCard);
+			String stratpath = get.uoladimg(file,CommonUtil.getStessionUser().getUuid());
 			if (stratpath == null) {
 				return new ResponseResult<Void>(ResponseResult.ERROR,"健康证上传异常,人员信息添加失败");
 			}else{
