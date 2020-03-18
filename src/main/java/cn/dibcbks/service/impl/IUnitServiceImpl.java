@@ -15,6 +15,7 @@ import cn.dibcbks.entity.Unit;
 import cn.dibcbks.entity.User;
 import cn.dibcbks.mapper.UnitMapper;
 import cn.dibcbks.service.IUnitService;
+import cn.dibcbks.util.CommonUtil;
 import cn.dibcbks.util.Constants;
 import cn.dibcbks.util.ResponseResult;
 
@@ -27,12 +28,11 @@ public class IUnitServiceImpl implements IUnitService {
 	
 	@Override
 	public ResponseResult<Void> updatUunit(Unit unit) {
-		ResponseResult<Void> rr = null;
 		try {
 			User currentUser = (User)SecurityUtils.getSubject().getSession().getAttribute("user");
 			if(!currentUser.getParentId().equals(0)){
 				logger.info(Constants.SUCCESSU_HEAD_INFO + "该账户不是管理员，不能修改企业信息！");
-				rr = new ResponseResult<>(ResponseResult.ERROR, "该账户不是管理员，不能修改企业信息！");
+				return new ResponseResult<>(ResponseResult.ERROR, "该账户不是管理员，不能修改企业信息！");
 			}else{
 				if(StringUtils.isNotEmpty(unit.getBusinessLicenseCode())){
 					Unit queryUnit = unitMapper.queryUnit(unit.getBusinessLicenseCode());
@@ -43,13 +43,12 @@ public class IUnitServiceImpl implements IUnitService {
 				}
 				unitMapper.updateById(unit);
 				logger.info(Constants.SUCCESSU_HEAD_INFO + "企业资料修成功！");
-				rr = new ResponseResult<>(ResponseResult.SUCCESS, "企业资料修改成功！");
+				return new ResponseResult<>(ResponseResult.SUCCESS, "企业资料修改成功！");
 			}			
 		} catch (Exception e) {
 			logger.error(Constants.ERROR_HEAD_INFO + "企业资料修改失败，原因：" + e.getMessage());
-			rr = new ResponseResult<>(ResponseResult.ERROR, "企业资料修改失败！");
+			return new ResponseResult<>(ResponseResult.ERROR, "企业资料修改失败！");
 		}
-		return rr;
 	}
 
 
@@ -90,18 +89,15 @@ public class IUnitServiceImpl implements IUnitService {
 	@Override
 	public String updateUnitPage(ModelMap modelMap) {
 		try {
-			Session session = SecurityUtils.getSubject().getSession();
-			User user = (User)session.getAttribute("user");
-			List<Unit> detailUnit = unitMapper.select(" n.unit_id = '" + user.getUnitId() + "'", null, null, null);
+			List<Unit> detailUnit = unitMapper.select(" n.unit_id = '" + CommonUtil.getStessionUser().getUnitId() + "'", null, null, null);
 			modelMap.addAttribute("detailUnit", detailUnit);
 			logger.info(Constants.SUCCESSU_HEAD_INFO + "用户进入企业编辑页面成功！");
-			//TODO 企业编辑页面
-			return "";
+			return "bks_wap/coopration_update";
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error(Constants.ERROR_HEAD_INFO + "用户进入企业编辑页面失败，原因：" + e.getMessage());
 		}
-		return "error/404";
+		return "bks_wap/coopration_update";
 	}
 
 

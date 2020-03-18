@@ -44,8 +44,9 @@ public class UnitController {
 	 * 进入企业信息修改页
 	 * @return
 	 */
-	@RequestMapping("/updateUnitPage")
+	@RequestMapping("/coopration_update")
 	public String updateUnitPage(ModelMap modelMap){
+		System.out.println("123123123123");
 		//TODO 企业修改页
 		return iUnitService.updateUnitPage(modelMap);
 	}
@@ -55,7 +56,7 @@ public class UnitController {
 	 * @param unit
 	 * @return
 	 */
-	@RequestMapping("/updateUnit")
+	@RequestMapping("/update")
 	@ResponseBody
 	public ResponseResult<Void> updateUnit(Unit unit){
 		

@@ -24,7 +24,11 @@
 			<form action="" method="" class="clearfix">
 				<div class="workmens_info_top margin-bot">
 					<div class="input-group form-group fs">
-					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>所属企业/单位</span>
+					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid"></i>个人信息</span>
+					  <div class="form-control box-shadow0 border0"></div>
+					</div>
+					<div class="input-group form-group fs">
+					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>所属单位</span>
 					  <div class="form-control box-shadow0 border0">${userPcenter.unitName}</div>
 					</div>
 					<div class="input-group form-group fs">
@@ -44,7 +48,7 @@
 					  <div class="form-control box-shadow0 border0">${userPcenter.age}岁</div>
 					</div>
 					<div class="input-group form-group fs">
-					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>健康证编号</span>
+					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>健康证号</span>
 					  <div class="form-control box-shadow0 border0">${userPcenter.healthCertificateCode}</div>
 					</div>
 				</div>
