@@ -153,7 +153,7 @@
 				}else if($("#unitType").val() == 0){
 					layer.msg("请选择企业类型",{icon:2,time:1000});
 					$("#unitType").focus();		
-				}else  if(!name_reg.test($("#unitAddress").val())){
+				}else  if($("#unitAddress").val() == ""){
 					layer.msg("请正确填写营业地址",{icon:2,time:1000});
 					$("#unitAddress").focus();		
 				}else if(!username_reg.test($("#legalPerson").val())){

@@ -92,8 +92,8 @@
 					  layer.msg("输入的姓名不合法",{icon:2,time:1000});						
 				}else if (!mobileReg.test(phone)) {
 					  layer.msg("输入的手机号不合法",{icon:2,time:1000});						
-				}else if (!age_reg.test(phone)) {
-					  layer.msg("输入的手机号不合法",{icon:2,time:1000});						
+				}else if (!age_reg.test(age)) {
+					  layer.msg("输入的年龄不合法",{icon:2,time:1000});						
 				}else {
 					$.ajax({
 						url:"admin_add",

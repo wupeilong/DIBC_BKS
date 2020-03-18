@@ -124,7 +124,8 @@ function save(){
 			layer.msg("信息不能为空",{icon:2,time:1000});
 			$("#remark").focus();		
 		}else if($("#preview").attr('src') == ""){
-			layer.msg("请上传你的健康吗",{icon:2,time:1000});							
+			layer.msg("请上传你的健康码",{icon:2,time:1000});	
+			$("#preview").focus();
 		}else{
 			var we7 = layerloadingOpen();
 			var formData = new FormData();	

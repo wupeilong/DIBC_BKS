@@ -37,7 +37,7 @@
 					<div class="fb padding-side05 sb margin-bot">
 						<div class="item_name fonwei">个人信息</div>						
 						<div class="">
-							<span><a href="${pageContext.request.contextPath}/user/workmens_update"><i class="fa fa-edit" style="font-size: 20px;"></i></a></span>
+							<span><a href="${pageContext.request.contextPath}/user/workmens_update"><i class="fa fa-edit" style="font-size: 20px;color: #1294b3;"></i></a></span>
 						</div>
 					</div>
 				</div>

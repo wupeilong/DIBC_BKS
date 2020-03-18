@@ -81,7 +81,7 @@ public class UnitController {
 		
 		GetCommonUser get = new GetCommonUser();
 		User user = CommonUtil.getStessionUser();
-		List<Unit> unitList = unitMapper.select(" n.unit_id = '" + user.getUnitId(), null, null, null);
+		List<Unit> unitList = unitMapper.select(" n.unit_id = '" + user.getUnitId() + "'", null, null, null);
 		if(unitList.isEmpty()){
 			return new ResponseResult<Void>(ResponseResult.ERROR,"企业信息异常，操作失败！");
 		}
@@ -91,6 +91,7 @@ public class UnitController {
 		update.setUnitAddress(unitAddress);
 		update.setUnitType(unitType);
 		update.setLegalPerson(legalPerson);
+		System.out.println("11111");
 		if(file != null){
 			get.deluoladimg(update.getBusinessLicense());
 			String businessLicense = get.uoladimg(file, user.getUuid());
@@ -99,7 +100,9 @@ public class UnitController {
 			}
 			update.setBusinessLicense(businessLicense);
 		}
+		System.out.println("2222222");
 		if(file1 != null){
+			System.out.println("3333333");
 			get.deluoladimg(update.getProductionLicense());
 			String productionLicense = get.uoladimg(file1, user.getUuid());
 			if(productionLicense == null){

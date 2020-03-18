@@ -13,7 +13,8 @@
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/bks_wap/index.css"/>
 	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/js/layui/css/layui.css"/>
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/jquery-3.1.1.min.js"></script>
-	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>	
+	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/2.4/layer.js"></script>	
 </head>
 	<body class="contain">
 		<div class="navigation bg-primary">
@@ -40,7 +41,7 @@
 					</div>
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">统一社会信用代码</span>
-					  <div class="form-control box-shadow0 border0">${unitDetail.businessLicenseCode}</div>
+					  
 					  <input type="" class="form-control box-shadow0 border0" name="businessLicenseCode" id="businessLicenseCode" value="${detailUnit.businessLicenseCode}" placeholder="请输入企业统一社会信用代码"/>
 					</div>
 					<div class="fsa">							
@@ -119,7 +120,7 @@
 				  </fieldset>			
 		</main>	
 		<div class="margin-top2 margin-bot2">
-				<button type="button" class="btn btn-primary form-control" id="register">保存</button>
+				<button type="button" id="update" class="btn btn-primary form-control" id="register">保存</button>
 			</div>
 		<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/bks_wap/imgBase64.js"></script>
 		<script type="text/javascript">
@@ -132,9 +133,9 @@
 	var password_reg = /[a-zA-Z0-9]{6,12}/;
   	var phone_reg = /(^1[3|4|5|7|8|9]\d{9}$)|(^09\d{8}$)/;
   	var username_reg = /^[\u4E00-\u9FA5]{2,6}$/;	
-  	var name_reg = /^[\u0391-\uFFE5]+$/;
+  	var name_reg = /^[a-zA-Z0-9\u0391-\uFFE5]+$/;
 	var idCard_judge = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
-	$("#register").click(function() {			 	
+	$("#update").click(function() {			 	
 		if(!name_reg.test($("#unitName").val())){
 			layer.msg("请正确输入企业名称",{icon:2,time:1000});
 			$("#unitName").focus();		
@@ -148,13 +149,14 @@
 		}else if($("#unitType").val() == 0){
 			layer.msg("请选择企业类型",{icon:2,time:1000});
 			$("#unitType").focus();		
-		}else  if(!name_reg.test($("#unitAddress").val())){
+		}else  if($("#unitAddress").val() == ""){
 			layer.msg("请正确填写营业地址",{icon:2,time:1000});
 			$("#unitAddress").focus();		
 		}else if(!username_reg.test($("#legalPerson").val())){
 			layer.msg("请填写法人姓名",{icon:2,time:1000});
 			$("#legalPerson").focus();		
 		}else{
+			console.log("asdasdas");
 			var we8 = layerloadingOpen();
 			var formData = new FormData();
 			formData.append('unitName',$("#unitName").val());	
@@ -163,7 +165,7 @@
 				formData.append('businessLicense',dataURLtoFile($("#preview").attr('src'),"we.jpg"));
 			}
 			if($("#preview1").attr('src').substring(0,5) == "data:"){
-				formData.append('businessLicense',dataURLtoFile($("#preview1").attr('src'),"we.jpg"));
+				formData.append('productionLicense',dataURLtoFile($("#preview1").attr('src'),"we.jpg"));
 			}
 			formData.append('unitAddress',$("#unitAddress").val());					
 			formData.append('unitType',$("#unitType").val());
@@ -181,11 +183,18 @@
 							layer.msg(obj.message,{icon:2,time:1000});									 
 							return;				
 						}else{
-							layer.msg(obj.message,{icon:1,time:1000},function(){location.href = "${pageContext.request.contextPath}/unit/coopration_detal?unitId='" + $("#userId").val() + "'"});							
+							layer.msg(obj.message,{icon:1,time:1000} ,function(){location.href = "${pageContext.request.contextPath}/unit/coopration_detal?unitId=" + $("#unitId").val() } );							
 						}								
 					}
 				}); 
 		}
 	})
+	
+		$("#fileinput").on("change",function() {
+				intoBase64("fileinput","preview");						
+			})
+			$("#fileinput1").on("change",function() {						
+				intoBase64("fileinput1","preview1");
+			})
 </script>	
 </html>
