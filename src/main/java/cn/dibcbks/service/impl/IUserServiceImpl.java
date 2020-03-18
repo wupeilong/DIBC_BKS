@@ -361,4 +361,19 @@ public class IUserServiceImpl implements IUserService {
 		String where="unit_id="+unitid;
 		return unitMapper.select(where, null, null, null);
 	}
+
+	@Override
+	public ResponseResult<Void> updatePassword(User user) {
+		ResponseResult<Void> rr = null;
+		try {			
+			userMapper.updateById(user);
+			rr = new ResponseResult<>(ResponseResult.SUCCESS,"操作成功");
+			logger.info(Constants.SUCCESSU_HEAD_INFO + "用户资料修改成功！");
+		} catch (Exception e) {
+			e.printStackTrace();
+			rr = new ResponseResult<Void>(ResponseResult.ERROR, "用户资料修改操作失败！");
+			logger.error(Constants.ERROR_HEAD_INFO + "用户资料修改失败，原因：" + e.getMessage());
+		}
+		return rr;
+	}
 }

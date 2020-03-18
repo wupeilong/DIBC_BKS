@@ -16,6 +16,7 @@ import cn.dibcbks.entity.User;
 import cn.dibcbks.mapper.UserMapper;
 import cn.dibcbks.service.IUserService;
 import cn.dibcbks.util.CommonUtil;
+import cn.dibcbks.util.Constants;
 import cn.dibcbks.util.GetCommonUser;
 import cn.dibcbks.util.ResponseResult;
 
@@ -49,6 +50,40 @@ public class UserController {
 //		return "bks_wap/workmens";
 	}
 	/**
+	 * 进入密码修改页
+	 * @return
+	 */
+	@RequestMapping("/reset_password")
+	public String resetPassword(ModelMap modelMap){			
+		return "bks_wap/reset_password";
+	}
+	/**
+	 *密码修改方法
+	 * @return
+	 */
+	@PostMapping("/password_update")
+	@ResponseBody
+	public ResponseResult<Void> uploadPassword(String password,String oldpassword){
+		System.out.println(password);
+		System.out.println(oldpassword);
+		String uuid=CommonUtil.getStessionUser().getUuid();
+		String hashPassword = CommonUtil.getEncrpytedPassword(Constants.MD5, oldpassword, uuid, 1024);		
+		if (CommonUtil.getStessionUser().getPassword().equals(hashPassword)) {
+			String newPassword = CommonUtil.getEncrpytedPassword(Constants.MD5, password, uuid, 1024);
+			if (newPassword.equals(hashPassword)) {
+				return new ResponseResult<Void>(ResponseResult.ERROR,"新密码不能与原密码相同！");
+			}else{
+				User user=new User();
+				user.setId(CommonUtil.getStessionUser().getId());
+				user.setPassword(newPassword);
+				return iUserService.updatePassword(user);
+			}			
+		}else{
+			return new ResponseResult<Void>(ResponseResult.ERROR,"原密码输入有误！");
+		}		
+	}
+	
+	/**
 	 * 进入从业人员信息添加页
 	 * @return
 	 */
@@ -56,7 +91,6 @@ public class UserController {
 	public String workmensAdd(ModelMap modelMap){			
 		return "bks_wap/workmens_add";
 	}
-	
 	/**
 	 * 分配员工账户
 	 * @param file 文件名

@@ -27,21 +27,21 @@
 				<div class="margin-bot margin-top">
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>原&ensp;&ensp;密&ensp;&ensp;码</span>
-					  <input type="" class="form-control box-shadow0 border0 border-bottom" name="before_pwd" id="" value="" placeholder="请输入原密码"/>
+					  <input type="password" class="form-control box-shadow0 border0 border-bottom" name="before_pwd" id="before_pwd" value="" placeholder="请输入原密码"/>
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>新&ensp;&ensp;密&ensp;&ensp;码</span>
-					  <input type="" class="form-control box-shadow0 border0 border-bottom" name="new_pwd" id="" value="" placeholder="请输入新密码"/>
+					  <input type="password" class="form-control box-shadow0 border0 border-bottom" name="new_pwd" id="new_pwd" value="" placeholder="请输入新密码"/>
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>确认新密码</span>
-					  <input type="" class="form-control box-shadow0 border0 border-bottom" name="renew_pwd" id="" value="" placeholder="请再次输入新密码"/>
+					  <input type="password" class="form-control box-shadow0 border0 border-bottom" name="renew_pwd" id="renew_pwd" value="" placeholder="请再次输入新密码"/>
 					</div>
 				</div>
 			</form>
 			
 			<div class="margin-top2 margin-bot2">
-				<a href="http://192.168.1.106:8848/wap_MCLZ/workmen_health.html" class="btn btn-primary form-control" id="changepwd">保存修改</a>
+				<a href="javascript:" class="btn btn-primary form-control" id="changepwd">保存修改</a>
 			</div>
 			<script type="text/javascript">
 				var before_pwd=$("input[name='before_pwd']");
@@ -49,99 +49,37 @@
 				var renew_pwd=$("input[name='renew_pwd']");
 				$("#changepwd").click(function() {
 					if (before_pwd.val()=='') {
-						alert("原密码不能为空")
+						layer.msg("原密码不能为空",{icon:2,time:1000});
 						before_pwd.focus()
 					} else if(new_pwd.val()==''){
-						alert("新密码不能为空")
+						layer.msg("新密码不能为空",{icon:2,time:1000});
 						new_pwd.focus()
 					}else if(renew_pwd.val()==''){
-						alert("请重新输入新密码")
+						layer.msg("请重新输入新密码",{icon:2,time:1000});
 						renew_pwd.focus()
 					}else{
+						var url = "../user/password_update";
+						var data = "password=" + $("#new_pwd").val()+"&oldpassword="+ $("#before_pwd").val();
 						$.ajax({
-							url:"",
-							type:"post",
-							data:"",
-							dataType:"json",
-							success:function (data) {
-								console.log(data)
-							}
-							
-						})
-					}
-				})
-			</script>
-		</main>
-		<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/bks_wap/imgBase64.js"></script>		
-		<script type="text/javascript">
-			$("#fileinput").on("change",function() {
-				intoBase64("fileinput","preview");
-			})
-			var password_reg = /[a-zA-Z0-9]{6,12}/;
-		  	var phone_reg = /(^1[3|4|5|7|8|9]\d{9}$)|(^09\d{8}$)/;
-		  	var username_reg = /^[\u4E00-\u9FA5]{2,6}$/;	
-		  	var name_reg = /^[\u0391-\uFFE5]+$/;
-			var idCard_judge = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
-			var age_reg = /^[0-9]{1,3}/; 
-			 $('#register').click(function() {
-				 if (!name_reg.test($("#duty").val())) {
-					layer.msg("请正确输入职务",{icon:2,time:1000});
-					$("#duty").focus();		
-				}else if(!username_reg.test($("#username").val())){
-					layer.msg("请正确输入姓名",{icon:2,time:1000});
-					$("#username").focus();		
-				}else if(!password_reg.test($("#password").val())){
-					layer.msg("请正确输入密码",{icon:2,time:1000});
-					$("#password").focus();		
-				}else if(!idCard_judge.test($("#idCard").val())){				
-					layer.msg("请输入18位身份证号码",{icon:2,time:1000});
-					$("#idCard").focus();		
-				}else if(!phone_reg.test($("#phone").val())){
-					layer.msg("请正确填写手机号",{icon:2,time:1000});
-					$("#phone").focus();		
-				}else if($("#healthCertificateCode").val() == ""){
-					layer.msg("请输入健康证编号",{icon:2,time:1000});
-					$("#healthCertificateCode").focus();		
-				}else if($("#preview").attr('src') == ""){
-					layer.msg("请输入上传健康证",{icon:2,time:1000});
-					$("#preview").focus();		
-				}else{ 		
-					var we8 = layerloadingOpen();
-				 	var formData = new FormData();
-				 	var path = $("#preview").attr('src');
-				 	console.log(path.substring(0,5));
-				 	if(path.substring(0,5) == "data:"){
-				 		formData.append('unimg',dataURLtoFile($("#preview").attr('src'),"we.jpg"));
-				 	}
-				 	formData.append('id',$("#id").val());
-					formData.append('duty',$("#duty").val());
-					formData.append('username',$("#username").val());
-					/* formData.append('password',$("#password").val()); */
-					formData.append('idCard',$("#idCard").val());
-					formData.append('age',$("#age").val());
-					formData.append('phone',$("#phone").val());
-					formData.append('healthCertificateCode',$("#healthCertificateCode").val());				
-					 $.ajax({
-						 url: '${pageContext.request.contextPath}/user/update',
-				          type: 'POST',
-				          cache: false,
-				          data: formData,				        
-				          processData: false,
-				          contentType: false,
+							"url" : url,
+							"data" : data,
+							"type" : "POST",
+							"dataType" : "json",
 							"success" : function(obj) {
-								layer.close(we8);
 								if (obj.state == 0) {
 									layer.msg(obj.message,{icon:2,time:1000});
-									return;				
-								}else{					
-									layer.msg(obj.message,{icon:1,time:1000});
-									location.href = "${pageContext.request.contextPath}/user/workmens";
+									return;
+								}else{									
+									layer.msg(obj.message,{icon:1,time:1000},function(){
+										location.href="../login";
+									});					
 								}				
 							}
 						}); 
 					}
-		     	});
-		</script>
+				})
+			</script>
+		</main>		
 	<c:import url="public/footer.jsp"></c:import>
 	</body>
 

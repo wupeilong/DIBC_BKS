@@ -25,6 +25,7 @@
 						<li><a href="${pageContext.request.contextPath}/unit/coopration_detal?unitId=${userPcenter.unitId}" class="fonwei">企业信息查询</a></li>
 						<li><a href="${pageContext.request.contextPath}/user/workmens_health?userId=${user.id}" class="fonwei">健康状况查询</a></li>
 						<li><a href="${pageContext.request.contextPath}/user/workmens_health_add" class="fonwei">健康信息录入</a></li>
+						<li><a href="${pageContext.request.contextPath}/user/reset_password" class="fonwei">个人密码修改</a></li>
 					</ul>
 				</div>
 			</div>
