@@ -180,7 +180,7 @@
 						if (obj.state == 0) {
 							layer.msg(obj.message,{icon:2,time:1000});									 
 							return;				
-						}else{					
+						}else{
 							layer.msg(obj.message,{icon:1,time:1000},function(){location.href = "${pageContext.request.contextPath}/unit/coopration_detal?unitId='" + $("#userId").val() + "'"});							
 						}								
 					}
