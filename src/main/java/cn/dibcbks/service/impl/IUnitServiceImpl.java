@@ -90,7 +90,7 @@ public class IUnitServiceImpl implements IUnitService {
 	public String updateUnitPage(ModelMap modelMap) {
 		try {
 			List<Unit> detailUnit = unitMapper.select(" n.unit_id = '" + CommonUtil.getStessionUser().getUnitId() + "'", null, null, null);
-			modelMap.addAttribute("detailUnit", detailUnit);
+			modelMap.addAttribute("detailUnit", detailUnit.isEmpty() ? null : detailUnit.get(0));
 			logger.info(Constants.SUCCESSU_HEAD_INFO + "用户进入企业编辑页面成功！");
 			return "bks_wap/coopration_update";
 		} catch (Exception e) {
