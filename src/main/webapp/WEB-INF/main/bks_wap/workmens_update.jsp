@@ -50,7 +50,7 @@
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>密&ensp;&ensp;&ensp;&ensp;码</span>
 					  <div class="form-control box-shadow0 border0">
-					  	<div class="fb"><span>********</span><span><a href="use_resetpassword.html" class="btn btn-warning btn-sm">修改密码</a></span></div>
+					  	<div class="fb"><span>********</span><span><a href="${pageContext.request.contextPath}/user/reset_password" class="btn btn-warning btn-sm">修改密码</a></span></div>
 					  </div>
 					  <%-- <input type="password" class="form-control box-shadow0 border-bottom" readonly="readonly" value="${userDetail.password }"  id="password" name="password" placeholder="请输入密码" aria-describedby="sizing-addon1"> --%>
 					</div>

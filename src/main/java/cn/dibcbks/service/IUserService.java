@@ -29,6 +29,7 @@ public interface IUserService {
 	ResponseResult<Void> allocateAccount(String uuid, String idCard, String username, String password, String phone, String duty, Integer age,String healthCertificateCode,String stratpath);
 
 	ResponseResult<Void> updateUser(User user);
+	ResponseResult<Void> updatePassword(User user);
 
 	String userCenter(ModelMap modelMap);
 
