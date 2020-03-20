@@ -36,7 +36,7 @@
 				    <!-- <legend>企业信息:</legend> -->
 					<div class="input-group form-group fs border-bottom">
 					  <span class="input-group-addon border0 clear-bg fonwei" id="sizing-addon1">企业名称</span>
-					  <input type="hidden" id="unitId" value="${unitDetail.unitId}"/>
+					  <input type="hidden" id="unitId" value="${detailUnit.unitId}"/>
 					  <input type="" class="form-control box-shadow0 border0" name="unitName" id="unitName" value="${detailUnit.unitName}" placeholder="请输入企业名称"/>
 					</div>
 					<div class="input-group form-group fs border-bottom">
@@ -183,7 +183,9 @@
 							layer.msg(obj.message,{icon:2,time:1000});									 
 							return;				
 						}else{
-							layer.msg(obj.message,{icon:1,time:1000} ,function(){location.href = "${pageContext.request.contextPath}/unit/coopration_detal?unitId=" + $("#unitId").val() } );							
+							layer.msg(obj.message,{icon:1,time:1000} ,function(){
+								location.href = "${pageContext.request.contextPath}/unit/coopration_detal?unitId=" + $("#unitId").val(); 
+							});							
 						}								
 					}
 				}); 
