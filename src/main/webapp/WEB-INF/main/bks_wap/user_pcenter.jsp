@@ -63,7 +63,11 @@
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>年&ensp;&ensp;&ensp;&ensp;龄</span>
-					  <div class="form-control box-shadow0 border0">${userPcenter.age}岁</div>
+					  <div class="form-control box-shadow0 border0">
+					  	<c:if test="${userPcenter.age != null}">
+					  		${userPcenter.age}岁
+					  	</c:if>					  		
+					  </div>
 					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>健康证号</span>
