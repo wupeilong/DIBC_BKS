@@ -15,15 +15,15 @@
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/2.4/layer.js"></script>	
 </head>
-	<body class="contain">
-		<div class="navigation bg-primary">
+	<body class="contain bg-info" style="background:url(${pageContext.request.contextPath}/static/images/bks_wap/reg_bg.jpg);background-repeat: no-repeat;background-size: cover;">
+		<!-- <div class="navigation bg-primary">
 			<div class="fb padding-side">
 				<a href="javascript:history.go(-1)" class="text-white"><i class="fa fa-angle-left"></i></a>
 			</div>
-		</div>
+		</div> -->
 		<main class="main margin-top padding-side">
 			<form method="" class="clearfix">
-				<div class="workmens_info_top margin-bot">
+				<div class="margin-bot margin-top4">
 					<!-- <div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg"><i class="padding-side05 text-danger vertical-mid">*</i>身份证号</span>
 					  <input type="text" class="form-control box-shadow0 border-bottom" name="idCard" placeholder="请输入身份证号" aria-describedby="sizing-addon1">
