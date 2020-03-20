@@ -38,7 +38,7 @@
 					</div>			 -->		
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg">姓名</span>
-					  <input type="text" class="form-control box-shadow0 clear-bg border-bottom" id="username" name="username" placeholder="请输入姓名" aria-describedby="sizing-addon1">
+					  <input type="text" class="form-control box-shadow0 clear-bg border-bottom" id="username" name="username" placeholder="请输入姓名" style="border-color: #eee;">
 					</div>
 				<!-- 	<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg"><i class="padding-side05 text-danger vertical-mid">*</i>年&ensp;&ensp;&ensp;&ensp;龄</span>
@@ -46,7 +46,7 @@
 					</div> -->
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg">电话</span>
-					  <input type="text" class="form-control box-shadow0 clear-bg border-bottom" id="phone" name="phone" placeholder="请输入电话" aria-describedby="sizing-addon1">
+					  <input type="text" class="form-control box-shadow0 clear-bg border-bottom" id="phone" name="phone" placeholder="请输入电话" style="border-color: #eee;">
 					</div>
 					<!-- <div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg"><i class="padding-side05 text-danger vertical-mid">*</i>职&ensp;&ensp;&ensp;&ensp;务</span>
