@@ -82,7 +82,7 @@
 					  layer.msg("输入的密码不合法",{icon:2,time:1000});						
 				}else if (password != repassword) {
 					 layer.msg("两次密码不一致",{icon:2,time:1000});
-				}else */  if (!nameReg.test(username)) {
+				}else */  if (username == "") {
 					  layer.msg("输入的姓名不合法",{icon:2,time:1000});						
 				}else if (!mobileReg.test(phone)) {
 					  layer.msg("输入的手机号不合法",{icon:2,time:1000});						

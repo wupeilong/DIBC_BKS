@@ -101,23 +101,22 @@ public class UserController {
 	@ResponseBody
 	public ResponseResult<Void> uploadFiesle(@RequestParam(value="unimg",required=false)MultipartFile file,
 			String duty,String username,String password, String phone, String idCard,Integer age,String healthCertificateCode){
-		User user = userMapper.queryUser(idCard);
+		/*User user = userMapper.queryUser(idCard);
 		if (user != null) {
 			return new ResponseResult<>(ResponseResult.ERROR,"身份证号已存在！");
-		}
-		user = userMapper.queryUserByPhone(phone);
+		}*/
+		User user = userMapper.queryUserByPhone(phone);
 		if (user != null) {
-			System.out.println("走了这步...");
 			return new ResponseResult<>(ResponseResult.ERROR,"手机号已存在！");
 		}
 		String uuid = CommonUtil.getUUID();
 		GetCommonUser get=new GetCommonUser();
-		String stratpath=get.uoladimg(file,uuid);
-		if (stratpath == null) {
-			return new ResponseResult<Void>(ResponseResult.ERROR,"健康证上传异常,人员信息添加失败");
-		}else{
-			return iUserService.allocateAccount(uuid,idCard, username, password, phone, duty, age,healthCertificateCode,stratpath);			
-		}		
+//		String stratpath=get.uoladimg(file,uuid);
+//		if (stratpath == null) {
+//			return new ResponseResult<Void>(ResponseResult.ERROR,"健康证上传异常,人员信息添加失败");
+//		}else{
+			return iUserService.allocateAccount(uuid,idCard, username, password, phone, duty, age,healthCertificateCode,null);			
+//		}		
 	}
 	
 	/**

@@ -142,9 +142,9 @@
 			var idCard_judge = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
 			var age_reg = /^[0-9]{1,3}/; 
 			$("#register").click(function() {			 	
-				if(!name_reg.test($("#unitName").val())){
-					layer.msg("请正确输入企业名称",{icon:2,time:1000});
-					$("#unitName").focus();		
+				if($("#unitName").val() == ""){
+					layer.msg("请输入企业名称",{icon:2,time:1000});
+					$("#unitName").focus();	
 				}/* else if (!password_reg.test($("#businessLicenseCode").val())) {
 					layer.msg("请正确输入社会统一信用代码",{icon:2,time:1000});
 					$("#businessLicenseCode").focus();		
@@ -207,7 +207,7 @@
 					/* if(!idCard_judge.test($("#idCard").val())){				
 						layer.msg("请输入18位身份证号码",{icon:2,time:1000});
 						$("#idCard").focus();		
-					}else  */if(!username_reg.test($("#username").val())){
+					}else  */if($("#username").val() == ""){
 						layer.msg("请正确输入姓名",{icon:2,time:1000});
 						$("#username").focus();		
 					}/* else if($("#duty").val() == "") {
