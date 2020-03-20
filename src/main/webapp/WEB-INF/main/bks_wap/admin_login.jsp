@@ -21,7 +21,7 @@
 				<a href="javascript:history.go(-1)" class="text-white"><i class="fa fa-angle-left"></i></a>
 			</div>
 		</div> -->
-		<main class="main margin-top padding-side">
+		<main class="main margin-top padding-side width100">
 			<form method="" class="clearfix login_formIn">
 				<div class="margin-bot">
 					<!-- <div class="input-group form-group fs">
