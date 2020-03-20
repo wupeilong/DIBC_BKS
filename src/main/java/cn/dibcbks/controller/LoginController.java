@@ -86,24 +86,26 @@ public class LoginController {
 	@RequestMapping("/registeradd")
 	@ResponseBody
 	public ResponseResult<Void> registeradd(
-			@RequestParam(value="idCard",required = true) String idCard,
-			@RequestParam(value="username",required = true) String username,
-			@RequestParam(value="password",required = true) String password,
-			@RequestParam(value="phone",required = true) String phone,
-			@RequestParam(value="duty",required = true) String duty,
-			@RequestParam(value="age",required = true) Integer age, 
-			@RequestParam(value="unitName",required = true) String unitName,			
-			@RequestParam(value="businessLicenseCode",required = true) String businessLicenseCode,
+			@RequestParam(value="idCard",required = false) String idCard,
+			@RequestParam(value="username",required = false) String username,
+			@RequestParam(value="password",required = false) String password,
+			@RequestParam(value="phone",required = false) String phone,
+			@RequestParam(value="duty",required = false) String duty,
+			@RequestParam(value="age",required = false) Integer age, 
+			@RequestParam(value="unitName",required = false) String unitName,			
+			@RequestParam(value="businessLicenseCode",required = false) String businessLicenseCode,
 			@RequestParam(value="businessLicense",required=false)MultipartFile file,
 			@RequestParam(value="productionLicense",required=false)MultipartFile file1,				
-			@RequestParam(value="unitAddress",required = true) String unitAddress,			
-			@RequestParam(value="unitType",required = true) Integer unitType,
-			@RequestParam(value="legalPerson",required = true) String legalPerson){
+			@RequestParam(value="unitAddress",required = false) String unitAddress,			
+			@RequestParam(value="unitType",required = false) Integer unitType,
+			@RequestParam(value="legalPerson",required = false) String legalPerson){
 		ResponseResult<Void> responseResult = null;
 		try {
 			GetCommonUser get=new GetCommonUser();
 			String uuid = CommonUtil.getUUID();
+			System.out.println("1111111111111111111111");
 			String businessLicensepath=get.uoladimg(file,uuid);
+			System.out.println("2222222222222222222222");
 			if (businessLicensepath==null) {
 				responseResult=new ResponseResult<Void>(ResponseResult.ERROR,"营业执照上传异常,人员信息添加失败");
 			}else{
@@ -111,6 +113,7 @@ public class LoginController {
 				if (productionLicensepath==null) {
 					responseResult=new ResponseResult<Void>(ResponseResult.ERROR,"许可证上传异常,人员信息添加失败");
 				}else{
+					System.out.println("3333333333333");
 					responseResult=iUserService.registeradd(uuid,idCard,username,password,phone,duty,age,unitName,legalPerson,businessLicenseCode,businessLicensepath,productionLicensepath,unitAddress,null,unitType);
 				}			
 			}
@@ -163,16 +166,16 @@ public class LoginController {
 	public ResponseResult<Void> adminAdd(User user){		
 		ResponseResult<Void> rr = null;
 		try {
-			User queryUser = userMapper.queryUser(user.getIdCard());			
+			/*User queryUser = userMapper.queryUser(user.getIdCard());			
 			if (queryUser != null ) {
 				rr = new ResponseResult<Void>(ResponseResult.ERROR, "身份证已存在！");
-			}else if(userMapper.queryUserByPhone(user.getPhone()) != null){
+			}else */if(userMapper.queryUserByPhone(user.getPhone()) != null){
 				rr =  new ResponseResult<Void>(ResponseResult.ERROR,"手机号重复！");
 			}else{
-				List<User> list = userMapper.select(" u.username = '" + user.getUsername() + "'", null, null,null);
-				if (!list.isEmpty()) {
-					rr =  new ResponseResult<Void>(ResponseResult.ERROR,"手机号重复！");
-				}else{
+//				List<User> list = userMapper.select(" u.username = '" + user.getUsername() + "'", null, null,null);
+//				if (!list.isEmpty()) {
+//					rr =  new ResponseResult<Void>(ResponseResult.ERROR,"用户名重复！");
+//				}else{
 					String uuid = CommonUtil.getUUID();
 					String password = user.getPassword() == null ? Constants.INITIAL_PASSWORD : user.getPassword();
 			 		String hashPassword = CommonUtil.getEncrpytedPassword(Constants.MD5, password, uuid, 1024);
@@ -183,7 +186,7 @@ public class LoginController {
 					user.setUnitId(1);
 					userMapper.insert(user);
 					rr =  new ResponseResult<Void>(ResponseResult.SUCCESS,"企业账户分配成功!");
-				}				
+//				}				
 			}
 						
 		} catch (Exception e) {			

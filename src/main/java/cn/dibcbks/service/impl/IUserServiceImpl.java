@@ -57,14 +57,26 @@ public class IUserServiceImpl implements IUserService {
 
 	@Override
 	@Transactional(rollbackFor=Exception.class)
-	public ResponseResult<Void> registeradd(String uuid, String idCard, String username, String password, String phone, String duty,
-			Integer age, String unitName, String legalPerson, String businessLicenseCode, String businessLicense,
-			String productionLicense, String unitAddress, String expirationDate, Integer unitType) {
-			Unit queryUnit = unitMapper.queryUnit(businessLicenseCode);
+	public ResponseResult<Void> registeradd(String uuid,
+											String idCard,
+											String username,
+											String password,
+											String phone, 
+											String duty,
+											Integer age,
+											String unitName,
+											String legalPerson,
+											String businessLicenseCode,
+											String businessLicense,
+											String productionLicense,
+											String unitAddress, 
+											String expirationDate,
+			Integer unitType) {
+			/*Unit queryUnit = unitMapper.queryUnit(businessLicenseCode);
 			if(queryUnit != null){
 				logger.error(Constants.ERROR_HEAD_INFO + "用户注册失败  原因：企业信息已存在");
 				return new ResponseResult<>(ResponseResult.ERROR,"企业账户信息已存在");
-			}
+			}*/
 			List<Unit> list = unitMapper.select(" n.unit_name = '" + unitName + "'", null, null, null);
 			if (!list.isEmpty()) {
 				logger.error(Constants.ERROR_HEAD_INFO + "用户注册失败  原因：企业信息已存在");
@@ -236,13 +248,12 @@ public class IUserServiceImpl implements IUserService {
 	@Override
 	public ResponseResult<Void> userIsExist(String idCard,String phone) {
 		try {
-			User user = userMapper.queryUser(idCard);
+			/*User user = userMapper.queryUser(idCard);
 			if(user != null){
 				return new ResponseResult<>(ResponseResult.ERROR,"身份证号已存在！");
-			}
-			user = userMapper.queryUserByPhone(phone);
+			}*/
+			User user = userMapper.queryUserByPhone(phone);
 			if (user != null) {
-				System.out.println("走了这步...");
 				return new ResponseResult<>(ResponseResult.ERROR,"手机号已存在！");
 			}
 			return new ResponseResult<>(ResponseResult.SUCCESS,"操作成功！");
