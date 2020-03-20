@@ -15,15 +15,15 @@
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layui/layui.js"></script>
 	<script  type="text/javascript" src="${pageContext.request.contextPath}/static/js/layer/2.4/layer.js"></script>	
 </head>
-	<body class="contain bg-info" style="background:url(${pageContext.request.contextPath}/static/images/bks_wap/reg_bg.jpg);background-repeat: no-repeat;background-size: cover;">
+	<body class="contain bg-info fc" style="background:url(${pageContext.request.contextPath}/static/images/bks_wap/reg_bg.jpg);background-repeat: no-repeat;background-size: cover;">
 		<!-- <div class="navigation bg-primary">
 			<div class="fb padding-side">
 				<a href="javascript:history.go(-1)" class="text-white"><i class="fa fa-angle-left"></i></a>
 			</div>
 		</div> -->
 		<main class="main margin-top padding-side">
-			<form method="" class="clearfix">
-				<div class="margin-bot margin-top4">
+			<form method="" class="clearfix login_formIn">
+				<div class="margin-bot">
 					<!-- <div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg"><i class="padding-side05 text-danger vertical-mid">*</i>身份证号</span>
 					  <input type="text" class="form-control box-shadow0 border-bottom" name="idCard" placeholder="请输入身份证号" aria-describedby="sizing-addon1">
@@ -37,7 +37,7 @@
 					  <input type="password" class="form-control box-shadow0 border-bottom" name="repassword" placeholder="请再次输入密码" aria-describedby="sizing-addon1">
 					</div>			 -->		
 					<div class="input-group form-group fs">
-					  <span class="input-group-addon border0 clear-bg"><i class="padding-side05 text-danger vertical-mid">*</i>姓&ensp;&ensp;&ensp;&ensp;名</span>
+					  <span class="input-group-addon border0 clear-bg">姓名</span>
 					  <input type="text" class="form-control box-shadow0 border-bottom" id="username" name="username" placeholder="请输入姓名" aria-describedby="sizing-addon1">
 					</div>
 				<!-- 	<div class="input-group form-group fs">
@@ -45,7 +45,7 @@
 					  <input type="text" class="form-control box-shadow0 border-bottom" name="age" placeholder="请输入年龄" aria-describedby="sizing-addon1">
 					</div> -->
 					<div class="input-group form-group fs">
-					  <span class="input-group-addon border0 clear-bg"><i class="padding-side05 text-danger vertical-mid">*</i>电&ensp;&ensp;&ensp;&ensp;话</span>
+					  <span class="input-group-addon border0 clear-bg">电话</span>
 					  <input type="text" class="form-control box-shadow0 border-bottom" id="phone" name="phone" placeholder="请输入电话" aria-describedby="sizing-addon1">
 					</div>
 					<!-- <div class="input-group form-group fs">
