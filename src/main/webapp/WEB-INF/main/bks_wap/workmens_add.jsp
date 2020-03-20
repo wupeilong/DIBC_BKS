@@ -37,10 +37,10 @@
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>手&ensp;机&ensp;号</span>
 					  <input type="text" class="form-control box-shadow0 border-bottom" id="phone" name="phone" placeholder="请输入手机号" aria-describedby="sizing-addon1">
 					</div>
-					<!-- <div class="input-group form-group fs">
+					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>职&ensp;&ensp;&ensp;&ensp;务</span>
 					  <input type="text" class="form-control box-shadow0 border-bottom" id="duty" name="duty" placeholder="请输入职务" aria-describedby="sizing-addon1">
-					</div>  -->
+					</div>
 					<div class="input-group form-group fs">
 					  <span class="input-group-addon border0 clear-bg" id="sizing-addon1"><i class="padding-side05 text-danger vertical-mid">*</i>姓&ensp;&ensp;&ensp;&ensp;名</span>
 					  <input type="text" class="form-control box-shadow0 border-bottom" id="username" name="username" placeholder="请输入姓名" aria-describedby="sizing-addon1">
@@ -91,10 +91,10 @@
 			var idCard_judge = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
 			var age_reg = /^[0-9]{1,3}/; 
 			 $('#register').click(function() {
-				 /* if ($("#duty").val() == "") {
+				 if ($("#duty").val() == "") {
 					layer.msg("请正确输入职务",{icon:2,time:1000});
 					$("#duty").focus();		
-				}else  */if($("#username").val() == ""){
+				}else if($("#username").val() == ""){
 					layer.msg("请正确输入姓名",{icon:2,time:1000});
 					$("#username").focus();		
 				}/* else if(!password_reg.test($("#password").val())){
@@ -118,8 +118,8 @@
 				} */else{ 		
 					var we2 = layerloadingOpen();
 				 	var formData = new FormData();				
-					/* formData.append('unimg',dataURLtoFile($("#preview").attr('src'),"we.jpg"));
-					formData.append('duty',$("#duty").val()); */
+					/* formData.append('unimg',dataURLtoFile($("#preview").attr('src'),"we.jpg"));*/
+					formData.append('duty',$("#duty").val()); 
 					formData.append('username',$("#username").val());
 					formData.append('password',$("#phone").val().substring(5,11));
 					/* formData.append('idCard',$("#idCard").val());

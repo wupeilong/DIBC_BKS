@@ -134,7 +134,8 @@
 			</div>
 		</div>
 		<script type="text/javascript" src="${pageContext.request.contextPath}/static/js/bks_wap/imgBase64.js"></script>
-		<script>	
+		<script>
+		
 			var password_reg = /[a-zA-Z0-9]{6,12}/;
 		  	var phone_reg = /(^1[3|4|5|7|8|9]\d{9}$)|(^09\d{8}$)/;
 		  	var username_reg = /^[\u4E00-\u9FA5]{2,6}$/;	

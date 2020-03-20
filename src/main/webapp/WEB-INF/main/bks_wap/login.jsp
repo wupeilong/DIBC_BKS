@@ -30,10 +30,12 @@
 						  <span class="input-group-addon" id="sizing-addon1">密码</span>
 						  <input type="password" class="form-control box-shadow0" id="password" name="password" placeholder="请输入密码" aria-describedby="sizing-addon1">
 						</div>
-						<!-- <div class="input-group input-group-lg fs form-group">
-						  <span class="input-group-addon clear-bg border0" id="sizing-addon1"><input type="checkbox" name="" id="" value="" /></span>
+						<div class="input-group input-group-lg fs form-group">
+						  <span class="input-group-addon clear-bg border0" id="sizing-addon1">
+						  	<input type="checkbox" name="" id="remember" value="" />
+						  </span>
 						  <div class="form-control box-shadow0 border0 clear-bg">记住密码</div>
-						</div> -->
+						</div> 
 						<div class="margin-bot2 text-right">
 							<a href="${pageContext.request.contextPath}/register" class="">没有账号？去注册</a>
 						</div>
@@ -43,6 +45,35 @@
 			</div>
 		</div>
 		<script>
+			//记住密码赋值	
+			if(!window.localStorage){
+			 	console.log("浏览器不支持localstorage");
+			}else{
+			    //主逻辑业务
+			    var storage = window.localStorage;
+			    var idCard = storage.getItem("idCard");
+			    var password = storage.getItem("password");
+			    var remember = storage.getItem("remember");
+			    //账户赋值
+			    if(idCard != null){
+			    	$("#idCard").val(idCard);
+			    }else{
+			    	$("#idCard").val("");
+			    }
+			    //密码赋值
+			    if(password != null){
+			    	 $("#password").val(password);
+			    }else{
+			    	 $("#password").val("");
+			    }
+			    //checkbox框赋值
+			    if(remember != null){
+			    	$("#remember").attr("checked","checked");
+			    }		    
+			}		
+
+	        
+	        
 			$("#login").click(function() {
 					var account = $("input[name='idCard']").val();
 					var password = $("input[name='password']").val();
@@ -60,8 +91,6 @@
 						$("input[name='password']").focus();
 					}else{
 						var url = "userLogin";
-						/* var idCard=$("#idCard").val();
-						var password=$("#password").val();	 */	
 						var data = "idCard="+account+"&password="+password;		
 						$.ajax({
 							"url" : url,
@@ -71,8 +100,23 @@
 							"success" : function(obj) {
 								if (obj.state == 0) {
 									layer.msg(obj.message,{icon:2,time:1000});
+									console.log("账号:" + $("#idCard").val());
+									console.log("是否记住密码:" + $('#remember').is(':checked'));
 									return;
 								}else{
+									//选中记住密码 + 并且支持localStorage
+									if($('#remember').is(':checked') && window.localStorage){
+										var storage = window.localStorage;
+										storage.setItem("idCard",$("#idCard").val());
+										storage.setItem("password",$("#password").val());
+										storage.setItem("remember","1");
+									}else{
+										var storage = window.localStorage;
+										storage.removeItem("idCard");
+										storage.removeItem("password");
+										storage.removeItem("remember");
+									}
+									//location.reload();
 									layer.msg(obj.message,{icon:1,time:1000},function(){location.href = "home";});
 								}					
 							}
