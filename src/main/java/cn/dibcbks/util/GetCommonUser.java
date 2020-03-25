@@ -47,7 +47,8 @@ public class GetCommonUser {
     {
     	String start=null;
     	String path1=this.getpath();	
-    	long time = new Date().getTime();
+    	//long time = new Date().getTime();
+    	long time = IDWorkUtil.nextId();
 	    String extName = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));	  
 	    try {
 	    	File file5 = new File(path1+"/static/images/bks_wap/company_img/"+uuid);
